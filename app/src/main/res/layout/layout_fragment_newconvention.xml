@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.funnco.funnco.view.listview.XListView
+        android:id="@+id/xlv_fragment_newconvention_list"
+        style="@style/style_layout_width_height_mm"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:headerDividersEnabled="false"
+        android:footerDividersEnabled="true">
+    </com.funnco.funnco.view.listview.XListView>
+    <TextView
+        android:id="@+id/tv_fragment_newconvention_notify"
+        style="@style/style_common_tv_bar"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:gravity="center"
+        android:text="@string/str_convention_null_notify_2"/>
+</FrameLayout>

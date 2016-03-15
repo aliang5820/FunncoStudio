@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_item_courses_weektip"
+        style="@style/style_common_tv_bar"
+        android:layout_marginLeft="0dp"
+        android:gravity="center"
+        android:text="周次"
+        android:background="@color/color_main_bg"
+        android:textSize="@dimen/font_size_14" />
+
+    <com.funnco.funnco.view.switcher.SwipeLayout
+        android:id="@+id/swip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/delete"
+                android:layout_width="@dimen/dimen_common_width_80"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textColor="@color/color_white"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            style="@style/style_layout_width_m"
+            android:layout_height="@dimen/dimen_common_width_65"
+            android:background="@color/color_white">
+
+            <TextView
+                android:id="@+id/tv_item_courses_time"
+                android:layout_width="@dimen/dimen_common_100"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="10:00-12:00" />
+
+            <LinearLayout
+                android:id="@+id/llayout_right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_item_courses_number"
+                    style="@style/style_common_tv_bar"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:text="8人"
+                    android:textSize="@dimen/font_size_14" />
+
+                <TextView
+                    android:id="@+id/tv_item_courses_price"
+                    style="@style/style_common_tv_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="@dimen/font_size_14"
+                    android:visibility="invisible" />
+                <ImageView
+                    android:id="@+id/iv_item_courses_teamicon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/common_my_team"
+                    android:layout_gravity="bottom|right"
+                    android:padding="@dimen/dimen_common_5"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llayout_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/llayout_right"
+                android:layout_toRightOf="@id/tv_item_courses_time"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_item_courses_name"
+                    style="@style/style_common_tv_bar"
+                    android:textColor="@color/color_black_3"
+                    android:gravity="left|center_vertical"
+                    android:text="课程名"
+                    android:textSize="@dimen/font_size_18" />
+
+                <TextView
+                    android:id="@+id/tv_item_courses_desc"
+                    style="@style/style_common_tv_bar"
+                    android:gravity="left|center_vertical"
+                    android:text="课程描述"
+                    android:textSize="@dimen/font_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/dimen_common_1px"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/tv_item_courses_time"
+                android:background="@color/color_hint_gray_light" />
+
+        </RelativeLayout>
+    </com.funnco.funnco.view.switcher.SwipeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_common_1px"
+        android:background="@color/color_hint_gray_light"/>
+</LinearLayout>

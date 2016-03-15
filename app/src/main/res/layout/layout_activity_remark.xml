@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common" />
+
+    <com.funnco.funnco.view.layout.ScrollEditLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/iv_remark_delete_cus"
+        android:layout_below="@id/llayout_head"
+        android:background="@color/color_main_bg"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_translucent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llayout_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_common_10"
+                android:background="@color/color_white">
+                <com.funnco.funnco.view.imageview.CircleImageView
+                    android:id="@+id/civ_remark_icon"
+                    android:layout_width="@dimen/dimen_edit_height_65"
+                    android:layout_height="@dimen/dimen_edit_height_65"
+                    android:layout_gravity="center_horizontal"/>
+                <TextView
+                    android:id="@+id/tv_remark_nickname"
+                    style="@style/style_layout_width_height_mw"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:padding="8dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llayout_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llayout_1"
+                android:layout_marginTop="@dimen/dimen_common_20"
+                android:background="@color/color_white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_remark_title_remarkname"
+                        android:layout_width="@dimen/dimen_edit_height_65"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|left"
+                        android:paddingLeft="@dimen/dimen_common_10"
+                        android:text="@string/remark" />
+
+                    <View
+                        android:id="@+id/v_remark_line_remarkname"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/dimen_common_10"
+                        android:layout_marginRight="@dimen/dimen_common_10"
+                        android:background="@color/color_black_4" />
+                    <EditText
+                        android:id="@+id/et_remark_remarkname"
+                        android:layout_width="match_parent"
+                        android:maxLength="15"
+                        android:layout_toRightOf="@id/tv_remark_title_remarkname"
+                        android:layout_above="@id/v_remark_line_remarkname"
+                        style="@style/style_et_editin"
+                        android:textColor="@color/color_black_2"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_remark_title_workphone"
+                        android:layout_width="@dimen/dimen_edit_height_65"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|left"
+                        android:paddingLeft="@dimen/dimen_common_10"
+                        android:text="@string/str_phone" />
+
+                    <View
+                        android:id="@+id/v_remark_line_workphone"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/dimen_common_10"
+                        android:layout_marginRight="@dimen/dimen_common_10"
+                        android:background="@color/color_black_4" />
+
+                    <TextView
+                        android:id="@+id/tv_remark_phone"
+                        style="@style/style_et_editin"
+                        android:layout_width="match_parent"
+                        android:textColor="@color/color_black_2"
+                        android:layout_above="@id/v_remark_line_workphone"
+                        android:layout_toRightOf="@id/tv_remark_title_workphone"
+                        android:maxLength="35" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_remark_title_birthday"
+                        android:layout_width="@dimen/dimen_edit_height_65"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|left"
+                        android:paddingLeft="@dimen/dimen_common_10"
+                        android:text="@string/str_birthday" />
+
+                    <View
+                        android:id="@+id/v_remark_line_birthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/dimen_common_10"
+                        android:layout_marginRight="@dimen/dimen_common_10"
+                        android:background="@color/color_black_4" />
+
+                    <TextView
+                        android:id="@+id/tv_remark_birthday"
+                        style="@style/style_tv_editin"
+                        android:layout_width="match_parent"
+                        android:drawableRight="@mipmap/common_dropdown_arrow_2"
+                        android:paddingRight="@dimen/dimen_common_20"
+                        android:paddingLeft="@dimen/dimen_common_5"
+                        android:clickable="true"
+                        android:textColor="@color/color_black_2"
+                        android:layout_above="@id/v_remark_line_birthday"
+                        android:layout_toRightOf="@id/tv_remark_title_birthday"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_remark_title_instroducation"
+                        android:layout_width="@dimen/dimen_common_width_100"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|left"
+                        android:paddingLeft="@dimen/dimen_common_10"
+                        android:text="@string/str_personalinfo_3" />
+
+                    <EditText
+                        android:id="@+id/et_remark_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color_translucent"
+                        android:gravity="top"
+                        android:lines="4"
+                        android:layout_toRightOf="@id/tv_remark_title_instroducation"
+                        android:maxLength="100"
+                        android:maxLines="8"
+                        android:cursorVisible="true"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/font_size_14"
+                        android:textColor="@color/color_black_2"
+                        android:padding="5dp"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </com.funnco.funnco.view.layout.ScrollEditLayout>
+
+    <include
+        android:id="@id/llayout_foot"
+        layout="@layout/layout_bottom_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+    <ImageView
+        android:id="@+id/iv_remark_delete_cus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dimen_common_20"
+        android:layout_above="@id/llayout_foot"
+        android:clickable="true"
+        android:visibility="gone"
+        android:src="@mipmap/common_dele" />
+</RelativeLayout>

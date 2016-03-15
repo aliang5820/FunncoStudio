@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llayout_d"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_main_bg"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/catalog"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:paddingBottom="4dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="4dp"
+            android:text=""
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:paddingBottom="4dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="4dp"
+            android:text=""
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/week"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:paddingBottom="4dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="4dp"
+            android:text=""
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <com.funnco.funnco.view.switcher.SwipeLayout
+        android:id="@+id/swip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/delete"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/cancle"
+                android:textColor="@color/color_white"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.funnco.funnco.view.imageview.CircleImageView
+                android:id="@+id/iv_item_customerfuture_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/icon_edit_profile_default_2x"
+                app:border_color="#a9ffffff"
+                app:border_width="1dp" />
+
+            <ImageView
+                android:id="@+id/iv_item_customerfuture_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:clickable="true"
+                android:padding="5dp"
+                android:src="@mipmap/common_call_icon" />
+            <TextView
+                android:id="@+id/tv_item_customerfuture_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:padding="@dimen/dimen_common_10"
+                android:gravity="center"
+                android:text="@string/ok"
+                android:visibility="gone"
+                android:textColor="@color/color_white"
+                android:background="@drawable/shape_schedule_timeline_red"
+                android:clickable="true"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toLeftOf="@id/iv_item_customerfuture_call"
+                android:layout_toRightOf="@id/iv_item_customerfuture_icon"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_item_customerfuture_truename"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="用户名"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_item_customerfuture_lasttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="10:00 - 10:30"
+                    android:textColor="@color/color_hint_gray_light"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </com.funnco.funnco.view.switcher.SwipeLayout>
+</LinearLayout>

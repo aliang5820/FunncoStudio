@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/color_white">
+<ImageView
+    android:id="@id/id_imageview"
+    android:layout_width="@dimen/dimen_common_200"
+    android:layout_height="180dp"
+    android:src="@mipmap/common_team_notify_add"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="@dimen/dimen_common_10"/>
+    <TextView
+        style="@style/style_layout_width_height_mw"
+        android:text="@string/str_team_addnotify"
+        android:gravity="center"
+        android:textColor="@color/color_hint_gray_light"
+        android:textSize="@dimen/font_size_14"
+        android:layout_below="@id/id_imageview"
+        android:background="@color/color_translucent"/>
+
+    <Button
+        android:id="@id/id_title_0"
+        style="@style/style_common_bt"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimen_common_30"
+        android:text="@string/str_team_createnow"
+        android:background="@drawable/selector_common_green"/>
+    <TextView
+        style="@style/style_common_tv_bar"
+        android:text="@string/str_team_has_n"
+        android:layout_above="@id/id_title_0"
+        android:layout_marginBottom="10dp"/>
+    <Button
+        android:id="@id/id_title_1"
+        style="@style/style_common_bt"
+        android:text="@string/str_team_joinnow"
+        android:layout_above="@id/id_title_0"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/selector_common_red"/>
+    <TextView
+        style="@style/style_common_tv_bar"
+        android:text="@string/str_team_has_y"
+        android:layout_above="@id/id_title_1"
+        android:layout_marginBottom="10dp"/>
+
+</RelativeLayout>

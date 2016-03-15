@@ -1,0 +1,614 @@
+<resources>
+    <string name="app_name">Funnco</string>
+    <string name="app_name_2">FUNNCO</string>
+    <string name="app_name_3">Funnco</string>
+    <string name="app_name_zh">纷客</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="funnco_version">1.0.2</string>
+    <string name="funnco_yy">Funnco预约</string>
+    <string name="setting">设置</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="schedule">日程</string>
+    <string name="message">消息</string>
+    <string name="event">事件</string>
+    <string name="number">人数</string>
+    <string name="time">时间</string>
+    <string name="conventation">预约</string>
+    <string name="newconvention">新增预约</string>
+    <string name="service">服务</string>
+    <string name="course">课程</string>
+    <string name="upload">作品</string>
+    <string name="imagebucket">相册</string>
+    <string name="my">我的</string>
+    <string name="my_zoom">个人中心</string>
+    <string name="begin">开始</string>
+    <string name="lostpassword">忘记密码</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_get_password">GetPasswordActivity</string>
+    <string name="str_icon_edit">修改头像</string>
+    <string name="choose_icon">选择头像</string>
+    <string name="editwork">编辑作品</string>
+    <string name="updatework">修改作品</string>
+    <string name="mywork">我的照片</string>
+    <string name="preview">预览</string>
+    <string name="name">姓名</string>
+    <string name="nickname">昵称</string>
+    <string name="username">用户名</string>
+    <string name="job_type">行业类别</string>
+    <string name="fillin_authcode">输入验证码</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_authcode">获取验证码</string>
+    <string name="save">保存</string>
+    <string name="save_y_n">是否保存?</string>
+    <string name="submit">提交</string>
+    <string name="lanuch">发布</string>
+    <string name="send">发送</string>
+    <string name="lanuch_service">发布服务</string>
+    <string name="cancle">取消</string>
+    <string name="reason_cancle_customer">取消预约原因</string>
+    <string name="ok">确定</string>
+    <string name="ok_regist">注册成功！</string>
+    <string name="delete">删除</string>
+    <string name="isdelete">是否删除</string>
+    <string name="cancle_ornot_customer">是否取消此预约</string>
+    <string name="logout_ornot">是否注销此次登录</string>
+    <string name="success">成功</string>
+    <string name="str_login_success">登录成功</string>
+    <string name="str_login_failure">登录失败</string>
+    <string name="str_login_wukong_no">消息初始化失败，请重新登录</string>
+    <string name="failue">失败</string>
+    <string name="next">下一步</string>
+    <string name="previous">上一步</string>
+    <string name="edit">编辑</string>
+    <string name="complete">完成</string>
+    <string name="servicename">服务名称</string>
+    <string name="servicetime">服务时长</string>
+    <string name="servicecount">服务人数</string>
+    <string name="serviceprice">服务价格</string>
+    <string name="servicedescribe">服务描述</string>
+    <string name="fillin_eventcontent">填写事件内容</string>
+    <string name="allday">全天事件</string>
+    <string name="event_date">事件日期</string>
+    <string name="event_repeat">重复类型</string>
+    <string name="repead_mode">循环模式</string>
+    <string name="enddate">结束日期</string>
+    <string name="begindate">开始日期</string>
+    <string name="addschedule">添加日程</string>
+    <string name="begintime">开始时间</string>
+    <string name="endtime">结束时间</string>
+    <string name="addtempevent">添加事件</string>
+    <string name="scheduledetails">编辑事件</string>
+    <string name="information">信息</string>
+    <string name="addservice">添加服务</string>
+    <string name="updateservice">修改服务</string>
+    <string name="deleteservice">删除服务</string>
+    <string name="album">相机胶卷</string>
+    <string name="only_choose_num">超出可选图片张数</string>
+    <string name="net_err">网络连接异常</string>
+    <string name="fillout_right">请正确填写</string>
+    <string name="data_err_2fresh">数据异常请刷新~~</string>
+    <string name="choose_reason">请选择取消原因</string>
+    <string name="user_err">用户信息异常</string>
+    <string name="data_err">数据异常，请刷新！</string>
+    <string name="data_null">数据为空!</string>
+    <string name="customer_phone_err">客户号码异常</string>
+    <string name="mobile_err">号码有误,请检查!</string>
+    <string name="secondps_unsame">两次输入密码不一致</string>
+    <string name="sort_by_time">时间排序</string>
+    <string name="sort_by_name">字母排序</string>
+    <string name="work_time">工作时间</string>
+    <string name="service_together_can">可同时进行服务</string>
+    <string name="funnco_start_yy">这天没有预约,点击发布开始您的预约之旅</string>
+    <string name="work_isall">已加载全部作品</string>
+    <string name="success_upload">上传成功!</string>
+    <!--<string name="relogin"></string>-->
+
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="addtitle">添加标题</string>
+    <string name="imagedesc">图片注释</string>
+    <string name="deletecurrent">删除当天日程</string>
+    <string name="deleteall">删除所有</string>
+    <string name="delete_y_n">确定删除？</string>
+    <string name="null_up_y_n">修改未完成，确定上传？</string>
+    <string name="repead_mode_notnull">循环模式不能为空</string>
+    <string name="uploading">正在上传···</string>
+    <string name="logining">正在登录...</string>
+    <string name="submiting">正在提交...</string>
+    <string name="sd_no">亲，请到应用市场进行下载！</string>
+    <string name="update_version">发现新版本，是否下载？</string>
+    <string name="downloading">下载</string>
+
+    <string name="sunday">星期日</string>
+    <string name="monday">星期一</string>
+    <string name="tuesday">星期二</string>
+    <string name="wednesday">星期三</string>
+    <string name="thursday">星期四</string>
+    <string name="friday">星期五</string>
+    <string name="saturday">星期六</string>
+
+    <string name="sunday_2">周日</string>
+    <string name="monday_2">周一</string>
+    <string name="tuesday_2">周二</string>
+    <string name="wednesday_2">周三</string>
+    <string name="thursday_2">周四</string>
+    <string name="friday_2">周五</string>
+    <string name="saturday_2">周六</string>
+    <string name="forever">循环</string>
+
+    <string name="sunday_3">日</string>
+    <string name="monday_3">一</string>
+    <string name="tuesday_3">二</string>
+    <string name="wednesday_3">三</string>
+    <string name="thursday_3">四</string>
+    <string name="friday_3">五</string>
+    <string name="saturday_3">六</string>
+
+    <string name="choose_sex">选择性别</string>
+    <string name="man">男</string>
+    <string name="women">女</string>
+    <string name="qr_code">二维码名片</string>
+    <string name="qr_code_2">二维码</string>
+    <string name="business_code">名片预览</string>
+    <string name="career">职业</string>
+    <string name="remark">备注名</string>
+    <string name="remark_2">备注</string>
+    <string name="remark_info">备注信息</string>
+    <string name="personal_remark">你对Ta的个人描述</string>
+    <string name="remark_moredesc">添加更多描述</string>
+    <string name="duration_service_everyday">此服务每日接受预约的时间段</string>
+    <string name="funnco_future">未来预约</string>
+    <string name="funnco_history">历史预约</string>
+    <string name="regist_new_count">注册新账号</string>
+    <string name="login_by_weicat">微信号登录</string>
+    <string name="weicat_title_1">欢迎预约</string>
+    <string name="weicat_title_2">的时间，简单又迅速。</string>
+    <string name="weicat_title_3">的日程分享</string>
+    <string name="weicat_title_4">使用funnco预约我的时间，就是这么简单。</string>
+    <string name="weicat_notify_title_1">亲爱的微信用户</string>
+    <string name="weicat_notify_title_2">您好,</string>
+    <string name="weicat_notify_title_3">为了您更好的使用Funnco服务,请关联一个Funnco账号!</string>
+    <string name="weicat_notify_account_n">还没有Funnco账号?</string>
+    <string name="weicat_notify_account_y">已有Funnco账号?</string>
+    <string name="weicat_notify_registfaster">快速注册</string>
+    <string name="weicat_notify_linknow">立即关联</string>
+    <string name="weicat_bind_link">关联已有的Funnco账号</string>
+    <string name="weicat_bind_fillout">请输入Funnco用户名</string>
+    <string name="weicat_bind_des">关联后,您的微信账号及Funnco账号都可登录。</string>
+    <string name="weicat_registfaster_des">注册后,您的微信账号及Funnco账号都可登录。</string>
+    <string name="weicat_registfaster_pro">Funnco用于注册协议及隐私权政策</string>
+    <string name="weicat_registfaster_agreePro">使用Funnco服务，必须同意Funnco协议。</string>
+
+    <string name="p_fillout_">请填写</string>
+    <string name="p_fillout_keywork">请输入关键字</string>
+    <string name="p_fillout_nickname">请填写昵称！</string>
+    <string name="p_fillout_phonenumber">请输入手机号</string>
+    <string name="p_fillout_authorcode">请输入短信验证码</string>
+    <string name="p_fillout_passwd">请设置密码</string>
+    <string name="p_fillout_passwd_2">请确认密码</string>
+    <string name="p_fillout_date_time">请正确选择日期/时间</string>
+    <string name="p_fillout_date_time_2">开始时间不能大于结束时间</string>
+    <string name="p_fillout_date_time_3">开始日期不能大于结束日期</string>
+    <string name="p_fillout_char_en">请使用英文逗号","</string>
+    <string name="p_fillout_updateok_login">密码修改成功，请重新登录！</string>
+    <string name="p_fillout_sendok">发送成功！</string>
+    <string name="p_fillout_career">请选择职业类别！</string>
+    <string name="p_fillout_desc">请填写个人简介！</string>
+    <string name="p_fillout_teamname">请填写团队名称</string>
+    <string name="p_fillout_teampic">请设置团队封面</string>
+    <string name="p_fillout_member_choose">请选择成员</string>
+    <string name="p_fillout_service_choose">请选择服务</string>
+
+    <string name="agreen">同意</string>
+    <string name="str_agreen">@string/agreen</string>
+    <string name="str_refuse">拒绝</string>
+    <string name="str_agreen_done">已同意</string>
+    <string name="str_refuse_done">已拒绝</string>
+    <string name="null_hide">*不填即可在名片隐藏</string>
+    <string name="tagether_same_persons">*可以同时预约的人数</string>
+
+    <string name="str_introducation">简介</string>
+    <string name="str_personalinfo">个人资料</string>
+    <string name="str_personalinfo_edit">编辑资料</string>
+    <string name="str_personalinfo_2">个人信息</string>
+    <string name="str_personalinfo_3">个人描述</string>
+    <string name="str_work_phone">工作电话</string>
+    <string name="str_phone">电话</string>
+    <string name="str_address">我的地址</string>
+    <string name="str_service_my">我的服务</string>
+    <string name="str_workphone_notify">多个请使用逗号","隔开</string>
+    <string name="str_birthday">生日</string>
+    <string name="str_conventationinfo">预约信息</string>
+    <string name="str_myconventation">我的预约</string>
+    <string name="str_mycustomer">通讯录</string>
+    <string name="str_help_how2use">如何使用纷客？</string>
+    <string name="str_welcome2use_funnco">欢迎使用Funnco</string>
+    <string name="str_firstuser_notify_main">第一次打开Funnco不知道做什么？ 查看帮助，请点这里！</string>
+    <string name="str_newconvention_null">亲，没有新增预约哎~</string>
+    <string name="str_convention_null_notify">您目前没有新预约</string>
+    <string name="str_convention_null_notify_2">您目前没有预约</string>
+    <string name="str_customer_null_notify">目前无联系人,客户预约后\n会自动加入通讯录，让您更好的管理</string>
+
+    <string name="str_wechat_id">微信ID</string>
+    <string name="str_conventation_count">被约次数</string>
+    <string name="str_career_type">所属行业</string>
+    <string name="str_personal_instroducation">个人简介</string>
+    <string name="str_start_now">立刻体验</string>
+
+    <string name="str_guide_title_1">日历上用2种颜色的小点区分出你的预约和你的事件\n点击绿色的新增预约按钮，查看并确认你的新预约</string>
+    <string name="str_guide_title_2">点击日程中绿色按钮，查看新增预约，方便快捷\n更清晰、更方便的打开方式，更详细的预约信息</string>
+    <string name="str_guide_title_3">在通讯录中点击客户头像即可打开客户详细资料\n信息页面向上滑动还可查看预约记录，每条预约均可编辑备注</string>
+
+
+    <string name="str_wechat">微信</string>
+    <string name="str_wechat_moment">微信朋友圈</string>
+    <string name="str_phonenumber">手机号</string>
+    <string name="str_mobile">电话</string>
+    <string name="str_password">密码</string>
+    <string name="title_company_info">公司信息</string>
+    <string name="title_personal_info">个人信息</string>
+    <string name="str_company_name">公司名称</string>
+    <string name="str_description_2">描述(选填)</string>
+    <string name="str_back">返回</string>
+    <string name="str_author_code">验证码</string>
+    <string name="str_passwd_primary">原密码</string>
+    <string name="str_passwd_new">新密码</string>
+    <string name="str_passwd_2">确认密码</string>
+    <string name="str_passwd_findback">找回密码</string>
+    <string name="str_pass">跳过</string>
+    <string name="str_regist2_des">*部分信息不显示在您的个人名片上</string>
+    <string name="str_truthname">真实姓名</string>
+    <string name="str_choose_sex">性别</string>
+    <string name="str_work_phone2">多个号码用英文逗号隔开</string>
+    <string name="str_email">E-mail</string>
+    <string name="str_city">城市</string>
+    <string name="str_address_detailed">详细地址</string>
+    <string name="str_addservice_fast">快速添加您的服务，可在"服务"中详细设置</string>
+    <string name="str_addwork_nofity">您现在还没有设置作品\n点击右上角+号来添加吧</string>
+    <string name="str_service_info">服务信息</string>
+    <string name="str_username">用户名</string>
+    <string name="str_login">登录</string>
+    <string name="str_regist">注册</string>
+    <string name="str_country">国家</string>
+    <string name="str_hour">小时</string>
+    <string name="str_minute">分钟</string>
+    <string name="str_seconds">秒</string>
+    <string name="str_search">搜索</string>
+
+    <string name="str_bind_title_0">注册后，您的</string>
+    <string name="str_bind_title_1">关联后，您的</string>
+    <string name="str_bind_title_2">和Funnco账号均可以登录</string>
+    <string name="str_share_menu_title">分享名片</string>
+    <string name="str_card_me">我的名片</string>
+    <string name="str_team_my">我的团队</string>
+    <string name="str_team_name">团队名称</string>
+    <string name="str_message_my">我的消息</string>
+    <string name="str_team_addfacepic">添加封面</string>
+    <string name="str_team_work">团队作品</string>
+    <string name="str_card_team">团队名片</string>
+    <string name="str_work_desc">照片描述</string>
+    <string name="str_addteam">加入团队</string>
+    <string name="str_join">加入</string>
+    <string name="str_income_all">总收入</string>
+    <string name="str_team_modifi_cover">修改封面</string>
+    <string name="str_team_member_logout">退出团队</string>
+    <string name="str_team_member_remove">移出团队</string>
+
+    <string name="str_team_member_joinmanager">提升管理员</string>
+    <string name="str_team_member_joinmember">加入组员</string>
+    <string name="str_logout_account">退出当前账号</string>
+    <string name="str_logouting">正在注销</string>
+    <string name="str_team_setting">我的团队设置</string>
+    <string name="str_teamcard_setting">团队名片设置</string>
+    <string name="str_send_invitation">发送邀请</string>
+    <string name="str_convention_invite">预约邀请</string>
+    <string name="str_convention_new">新预约</string>
+    <string name="str_team_invite_member">成员邀请</string>
+    <string name="str_team_invite_success">邀请成功</string>
+    <string name="str_team_member_add">添加成员</string>
+    <string name="str_team_member_choose">成员选择</string>
+    <string name="str_team_team_add">添加团队</string>
+    <string name="str_team_work_add">添加照片</string>
+    <string name="str_convention_add">添加预约</string>
+    <string name="str_team_invite_team">团队邀请</string>
+    <string name="str_schedule_event">事件</string>
+    <string name="str_schedule_conventation">预约</string>
+    <string name="str_schedule_invitation">邀请</string>
+    <string name="str_share_card">分享名片</string>
+    <string name="str_myself">自己</string>
+    <string name="str_teacher_choose">老师选择</string>
+    <string name="str_team_manager">管理</string>
+    <string name="str_team_member">成员</string>
+    <string name="str_team_joinnow">立刻加入</string>
+    <string name="str_create">创建</string>
+    <string name="str_team_createnow">立刻创建</string>
+    <string name="str_team_create">创建团队</string>
+    <string name="str_team_breakup">解散团队</string>
+    <string name="str_team_has_y">已经有团队？</string>
+    <string name="str_team_has_n">还没有团队？</string>
+    <string name="str_team_addnotify">一个人忙不过来？工作时没空手机？\n中小店面都需要前台来帮您预约？\nFunnco团队模式正式开启\n强大功能满足所有中小型团队及企业</string>
+    <string name="str_team_maxsize_notify">您目前已拥有两个团队，不能创建或加入新团队</string>
+
+    <string name="str_team_permission_searchable">允许通过搜索加入团队</string>
+    <string name="str_team_permission_searchable_des">*关闭后仅可通过邀请加入团队</string>
+    <string name="str_team_permission_addmember_des">由于技术原因目前最多允许9人加入您的团队\nFUNNCO还在不断开发以增加人数上限</string>
+    <string name="str_team_searchnotify">输入您所需要查找的信息进行搜索</string>
+    <string name="str_team_search_hint">搜索微信号、手机号或昵称</string>
+    <string name="str_team_search_null">抱歉，未能查找到您所搜索的用户</string>
+    <string name="str_team_addwork_notify">*不添加图片不会影响您的团队创建</string>
+
+    <string name="str_team_invitepermission">默认开通给管理员的权限</string>
+    <string name="str_team_invite_title">邀请您的加入</string>
+    <string name="str_notification">通知</string>
+    <string name="str_notification_team">团队通知</string>
+    <string name="str_remind">提醒</string>
+    <string name="str_sys">系统</string>
+    <string name="str_service_addservice">添加服务</string>
+    <string name="str_service_addservice_team">添加团队服务</string>
+    <string name="str_service_editservice_team">修改团队服务</string>
+    <string name="str_service_choose">选择服务</string>
+    <string name="str_service_addcourses">添加课程</string>
+    <string name="str_service_addcourses_team">添加团队课程</string>
+    <string name="str_service_editcourses_team">修改团队课程</string>
+    <string name="str_service_courses_edit">修改课程</string>
+    <string name="str_service_coursesname">课程名称</string>
+    <string name="str_service_coursesnumber">课程人数</string>
+    <string name="str_service_coursesnumber_2">开课人数</string>
+    <string name="str_service_coursesmaxnumber">*每堂课最多预约的人数</string>
+    <string name="str_service_coursesminnumber">*每堂课最少几人</string>
+    <string name="str_service_coursesless_notify">不足开课人数时,通知客户取消课程</string>
+    <string name="str_service_coursesnumber_err">开课人数 不能大于 课程人数</string>
+
+    <string name="str_notify_ahead_15">提前15分钟</string>
+    <string name="str_notify_ahead_30">提前30分钟</string>
+    <string name="str_notify_ahead_60">提前1小时</string>
+    <string name="str_notify_ahead_120">提前2小时</string>
+    <string name="str_team_nullnotify">您目前没有团队</string>
+
+    <string name="str_team_member_2">团队成员</string>
+    <string name="str_service_distribute">服务分配</string>
+    <string name="str_team_service">团队服务</string>
+    <string name="str_team_photo">团队照片</string>
+    <string name="str_service_list">服务列表</string>
+    <string name="str_service_courses_list">课程列表</string>
+    <string name="str_service_hisservice">他的服务</string>
+    <string name="str_service_hiscourses">他的课程</string>
+    <string name="str_project_modity">修改项目</string>
+    <string name="str_income_week">本周收入</string>
+    <string name="str_income_month">本月收入</string>
+    <string name="str_team_member_overrun">名额超限</string>
+
+    <string name="str_creater">创建者</string>
+    <string name="str_manager">管理员</string>
+    <string name="str_member">@string/str_team_member</string>
+    <string name="str_join_manager">@string/str_team_member_joinmanager</string>
+    <string name="str_join_member">@string/str_team_member_joinmember</string>
+    <string name="str_out_team">@string/str_team_member_remove</string>
+    <string name="str_launch_success_conventionnew">新预约添加成功</string>
+    <string name="str_team_notmanager">抱歉，您没有修改权限</string>
+    <string name="str_chat_message_design_unread">标为未读</string>
+    <string name="str_chat_message_settop">置顶</string>
+    <string name="str_chat_create_single">发起私聊</string>
+    <string name="str_chat_create_group">创建组聊</string>
+    <string name="str_chat_member_breadout">踢出群聊</string>
+
+    <string name="str_chat_recording">正在录音</string>
+    <string name="calendar_yesterday">昨天</string>
+    <string name="calendar_morning">上午</string>
+    <string name="calendar_afternoon">下午</string>
+    <string name="calendar_just_now">刚刚</string>
+    <string name="new_message_notify_content">你有%1$2d条新消息</string>
+    <string name="audio_play_err">播放错误</string>
+    <string name="audio_duration">%2d\'\'</string>
+
+    <string name="load_data">数据加载中%1$s...</string>
+    <string name="load_data1">数据加载中...</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="delete_promotion">确定删除吗?</string>
+    <string name="chat_item_unread_tips">未读</string>
+    <string name="group_item_unread_tips">%1$d人未读</string>
+    <string name="chat_item_read_tips">已读</string>
+    <string name="select_image_dlg_tips">选择图片来源</string>
+    <string name="select_image_err_tips">选择图片失败,请重新选择</string>
+    <string name="menu_conversation_quit">退出该聊</string>
+    <string name="message_conversation_quit">%1$s&#160;&#160;已经退出群聊</string>
+    <string name="err_conversation_quit">退群失败</string>
+
+    <string name="sending">正在发送</string>
+    <string name="send_fail">发送失败</string>
+    <string name="login_timer">接收短信大约需要%1$2d秒</string>
+    <string name="input_verify_code">输入验证码</string>
+    <string name="login_phone_notice">"已发送 验证码 到上面这个手机"</string>
+    <string name="coming_soon">"敬请期待"</string>
+    <string name="chat_input_edit_hint">输入文字...</string>
+    <string name="chat_input_button_send">发送</string>
+
+    <string name="create_conversation">聊天</string>
+    <string name="free_calling">免费通话</string>
+    <string name="profile_data_loading">正在加载个人信息</string>
+    <string name="user_profile_personal_title">个人信息</string>
+    <string name="user_profile_avator">头像</string>
+    <string name="user_profile_name">姓名</string>
+    <string name="user_profile_nick">昵称</string>
+    <string name="user_profile_gender">性别</string>
+    <string name="user_profile_birthday">生日</string>
+    <string name="user_profile_mobile">手机号</string>
+    <string name="user_profile_city">城市</string>
+    <string name="user_profile_company">工作单位</string>
+    <string name="user_profile_label">个性签名</string>
+    <string name="header_edit_profile">请设置你的个人资料</string>
+    <string name="in_my_local_contact">我的手机通讯录</string>
+    <string name="confirm_ok">确认</string>
+    <string name="nick_default">例如：张三</string>
+    <string name="action_edit">编辑</string>
+    <string name="profile_nick_hint">昵称长度在1-%d个字符之间</string>
+    <string name="profile_nick_not_null">昵称不能全是空格</string>
+    <string name="my_profile_nick">修改昵称</string>
+    <string name="my_profile_label">修改签名</string>
+    <string name="my_profile_city">修改城市</string>
+    <string name="my_profile_company">修改工作单位</string>
+
+    <!-- 视频通话 -->
+    <string name="chat_send_voip_text">语音通话</string>
+    <string name="hung_up">挂断</string>
+    <string name="video_call_answer">接听</string>
+    <string name="audio_only">切换为语音接听</string>
+    <string name="handsfree">免提</string>
+    <string name="silence">静音</string>
+    <string name="video_waiting">等待对方回应&#8230;</string>
+    <string name="video_answering">对方即将接听&#8230;</string>
+    <string name="video_invite">邀请你视频聊天&#8230;</string>
+    <string name="audio_invite">邀请你语音聊天&#8230;</string>
+    <string name="video_talking">正在视频聊天&#8230;</string>
+    <string name="audio_talking">正在语音聊天&#8230;</string>
+    <string name="video_is_cancle">通话已取消</string>
+    <string name="audio_only_tip">已切换为语音聊天模式,请用听筒接听</string>
+    <string name="audio_only_tip_other">对方已切换为语音聊天模式，请用听筒接听</string>
+    <string name="audio_handset_out_ear">耳机已拔出,请用听筒接听</string>
+    <string name="audio_handset_out_speaker">耳机已拔出,当前为免提模式</string>
+    <string name="close_handsfree">已关闭免提</string>
+    <string name="open_handsfree">已开启免提</string>
+    <string name="close_silence">已关闭静音</string>
+    <string name="open_silence">已开启静音</string>
+    <string name="video_no_connect">连接失败，请检查你的网络设置</string>
+    <string name="cp_tip_unkown_error">未知错误，稍后再试</string>
+    <string name="voip_call_busy">对方忙</string>
+    <string name="voip_call_timeout">呼叫超时</string>
+    <string name="voip_call_fail">未接通</string>
+    <string name="voip_network_disconnect">网络异常, 通话中断!</string>
+    <string name="voip_hanpup_by">对方已挂断,通话结束</string>
+    <string name="voip_interruption_phone_in">对方正在通电话, 被迫挂断</string>
+    <string name="voip_interruption_battery_low">对方电量过低,被迫挂断</string>
+
+    <string name="chat_create_title">发起聊天</string>
+    <string name="chat_create_openIdHint">请输入openId，空格分隔</string>
+    <string name="chat_create_invalid_openId">请输入有效的openId</string>
+    <string name="chat_create_doing">正在创建会话...</string>
+    <string name="chat_create_fail">会话创建失败</string>
+    <string name="str_chat_kicked_offline">您的账号在另一台设备上登陆，强制下线，如非本人登录请修改密码。</string>
+
+    <string name="chat_create_sysmsg">%1$s&#160;&#160;发起了群聊</string>
+    <string name="chat_create_single_msg">%1$s&#160;&#160;发起了聊天</string>
+
+    <string name="chat_create_tips">输入单个openId可发起单聊，输入多个openId可发起群聊</string>
+
+
+    <string name="send_again">是否重新发送</string>
+
+    <string name="voice_too_short">请录制至少1秒钟语音</string>
+    <string name="sdcard_unavailable">无可用SD卡,请插入或者连接SD卡</string>
+    <string name="record_space_not_enough">因手机空间不足，该条语音发送失败</string>
+    <string name="record_access_denied">录音失败</string>
+    <string name="psms_press_for_talking">按住说话</string>
+    <string name="psms_release_for_finish">松开结束</string>
+    <string name="psms_cancel_send">取消发送</string>
+    <string name="psms_cancel_send_prom">移动到这里取消</string>
+    <string name="psms_voice_is_to_short">录音时间太短</string>
+    <string name="switch_to_handset">已切换至听筒模式</string>
+    <string name="switch_to_speaker">已切换至扬声器模式</string>
+
+    <string name="new_message_notify_title">新消息通知</string>
+    <string name="menu_chat_setting">聊天设置</string>
+    <string name="title_activity_chat_setting">ChatSettingActivity</string>
+
+    <string name="quit_conversation">删除并退出</string>
+    <string name="add_new_member_tips">添加新的会话成员</string>
+    <string name="add_new_member_error">添加会话成员失败</string>
+    <string name="start_recording">开始录音</string>
+    <string name="quiting">退群中...</string>
+    <string name="close_tips">再按一次退出程序</string>
+    <string name="quit_confirm">确定要退出吗？</string>
+    <string name="kickout">您的帐号已在其它设备登录</string>
+
+    <string name="str_team_created_success">恭喜！您成功创建了团队！</string>
+    <string name="str_team_created_title0">管理员享有以下特权</string>
+    <string name="str_team_created_title1">*给成员添加预约/事件</string>
+    <string name="str_team_created_title2">*修改团队名片设置</string>
+    <string name="str_team_created_title3">*管理员顾客信息加密，成员无法查看</string>
+    <string name="str_team_created_title4">*添加/修改团队服务</string>
+    <string name="str_team_created_title5">*邀请/移除团队成员</string>
+    <string name="str_account_update_vip">账号升级</string>
+    <string name="ser_o">动感单车</string>
+
+
+    <string-array name="array_setting_menulist">
+        <item>修改密码</item>
+        <item>意见反馈</item>
+        <item>关于Funnco</item>
+        <item>当前版本号:</item>
+    </string-array>
+
+    <string-array name="array_my_memulist">
+        <item>@string/str_myconventation</item>
+        <item>@string/str_mycustomer</item>
+        <item>@string/str_team_my</item>
+        <item>@string/mywork</item>
+        <item>如何使用</item>
+        <item>@string/str_account_update_vip</item>
+        <!--<item>已预约客户</item>-->
+    </string-array>
+    <string-array name="array_sex">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+    <string-array name="array_type_repeat">
+        <item>永不</item>
+        <item>每天</item>
+        <item>每周</item>
+    </string-array>
+
+    <string-array name="array_guide_titles">
+        <item>日历上用2种颜色的小点区分出你的预约和你的事件\n点击绿色的新增预约按钮，查看并确认你的新预约</item>
+        <item>点击日程中绿色按钮，查看新增预约，方便快捷\n更清晰、更方便的打开方式，更详细的预约信息</item>
+        <item>在通讯录中点击客户头像即可打开客户详细资料\n信息页面向上滑动还可查看预约记录，每条预约均可编辑备注</item>
+    </string-array>
+
+    <string-array name="array_notify_ahead_times">
+        <item>@string/str_notify_ahead_15</item>
+        <item>@string/str_notify_ahead_30</item>
+        <item>@string/str_notify_ahead_60</item>
+        <item>@string/str_notify_ahead_120</item>
+    </string-array>
+
+    <string-array name="array_team_menu_list">
+        <item>@string/str_team_member_2</item>
+        <item>@string/str_team_service</item>
+        <item>@string/str_team_photo</item>
+        <item>@string/qr_code_2</item>
+        <item>@string/business_code</item>
+        <item>@string/setting</item>
+
+    </string-array>
+    <string-array name="jazzy_effects">
+        <item>Standard</item>
+        <item>Tablet</item>
+        <item>CubeIn</item>
+        <item>CubeOut</item>
+        <item>FlipVertical</item>
+        <item>FlipHorizontal</item>
+        <item>ZoomIn</item>
+        <item>RotateUp</item>
+        <item>RotateDown</item>
+        <item>Accordion</item>
+    </string-array>
+    <string-array name="jazzy_effects_ch">
+        <item>经典模式</item>
+        <item>淡入淡出</item>
+        <item>立方进入</item>
+        <item>立方退出</item>
+        <item>垂直翻页</item>
+        <item>水平翻页</item>
+        <item>缩放进入</item>
+        <item>向上旋转</item>
+        <item>向下旋转</item>
+        <item>折叠进入</item>
+    </string-array>
+</resources>

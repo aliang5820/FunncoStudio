@@ -1,0 +1,118 @@
+/*
+ * Project: Laiwang
+ * 
+ * File Created at 2015-02-05
+ * 
+ * Copyright 2013 Alibaba.com Corporation Limited.
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of
+ * Alibaba Company. ("Confidential Information").  You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Alibaba.com.
+ */
+package com.funnco.funnco.wukong.model;
+
+import android.content.Context;
+import android.view.View;
+
+import com.alibaba.wukong.im.Conversation;
+import com.funnco.funnco.R;
+import com.funnco.funnco.utils.support.FunncoUtils;
+import com.funnco.funnco.wukong.viewholder.SendViewHolder;
+import com.funnco.funnco.wukong.viewholder.ViewHolder;
+
+/**
+ * Description.
+ *
+ * @author zhongqian.wzq
+ */
+public class SendMessage extends ChatMessage {
+
+    @Override
+    public void showChatMessage(Context context, ViewHolder holder) {
+        showForSendMessageStatus(context, (SendViewHolder)holder);
+    }
+
+    /**
+     * 消息发送状态组件的显示
+     * @param context
+     * @param viewHolder
+     */
+    public void showForSendMessageStatus(final Context context, SendViewHolder viewHolder) {
+        switch (mMessage.status()) {
+            case OFFLINE:
+                sendAgain(context,viewHolder);
+                viewHolder.chatting_unreadcount_tv.setVisibility(View.GONE);
+                viewHolder.chatting_unread_icon_iv.setVisibility(View.GONE);
+                viewHolder.chatting_notsuccess_iv.setVisibility(View.VISIBLE);
+                viewHolder.chatting_status_progress.setVisibility(View.GONE);
+                break;
+            case SENDING:
+                viewHolder.chatting_unreadcount_tv.setVisibility(View.GONE);
+                viewHolder.chatting_unread_icon_iv.setVisibility(View.GONE);
+                viewHolder.chatting_notsuccess_iv.setVisibility(View.GONE);// 占时不展示
+                viewHolder.chatting_status_progress.setVisibility(View.VISIBLE);
+                break;
+            case SENT:
+                setUnreadStatus(context, viewHolder);
+                viewHolder.chatting_unread_icon_iv.setVisibility(View.GONE);
+                viewHolder.chatting_notsuccess_iv.setVisibility(View.GONE);
+                viewHolder.chatting_status_progress.setVisibility(View.GONE);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 显示消息的对方未读状态的情况
+     * @param context
+     * @param viewHolder
+     */
+    public void setUnreadStatus(Context context, SendViewHolder viewHolder) {
+        viewHolder.chatting_unread_icon_iv.setVisibility(View.GONE);
+        viewHolder.chatting_unreadcount_tv.setVisibility(View.VISIBLE);
+        String unReadtips = null;
+        if(mMessage.allReceiversRead()){    //已读
+            unReadtips = context.getResources().getString(R.string.chat_item_read_tips);
+//            viewHolder.chatting_unreadcount_tv.setTextColor(context.getResources().getColor(R.color.text_color_gray));
+//            viewHolder.chatting_unread_icon_iv.setBackgroundResource(R.drawable.unread_icon_iv);
+        }else{  //未读
+            if(Conversation.ConversationType.CHAT == getConversationType()){
+                unReadtips = context.getResources().getString(R.string.chat_item_unread_tips);
+            }else{
+                unReadtips = context.getResources().getString(R.string.group_item_unread_tips,getUnreadCount());
+            }
+//            viewHolder.chatting_unreadcount_tv.setTextColor(context.getResources().getColor(R.color.unread_tv_color));
+//            viewHolder.chatting_unread_icon_iv.setBackgroundResource(R.drawable.unread_icon_iv);
+        }
+
+        viewHolder.chatting_unreadcount_tv.setText(unReadtips);
+        viewHolder.chatting_unreadcount_tv.setTextColor(context.getResources().getColor(R.color.text_color_gray));
+        viewHolder.chatting_unread_icon_iv.setBackgroundResource(R.mipmap.unread_icon_iv);
+    }
+
+    /**
+     * 离线消息点击重新发送
+     * @param context
+     * @param viewHolder
+     */
+    private void sendAgain(final Context context,final SendViewHolder viewHolder){
+        viewHolder.chatting_notsuccess_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FunncoUtils.showAlertDialog(
+                        context, context.getString(R.string.send_again),
+                        new FunncoUtils.DialogCallback() {
+                            @Override
+                            public void onPositive() {
+                                mMessage.sendTo(mMessage.conversation(), null);
+                            }
+                        }
+                );
+            }
+        });
+    }
+}

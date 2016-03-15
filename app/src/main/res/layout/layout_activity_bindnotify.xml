@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/llayout_head"
+            android:background="@color/color_translucent"
+            android:orientation="vertical">
+
+            <com.funnco.funnco.view.imageview.CircleImageView
+                android:id="@+id/civ_bindnotify_icon"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:src="@mipmap/icon_edit_profile_default_2x" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="@string/weicat_notify_title_1"
+                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_bindnotify_title_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:textColor="@color/color_hint_tangerine"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="@string/weicat_notify_title_2"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_bindnotify_title_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:text="@string/weicat_notify_title_3"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/color_hint_tangerine"
+                android:layout_marginTop="50dp"
+                android:textSize="15sp"
+                android:text="@string/weicat_notify_account_n"
+                android:background="@color/color_translucent"/>
+            <TextView
+                android:id="@+id/tv_bindnotify_registfaster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginLeft="100dp"
+                android:padding="15dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/color_white"
+                android:background="@drawable/selector_bindnotify_registfaster"
+                android:text="@string/weicat_notify_registfaster"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:layout_marginTop="50dp"
+                android:text="@string/weicat_notify_account_y"
+                android:background="@color/color_translucent"/>
+            <TextView
+                android:id="@+id/tv_bindnotify_linknow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginLeft="100dp"
+                android:padding="15dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/color_hint_tangerine"
+                android:background="@drawable/selector_bindnotify_linknow"
+                android:text="@string/weicat_notify_linknow"/>
+        </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/llayout_head"
+        android:background="@color/color_translucent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@color/color_translucent"
+            android:singleLine="true"
+            android:text="@string/weicat_notify_registfaster"
+            android:textColor="@color/color_hint_tangerine"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_et_common"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/color_translucent"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:text="@string/p_fillout_phonenumber"
+                android:textColor="@color/color_hint_gray_light"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/et_registfaster_phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_translucent"
+                android:cursorVisible="true"
+                android:maxEms="20"
+                android:maxLength="22"
+                android:singleLine="true"
+                android:textColorHint="@color/color_hint_gray_light"
+                android:textCursorDrawable="@null"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_et_common"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@color/color_translucent"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/p_fillout_authorcode"
+                android:textColor="@color/color_hint_gray_light"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/et_registfaster_authorcode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@color/color_translucent"
+                android:cursorVisible="true"
+                android:maxEms="20"
+                android:maxLength="6"
+                android:singleLine="true"
+                android:textColorHint="@color/color_hint_gray_light"
+                android:textCursorDrawable="@null"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_registfaster_authorcode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@color/color_translucent"
+                android:gravity="center"
+                android:clickable="true"
+                android:layout_marginRight="10dp"
+                android:text="@string/str_authcode"
+                android:textColor="@color/color_hint_tangerine"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_et_common"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/color_translucent"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:text="@string/p_fillout_passwd"
+                android:textColor="@color/color_hint_gray_light"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/et_registfaster_pw"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_translucent"
+                android:cursorVisible="true"
+                android:maxEms="20"
+                android:maxLength="20"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColorHint="@color/color_hint_gray_light"
+                android:textCursorDrawable="@null"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_et_common"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/color_translucent"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:text="@string/p_fillout_passwd_2"
+                android:textColor="@color/color_hint_gray_light"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/et_registfaster_pw_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_translucent"
+                android:cursorVisible="true"
+                android:maxEms="20"
+                android:maxLength="20"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColorHint="@color/color_hint_gray_light"
+                android:textCursorDrawable="@null"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!--协议-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_translucent"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_registfaster_agreen"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/color_translucent"
+                android:text="@string/agreen"
+                android:gravity="center_vertical|clip_horizontal"
+                android:padding="5dp"
+                android:button="@drawable/selector_bind_registfaster_agreen"
+                android:textColor="@color/color_hint_gray_light"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_registfaster_pro"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_translucent"
+                android:gravity="center_vertical"
+                android:maxEms="20"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="@string/weicat_registfaster_pro"
+                android:textColor="@color/color_hint_tangerine"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_translucent"
+            android:gravity="center"
+            android:padding="0dp"
+            android:text="@string/weicat_registfaster_des"
+            android:textColor="@color/color_hint_gray_light"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp">
+
+        <TextView
+            android:id="@+id/tv_registfaster_cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:drawablePadding="10dp"
+            android:drawableTop="@drawable/selector_callcustomer_cancle"
+            android:gravity="center"
+            android:text="@string/cancle"
+            android:textColor="@color/color_hint_gray_light"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_registfaster_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:drawablePadding="10dp"
+            android:drawableTop="@drawable/selector_ok"
+            android:gravity="center"
+            android:text="@string/complete"
+            android:textColor="@color/color_green_ok"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

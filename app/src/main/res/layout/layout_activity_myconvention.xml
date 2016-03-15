@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/layout_activity_header_common"/>
+
+    <RadioGroup
+        android:id="@+id/rg_mycustomer_sortbydate_rgmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/color_white">
+        <!-- android:drawableBottom="@drawable/selector_line_2_9"-->
+        <RadioButton
+            android:id="@+id/rb_mycustomer_sortbydate_future"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:paddingLeft="0dp"
+            android:paddingTop="10dp"
+            android:checked="true"
+            android:textSize="18sp"
+            android:textColor="@color/color_main_bottom_rb_checked"
+            android:paddingRight="0dp"
+            android:paddingBottom="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/funnco_future" />
+
+        <RadioButton
+            android:id="@+id/rb_mycustomer_sortbydate_history"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:button="@null"
+            android:textSize="18sp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/color_main_bottom_rb_unchecked"
+            android:gravity="center_horizontal"
+            android:text="@string/funnco_history" />
+    </RadioGroup>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dip"
+        android:layout_gravity="bottom"
+        android:paddingBottom="0dp"
+        android:weightSum="2"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_mycustomer_sortbydate_line"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="4dip"
+            android:scaleType="matrix"
+            android:src="@color/color_hint_tangerine" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llayout_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    </LinearLayout>
+
+</LinearLayout>

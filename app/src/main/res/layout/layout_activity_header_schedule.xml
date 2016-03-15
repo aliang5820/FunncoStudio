@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_header_height"
+    android:background="@drawable/shape_tv_begin"
+    android:padding="0dp">
+    <RelativeLayout
+        android:id="@+id/rlayout_schedule_headl"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <com.funnco.funnco.view.imageview.CircleImageView
+            android:id="@+id/civ_schedule_headl"
+            android:layout_width="@dimen/dimen_common_30"
+            android:layout_height="@dimen/dimen_common_30"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/civ_schedule_headl"
+            android:drawableLeft="@mipmap/common_titlebar_arrow_2x"
+            android:gravity="center" />
+    </RelativeLayout>
+
+    <CheckBox
+        android:id="@+id/cb_schedule_headm"
+        style="@style/style_schedule_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:checked="false"
+        android:drawableRight="@mipmap/common_titlebar_arrow_2x"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="05月"></CheckBox>
+
+    <TextView
+        android:id="@+id/tv_schedule_headr"
+        style="@style/style_base_white_18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/lanuch"></TextView>
+</RelativeLayout>

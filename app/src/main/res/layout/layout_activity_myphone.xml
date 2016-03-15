@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_main_bg">
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+<TextView
+    android:id="@+id/tv_myphone_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/style_base_tangerine_12"
+    android:layout_below="@+id/llayout_head"
+    android:layout_marginTop="30dp"
+    android:gravity="center"
+    android:padding="10dp"
+    android:text="*请在这里填写您的工作电话，多个电话请用逗号隔开\n例如：1398764321，1398764321"
+    android:background="@android:color/transparent"/>
+    <EditText
+        android:id="@+id/et_myphone_tels"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/tv_myphone_text"
+        android:layout_marginTop="30dp"
+        android:hint="请输入电话"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:maxEms="59"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@null"
+        android:textSize="14sp"
+        android:textColorHint="@color/color_hint_gray_light"
+        android:background="@drawable/shape_et_common"/>
+    <include
+        android:id="@+id/llayout_bottom_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        layout="@layout/layout_bottom_save"/>
+</RelativeLayout>

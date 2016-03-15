@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/bg_transparent" >
+
+    <LinearLayout
+        android:id="@+id/llayout_popupwindow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical" >
+        <ListView
+            android:id="@+id/lv_popupwindow_bucketlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+       </LinearLayout>
+
+</RelativeLayout>

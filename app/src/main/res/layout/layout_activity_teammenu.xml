@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+    <android.support.v4.view.ViewPager
+        android:id="@id/id_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_common_200"
+        android:visibility="gone"
+        android:layout_below="@id/llayout_head">
+    </android.support.v4.view.ViewPager>
+    <ImageView
+        android:id="@id/id_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_common_200"
+        android:layout_below="@id/llayout_head"
+        android:scaleType="centerCrop"/>
+    <RadioGroup
+        android:id="@id/container"
+        style="@style/style_layout_width_height_ww"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@id/id_viewpager"
+        android:visibility="gone"
+        android:padding="@dimen/dimen_common_10">
+    </RadioGroup>
+    <TextView
+        android:id="@+id/tv_teammenu_teamname"
+        style="@style/style_common_tv_bar"
+        android:layout_marginLeft="0dp"
+        android:layout_height="@dimen/dimen_common_width_55"
+        android:layout_below="@id/id_imageview"
+        android:textSize="@dimen/font_size_18"
+        android:gravity="center"
+        android:text="AAAAA"
+        android:textColor="@color/color_black_2"/>
+    <ListView
+        android:id="@id/id_listView"
+        style="@style/style_common_listview"
+        android:layout_below="@id/tv_teammenu_teamname">
+    </ListView>
+
+</RelativeLayout>

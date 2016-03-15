@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@id/tip"
+        style="@style/style_layout_width_height_mw"
+        android:gravity="center"
+        android:background="@color/color_translucent"
+        android:padding="@dimen/dimen_common_5"
+        android:textSize="@dimen/font_size_16"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_common_width_65"
+        android:background="@color/color_white">
+        <com.funnco.funnco.view.imageview.CircleImageView
+            android:id="@id/id_imageview"
+            android:layout_width="@dimen/dimen_common_width_55"
+            android:layout_height="@dimen/dimen_common_width_55"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_common_15"/>
+        <TextView
+            android:id="@id/id_textview"
+            style="@style/style_common_tv"
+            android:layout_toRightOf="@id/id_imageview"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/common_enter_arrow_2x"/>
+    </RelativeLayout>
+</LinearLayout>

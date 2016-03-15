@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <declare-styleable name="com_facebook_login_view">
+        <attr name="com_facebook_confirm_logout" format="boolean"/>
+        <attr name="com_facebook_login_text" format="string"/>
+        <attr name="com_facebook_logout_text" format="string"/>
+        <attr name="com_facebook_tooltip_mode">
+            <!-- Keep in sync with Enums in LoginButton -->
+            <enum name="automatic" value="0" />
+            <enum name="display_always" value="1" />
+            <enum name="never_display" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="com_facebook_profile_picture_view">
+        <attr name="com_facebook_preset_size">
+            <!-- Keep in sync with constants in ProfilePictureView -->
+            <enum name="small" value="-2" />
+            <enum name="normal" value="-3" />
+            <enum name="large" value="-4" />
+        </attr>
+        <attr name="com_facebook_is_cropped" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="com_facebook_like_view">
+        <attr name="com_facebook_foreground_color" format="color" />
+        <attr name="com_facebook_object_id" format="string" />
+        <attr name="com_facebook_object_type">
+            <!-- Keep in sync with Enums in Likeview -->
+            <enum name="unknown" value="0" />
+            <enum name="open_graph" value="1" />
+            <enum name="page" value="2" />
+        </attr>
+        <attr name="com_facebook_style">
+            <!-- Keep in sync with Enums in LikeView -->
+            <enum name="standard" value="0" />
+            <enum name="button" value="1" />
+            <enum name="box_count" value="2" />
+        </attr>
+        <attr name="com_facebook_auxiliary_view_position">
+            <!-- Keep in sync with Enums in LikeView -->
+            <enum name="bottom" value="0" />
+            <enum name="inline" value="1" />
+            <enum name="top" value="2" />
+        </attr>
+        <attr name="com_facebook_horizontal_alignment">
+            <!-- Keep in sync with Enums in LikeView -->
+            <enum name="center" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+    </declare-styleable>
+<!-- 左划删除按钮用-->
+    <declare-styleable name="SwipeLayout">
+        <attr name="drag_edge" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+            <enum name="top" value="2"/>
+            <enum name="bottom" value="3"/>
+        </attr>
+        <attr name="show_mode" format="enum">
+            <enum name="lay_down" value="0"/>
+            <enum name="pull_out" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="CircleTextView">
+        <attr name="text" format="string"></attr>
+    </declare-styleable>
+
+
+    <!-- FunncoCalendar日历  -->
+    <declare-styleable name="CalendarPanel">
+
+        <!-- Defines panel animation duration in ms. -->
+        <attr name="animationDuration" format="integer" />
+        <!-- Defines panel position on the screen. -->
+        <attr name="position">
+
+            <!-- Panel placed at top of the screen. -->
+            <enum name="top" value="0" />
+            <!-- Panel placed at bottom of the screen. -->
+            <enum name="bottom" value="1" />
+            <!-- Panel placed at left of the screen. -->
+            <enum name="left" value="2" />
+            <!-- Panel placed at right of the screen. -->
+            <enum name="right" value="3" />
+        </attr>
+        <!-- Defines if flying gesture forces linear interpolator in animation. -->
+        <attr name="linearFlying" format="boolean" />
+        <!-- Defines opened handle (drawable/color). -->
+        <attr name="openedHandle" format="reference|color" />
+        <!-- Defines closed handle (drawable/color). -->
+        <attr name="closedHandle" format="reference|color" />
+    </declare-styleable>
+    <declare-styleable name="SmoothButton">
+        <attr name="transitionDrawable" format="reference" />
+        <attr name="transitionDrawableLength" format="integer" />
+        <attr name="transitionTextColorUp" format="color" />
+        <attr name="transitionTextColorDown" format="color" />
+    </declare-styleable>
+    <declare-styleable name="CalendarPickerView">
+        <attr name="android:background" />
+        <attr name="dividerColor" format="color" />
+        <attr name="dayBackground" format="reference" />
+        <attr name="dayTextColor" format="color" />
+        <attr name="titleTextColor" format="color" />
+        <attr name="displayHeader" format="boolean" />
+        <attr name="headerTextColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="calendar_cell">
+        <attr name="state_selectable" format="boolean" />
+        <attr name="state_current_month" format="boolean" />
+        <attr name="state_today" format="boolean" />
+        <attr name="state_range_first" format="boolean" />
+        <attr name="state_range_middle" format="boolean" />
+        <attr name="state_range_last" format="boolean" />
+        <attr name="state_highlighted" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="border_overlay" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="JazzyViewPager">
+        <attr name="style">
+            <enum name="standard" value="0" />
+            <enum name="tablet" value="1" />
+            <enum name="cubein" value="2" />
+            <enum name="cubeout" value="3" />
+            <enum name="flipvertical" value="4" />
+            <enum name="fliphorizontal" value="5" />
+            <enum name="stack" value="6" />
+            <enum name="zoomin" value="7" />
+            <enum name="zoomout" value="8" />
+            <enum name="rotateup" value="9" />
+            <enum name="rotatedown" value="10" />
+            <enum name="accordion" value="11" />
+        </attr>
+        <attr name="fadeJazzEnabled" format="boolean" />
+        <attr name="outlineEnabled" format="boolean" />
+        <attr name="outlineColor" format="color|reference" />
+    </declare-styleable>
+    <declare-styleable name="ViewPagerIndicator">
+        <!-- Style of the circle indicator. -->
+        <attr name="vpiCirclePageIndicatorStyle" format="reference" />
+        <!-- Style of the icon indicator's views. -->
+        <attr name="vpiIconPageIndicatorStyle" format="reference" />
+        <!-- Style of the line indicator. -->
+        <attr name="vpiLinePageIndicatorStyle" format="reference" />
+        <!-- Style of the title indicator. -->
+        <attr name="vpiTitlePageIndicatorStyle" format="reference" />
+        <!-- Style of the tab indicator's tabs. -->
+        <attr name="vpiTabPageIndicatorStyle" format="reference" />
+        <!-- Style of the underline indicator. -->
+        <attr name="vpiUnderlinePageIndicatorStyle" format="reference" />
+    </declare-styleable>
+<!--
+    <declare-styleable name="CirclePageIndicator">
+        &lt;!&ndash; Whether or not the indicators should be centered. &ndash;&gt;
+        <attr name="centered" />
+        &lt;!&ndash; Color of the filled circle that represents the current page. &ndash;&gt;
+        <attr name="fillColor" format="color" />
+        &lt;!&ndash; Color of the filled circles that represents pages. &ndash;&gt;
+        <attr name="pageColor" format="color" />
+        &lt;!&ndash; Orientation of the indicator. &ndash;&gt;
+        <attr name="android:orientation"/>
+        &lt;!&ndash; Radius of the circles. This is also the spacing between circles. &ndash;&gt;
+        <attr name="radius" format="dimension" />
+        &lt;!&ndash; Whether or not the selected indicator snaps to the circles. &ndash;&gt;
+        <attr name="snap" format="boolean" />
+        &lt;!&ndash; Color of the open circles. &ndash;&gt;
+        <attr name="strokeColor" format="color" />
+        &lt;!&ndash; Width of the stroke used to draw the circles. &ndash;&gt;
+        <attr name="strokeWidth" />
+        &lt;!&ndash; View background &ndash;&gt;
+        <attr name="android:background"/>
+    </declare-styleable>-->
+
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsDividerWidth" format="dimension" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsUnderlineResid" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="MakeupImageView">
+        <attr name="makeupHeight" format="dimension" />
+
+        <attr name="makeupDirection">
+            <flag name="normal" value="0x0" />
+            <flag name="left" value="0x1" />
+            <flag name="right" value="0x2" />
+        </attr>
+
+        <attr name="colorSelection">
+            <flag name="white" value="0x0" />
+            <flag name="yellow" value="0x1" />
+        </attr>
+
+    </declare-styleable>
+</resources>

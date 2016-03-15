@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants">
+    <com.funnco.funnco.view.imageview.CircleImageView
+        android:id="@id/id_title_0"
+        android:layout_width="@dimen/dimen_common_width_45"
+        android:layout_height="@dimen/dimen_common_width_45"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/dimen_common_15"
+        android:src="@mipmap/icon_edit_profile_default_2x" />
+    <ImageView
+        android:id="@id/id_title_1"
+        android:layout_width="@dimen/dimen_common_width_55"
+        android:layout_height="@dimen/dimen_common_width_45"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="5dp"
+        android:visibility="gone"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/dimen_common_15"
+        android:src="@mipmap/icon_edit_profile_default_2x"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dimen_common_width_80"
+        android:orientation="vertical">
+        <TextView
+            android:id="@id/id_title_2"
+            style="@style/style_base_tv"
+            android:text="名字"
+            android:padding="@dimen/dimen_common_5"/>
+        <TextView
+            android:id="@id/id_title_3"
+            style="@style/style_base_tv"
+            android:text="简介"
+            android:padding="@dimen/dimen_common_5"/>
+    </LinearLayout>
+    <TextView
+        android:id="@id/id_title_4"
+        style="@style/style_base_tv"
+        android:padding="@dimen/dimen_common_10"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:textColor="@color/color_hint_tangerine"
+        android:layout_marginRight="@dimen/dimen_common_10"
+        android:text="@string/str_schedule_invitation"/>
+</RelativeLayout>

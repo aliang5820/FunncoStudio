@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common" />
+
+    <ScrollView
+        android:id="@+id/sv_addservice_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/llayout_foot"
+        android:layout_below="@+id/llayout_head"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_addschedule_teamtype"
+                style="@style/sytle_addshedule"
+                android:background="@drawable/shape_et_common"
+                android:drawableRight="@mipmap/common_dropdown_arrow_2x"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:onClick="btnClick"
+                android:text="@string/str_myself"/>
+            <EditText
+                android:id="@+id/et_addschedule_eventcontent"
+                style="@style/sytle_addshedule"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_et_common"
+                android:cursorVisible="true"
+                android:maxLength="50"
+                android:textCursorDrawable="@null"
+                android:hint="@string/fillin_eventcontent" />
+
+            <CheckBox
+                android:id="@+id/cb_addschedule_eventtype"
+                style="@style/sytle_addshedule"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_et_common"
+                android:button="@null"
+                android:checked="false"
+                android:drawableRight="@drawable/selector_addshcedule_confirm_2"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="@string/allday" />
+<!--android:background="@drawable/shape_et_common"
+android:layout_marginTop="20dp"-->
+           <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="12sp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/color_hint_gray_light"
+                android:text="@string/event_repeat"/>
+
+            <TextView
+                android:id="@+id/tv_addschedule_repeattype"
+                style="@style/sytle_addshedule"
+                android:text="永不"
+                android:onClick="btnClick"
+                android:drawableRight="@mipmap/common_enter_arrow_2x"
+                android:background="@drawable/shape_et_common"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_hint_gray_light"
+                    android:text="@string/begintime"
+                    android:background="@color/color_translucent" />
+                <TextView
+                    android:id="@+id/tv_addschedule_begintime"
+                    style="@style/sytle_addshedule"
+                    android:clickable="true"
+                    android:drawableRight="@mipmap/common_enter_arrow_2x"
+                    android:background="@drawable/shape_et_common"
+                    android:onClick="btnClick"
+                    android:text="@string/begindate" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_hint_gray_light"
+                    android:text="@string/endtime"
+                    android:background="@color/color_translucent" />
+
+                <TextView
+                    android:id="@+id/tv_addschedule_endtime"
+                    style="@style/sytle_addshedule"
+                    android:clickable="true"
+                    android:drawableRight="@mipmap/common_enter_arrow_2x"
+                    android:background="@drawable/shape_et_common"
+                    android:onClick="btnClick"
+                    android:text="@string/enddate" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                android:textSize="12sp"
+                android:textColor="@color/color_hint_gray_light"
+                android:text="@string/remark_2"
+                android:background="@color/color_translucent" />
+            <!-- android:layout_marginTop="20dp"-->
+            <EditText
+                android:id="@+id/et_addschedule_remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="6"
+                android:padding="15dp"
+                android:maxLength="200"
+                android:gravity="top"
+                android:textSize="14sp"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@null"
+                android:textColorHint="@color/color_hint_gray_light"
+                android:hint="@string/remark_moredesc"
+
+                android:background="@drawable/shape_et_common"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        android:id="@id/llayout_foot"
+        layout="@layout/layout_bottom_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

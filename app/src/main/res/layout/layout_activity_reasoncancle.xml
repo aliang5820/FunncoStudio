@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llayout_head"
+            android:layout_above="@id/llayout_foot"
+            android:orientation="vertical"
+            android:background="@color/color_main_bg">
+            <ListView
+                android:id="@+id/lv_reasoncancle_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:choiceMode="singleChoice">
+            </ListView>
+            <EditText
+                android:id="@+id/et_reasoncancle_personreason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/color_hint_gray_light"
+                android:textColor="@color/color_hint_gray_light"
+                android:gravity="center"
+                android:lines="10"
+                android:maxLength="100"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@null"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/shape_et_common"
+                android:hint="*请在这里填写您取消预约的原因，\n我们将以短信的方式告知您de客户"/>
+
+
+        </LinearLayout>
+    <include
+        android:id="@id/llayout_foot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        layout="@layout/layout_bottom_save"/>
+
+</RelativeLayout>

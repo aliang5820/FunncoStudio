@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="200dp">
+    <ImageView
+        android:id="@+id/iv_item_teammy_teamicon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:id="@+id/tv_item_teammy_teamname"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_edit_height_45"
+        android:gravity="center"
+        android:textColor="@color/color_white"
+        android:singleLine="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/font_size_20"
+        android:background="@color/calendar_text_unselectable"/>
+</RelativeLayout>

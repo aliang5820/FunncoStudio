@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@mipmap/bg_transparent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bt_pwdelete_cancle"
+        android:background="@drawable/shape_bt_delete">
+<!--android:background="@drawable/shape_pw_top"-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_y_n"
+            android:textSize="@dimen/dimen_popupwindow_textsize1"
+            android:textColor="@color/color_hint_gray_light"
+
+            style="@style/style_popup_common"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_main_bg"/>
+
+        <Button
+            android:id="@+id/bt_pwdelete_deleteall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteall"
+            android:textColor="@android:color/holo_red_light"
+            style="@style/style_popup_common"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_hint_gray_light"/>
+        <!-- android:background="@drawable/shape_pw_bottom"-->
+        <Button
+            android:id="@+id/bt_pwdelete_deletecurrent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/deletecurrent"
+            android:textColor="@color/color_blue"
+            android:background="@color/color_white"
+            style="@style/style_popup_common"/>
+
+    </LinearLayout>
+   <!-- <View
+        android:id="@+id/v"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@+id/bt_pwdelete_cancle"
+        android:background="@android:color/transparent"/>-->
+    <Button
+        android:id="@+id/bt_pwdelete_cancle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cancle"
+        android:textColor="@color/color_blue"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_pw_radius_4"
+        style="@style/style_popup_common"/>
+</RelativeLayout>

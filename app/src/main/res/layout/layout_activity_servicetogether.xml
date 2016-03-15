@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+
+    <LinearLayout
+        android:id="@+id/llayout_repeadmode_chooses"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llayout_foot"
+        android:layout_below="@id/llayout_head"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/et_addservice_servicename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/service_together_can"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="*请选择可同时进行的服务，也可直接跳过选择发布\n不选代表不与其他服务同时进行"
+            android:textColor="@color/color_hint_tangerine"
+            android:textSize="14sp" />
+        <com.funnco.funnco.view.listview.XListView
+            android:id="@+id/xlv_servicetogether_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:listSelector="@android:color/transparent"
+            android:choiceMode="multipleChoice">
+        </com.funnco.funnco.view.listview.XListView>
+    </LinearLayout>
+
+
+    <include
+        android:id="@id/llayout_foot"
+        layout="@layout/layout_bottom_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

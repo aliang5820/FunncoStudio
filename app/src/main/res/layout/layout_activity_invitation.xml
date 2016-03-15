@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/style_common_tv"
+        android:text="成员"
+        android:clickable="false"
+
+        android:layout_marginTop="15dp"
+
+        android:layout_below="@id/llayout_head"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/fuchang"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:layout_height="45dp">
+
+        <TextView
+            android:id="@+id/tv_invitation_service"
+            android:layout_below="@+id/textView"
+            android:text="@string/service"
+            android:layout_weight="1"
+            style="@style/style_common_tv" />
+        <TextView
+            android:id="@+id/tv_kecheng"
+            android:layout_below="@+id/textView"
+
+            android:layout_marginLeft="5dp"
+            android:text="@string/ser_o"
+            android:layout_weight="1"
+            style="@style/style_common_tv" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_invitation_account"
+        android:layout_below="@id/fuchang"
+        android:layout_marginTop="15dp"
+        android:text="日期"
+        android:onClick="btnClick"
+        style="@style/style_common_tv" />
+    <TextView
+        android:id="@+id/tv_invitation_time"
+        android:layout_below="@id/tv_invitation_account"
+        android:layout_marginTop="15dp"
+        android:text="@string/time"
+        android:onClick="btnClick"
+        style="@style/style_common_tv" />
+    <EditText
+        android:id="@+id/tv_invitation_remark"
+        android:layout_width="match_parent"
+        android:layout_below="@id/tv_invitation_time"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:gravity="top"
+        android:textSize="@dimen/font_size_14"
+        android:padding="15dp"
+        android:lines="4"
+        android:textColorHint="@color/color_hint_gray_light"
+        android:hint="@string/remark"/>
+
+    <include
+        android:id="@id/llayout_foot"
+        layout="@layout/layout_bottom_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

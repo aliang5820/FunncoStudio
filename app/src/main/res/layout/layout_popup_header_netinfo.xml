@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="30dp">
+<TextView
+    android:id="@+id/tv_pw_netinfo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="请检查网络链接"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/color_hint_tangerine"
+    android:textColor="@color/color_white"
+    android:gravity="center"/>
+</LinearLayout>

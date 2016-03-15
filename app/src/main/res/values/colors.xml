@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主界面RadioGroup背景色 -->
+    <color name="color_main_bottom_rg">#ffe7eaf1</color>
+    <!-- 主界面背景色-->
+    <color name="color_main_bg">#fff0f3f8</color>
+    <!-- RadioButton未选中文字颜色 -->
+    <color name="color_main_bottom_rb_unchecked">#ff9fa7b0</color>
+    <!-- RadioButton选中文字颜色 -->
+    <color name="color_main_bottom_rb_checked">#ffe46331</color>
+    <!-- 白色-->
+    <color name="color_white">#ffffffff</color>
+    <color name="color_white_trant">#9affffff</color>
+    <color name="color_black">#ff000000</color>
+    <color name="color_black_2">#ff333333</color>
+    <color name="color_black_3">#ff666666</color>
+    <color name="color_black_4">#D9D9D9</color>
+    <color name="color_black_5">#C7C7CD</color>
+    <color name="color_blue">#ff0f81d9</color>
+    <color name="color_red">#aaff0000</color>
+    <color name="color_red_2">#FF3A30</color>
+    <color name="color_red_tite">#e8754a</color>
+    <color name="F0">#e67348</color>
+    <color name="column_bar_line_color">#fcfcfc</color>
+    <!-- hint提示字体颜色  灰色-->
+    <color name="color_hint_gray">#ff44494f</color>
+    <color name="color_gray">#FFA7A7A7</color>
+    <!-- hint提示字体  浅灰色-->
+    <color name="color_hint_gray_light">#ff9fa7b0</color>
+    <!-- hint提示字体  橘红色-->
+    <color name="color_hint_tangerine">#ffe67349</color>
+    <!-- 个人中心 个人信息字体颜色-->
+    <color name="color_my_personal">#ff747a81</color>
+    <color name="color_my_list">#ff323c47</color>
+    
+    <!-- 透明色-->
+    <color name="color_translucent">@android:color/transparent</color>
+    <color name="color_main_top_start">#ffD44A3C</color>
+    <color name="color_main_top_end">#ffE67349</color>
+    <color name="color_main_tv">#ff86c408</color>
+    <color name="color_green_ok">#ff64B027</color>
+    <color name="color_text_color">#ff434343</color>
+
+    <color name="color_green_2">#48CC9B</color>
+    <color name="color_green_3">#52CFA0</color>
+    <color name="color_tangerine_2">#E37247</color>
+
+
+    <color name="color_call">#aef45b42</color>
+    <color name="backgroundColor">#E8E8E0</color>
+    <color name="backgroundColorPress">#DBDBD3</color>
+
+    <color name="date_1">#F24949</color>
+    <color name="date_2">#40000000</color>
+    <color name="dd">#ff4ada60</color>
+    <color name="color_test">#ffe67349</color>
+
+    <!-- FunncoCalendar-->
+    <color name="calendar_bg">@color/color_white</color>
+    <color name="calendar_active_month_bg">@color/color_white</color>
+    <color name="calendar_divider">@android:color/transparent</color>
+    <!-- 不在当前月份的日期背景色，透明 -->
+    <color name="calendar_inactive_month_bg">@color/color_white</color>
+    <color name="calendar_highlighted_day_bg">#ffc8531d</color>
+    <color name="calendar_selected_range_bg">#ff96caff</color>
+    <!-- 日期不可用 -->
+    <color name="calendar_text_inactive">#ff778088</color>
+    <!-- 日期可用 -->
+    <color name="calendar_text_active">#ff778088</color>
+    <!-- 日期选中 -->
+    <color name="calendar_text_selected">@color/color_white</color>
+    <color name="calendar_text_unselectable">#7f778088</color>
+    <!-- 选中日期背景色，绿色 -->
+    <color name="calendar_selected_day_bg">#91d1ee</color>
+    <!-- 今日选中背景色，橙色-->
+    <color name="custom_selected">#e46230</color>
+    <!-- 今天日期 未选中背景色-->
+    <color name="custom_unselected">#cBcBcB</color>
+    <!-- 表头，周日~周六文字颜色 -->
+    <color name="custom_header_text">@color/calendar_text_active</color>
+    <color name="line_bg">#40778088</color>
+
+    <color name="color_yellow_2">#FF9D00</color>
+
+
+    <color name="session_title">#222222</color>
+    <color name="session_time">#b8b8b8</color>
+    <color name="session_divider">#d9d9d9</color>
+    <color name="session_through_content">#888888</color>
+    <color name="session_draft">#ff6666</color>
+    <color name="chatting_item_divider_bg">#ebebeb</color>
+    <color name="text_color_gray">#ABABAB</color>
+    <color name="unread_tv_color">#007aff</color>
+    <color name="chat_link_color">#2fa9ff</color>
+    <color name="chat_msg_title">#545759</color>
+    <color name="chat_text_color">#222222</color>
+    <color name="login_divider_pwd">#bacfd9</color>
+    <color name="btn_normal">#0066cc</color>
+    <color name="btn_disable">#99c2eb</color>
+    <color name="choose_btn_disable">#b6d9f1</color>
+    <color name="btn_pressed">#1a5992</color>
+    <color name="hint_text_color_login_pwd">#a7b4b8</color>
+    <color name="login_divider">#a9a9a9</color>
+    <color name="text_color_light_gray">#777777</color>
+    <color name="text_color_dark">#222222</color>
+    <color name="border">#d9d9d9</color>
+    <color name="tips_bg">#2aa3e9</color>
+    <color name="session_content">#545759</color>
+    <color name="chat_input_editTextHintColor">#ebebeb</color>
+    <color name="chat_send_button_disabled">#949495</color>
+    <color name="chat_send_button_enabled">#2fa9ff</color>
+    <color name="text_color_tab">#03A9f4</color>
+    <drawable name="tab_indicator_pressed_bg">#28ffffff</drawable>
+    <drawable name="default_divider">#d9d9d9</drawable>
+    <drawable name="common_navigator">#aeb0b1</drawable>
+
+
+    <drawable name="transprent">#00000000</drawable>
+    <color name="list_item_pressed_bg">#f0f1f3</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="home_tab_indicator">#8bd0fd</color>
+    <color name="home_title">#3eb0fb</color>
+
+    <!-- user profile-->
+    <color name="trans_blue">#e53eb0fb</color>
+    <color name="pure_white">#ffffff</color>
+    <color name="bg_gray">#ebeced</color>
+    <color name="pressed_bg">#7ff0f1f3</color>
+    <color name="divider_dark_gray">#d4d4d6</color>
+    <color name="text_color_dark_gray">#949494</color>
+    <color name="text_color_white">#FFFFFF</color>
+    <color name="window_background">#efeff4</color>
+    <drawable name="actionbar_bg_pressed">#28ffffff</drawable>
+    <drawable name="white_drawable">#f3f3f3</drawable>
+    <color name="gray">#999999</color>
+    <color name="divider_light_gray">#ecedee</color>
+    <color name="text_color_black">#545759</color>
+
+    <!--voice-->
+    <color name="voice_notice_color">#6d6d6e</color>
+    <color name="waveform_selected_right">#ffffff</color>
+    <color name="waveform_unselected_right">#8bd6f8</color>
+    <color name="waveform_selected_left">#545759</color>
+    <color name="waveform_unselected_left">#aeb0b1</color>
+    <color name="red">#ffd71f1b</color>
+    <color name="transparent_red">#99d71f1b</color>
+
+</resources>

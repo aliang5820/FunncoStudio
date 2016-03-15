@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/llayout_head"
+        android:background="@color/color_translucent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="15dp"
+            android:singleLine="true"
+            android:text="@string/weicat_bind_link"
+            android:textColor="@color/color_hint_tangerine"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_bind_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/shape_et_common"
+            android:cursorVisible="true"
+            android:gravity="center_vertical"
+            android:hint="@string/weicat_bind_fillout"
+            android:maxEms="20"
+            android:paddingLeft="15dp"
+            android:singleLine="true"
+            android:textColorHint="@color/color_hint_gray_light"
+            android:textCursorDrawable="@null"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_et_common"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_bind_passwd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@color/color_translucent"
+                android:cursorVisible="true"
+                android:gravity="center_vertical"
+                android:hint="@string/str_password"
+                android:inputType="textPassword"
+                android:paddingLeft="15dp"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColorHint="@color/color_hint_gray_light"
+                android:textCursorDrawable="@null"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_bind_lostpw"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/lostpassword"
+                android:textColor="@color/color_hint_tangerine"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_translucent"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="@string/weicat_bind_des"
+            android:textColor="@color/color_hint_gray_light"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp">
+
+        <TextView
+            android:id="@+id/tv_bind_cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:drawablePadding="10dp"
+            android:drawableTop="@drawable/selector_callcustomer_cancle"
+            android:gravity="center"
+            android:text="@string/cancle"
+            android:textColor="@color/color_hint_gray_light"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_bind_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:drawablePadding="10dp"
+            android:drawableTop="@drawable/selector_ok"
+            android:gravity="center"
+            android:text="@string/complete"
+            android:textColor="@color/color_green_ok"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

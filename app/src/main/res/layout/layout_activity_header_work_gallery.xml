@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="@dimen/dimen_header_height"
+    android:background="@drawable/shape_tv_begin"
+    android:gravity="center_vertical">
+    <TextView
+        android:id="@id/id_lview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        style="@style/style_base_white_18"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen_common_15"
+        android:drawableLeft="@drawable/selector_titlebar_back"
+        android:drawablePadding="@dimen/dimen_common_10"
+        android:singleLine="true"
+        android:layout_toLeftOf="@id/id_mview"
+        android:ellipsize="end"
+        android:clickable="true">
+    </TextView>
+
+    <TextView
+        android:id="@id/id_mview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:gravity="center"
+        style="@style/style_base_white_18"
+        android:layout_centerHorizontal="true">
+    </TextView>
+    <ImageButton
+        android:id="@id/id_rview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:paddingRight="@dimen/dimen_common_15"
+        android:paddingLeft="@dimen/dimen_common_5"
+        android:background="@color/color_translucent"
+        android:src="@drawable/selector_edit_work">
+    </ImageButton>
+    <ImageButton
+        android:id="@id/id_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_toLeftOf="@id/id_rview"
+        android:paddingRight="@dimen/dimen_common_5"
+        android:paddingLeft="@dimen/dimen_common_15"
+        android:background="@color/color_translucent"
+        android:src="@drawable/selector_delete_work">
+    </ImageButton>
+</RelativeLayout>

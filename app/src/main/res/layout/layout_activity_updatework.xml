@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+
+    <ImageView
+        android:id="@+id/iv_updatework_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/llayout_head"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/et_updatework_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/addtitle"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@null"
+        android:layout_margin="20dp"
+        android:maxLength="30"
+        android:layout_below="@id/iv_updatework_image"
+        style="@style/style_login_et_inner"
+        android:background="@drawable/shape_et_common"/>
+    <EditText
+        android:id="@+id/et_updatework_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/style_login_et_inner"
+        android:hint="@string/imagedesc"
+        android:lines="4"
+        android:maxLength="100"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@null"
+        android:layout_below="@id/et_updatework_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/shape_et_common"/>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        layout="@layout/layout_bottom_save"/>
+
+</RelativeLayout>

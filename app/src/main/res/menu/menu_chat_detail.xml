@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_chat_setting"
+        android:icon="@mipmap/im_actbar_setting"
+        android:title="@string/menu_chat_setting"
+        app:showAsAction="never"/>
+</menu>

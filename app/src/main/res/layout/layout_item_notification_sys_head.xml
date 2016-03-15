@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:background="@color/color_white">
+    <TextView
+        android:id="@+id/tv_item_notification_sys_head_time"
+        style="@style/style_layout_width_height_ww"
+        android:paddingRight="@dimen/dimen_common_10"
+        android:paddingLeft="@dimen/dimen_common_10"
+        android:paddingTop="@dimen/dimen_common_5"
+        android:paddingBottom="@dimen/dimen_common_5"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:singleLine="true"
+        android:text="@string/str_notification_team"
+        android:textColor="@color/color_black_2"
+        android:textSize="@dimen/font_size_16"/>
+    <View
+        android:id="@+id/v_item_notification_sys_head"
+        android:layout_width="@dimen/dimen_common_5"
+        android:layout_height="@dimen/dimen_common_5"
+        android:layout_margin="3dp"
+        android:layout_alignRight="@id/tv_item_notification_sys_head_time"
+        android:layout_alignTop="@id/tv_item_notification_sys_head_time"
+        android:background="@drawable/bg_circle_dot_red_select"/>
+    <ImageView
+        style="@style/style_layout_width_height_wm"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dimen_common_10"
+        android:src="@mipmap/common_enter_arrow_2x"/>
+</RelativeLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true" >
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header"/>
+    <fragment
+        android:id="@id/chat_transmitter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:name="com.funnco.funnco.activity.chat.ChatMessageTransmitter" />
+
+    <fragment
+        android:id="@id/chat_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/chat_transmitter"
+        android:layout_below="@id/llayout_head"
+        android:name="com.funnco.funnco.wukong.user.ChatFragment"/>
+
+</RelativeLayout>

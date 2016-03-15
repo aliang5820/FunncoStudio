@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.funnco.funnco"
+    android:versionCode="4"
+    android:versionName="1.0.2">
+
+    <!-- 网络访问权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 外存储器的读写权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!--
+ To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
+     option is required to comply with the Google+ Sign-In developer policies
+    -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- To retrieve the account name (email) as part of sign-in: -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- umeng 代码统计权限-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <!-- umeng message 权限-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!--【可选】如果需要设置前台是否显示通知，需要设置这个权限-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- 可选 -->
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_INSTALL" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+
+    <!-- 拨打电话-->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!--百度云推送 权限-->
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"/>
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name=".application.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/launch_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:largeHeap="true"
+        android:screenOrientation="portrait">
+
+        <!-- 首页 -->
+        <activity
+            android:name=".activity.login.ForeActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- 浏览器中点击链接打开funnco-->
+            <!-- <a href="funnco://funnco.app/openwith?name=zhangsan&age=26">启动应用程序</a>
+         -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="funnco" android:host="funnco.app" android:pathPrefix="/openwith"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <!-- 欢迎也页面 -->
+        <activity
+            android:name=".activity.login.WelcomeActivity"
+            android:label="@string/title_activity_welcome"
+            android:exported="false"
+            android:screenOrientation="portrait">
+        </activity>
+        <!-- 主界面 -->
+        <activity android:name=".activity.base.MainActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="funnco.intent.action.MainActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <!-- 登录页面 -->
+        <activity
+            android:name=".activity.login.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask">
+        </activity>
+        <!-- 注册页-->
+        <activity
+            android:name=".activity.login.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme"
+            android:exported="false"
+            android:screenOrientation="portrait">
+        </activity>
+        <!-- 获取密码页-->
+        <activity
+            android:name=".activity.login.GetPasswordActivity"
+            android:label="@string/title_activity_get_password"
+            android:theme="@style/AppTheme"
+            android:exported="false"
+            android:screenOrientation="portrait">
+        </activity>
+        <!-- 更新数据信息-->
+        <activity android:name=".activity.myinfo.UpdateInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <!-- 我的地址-->
+        <activity android:name=".activity.myinfo.MyAddressActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 修改密码-->
+        <activity android:name=".activity.myinfo.UpdatePasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:exported="false"
+            android:launchMode="singleTask"/>
+        <!-- 意见反馈-->
+        <activity android:name=".activity.FeedBackActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 关于我们-->
+        <activity android:name=".activity.base.AboutActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 我的预约客户-->
+        <activity android:name=".activity.MyCustomersActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+        <!-- 我的预约客户时间排序-->
+        <activity android:name=".activity.MyCustomersSortByDateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 添加服务-->
+        <activity android:name=".activity.service.AddServiceActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 添加日程-->
+        <activity android:name=".activity.schedule.AddScheduleActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 添加作品-->
+        <activity android:name=".activity.work.AddWorkActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 编辑上传图片图片-->
+        <activity android:name=".activity.work.EditWorkActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 编辑作品-->
+        <activity android:name=".activity.work.UpdateWorkActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 相册选择-->
+        <activity android:name=".activity.BucketChooseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 预览图片-->
+        <activity android:name=".activity.work.GalleryActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 预览相册照片-->
+        <activity android:name=".activity.work.Gallery2Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 选择头像 -->
+        <activity android:name=".activity.ChooseIconActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 二维码-->
+        <activity android:name=".activity.base.QR_CodeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 预约客户备注信息-->
+        <activity android:name=".activity.RemarkActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 我的电话-->
+        <activity android:name=".activity.myinfo.MyPhoneActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 重复类型-->
+        <activity android:name=".activity.service.RepeadModeActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 设置-->
+        <activity android:name=".activity.SettingActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <!-- 取消预约原因-->
+        <activity android:name=".activity.schedule.ReasonCancleActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".activity.schedule.InvitationActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <!-- 同时进行的服务-->
+        <activity android:name=".activity.service.ServiceTogetherChooseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 微信登录绑定账号提醒-->
+        <activity android:name=".activity.login.BindNotifyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 微信登录账号绑定-->
+        <activity android:name=".activity.login.BindActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 微信登录快速注册-->
+        <activity android:name=".activity.login.RegisterFasterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 临时事件重复类型-->
+        <activity android:name=".activity.RepeatEventTypeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 预约客户信息-->
+        <activity android:name=".activity.CustomerInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 预约详细信息 （可修改）-->
+        <activity android:name=".activity.ConventationInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 个人资料预览-->
+        <activity android:name=".activity.PersonalInfoPrefaceActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 个人资料-->
+        <activity android:name=".activity.PersonalInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 使用帮助-->
+        <activity android:name=".activity.base.HelpActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 新增预约-->
+        <activity android:name=".activity.NewConventionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 我的预约 （未来，历史）-->
+        <activity android:name=".activity.MyConventionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 团队添加-->
+        <activity android:name=".activity.team.TeamAddActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 添加成员-->
+        <activity android:name=".activity.team.TeamAddMemberActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.funnco.funnco.team.TeamAddMemberActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <!-- 团队名片设置-->
+        <activity android:name=".activity.team.TeamCardSettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+        <!-- 团队作品设置-->
+        <activity android:name=".activity.team.TeamCardSettingWorkActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 创建团队-->
+        <activity android:name=".activity.team.TeamCreateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.team.TeamInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 成员邀请-->
+        <activity android:name=".activity.team.TeamInviteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 我的团队-->
+        <activity android:name=".activity.team.TeamMyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.team.TeamNofityActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 团队设置-->
+        <activity android:name=".activity.team.TeamSettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 添加课程-->
+        <activity android:name=".activity.service.AddCoursesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 添加新预约-->
+        <activity android:name=".activity.ConventionNewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <!-- 提前时间选择-->
+        <activity android:name=".activity.AheadTimeChooseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.funnco.funnco.AheadTimeChoosesActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <!-- 团队成员选择-->
+        <activity android:name=".activity.team.TeamMemberChooseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.funnco.funnco.activity.team.TeamMemberChooseActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <!-- 服务选择-->
+        <activity android:name=".activity.service.ServiceChooseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.funnco.funnco.activity.ServiceChooseActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <!-- 课程循环模式选择-->
+        <activity android:name=".activity.service.RepeatCoursesTypeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.funnco.funnco.activity.RepeatCoursesTypeActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <!-- 我的团队 -->
+        <activity android:name=".activity.team.TeamMenuActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.funnco.funnco.activity.team.TeamMenuActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+        </activity>
+        <!-- 团队成员-->
+        <activity android:name=".activity.team.TeamMemberActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.funnco.funnco.activity.team.TeamMemberActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <!-- 团队成员分配-->
+        <activity android:name=".activity.team.TeamMemberDistributeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+        </activity>
+        <!-- 团队照片-->
+        <activity android:name=".activity.team.TeamWorkActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 团队服务-->
+        <activity android:name=".activity.team.TeamServiceActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 服务分配-成员选择-->
+        <activity android:name=".activity.team.ServiceDistributeMemberChooseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 团队服务分配 已有服务列表-->
+        <activity android:name=".activity.team.ServiceDistributeServiceListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 团队服务分配 团队服务列表-->
+        <activity android:name=".activity.team.ServiceDistributeServiceChooseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 我的作品-->
+        <activity android:name=".activity.work.MyWorkActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 聊天界面-->
+        <activity android:name=".activity.chat.ChatActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 通知消息界面  包含提醒和系统-->
+        <activity android:name=".activity.notification.NotificationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 团队邀请消息 须做应答-->
+        <activity android:name=".activity.notification.NotificationTeamInviteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Actionbar_Animation"/>
+        <!-- 收入支出-->
+        <activity android:name=".activity.myinfo.IncomeWeekActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Actionbar_Animation"/>
+        <!--单聊-->
+        <activity android:name=".wukong.user.SingleChatActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Actionbar_Animation"/>
+        <!-- 群聊-->
+        <activity android:name=".wukong.user.GroupChatActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Actionbar_Animation"/>
+        <!-- 聊天设置-->
+        <activity android:name=".wukong.user.ChatSettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Actionbar_Animation"/>
+        <activity
+            android:name=".wukong.user.UserProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Actionbar_Animation" />
+        <activity
+            android:name=".wukong.user.EditProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Actionbar_Animation" />
+        <activity
+            android:name=".wukong.user.UserAvatarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Actionbar_Animation" />
+        <activity
+            android:name=".wukong.controller.ImageShowerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+
+        <activity android:name=".activity.myinfo.UpdateAccountActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activity.myinfo.UpdateAccountActivity_2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activity.myinfo.UpdateAccountActivity_3"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+
+
+
+
+
+
+
+
+
+
+        <!-- 重新登录-->
+        <receiver android:name=".receiver.ReloginReceiver"
+            android:exported="false"
+            android:enabled="true">
+            <intent-filter android:priority="100">
+                <action android:name="com.funnco.funnco.receiver.ReloginReceiver"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- 下载日历有预约的日期-->
+        <service android:name=".service.ScheduleDataStatService"
+            android:exported="false"></service>
+
+        <!-- ###################注册SDK使用的Activity###################### -->
+        <!--分享编辑页-->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <!--百度推送-->
+        <!-- 此处Receiver名字修改为当前包名路径 -->
+        <receiver android:name="com.funnco.funnco.receiver.BaiduPushReceiver">
+            <intent-filter>
+                <!-- 接收push消息 -->
+                <action android:name="com.baidu.android.pushservice.action.MESSAGE" />
+                <!-- 接收bind、setTags等method的返回结果-->
+                <action android:name="com.baidu.android.pushservice.action.RECEIVE" />
+                <!-- 接收通知点击事件，和通知自定义内容 -->
+                <action android:name="com.baidu.android.pushservice.action.notification.CLICK" />
+            </intent-filter>
+        </receiver>
+
+        <!-- push富媒体，不使用富媒体推送不需要 -->
+        <activity
+            android:name="com.baidu.android.pushservice.richmedia.MediaViewActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="MediaViewActivity" >
+        </activity>
+        <activity
+            android:name="com.baidu.android.pushservice.richmedia.MediaListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="MediaListActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- push富媒体结束 -->
+
+        <!-- push必须的receviver和service声明 -->
+        <receiver android:name="com.baidu.android.pushservice.PushServiceReceiver"
+            android:process=":bdservice_v1">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.SHOW" />
+                <action android:name="com.baidu.android.pushservice.action.media.CLICK" />
+                <!-- 以下四项为可选的action声明，可大大提高service存活率和消息到达速度 -->
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.baidu.android.pushservice.RegistrationReceiver"
+            android:process=":bdservice_v1">
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.METHOD" />
+                <action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.baidu.android.pushservice.PushService"
+            android:exported="true"
+            android:process=":bdservice_v1"  >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
+            </intent-filter>
+        </service>
+        <!-- 4.4版本新增的CommandService声明，提升小米和魅族手机上的实际推送到达率 -->
+        <service android:name="com.baidu.android.pushservice.CommandService"
+            android:exported="true" />
+        <!-- push结束 -->
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data android:value="555c553667e58e19db0018ff" android:name="UMENG_APPKEY"></meta-data>
+        <!-- ${UMENG_CHANNEL_VALUE}  wandoujia  baidu  tencent assistant91 andstore Funnco c360 huawei meizu lenovo mi-->
+        <meta-data android:value="${UMENG_CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>
+
+        <!--<meta-data-->
+            <!--android:name="UMENG_MESSAGE_SECRET"-->
+            <!--android:value="1fb8803eb95bf495b5338ec973a85aa9" >-->
+        <!--</meta-data>-->
+        <!-- 在百度开发者中心查询应用的API Key -->
+        <meta-data android:name="api_key" android:value="@string/baidu_appkey" />
+
+        <!--悟空即时通讯对接-->
+        <meta-data android:name="lwp.extension" android:value="com.alibaba.wukong.auth.AuthExtension"/>
+        <!-- 每个App需要配置各自的AppKey-->
+        <meta-data android:name="wk.appKey" android:value="@string/appKey_wukong"/>
+        <!-- 配置工具 -->
+        <meta-data
+            android:name="AUDIOCACHE:com.alibaba.doraemon.impl.cache.CacheFetcher"
+            android:value="" />
+        <meta-data
+            android:name="IMAGECACHE:com.alibaba.doraemon.impl.cache.CacheFetcher"
+            android:value="" />
+        <meta-data
+            android:name="IMAGE:com.alibaba.doraemon.impl.image.ImageMagicianFetcher"
+            android:value="IMAGECACHE;REQUEST;THREAD" />
+        <meta-data
+            android:name="AUDIO:com.alibaba.doraemon.impl.audio.AudioMagicianFetcher"
+            android:value="AUDIOCACHE;REQUEST;THREAD" />
+        <service android:name="com.laiwang.protocol.android.LWPService" android:exported="false"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common" />
+    <include
+        android:id="@+id/llayout_foot"
+        layout="@layout/layout_bottom_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/llayout_head"
+        android:layout_above="@id/llayout_foot">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_main_bg">
+            <RelativeLayout
+                android:id="@+id/llayout_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_common_10">
+
+                <com.funnco.funnco.view.imageview.CircleImageView
+                    android:id="@+id/civ_updateinfo_icon"
+                    android:layout_width="@dimen/dimen_edit_height_65"
+                    android:layout_height="@dimen/dimen_edit_height_65"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal" />
+                <RelativeLayout
+                    android:id="@+id/rlayout_updateinfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/civ_updateinfo_icon">
+                    <EditText
+                        android:id="@+id/et_updateinfo_username"
+                        style="@style/style_et_editin"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_common_10"
+                        android:gravity="center"
+                        android:textColor="@color/color_black_3"
+                        android:maxLength="15"
+                        android:text="Lucy" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_alignLeft="@id/et_updateinfo_username"
+                        android:layout_alignRight="@id/et_updateinfo_username"
+                        android:layout_below="@id/et_updateinfo_username"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/color_hint_gray_light" />
+                </RelativeLayout>
+                <ImageView
+                    android:id="@+id/iv_updateinfo_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/rlayout_updateinfo"
+                    android:layout_toRightOf="@id/rlayout_updateinfo"
+                    android:padding="2dp"
+                    android:src="@mipmap/common_my_boy_icon" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/llayout_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llayout_1"
+                android:layout_marginTop="@dimen/dimen_common_20"
+                android:background="@color/color_white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_updateinfo_title_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@mipmap/common_personalinfo_conventationcount"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_common_5"
+                        android:text="@string/str_conventation_count" />
+
+                    <View
+                        android:id="@+id/v_updateinfo_line_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/dimen_common_10"
+                        android:layout_marginRight="@dimen/dimen_common_10"
+                        android:background="@color/color_black_4" />
+
+                    <TextView
+                        android:id="@+id/tv_updateinfo_conventationcount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@id/v_updateinfo_line_count"
+                        android:layout_toRightOf="@id/tv_updateinfo_title_count"
+                        android:padding="@dimen/dimen_common_5"
+                        android:gravity="center_vertical"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_updateinfo_title_career"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@mipmap/common_personalinfo_career"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_common_5"
+                        android:text="@string/str_career_type" />
+
+                    <View
+                        android:id="@+id/v_updateinfo_line_career"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/dimen_common_10"
+                        android:layout_marginRight="@dimen/dimen_common_10"
+                        android:background="@color/color_black_4" />
+
+                    <TextView
+                        android:id="@+id/tv_updateinfo_career"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@id/v_updateinfo_line_career"
+                        android:layout_toRightOf="@id/tv_updateinfo_title_career"
+                        android:drawableRight="@mipmap/common_dropdown_arrow_2"
+                        android:paddingLeft="@dimen/dimen_common_5"
+                        android:paddingRight="@dimen/dimen_common_20"
+                        android:gravity="center_vertical"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_updateinfo_title_workphone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@mipmap/common_personalinfo_workphone"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_common_5"
+                        android:text="@string/str_work_phone" />
+
+                    <View
+                        android:id="@+id/v_updateinfo_line_workphone"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/dimen_common_10"
+                        android:layout_marginRight="@dimen/dimen_common_10"
+                        android:background="@color/color_black_4" />
+
+                    <EditText
+                        android:id="@+id/et_updateinfo_workphone"
+                        style="@style/style_et_editin"
+                        android:layout_width="match_parent"
+                        android:layout_above="@id/v_updateinfo_line_workphone"
+                        android:layout_toRightOf="@id/tv_updateinfo_title_workphone"
+                        android:textColor="@color/color_black_3"
+                        android:maxLength="35" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_updateinfo_title_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@mipmap/common_personalinfo_address"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_common_5"
+                        android:text="@string/str_address" />
+
+                    <View
+                        android:id="@+id/v_updateinfo_line_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/dimen_common_10"
+                        android:layout_marginRight="@dimen/dimen_common_10"
+                        android:background="@color/color_black_4" />
+
+                    <EditText
+                        android:id="@+id/et_updateinfo_address"
+                        style="@style/style_et_editin"
+                        android:layout_width="match_parent"
+                        android:layout_above="@id/v_updateinfo_line_address"
+                        android:layout_toRightOf="@id/tv_updateinfo_title_address"
+                        android:textColor="@color/color_black_3"
+                        android:maxLength="35" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_updateinfo_title_instroducation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/common_personalinfo_instroducation"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_common_5"
+                        android:text="@string/str_personal_instroducation" />
+
+                    <EditText
+                        android:id="@+id/et_updateinfo_instroducation"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/color_translucent"
+                        android:gravity="top"
+                        android:lines="4"
+                        android:layout_toRightOf="@id/tv_updateinfo_title_instroducation"
+                        android:maxLength="300"
+                        android:maxLines="8"
+                        android:cursorVisible="true"
+                        android:textColor="@color/color_black_3"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/font_size_14"
+                        android:padding="5dp"/>
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/et_updateinfo_instroducation"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:layout_toRightOf="@id/tv_updateinfo_title_instroducation"-->
+                        <!--android:background="@color/color_white"-->
+                        <!--android:cursorVisible="true"-->
+                        <!--android:gravity="top"-->
+                        <!--android:maxLength="50"-->
+                        <!--android:lines="4"-->
+                        <!--android:padding="@dimen/dimen_common_5"-->
+                        <!--android:textColor="@color/color_hint_gray_light"-->
+                        <!--android:textColorHint="@color/color_hint_gray_light"-->
+                        <!--android:textCursorDrawable="@null"-->
+                        <!--android:textSize="14sp" />-->
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

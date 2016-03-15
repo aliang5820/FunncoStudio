@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+
+    <EditText
+        android:id="@+id/et_feedback_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_et_common"
+        android:gravity="top"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/llayout_head"
+        android:hint="请输入您的宝贵意见"
+        android:lines="10"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@null"
+        android:padding="15dp" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        layout="@layout/layout_bottom_save" />
+</RelativeLayout>

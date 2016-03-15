@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/common_message_select" android:state_selected="true" />
+    <item android:drawable="@mipmap/common_message_unselect" />
+    <!--  <item android:state_checked="true" android:drawable="@mipmap/tab_schedule_select_2x"/>
+     <item android:state_checked="false" android:drawable="@mipmap/tab_schedule_unselect_2x"/>-->
+</selector>

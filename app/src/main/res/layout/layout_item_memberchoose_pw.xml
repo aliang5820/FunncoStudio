@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp">
+    <com.funnco.funnco.view.imageview.CircleImageView
+        android:id="@+id/civ_item_memberchoose_icon"
+        android:layout_width="@dimen/dimen_common_width_45"
+        android:layout_height="@dimen/dimen_common_width_45"
+        android:layout_margin="@dimen/dimen_common_5"
+        android:layout_centerVertical="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/civ_item_memberchoose_icon"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_item_memberchoose_name"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:text="AAa"
+
+        android:textColor="@color/color_hint_gray_light"/>
+        <TextView
+            android:id="@id/id_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:textSize="@dimen/font_size_12"
+            android:gravity="center"
+            android:text="12"
+            android:textColor="@color/color_hint_gray_light"/>
+    </LinearLayout>
+</RelativeLayout>

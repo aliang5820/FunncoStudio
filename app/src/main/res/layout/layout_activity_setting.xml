@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+
+    <ImageView
+        android:id="@+id/iv_setting_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llayout_head"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/common_logo_reangle_b" />
+
+    <ListView
+        android:id="@+id/lv_setting_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iv_setting_logout"
+        android:layout_below="@id/iv_setting_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"></ListView>
+
+    <ImageView
+        android:id="@+id/iv_setting_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:clickable="true"
+        android:src="@mipmap/common_my_logout" />
+</RelativeLayout>

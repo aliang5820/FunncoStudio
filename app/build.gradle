@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+repositories {
+    //    jcenter()
+    mavenCentral()
+    flatDir {
+        dirs 'aars'
+    }
+}
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+    defaultConfig {
+        applicationId "com.funnco.funnco"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 4
+        versionName "1.0.2"
+        //Enabling multidex support.
+        multiDexEnabled true
+    }
+    //包含了两个相同的文件 需要忽略
+    packagingOptions {
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        //        exclude 'lib/armeabi/libmemchunk.so'
+    }
+    //防止爆棚添加
+    afterEvaluate {
+        tasks.matching {
+            it.name.startsWith('dex')
+        }.each { dx ->
+            if (dx.additionalParameters == null) {
+                dx.additionalParameters = ['--multi-dex']
+            }else {
+                dx.additionalParameters += '--multi-dex' // enable multidex
+            }
+        }
+    }
+    // 对于dex 的--multi-dex 选项设置与预编译的library工程有冲突,因此如果你的应用中包含引用的lirary工程,
+    // 需要将预编译设置为false:
+    dexOptions {
+        preDexLibraries = false
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+    compileOptions {
+        encoding "utf-8"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        wandoujia {}
+        baidu {}
+        assistant91 {}
+        andstore {}
+        tencent {}
+        c360 {}
+        huawei {}
+        meizu {}
+        lenovo {}
+        mi {}
+        Funnco {}
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+
+    }
+    //签名
+    signingConfigs {
+        release {
+            storeFile file("./funnco.keystore.jks")
+            storePassword "funnco888"
+            keyAlias "funnco"
+            keyPassword "funnco888"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':photogallery')
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.google.android.gms:play-services:7.3.0'
+    compile 'com.android.support:multidex:1.0.1'
+    compile(name: 'wukongim_1.3.4.9-UT-SNAPSHOT', ext: 'aar')
+    compile(name: 'doraemon-multimedia-1.9.5.0-SNAPSHOT', ext: 'aar')
+}

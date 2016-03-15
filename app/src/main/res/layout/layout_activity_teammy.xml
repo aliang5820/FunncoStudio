@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/llayout_head"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.funnco.funnco.view.listview.MyListview
+            android:id="@id/id_listView"
+            style="@style/style_common_listview"
+            android:dividerHeight="0dp">
+        </com.funnco.funnco.view.listview.MyListview>
+
+        <Button
+            android:id="@id/id_button"
+            style="@style/style_common_bt"
+            android:layout_margin="@dimen/dimen_common_5"
+            android:background="@drawable/shape_myteam_bt"
+            android:drawableLeft="@mipmap/common_titlebar_add_select"
+            android:onClick="btnClick"
+            android:paddingLeft="120dp"
+            android:paddingRight="120dp"
+            android:text="@string/str_addteam"
+            android:textColor="@color/color_hint_gray_light" />
+    </LinearLayout>
+</ScrollView>

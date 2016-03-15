@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#000"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <ProgressBar
+            android:id="@+id/shower_progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.ProgressBar.Small.Inverse" />
+    <Gallery
+            android:id="@+id/shower_gallery"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="20dp"
+            android:unselectedAlpha="0.6"
+            android:spacing="2pt"
+            android:visibility="gone"/>
+
+</LinearLayout>

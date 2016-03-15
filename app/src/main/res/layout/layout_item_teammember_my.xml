@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@id/tip"
+        style="@style/style_common_tv_bar"
+        android:layout_margin="0dp"
+        android:background="@color/color_main_bg"
+        android:gravity="center"
+        android:text="AAAAA" />
+
+    <com.funnco.funnco.view.switcher.SwipeLayout
+        android:id="@+id/swip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <TextView
+                android:id="@id/id_title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingRight="@dimen/dimen_common_20"
+                android:paddingLeft="@dimen/dimen_common_20"
+                android:text="置顶"
+                android:textColor="@color/color_white"
+                android:background="@color/color_black_5"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@id/id_title_1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="@dimen/dimen_common_20"
+                android:paddingLeft="@dimen/dimen_common_20"
+                android:gravity="center"
+                android:text="移除"
+                android:textColor="@color/color_white"
+                android:background="@color/color_yellow_2"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@id/id_title_0"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="@dimen/dimen_common_20"
+                android:paddingLeft="@dimen/dimen_common_20"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textColor="@color/color_white"
+                android:background="@color/color_red_2"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_common_width_55">
+
+            <com.funnco.funnco.view.imageview.CircleImageView
+                android:id="@id/id_imageview"
+                android:layout_width="@dimen/dimen_common_width_45"
+                android:layout_height="@dimen/dimen_common_width_45"
+                android:layout_marginLeft="@dimen/dimen_common_15"
+                android:layout_centerVertical="true" />
+
+
+            <TextView
+                android:id="@id/id_textview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|center_vertical"
+                android:layout_toRightOf="@id/id_imageview"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_common_15"
+                android:paddingRight="@dimen/dimen_common_15"
+                android:singleLine="true"
+                android:text="AAa"
+                android:textColor="@color/color_hint_gray_light"
+                android:drawableRight="@mipmap/common_enter_arrow_2x"
+                android:textSize="14sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_common_1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_hint_gray_light" />
+
+        </RelativeLayout>
+    </com.funnco.funnco.view.switcher.SwipeLayout>
+</LinearLayout>

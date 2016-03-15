@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="@dimen/dimen_header_height"
+    android:background="@drawable/shape_tv_begin"
+    android:gravity="center_vertical">
+    <!--<RelativeLayout-->
+        <!--android:id="@id/id_relativelayout"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<com.funnco.funnco.view.CircleImageView-->
+            <!--android:id="@id/id_lview"-->
+            <!--android:layout_width="@dimen/dimen_common_40"-->
+            <!--android:layout_height="@dimen/dimen_common_40"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="10dp" />-->
+
+        <!--<TextView-->
+            <!--android:id="@id/tip"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_toRightOf="@id/civ_schedule_headl"-->
+            <!--android:drawableLeft="@mipmap/common_titlebar_arrow_2x"-->
+            <!--android:gravity="center" />-->
+    <!--</RelativeLayout>-->
+    <TextView
+        android:id="@id/id_mview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:text="@string/lanuch_service"
+        style="@style/style_base_white_18"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+    </TextView>
+    <ImageView
+        android:id="@id/id_rview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:clickable="true"
+        android:paddingLeft="@dimen/dimen_common_15"
+        android:paddingRight="@dimen/dimen_common_15"
+        android:src="@drawable/selector_titlebar_add">
+    </ImageView>
+</RelativeLayout>

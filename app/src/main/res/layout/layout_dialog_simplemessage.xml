@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog"
+    android:layout_margin="20dp">
+    <TextView
+        android:id="@+id/tv_simplemessagedialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:paddingRight="@dimen/dimen_common_10"
+        android:paddingLeft="@dimen/dimen_common_10"
+        android:textSize="@dimen/dimen_popupwindow_textsize1"
+        android:paddingBottom="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_hint_gray_light"/>
+    <Button
+        android:id="@+id/bt_simplemessagedialog_but"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        android:textColor="@color/color_blue"
+        android:background="@color/color_translucent"
+        android:textSize="@dimen/dimen_popupwindow_textsize2"/>
+</LinearLayout>

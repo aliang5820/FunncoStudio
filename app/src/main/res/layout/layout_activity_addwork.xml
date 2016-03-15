@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+
+    <RelativeLayout
+        android:id="@+id/rlayout_addwork_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="#a944494f"
+        android:layout_marginTop="3dp">
+        <Button
+            android:id="@+id/bt_addwork_bucketchoose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:text="@string/imagebucket"
+            android:drawableRight="@mipmap/common_addwork_alum"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:background="@color/color_translucent"
+            android:textColor="@color/color_white"/>
+        <Button
+            android:id="@+id/bt_addwork_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/complete"
+            android:textSize="18sp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            android:layout_marginRight="20dp"
+            android:background="@color/color_translucent"/>
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gv_addwork_imagelist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rlayout_addwork_bottom"
+        android:layout_below="@id/llayout_head"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="2dp"
+        android:horizontalSpacing="5dp"
+        android:numColumns="4"
+        android:verticalSpacing="5dp"/>
+
+</RelativeLayout>

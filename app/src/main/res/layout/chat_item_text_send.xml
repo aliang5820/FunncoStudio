@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- 分组用的时间组件 -->
+    <include layout="@layout/chatting_item_split_view" />
+
+    <RelativeLayout
+        style="@style/ChattingUIToContainer"
+        android:orientation="vertical"
+        android:longClickable="false" >
+<!--android:background="@drawable/chat_send_bg"-->
+        <TextView
+            android:id="@id/chatting_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:longClickable="true"
+            android:layout_alignParentRight="true"
+            android:textColorLink="@color/chat_link_color"
+            android:background="@drawable/chat_send_bg"
+            android:gravity="left|center"
+            android:minHeight="40dp"
+            android:autoLink="web|phone"
+            android:maxWidth="240dp"
+            android:textColor="@color/color_white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@id/chatting_unreadcount_tv"
+            style="@style/ChattingUIUnreadText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/chatting_content_tv"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="8dp"
+            android:includeFontPadding="false"
+            android:padding="0dp"
+            android:minHeight="50dp"
+            android:gravity="bottom"
+            android:layout_toLeftOf="@id/chatting_content_tv" />
+
+        <ImageView
+            android:id="@id/chatting_unread_icon_iv"
+            style="@style/ChattingUnReadIcon"
+            android:layout_above="@id/chatting_unreadcount_tv"
+            android:layout_marginBottom="4dp"
+            android:layout_alignRight="@id/chatting_unreadcount_tv"
+            android:layout_toLeftOf="@id/chatting_content_tv" />
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/chatting_content_tv"
+            layout="@layout/chatting_item_to_status" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@id/tip"
+        style="@style/style_common_tv_bar"
+        android:layout_height="30dp"
+        android:layout_margin="0dp"
+        android:background="@color/color_main_bg"/>
+
+    <TextView
+        android:id="@id/id_textview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_common_width_45"
+        android:drawablePadding="@dimen/dimen_common_15"
+        android:drawableRight="@mipmap/common_enter_arrow_2x"
+        android:paddingLeft="@dimen/dimen_common_15"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/dimen_common_15"
+        android:text="AAAAAAA"
+        android:textSize="@dimen/font_size_16"
+        android:background="@color/color_white">
+
+    </TextView>
+</LinearLayout>

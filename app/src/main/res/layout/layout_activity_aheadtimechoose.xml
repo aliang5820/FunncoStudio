@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+    <ListView
+        android:id="@+id/lv_aheadtimechoose_listview"
+        style="@style/style_common_listview"
+        android:dividerHeight="@dimen/dimen_common_1px"
+        android:divider="@color/color_hint_gray_light"
+        android:layout_below="@id/llayout_head"
+        android:entries="@array/array_notify_ahead_times">
+    </ListView>
+</RelativeLayout>

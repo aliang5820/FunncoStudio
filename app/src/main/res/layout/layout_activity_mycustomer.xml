@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+    <include
+        layout="@layout/layout_activity_header_common"/>
+    <com.funnco.funnco.view.edittext.ClearEditText
+        android:id="@+id/cet_mycustomer_search"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/shape_clear_edittext"
+        android:drawableLeft="@mipmap/common_search_bar_icon_normal"
+        android:hint="搜索"
+        android:textColorHint="@color/color_hint_gray_light"
+        android:textSize="12sp"
+        android:focusable="true"
+        android:singleLine="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/color_red_tite"
+        android:text="如您的客户已加入直达号，可以直接点击消息图标直接沟通"
+        android:textSize="12sp"
+
+
+
+        />
+    <FrameLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.funnco.funnco.view.textview.SideBar
+            android:id="@+id/sb_mycustomer_guide"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center" />
+        <TextView
+            android:id="@+id/tv_mycustomer_notify"
+            style="@style/style_common_tv_bar"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:text="@string/str_customer_null_notify"/>
+        <TextView
+            android:id="@+id/tv_mycustomer_dialog"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            android:background="@color/color_hint_tangerine"
+            android:textSize="30.0dip"
+            android:visibility="invisible"/>
+
+        <ListView
+            android:id="@+id/lv_mycustomer_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|top">
+        </ListView>
+
+    </FrameLayout>
+</LinearLayout>

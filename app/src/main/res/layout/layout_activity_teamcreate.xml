@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+
+    <ImageView
+        android:id="@+id/iv_teamcreate_icon"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:visibility="gone"/>
+    <Button
+        android:id="@+id/bt_teamcreate_teampic"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:onClick="btnClick"
+        android:textSize="@dimen/font_size_14"
+        android:textColor="@color/color_black_2"
+        android:text="@string/str_team_addfacepic"
+        android:background="@drawable/shape_myteam_bt"
+        android:layout_centerVertical="true"/>
+
+    <EditText
+        android:id="@+id/et_teamcreate_teamname"
+        android:textColorHint="@color/color_hint_gray_light"
+        android:textColor="@color/color_black_2"
+        style="@style/style_et_editin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_edit_height_45"
+        android:gravity="center"
+        android:background="@color/color_white"
+        android:layout_marginTop="20dp"
+        android:hint="@string/str_team_name"
+        android:maxLength="20"
+        android:layout_below="@id/llayout_head" />
+
+    <!--<Button-->
+        <!--android:id="@+id/bt_teamcreate_logoutteam"-->
+        <!--style="@style/style_common_bt"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:paddingBottom="10dp"-->
+        <!--android:paddingTop="10dp"-->
+        <!--android:paddingRight="50dp"-->
+        <!--android:paddingLeft="50dp"-->
+        <!--android:text="@string/str_logout_team"-->
+        <!--android:onClick="btnClick"-->
+        <!--android:textColor="@color/color_hint_tangerine"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="@dimen/dimen_edit_padding_lr_15"-->
+        <!--android:background="@drawable/selector_common_bt"/>-->
+    <include
+        layout="@layout/layout_bottom_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

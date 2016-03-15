@@ -1,0 +1,176 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbarStyle="outsideOverlay">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_main_bg"
+    android:orientation="vertical"
+    tools:context="com.funnco.funnco.fragment.desk.MyFragment">
+
+    <include layout="@layout/layout_activity_header_common" />
+
+    <RelativeLayout
+        android:id="@+id/rlayout_my_personalinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_common_stroke"
+        android:clickable="true">
+
+        <com.funnco.funnco.view.imageview.CircleImageView
+            android:id="@+id/iv_my_usericon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/icon_edit_profile_default_2x" />
+
+        <LinearLayout
+            android:id="@+id/llayout_my_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_my_usericon"
+            android:background="@color/color_translucent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_my_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxEms="10"
+                    android:singleLine="true"
+                    android:text="模拟数据"
+                    android:textColor="@color/color_my_personal"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_my_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dimen_common_10"
+                    android:padding="2dp"
+                    android:src="@mipmap/common_my_boy_icon" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_my_career"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="发型超酷"
+                android:textColor="@color/color_my_personal"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_my_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="预约数:999"
+                android:textColor="@color/color_my_personal"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_my_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/common_enter_arrow_2x" />
+
+        <ImageView
+            android:id="@+id/iv_my_qr_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="25dp"
+            android:layout_toLeftOf="@id/iv_my_arrow"
+            android:padding="@dimen/font_size_10"
+            android:src="@mipmap/common_qr_code_1" />
+    </RelativeLayout>
+    <RelativeLayout
+        style="@style/style_layout_width_height_mw"
+        android:layout_height="@dimen/dimen_edit_height_65"
+        android:gravity="center_vertical"
+        android:background="@drawable/shape_et_common">
+        <View
+            android:id="@id/id_line"
+            android:layout_width="@dimen/dimen_common_1px"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dimen_common_5"
+            android:layout_marginBottom="@dimen/dimen_common_5"
+            android:background="@color/color_hint_gray_light"/>
+        <TextView
+            android:id="@id/id_title_0"
+            style="@style/style_common_tv_bar"
+            android:text="@string/str_income_week"
+            android:layout_toLeftOf="@id/id_line"
+            android:gravity="center"
+            android:layout_marginLeft="0dp"/>
+        <TextView
+            android:id="@id/id_title_1"
+            style="@style/style_common_tv_bar"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/id_line"
+            android:layout_below="@id/id_title_0"
+            android:gravity="center_horizontal|top"
+            android:layout_marginLeft="0dp"
+            android:textColor="@color/color_tangerine_2"
+            android:textSize="@dimen/font_size_16"
+            android:text="100.00"/>
+        <TextView
+            android:id="@id/id_title_2"
+            style="@style/style_common_tv_bar"
+            android:text="@string/str_income_month"
+            android:layout_toRightOf="@id/id_line"
+            android:gravity="center"
+            android:layout_marginLeft="0dp"/>
+        <TextView
+            android:id="@id/id_title_3"
+            style="@style/style_common_tv_bar"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/id_line"
+            android:layout_below="@id/id_title_2"
+            android:gravity="center_horizontal|top"
+            android:layout_marginLeft="0dp"
+            android:textColor="@color/color_tangerine_2"
+            android:textSize="@dimen/font_size_16"
+            android:text="200.00"/>
+
+    </RelativeLayout>
+    <com.funnco.funnco.view.listview.MyListview
+        android:id="@id/id_listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+    </com.funnco.funnco.view.listview.MyListview>
+    <!--        <TextView
+                android:id="@+id/tv_my_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/selector_my_logout"/>-->
+</LinearLayout>
+</ScrollView>

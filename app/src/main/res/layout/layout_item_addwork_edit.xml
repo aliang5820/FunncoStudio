@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:descendantFocusability="beforeDescendants">
+    <!-- android:scaleType="fitCenter"-->
+<ImageView
+    android:id="@+id/iv_editwork_image"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:scaleType="centerCrop"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"/>
+    <ImageButton
+        android:id="@+id/ib_editwork_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_editwork_image"
+        android:layout_alignRight="@id/iv_editwork_image"
+        android:background="@android:color/transparent"
+        android:src="@mipmap/common_work_delete_pic_btn_2x"/>
+    <EditText
+        android:id="@+id/et_editwork_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_editwork_image"
+        android:layout_alignTop="@id/iv_editwork_image"
+        android:textSize="16sp"
+        android:singleLine="true"
+        android:maxLength="30"
+        android:textColorHint="@color/color_hint_gray_light"
+        android:layout_marginLeft="15dp"
+        android:padding="10dp"
+        android:editable="true"
+        android:focusable="true"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@null"
+        android:background="@drawable/shape_et_common"
+        android:hint="@string/addtitle"/>
+
+    <EditText
+        android:id="@+id/et_editwork_desc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/iv_editwork_image"
+        android:layout_below="@id/et_editwork_title"
+        android:textSize="14sp"
+        android:lines="5"
+        android:padding="10dp"
+        android:background="@drawable/shape_et_common"
+        android:gravity="top"
+        android:editable="true"
+        android:maxLength="100"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@null"
+        android:layout_marginTop="10dp"
+        android:layout_alignBottom="@id/iv_editwork_image"
+        android:textColorHint="@color/color_hint_gray_light"
+        android:layout_marginLeft="15dp"
+        android:hint="@string/imagedesc"/>
+</RelativeLayout>

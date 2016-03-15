@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:id="@id/id_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:id="@id/id_title_0"
+        android:text="***健身会所"
+        style="@style/style_common_bt"
+        android:textColor="@android:color/black"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@id/id_imageview"/>
+    <Button
+        android:id="@id/id_button"
+        style="@style/style_common_bt"
+        android:layout_width="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="50dp"
+        android:paddingLeft="50dp"
+        android:text="@string/str_out_team"
+        android:onClick="btnClick"
+        android:textColor="@color/color_hint_tangerine"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dimen_common_5"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/selector_common_bt"/>
+
+</RelativeLayout>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_edit_height_45"
+        android:layout_marginTop="@dimen/dimen_common_10"
+        android:paddingLeft="@dimen/dimen_common_20"
+        android:paddingRight="@dimen/dimen_common_20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/str_team_permission_searchable"
+            android:textColor="@color/color_black_2"
+            android:textSize="@dimen/font_size_18" />
+
+        <com.funnco.funnco.view.switcher.SwitchView
+            android:id="@id/id_switchview"
+            android:layout_width="@dimen/dimen_common_width_45"
+            android:layout_height="@dimen/dimen_common_20"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <TextView
+        style="@style/style_common_tv_bar"
+        android:gravity="center"
+        android:paddingTop="0dp"
+        android:text="@string/str_team_permission_searchable_des"
+        android:textColor="@color/color_hint_tangerine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_et_common"
+        android:orientation="horizontal">
+        <TextView
+            style="@style/style_tv_editin"
+            android:text="@string/str_team_name" />
+
+        <EditText
+            android:id="@id/id_title_0"
+            style="@style/style_et_editin"
+            android:layout_width="match_parent"
+            android:maxEms="20"
+            android:maxLength="50"
+            android:paddingLeft="15dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_common_100"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_et_common">
+
+        <TextView
+            style="@style/style_tv_editin"
+            android:text="@string/str_team_modifi_cover" />
+
+        <ImageView
+            android:id="@id/id_imageview"
+            android:layout_width="@dimen/dimen_common_150"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/dimen_common_10"
+            android:background="@drawable/shape_myteam_bt"
+            android:scaleType="centerCrop" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_et_common"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_tv_editin"
+            android:text="@string/str_mobile" />
+
+        <EditText
+            android:id="@id/id_title_1"
+            style="@style/style_et_editin"
+            android:layout_width="match_parent"
+            android:maxEms="20"
+            android:maxLength="50"
+            android:paddingLeft="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_et_common"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_tv_editin"
+            android:text="@string/str_address" />
+
+        <EditText
+            android:id="@id/id_title_2"
+            style="@style/style_et_editin"
+            android:layout_width="match_parent"
+            android:maxEms="20"
+            android:maxLength="50"
+            android:paddingLeft="15dp" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@id/id_title_3"
+        style="@style/style_et_editin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dimen_common_40"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_et_common"
+        android:gravity="top"
+        android:hint="@string/str_introducation"
+        android:lines="4"
+        android:paddingLeft="15dp"
+        android:paddingTop="@dimen/dimen_common_5"
+        android:singleLine="false" />
+</LinearLayout>

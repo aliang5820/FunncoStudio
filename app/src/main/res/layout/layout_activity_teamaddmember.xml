@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+    <com.funnco.funnco.view.edittext.ClearEditText
+        android:id="@id/id_edittextview"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="2dp"
+        android:layout_below="@id/llayout_head"
+        android:background="@drawable/shape_clear_edittext"
+        android:drawableLeft="@mipmap/common_search_bar_icon_normal"
+        android:hint="@string/str_team_search_hint"
+        android:textColorHint="@color/color_hint_gray_light"
+        android:textCursorDrawable="@color/color_blue"
+        android:textSize="12sp"
+        android:focusable="true"
+        android:singleLine="true"/>
+    <TextView
+        android:id="@id/id_title_0"
+        style="@style/style_common_tv_bar"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/str_team_searchnotify"/>
+    <TextView
+        android:id="@id/id_title_1"
+        style="@style/style_common_tv_bar"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:text="@string/str_team_search_null" />
+    <com.funnco.funnco.view.listview.XListView
+        android:id="@id/id_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/id_edittextview">
+    </com.funnco.funnco.view.listview.XListView>
+
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common"/>
+        <com.funnco.funnco.view.listview.XListView
+            style="@style/style_common_listview"
+            android:choiceMode="multipleChoice"
+            android:layout_below="@id/llayout_head"
+            android:layout_marginBottom="@dimen/dimen_common_30">
+        </com.funnco.funnco.view.listview.XListView>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_bottom_save"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

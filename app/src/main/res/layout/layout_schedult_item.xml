@@ -1,0 +1,187 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@+dimen/dimen_common_width_85"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llayout_item_shcedule_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_item_schedule_guide_time"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|right"
+            android:paddingBottom="@dimen/dimen_common_1px"
+            android:paddingRight="@dimen/dimen_common_10"
+            android:paddingTop="@dimen/dimen_common_1px"
+            android:textSize="@dimen/font_size_16"
+            android:text="11:00" />
+
+        <ImageView
+            android:id="@+id/iv_item_schedule_timedot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/common_schedule_time_dit_1" />
+    </LinearLayout>
+
+    <com.funnco.funnco.view.switcher.SwipeLayout
+        android:id="@+id/swip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/delete"
+                android:layout_width="@dimen/dimen_common_width_80"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textColor="@color/color_white"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_white">
+
+            <RelativeLayout
+                android:id="@+id/rlayout_item_schedule_left"
+                android:layout_width="80dp"
+                android:layout_height="match_parent">
+
+                <com.funnco.funnco.view.imageview.CircleImageView
+                    android:id="@+id/iv_item_schedule_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    android:src="@mipmap/icon_edit_profile_default_2x" />
+                <TextView
+                    android:id="@+id/tv_item_schedule_timeline"
+                    android:layout_width="4dp"
+                    android:layout_marginRight="@dimen/dimen_common_5"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/shape_schedule_timeline" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/llayout_item_schedule_textinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/iv_item_schedult_arrow"
+                android:layout_toRightOf="@id/rlayout_item_schedule_left"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_item_schedule_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:ellipsize="end"
+                    android:maxWidth="180dp"
+                    android:singleLine="true"
+                    android:text="用户名"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_item_schedule_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_item_schedule_username"
+                    android:layout_marginTop="@dimen/dimen_common_2dp"
+                    android:text="10:00 - 10:30"
+                    android:textSize="12sp" />
+                <!-- 事件的说明-->
+                <TextView
+                    android:id="@+id/tv_item_schedule_eventdes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_item_schedule_time"
+                    android:layout_marginTop="@dimen/dimen_common_2dp"
+                    android:textColor="@color/color_hint_gray_light"
+                    android:visibility="gone"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="今晚吃大餐~~"
+                    android:textSize="@dimen/font_size_12" />
+                <LinearLayout
+                    android:id="@+id/llayout_item_schedule_des"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_item_schedule_time"
+                    android:layout_marginTop="@dimen/dimen_common_1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_item_schedule_conventionnumber"
+                        style="@style/style_base_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:drawableLeft="@mipmap/common_schedule_convention_icon"
+                        android:drawablePadding="@dimen/dimen_common_10"
+                        android:gravity="right|center_vertical"
+                        android:text="2/3" />
+
+                    <TextView
+                        android:id="@+id/tv_item_schedule_conventionremark"
+                        style="@style/style_base_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:drawablePadding="@dimen/dimen_common_10"
+                        android:layout_marginLeft="@dimen/dimen_common_15"
+                        android:drawableLeft="@mipmap/common_schedule_convention_remark"
+                        android:gravity="right|center_vertical"
+                        android:text="1" />
+
+                    <com.funnco.funnco.view.imageview.CircleImageView
+                        android:id="@+id/civ_item_schedule_conventionicon"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_marginLeft="@dimen/dimen_common_15"
+                        android:src="@mipmap/common_schedule_conventiontype_icon" />
+
+                    <TextView
+                        android:id="@+id/tv_item_schedule_convention_username"
+                        style="@style/style_base_tv"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:text="自己"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iv_item_schedult_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:src="@mipmap/common_enter_arrow_2x" />
+
+            <!--<View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="15dp"
+                android:background="@color/color_hint_gray_light" />-->
+        </RelativeLayout>
+    </com.funnco.funnco.view.switcher.SwipeLayout>
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_header_height"
+    android:background="@drawable/shape_tv_begin"
+    android:gravity="center_vertical"
+    android:paddingLeft="10dp">
+    <ImageButton
+        android:id="@id/id_lview"
+        style="@style/style_layout_width_height_wm"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:padding="15dp"
+        android:clickable="true"
+        android:background="@color/color_translucent"
+        android:src="@drawable/selector_titlebar_back">
+    </ImageButton>
+    <TextView
+        android:id="@id/id_mview"
+        style="@style/style_layout_width_height_wm"
+        android:textColor="@color/color_white"
+        android:clickable="true"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_18"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+    </TextView>
+    <!--android:src="@mipmap/common_chat_settingicon" -->
+    <ImageButton
+        android:id="@id/id_rview"
+        style="@style/style_layout_width_height_wm"
+        android:background="@color/color_translucent"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:src="@drawable/selector_titlebar_add"
+        android:clickable="true">
+    </ImageButton>
+</RelativeLayout>

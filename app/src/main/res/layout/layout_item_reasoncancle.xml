@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.funnco.funnco.view.layout.CheckableFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <CheckBox
+        android:id="@+id/cb_item_reasoncancle_reson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:button="@drawable/selector_repeadmode_circle"
+        android:clickable="false"
+        android:focusable="false" />
+
+    <TextView
+        android:id="@+id/tv_item_reasoncancle_reson"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:text="AAa"
+        android:layout_gravity="left|center_vertical"
+        android:textColor="@color/color_hint_gray_light"/>
+
+</com.funnco.funnco.view.layout.CheckableFrameLayout>
+<!--
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+<TextView
+    android:id="@+id/tv_item_reasoncancle_reson"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="14sp"
+    android:layout_centerVertical="true"
+    android:textColor="@color/color_hint_gray_light"/>
+    <CheckBox
+        android:id="@+id/cb_item_resoncancle_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:drawableLeft="@drawable/selector_repeadmode_circle"
+        android:button="@null"/>
+</RelativeLayout>-->

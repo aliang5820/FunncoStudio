@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center" >
+
+    <RelativeLayout
+        android:id="@+id/item_layout"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tv_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="13"
+            android:textSize="@dimen/font_size_16" />
+<!--android:layout_centerHorizontal="true"
+android:src="@mipmap/icon_dot_unselect"-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/tv_calendar">
+            <!-- android:src="@mipmap/common_schedule_dot_event"-->
+            <View
+                android:id="@+id/v_point_event"
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:background="@drawable/bg_circle_dot_red"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"/>
+            <!--
+                android:src="@mipmap/common_schedule_dot_conventation"-->
+            <View
+                android:id="@+id/v_point_conventation"
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:background="@drawable/bg_circle_dot_green"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

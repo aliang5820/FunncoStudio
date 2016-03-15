@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlayout_schedule_top"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/llayout_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_schedule_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="今天"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tv_schedule_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="05月19日"
+            android:textColor="@color/color_hint_gray_light"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/iv_today_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/llayout_date"
+        android:src="@mipmap/common_schedule_today"
+        android:visibility="invisible"/>
+    <ImageView
+        android:layout_width="47dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@mipmap/common_schedule_addevent_bg"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/iv_today_icon"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/common_schedule_timedot_conventation"
+            android:drawablePadding="@dimen/dimen_common_5"
+            android:paddingLeft="@dimen/dimen_common_5"
+            android:paddingRight="@dimen/dimen_common_5"
+            android:text="@string/conventation"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_common_5"
+            android:drawableLeft="@mipmap/common_schedule_timedot_event"
+            android:text="@string/event"/>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_schedule_addschedule"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/common_schedule_addevent_face"
+        android:clickable="true" />
+
+    <TextView
+        android:id="@+id/tv_schedule_myconventation"
+        android:layout_width="47dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/tv_schedule_addschedule"
+        android:background="@mipmap/common_schedule_conventation_icon"
+        android:clickable="true" />
+    <com.funnco.funnco.view.textview.DesignTextView
+        android:id="@+id/dtv_schedule_myconventation_count"
+        android:layout_width="@dimen/dimen_common_15"
+        android:layout_height="@dimen/dimen_common_15"
+        android:layout_alignRight="@id/tv_schedule_myconventation"
+        android:layout_alignTop="@id/tv_schedule_myconventation"
+        android:layout_marginTop="@dimen/dimen_common_5"/>
+</RelativeLayout>

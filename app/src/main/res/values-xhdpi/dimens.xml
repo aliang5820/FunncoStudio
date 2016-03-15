@@ -1,0 +1,71 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">10dp</dimen>
+    <!-- 注册页logo下方字体 -->
+    <dimen name="login_textsize_funnco">26sp</dimen>
+    <dimen name="login_textsize_phonenumber">12sp</dimen>
+    <dimen name="login_textsize_lostpasswd">16sp</dimen>
+    <dimen name="login_textsize_loginbutton">24sp</dimen>
+    <dimen name="login_textsize_bottombutton">22sp</dimen>
+    <!-- 注册输入信息字号 -->
+    <dimen name="login_textsize_etinner">14sp</dimen>
+
+
+
+    <!-- 用于标题栏字体大小-->
+    <dimen name="dimen_header_textsize">18sp</dimen>
+
+    <!-- Fragment标题栏高度 -->
+    <dimen name="dimen_header_height">45dp</dimen>
+    <!-- 添加日程的EditText的高度-->
+    <dimen name="dimen_edit_height_45">45dp</dimen>
+    <dimen name="dimen_edit_height_55">55dp</dimen>
+    <dimen name="dimen_edit_height_65">65dp</dimen>
+    <!-- EditText左右距离Padding-->
+    <dimen name="dimen_edit_padding_lr_15">15dp</dimen>
+    <dimen name="dimen_edit_padding_lr_20">20dp</dimen>
+    <dimen name="dimen_edit_padding_lr_25">25dp</dimen>
+    <dimen name="dimen_edit_padding_lr_30">30dp</dimen>
+    <!-- 注册页 中间输入框的高度-->
+    <dimen name="dimen_register_container_absheight">300dp</dimen>
+    <!-- 重复事件字体大小-->
+    <dimen name="dimen_repead_itemtextsize">20sp</dimen>
+
+    <!-- simpleMessageDialog中的字体大小-->
+    <dimen name="dimen_simplemessagedialog_message">24sp</dimen>
+    <!-- 对话框的宽度-->
+    <dimen name="dimen_dialogwidth">200dp</dimen>
+
+    <!-- popupwindow中字体1-->
+    <dimen name="dimen_popupwindow_textsize1">18sp</dimen>
+    <!-- popupwindow中字体2-->
+    <dimen name="dimen_popupwindow_textsize2">20sp</dimen>
+    <!-- popupwindow中字体3-->
+    <dimen name="dimen_popupwindow_textsize3">32sp</dimen>
+
+    <!-- Font Size -->
+    <!-- (UI font size 1:1) -->
+    <dimen name="font_size_70">45sp</dimen>
+    <dimen name="font_size_36">36sp</dimen>
+    <dimen name="font_size_32">32sp</dimen>
+    <dimen name="font_size_28">28sp</dimen>
+    <dimen name="font_size_26">26sp</dimen>
+    <dimen name="font_size_24">24sp</dimen>
+    <dimen name="font_size_22">22sp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_10">10sp</dimen>
+
+    <dimen name="calendar_day_headers_paddingbottom">4dp</dimen>
+    <dimen name="calendar_month_topmargin">16dp</dimen>
+    <dimen name="calendar_month_title_bottommargin">4dp</dimen>
+    <dimen name="calendar_text_medium">18sp</dimen>
+    <dimen name="calendar_text_small">14sp</dimen>
+    <dimen name="dimen_margin_circle">10dp</dimen>
+    <dimen name="dimen_margin_circle.negative">-4dp</dimen>
+
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/bg_transparent" >
+
+    <LinearLayout
+        android:id="@+id/llayout_popupwindow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/shape_pw_radius_4">
+            <Button
+                android:id="@+id/item_popupwindows_camera"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/bt_nobgd"
+                android:textColor="@color/color_blue"
+                android:textSize="22sp"
+                android:text="拍照" />
+
+
+            <Button
+                android:id="@+id/item_popupwindows_Photo"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/bt_nobgd"
+                android:textColor="@color/color_blue"
+                android:textSize="22sp"
+                android:text="从相册中选取" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/item_popupwindows_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/shape_pw_radius_4"
+            android:textColor="@color/color_blue"
+            android:textSize="20sp"
+            android:text="@string/cancle" />
+
+    </LinearLayout>
+</RelativeLayout>

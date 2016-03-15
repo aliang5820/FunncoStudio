@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <com.funnco.funnco.view.switcher.SwipeLayout
+        android:id="@+id/swip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/delete"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textColor="@color/color_white"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_item_callcustomer_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/icon_edit_profile_default_2x" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/iv_item_callcustomer_icon"
+                android:layout_toLeftOf="@+id/iv_item_callcustomer_call"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_item_callcustomer_truename"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="用户名"
+                    android:singleLine="true"
+                    android:maxEms="20"
+                    android:ellipsize="end"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_item_callcustomer_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
+                    android:text="10:00 - 10:30"
+                    android:singleLine="true"
+                    android:maxEms="15"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_hint_gray_light"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_item_callcustomer_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:clickable="true"
+                android:padding="5dp"
+                android:src="@mipmap/common_call_icon" />
+        </RelativeLayout>
+    </com.funnco.funnco.view.switcher.SwipeLayout>
+</LinearLayout>

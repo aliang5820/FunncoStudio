@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@mipmap/bg_transparent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_white">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/bt_activity_pw_cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancle"
+                android:textColor="@color/color_blue"
+                android:layout_alignParentLeft="true"
+                android:background="@android:color/transparent"/>
+            <Button
+                android:id="@+id/bt_activity_pw_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ok"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/color_blue"
+                android:background="@android:color/transparent"/>
+        </RelativeLayout>
+
+             <NumberPicker
+                android:id="@+id/np_activity_pw_career"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+    </RelativeLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white">
+    <com.funnco.funnco.view.listview.XListView
+        android:id="@+id/xlv_service_service_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:headerDividersEnabled="false"
+        android:footerDividersEnabled="true"
+        ></com.funnco.funnco.view.listview.XListView>
+    <ImageView
+        android:id="@+id/iv_notify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:src="@mipmap/common_service_add_notify"/>
+</RelativeLayout>

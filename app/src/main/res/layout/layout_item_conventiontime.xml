@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.funnco.funnco.view.layout.CheckableFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--android:button="@drawable/selector_repeadmode_circle"  -->
+    <CheckBox
+        android:id="@id/id_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_size_16"
+        android:textColor="@drawable/selector_textcolor_conventiontime"
+        android:paddingTop="@dimen/dimen_common_15"
+        android:paddingBottom="@dimen/dimen_common_15"
+        android:button="@null"
+        android:background="@drawable/selector_item_conventiontime"
+        android:clickable="false"
+        android:gravity="center"
+        android:focusable="false" />
+</com.funnco.funnco.view.layout.CheckableFrameLayout>

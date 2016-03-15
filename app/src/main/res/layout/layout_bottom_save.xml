@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:text="@string/save"
+    style="@style/style_base_white_24"
+    android:background="@color/color_hint_tangerine"
+    android:padding="10dp"
+    android:id="@+id/bt_save">
+</Button>
