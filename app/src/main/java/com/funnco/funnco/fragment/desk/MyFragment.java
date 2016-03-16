@@ -52,10 +52,7 @@ import java.util.List;
 import java.util.Observable;
 
 public class MyFragment extends BaseFragment implements View.OnClickListener{
-
-    private MyListview myListview = null;
     private RelativeLayout rlayout = null;
-
     private TextView tvSetting;
     private TextView tvNickname;//昵称
     private TextView tvCareer;//职业
@@ -67,33 +64,13 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     private CircleImageView ivIcon = null;
     private ImageView ivSex;
 //    private View parentView;
-
-    Observable bo;
-
-    private MyBaseAdapter adapter = null;
-
     private static final int RESULT_CODE_UPDATE = 0x4f01;//修改成功返回的 响应码
     private static final int REQUEST_CODE_UPDATE = 0x4f00;//修改资料
 
     private static final int REQUEST_CODE_PERSONALINFO = 0xf041;
     private static final int RESULT_CODE_PERSONALINFO = 0xf042;
-
     //用户信息对象
     private UserLoginInfo userLoginInfo = null;
-    //列表数据集合
-    private String[] arr = null;
-    //列表图标集合
-    private int[] icons = {
-            R.mipmap.mine_guanlituandui,
-            R.mipmap.common_my_relations,
-            R.mipmap.common_my_team,
-            R.mipmap.common_my_work,
-            R.mipmap.common_my_help,
-            R.mipmap.common_my_vip
-    };
-
-    private Intent intent = null;
-    private Bundle bundle = new Bundle();
     private DbUtils dbUtils;
     private ImageLoader imageLoader;
     protected DisplayImageOptions options;
@@ -129,7 +106,6 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
         tvSetting = (TextView) parentView.findViewById(R.id.tv_headcommon_headr);
         tvSetting.setText(R.string.setting);
 
-        myListview = (MyListview) parentView.findViewById(R.id.id_listView);
         rlayout = (RelativeLayout) parentView.findViewById(R.id.rlayout_my_personalinfo);
         ivIcon = (CircleImageView) parentView.findViewById(R.id.iv_my_usericon);
         ivSex = (ImageView) parentView.findViewById(R.id.iv_my_sex);
@@ -150,11 +126,6 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
                 e.printStackTrace();
             }
         }
-        arr = getResources().getStringArray(R.array.array_my_memulist);
-        adapter = new MyBaseAdapter();
-        myListview.setAdapter(adapter);
-
-        intent = new Intent();
         if (userLoginInfo != null && !TextUtils.isEmpty(userLoginInfo.getHeadpic())){
             imageLoader.displayImage(userLoginInfo.getHeadpic(), ivIcon,options);//修改了头像加载方式
         }
@@ -183,7 +154,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     protected void initEvents() {
-        myListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*myListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 bundle.putString("info", arr[position]);
@@ -210,13 +181,19 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
                 }
                 startActivity(cls,bundle);
             }
-        });
+        });*/
         rlayout.setOnClickListener(this);
         tvSetting.setOnClickListener(this);
         parentView.findViewById(R.id.iv_my_qr_code).setOnClickListener(this);
 
         tvIncomeMonth.setOnClickListener(this);
         tvIncomeWeek.setOnClickListener(this);
+
+        findViewById(R.id.my_group).setOnClickListener(this);
+        findViewById(R.id.my_kehu).setOnClickListener(this);
+        findViewById(R.id.my_money).setOnClickListener(this);
+        findViewById(R.id.my_scan).setOnClickListener(this);
+        findViewById(R.id.my_help).setOnClickListener(this);
     }
 
     @Override
@@ -255,6 +232,36 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
                 break;
             case R.id.id_title_3://月收入
                 startActivity(IncomeWeekActivity.class);
+                break;
+            case R.id.my_group:
+                //我的团队
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("info", getString(R.string.my_group));
+                startActivity(TeamMyActivity.class, bundle1);
+                break;
+            case R.id.my_kehu:
+                //我的客户
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("info", getString(R.string.my_kehu));
+                startActivity(MyCustomersActivity.class, bundle2);
+                break;
+            case R.id.my_money:
+                //升级充值
+                Bundle bundle3 = new Bundle();
+                bundle3.putString("info", getString(R.string.my_money));
+                startActivity(TeamMyActivity.class, bundle3);
+                break;
+            case R.id.my_scan:
+                //扫一扫
+                Bundle bundle4 = new Bundle();
+                bundle4.putString("info", getString(R.string.my_scan));
+                startActivity(TeamMyActivity.class, bundle4);
+                break;
+            case R.id.my_help:
+                //如何使用
+                Bundle bundle5 = new Bundle();
+                bundle5.putString("info", getString(R.string.my_help));
+                startActivity(HelpActivity.class, bundle5);
                 break;
         }
     }
@@ -298,55 +305,6 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
         tvCareer.setText(userLoginInfo.getCareer_name()+"");
         tvBooking.setText("预约数："+userLoginInfo.getBookings()+"");
 
-    }
-
-    class MyBaseAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return arr.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return position;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            Holder holder = null;
-            if(convertView == null){
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.layout_item_my,parent,false);
-                holder = new Holder(convertView);
-                convertView.setTag(holder);
-            }else {
-                holder = (Holder) convertView.getTag();
-            }
-            if (position == icons.length -1){
-                holder.space.setVisibility(View.VISIBLE);
-            }else{
-                holder.space.setVisibility(View.GONE);
-            }
-            holder.ivIcon.setImageResource(icons[position]);
-            holder.tvTitle.setText(arr[position]);
-            return convertView;
-        }
-
-        class Holder{
-            View space;
-            TextView tvTitle = null;
-            ImageView ivIcon = null;
-            public Holder(View convertView){
-                space = convertView.findViewById(R.id.v_item_my_space);
-                tvTitle = (TextView) convertView.findViewById(R.id.tv_item_my_title);
-                ivIcon = (ImageView) convertView.findViewById(R.id.iv_item_my_icon);
-            }
-        }
     }
 
     @Override

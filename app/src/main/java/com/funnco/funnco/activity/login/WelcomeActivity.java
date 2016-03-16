@@ -12,7 +12,6 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
-import android.widget.TextSwitcher;
 
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
@@ -36,30 +35,28 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
     private static boolean isJumped = false;
     private int currentPagerindex = 0;
     private long sendTime = 0;
-    private String[] titles ;
     final float PARALLAX_COEFFICIENT = 1.2f;
     final float DISTANCE_COEFFICIENT = 0.5f;
 
     private ViewPager viewPager;
-    private TextSwitcher switcher;
     private FragmentManager fragmentManager;
     private FragmentAdapter fAdapter;
 
     private SparseArray<int[]> mLayoutViewIdsMap = new SparseArray<>();
     private View[] views = new View[3];
-    private int[] queue = new int[]{1,0,0};
+    private int[] queue = new int[]{1, 0, 0};
 
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what == 0 && sended){
+            if (msg.what == 0 && sended) {
                 isJumped = true;
                 startActivity(LoginActivity.class);
                 finish();
-            }else if (msg.what == 1){
-                if (viewPager != null){
-                    viewPager.setCurrentItem((currentPagerindex+1) % titles.length);
+            } else if (msg.what == 1) {
+                if (viewPager != null) {
+                    viewPager.setCurrentItem((currentPagerindex + 1) % queue.length);
                     sendTime = System.currentTimeMillis();
                 }
             }
@@ -68,23 +65,22 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
     };
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activity_welcome);
     }
 
-    private void addGuideFragment(BaseGuideFragment fragment){
+    private void addGuideFragment(BaseGuideFragment fragment) {
         fAdapter.addItem(fragment);
         mLayoutViewIdsMap.put(fragment.getRootViewId(), fragment.getChildViewId());
 
     }
+
     @Override
     protected void initView() {
-        LogUtils.e(TAG,"090909090909090909执行力initView()");
-        String device_token = SharedPreferencesUtils.getValue(mContext, Constants.SHAREDPREFERENCE_CONFIG,Constants.DEVICE_TOKEN);
-        if (TextUtils.isEmpty(device_token)){
+        String device_token = SharedPreferencesUtils.getValue(mContext, Constants.SHAREDPREFERENCE_CONFIG, Constants.DEVICE_TOKEN);
+        if (TextUtils.isEmpty(device_token)) {
             SharedPreferencesUtils.setValue(mContext, Constants.SHAREDPREFERENCE_CONFIG, Constants.DEVICE_TOKEN, device_token);
         }
         views[0] = findViewById(R.id.v_welcom_dot_1);
@@ -92,10 +88,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
         views[2] = findViewById(R.id.v_welcom_dot_3);
         views[0].setBackgroundResource(R.drawable.bg_circle_dot_red_select);
 
-        titles = getResources().getStringArray(R.array.array_guide_titles);
         viewPager = (ViewPager) findViewById(R.id.vp_welcom_main);
-        switcher = (TextSwitcher) findViewById(R.id.tip);
-        switcher.setText(titles[0]);
         fragmentManager = getSupportFragmentManager();
         fAdapter = new FragmentAdapter(fragmentManager);
         addGuideFragment(new GuideFragment_1());
@@ -106,7 +99,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (!isJumped){
+                while (!isJumped) {
                     try {
                         Thread.sleep(3000);
                         if (System.currentTimeMillis() - sendTime >= 2500) {
@@ -120,6 +113,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
         }).start();
         controlViewPagerSpeed();
     }
+
     FixedSpeedScroller mScroller = null;
 
     /**
@@ -156,14 +150,11 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
     @Override
     public void onClick(View v) {
     }
-    public void btnClick(View view){
-        switch (view.getId()){
-            case R.id.bt_welcome_start:
-                isJumped = true;
-                startActivity(LoginActivity.class);
-                finishOk();
-                break;
-        }
+
+    public void enterApp() {
+        isJumped = true;
+        startActivity(LoginActivity.class);
+        finishOk();
     }
 
     @Override
@@ -175,27 +166,28 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
     public void onPageSelected(int position) {
         currentPagerindex = position;
         sendTime = System.currentTimeMillis();
-        switcher.setText(titles[position]);
-        if (queue[position % 3] <=0 || queue[(position + 1) % 3] <=0 || queue[(position + 2) % 3] <=0){
+        if (queue[position % 3] <= 0 || queue[(position + 1) % 3] <= 0 || queue[(position + 2) % 3] <= 0) {
             findViewById(R.id.bt_welcome_start).setVisibility(View.INVISIBLE);
             queue[position] = (position + 1);
-        }else{
+        } else {
             findViewById(R.id.bt_welcome_start).setVisibility(View.VISIBLE);
         }
-        if (position == queue.length - 1){
+        if (position == queue.length - 1) {
             findViewById(R.id.bt_welcome_start).setVisibility(View.VISIBLE);
         }
-        for (int i = 0;i <views.length; i ++){
+        for (int i = 0; i < views.length; i++) {
             if (i == position) {
                 views[i].setBackgroundResource(R.drawable.bg_circle_dot_red_select);
-            }else{
+            } else {
                 views[i].setBackgroundResource(R.drawable.bg_circle_dot_red);
             }
         }
     }
 
     @Override
-    public void onPageScrollStateChanged(int state) {}
+    public void onPageScrollStateChanged(int state) {
+    }
+
     class ParallaxTransformer implements ViewPager.PageTransformer {
 
         float parallaxCoefficient;
@@ -215,7 +207,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
             @SuppressWarnings("SuspiciousMethodCalls")
             int[] layer = mLayoutViewIdsMap.get(pageViewWrapper.getChildAt(0).getId());
             if (layer != null) {
-                LogUtils.e(TAG,"layer  不为空"+layer.length);
+                LogUtils.e(TAG, "layer  不为空" + layer.length);
                 for (int id : layer) {
                     View view = page.findViewById(id);
                     if (view != null) {
@@ -223,8 +215,8 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
                     }
                     scrollXOffset *= distanceCoefficient;
                 }
-            }else{
-                LogUtils.e(TAG,"layer  为空null");
+            } else {
+                LogUtils.e(TAG, "layer  为空null");
             }
         }
     }

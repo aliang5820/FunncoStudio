@@ -75,7 +75,7 @@ public class SortAdapterD_future extends BaseAdapter{
             viewHolder.tvTrueName = (TextView) view.findViewById(R.id.tv_item_customerfuture_truename);
             viewHolder.tvLastTime = (TextView) view.findViewById(R.id.tv_item_customerfuture_lasttime);
             viewHolder.tvOk = (TextView) view.findViewById(R.id.tv_item_customerfuture_ok);
-            viewHolder.tvOk.setVisibility(View.VISIBLE);
+            viewHolder.tvOk.setVisibility(View.GONE);
             viewHolder.tvDelete = (TextView) view.findViewById(R.id.delete);
             viewHolder.tvLetter = (TextView) view.findViewById(R.id.catalog);
             viewHolder.tvDate = (TextView) view.findViewById(R.id.date);

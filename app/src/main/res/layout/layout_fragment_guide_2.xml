@@ -4,16 +4,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-
-   <ImageView
+    <ImageView
         android:id="@id/iv_guide_2_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dimen_edit_height_45"
-        android:src="@mipmap/guide2"/>
-
-
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/guide2" />
 
 </RelativeLayout>
