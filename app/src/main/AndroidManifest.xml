@@ -4,6 +4,11 @@
     android:versionCode="4"
     android:versionName="1.0.2">
 
+    <!--二维码扫描权限-->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
     <!-- 网络访问权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 外存储器的读写权限-->
@@ -21,9 +26,9 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!-- umeng 代码统计权限-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- umeng message 权限-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -201,6 +206,9 @@
             android:screenOrientation="portrait"/>
         <!-- 二维码-->
         <activity android:name=".activity.base.QR_CodeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.codescan.CodeScanActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <!-- 预约客户备注信息-->

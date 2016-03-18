@@ -617,4 +617,6 @@
     <string name="my_money">充值/开通</string>
     <string name="my_scan">扫一扫</string>
     <string name="my_help">如何使用?</string>
+
+    <string name="codescan_scan_text">在电脑浏览器打开www.funnco.com.\n并点击登入扫描二维码</string>
 </resources>

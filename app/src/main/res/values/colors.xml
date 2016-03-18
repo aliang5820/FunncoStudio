@@ -145,4 +145,8 @@
     <color name="red">#ffd71f1b</color>
     <color name="transparent_red">#99d71f1b</color>
 
+    <!--code scan-->
+    <color name="half_transparent">#b0000000</color>
+    <color name="codescan_viewfinder_mask">#60000000</color>
+    <color name="codescan_possible_result_points">#c0ffff00</color>
 </resources>
