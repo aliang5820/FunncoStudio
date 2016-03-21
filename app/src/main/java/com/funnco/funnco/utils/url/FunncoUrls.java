@@ -18,6 +18,11 @@ public class FunncoUrls {
         return "http://wap.test.funnco.com/";
     }
 
+    //二维码登录地址
+    public static String getQRBaseUrl() {
+        return "http://gannt.funnco.com/test/funnco-php-front/funnco-b-admin/badmin/Home/IBase/erwlogin";
+    }
+
     public static String getTeamMemberList()
     {
 
@@ -583,5 +588,14 @@ public class FunncoUrls {
      */
     public static String getSignatureUrl(){
         return getBaseUrl() + "?m=wukong_auth";
+    }
+
+    /**
+     * 2.1 新增
+     * 参数说明 lan client
+     * @return 二维码登录 等信息
+     */
+    public static String getQRCodeUrl(){
+        return getQRBaseUrl() + "?";
     }
 }

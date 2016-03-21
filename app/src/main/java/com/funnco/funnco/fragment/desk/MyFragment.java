@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSON;
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.MyConventionActivity;
 import com.funnco.funnco.activity.MyCustomersActivity;
+import com.funnco.funnco.activity.codescan.CodeScanActivity;
 import com.funnco.funnco.activity.myinfo.UpdateAccountActivity;
 import com.funnco.funnco.activity.work.MyWorkActivity;
 import com.funnco.funnco.activity.PersonalInfoActivity;
@@ -255,7 +256,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
                 //扫一扫
                 Bundle bundle4 = new Bundle();
                 bundle4.putString("info", getString(R.string.my_scan));
-                startActivity(TeamMyActivity.class, bundle4);
+                startActivity(CodeScanActivity.class, bundle4);
                 break;
             case R.id.my_help:
                 //如何使用

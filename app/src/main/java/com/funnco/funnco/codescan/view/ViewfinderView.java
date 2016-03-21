@@ -165,7 +165,7 @@ public final class ViewfinderView extends View {
         } else {
 
             //画扫描框边上的角，总共8个部分
-            paint.setColor(Color.GREEN);
+            /*paint.setColor(Color.GREEN);
             canvas.drawRect(frame.left, frame.top, frame.left + ScreenRate,
                     frame.top + CORNER_WIDTH, paint);
             canvas.drawRect(frame.left, frame.top, frame.left + CORNER_WIDTH, frame.top
@@ -181,7 +181,7 @@ public final class ViewfinderView extends View {
             canvas.drawRect(frame.right - ScreenRate, frame.bottom - CORNER_WIDTH,
                     frame.right, frame.bottom, paint);
             canvas.drawRect(frame.right - CORNER_WIDTH, frame.bottom - ScreenRate,
-                    frame.right, frame.bottom, paint);
+                    frame.right, frame.bottom, paint);*/
 
 
             //绘制中间的线,每次刷新界面，中间的线往下移动SPEEN_DISTANCE
@@ -202,18 +202,20 @@ public final class ViewfinderView extends View {
             paint.setTextSize(TEXT_SIZE * density);
             paint.setAlpha(0x40);
             paint.setTypeface(Typeface.create("System", Typeface.BOLD));
-            String text = getResources().getString(R.string.codescan_scan_text);
-            float textWidth = paint.measureText(text);
+            String text1 = getResources().getString(R.string.codescan_scan_text1);
+            String text2 = getResources().getString(R.string.codescan_scan_text2);
+            float textWidth1 = paint.measureText(text1);
+            float textWidth2 = paint.measureText(text2);
 
-            canvas.drawText(text, (width - textWidth) / 2, frame.bottom + (float) TEXT_PADDING_TOP * density, paint);
-
+            canvas.drawText(text1, (width - textWidth1) / 2, frame.top - (float) TEXT_PADDING_TOP * density * 2, paint);
+            canvas.drawText(text2, (width - textWidth2) / 2, frame.top - (float) TEXT_PADDING_TOP * density, paint);
 
             Collection<ResultPoint> currentPossible = possibleResultPoints;
             Collection<ResultPoint> currentLast = lastPossibleResultPoints;
             if (currentPossible.isEmpty()) {
                 lastPossibleResultPoints = null;
             } else {
-                possibleResultPoints = new HashSet<ResultPoint>(5);
+                possibleResultPoints = new HashSet<>(5);
                 lastPossibleResultPoints = currentPossible;
                 paint.setAlpha(OPAQUE);
                 paint.setColor(resultPointColor);

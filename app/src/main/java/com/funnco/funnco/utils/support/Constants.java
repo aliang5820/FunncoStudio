@@ -21,6 +21,7 @@ public class Constants {
     public static final String UID = "uid";//用户id
     public static final String CUID = "c_uid";//预约客户id
     public static final String ID = "id";
+    public static final String SESSION_ID = "session_id";
     //    protected static final String USERID_BAIDU = "userId";/---同 device_token
     public static final String CHANNELID_BAIDU = "channelId";
 

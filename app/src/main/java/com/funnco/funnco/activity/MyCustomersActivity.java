@@ -112,8 +112,8 @@ public class MyCustomersActivity extends BaseActivity {
         findViewById(R.id.tv_headcommon_headl).setOnClickListener(this);
         clearEditText = (ClearEditText) findViewById(R.id.cet_mycustomer_search);
         tvDialog = (TextView) findViewById(R.id.tv_mycustomer_dialog);
-        tvSort = (TextView)findViewById(R.id.tv_headcommon_headr);
-        tvSort.setText(R.string.sort_by_time);
+        /*tvSort = (TextView)findViewById(R.id.tv_headcommon_headr);
+        tvSort.setText(R.string.sort_by_time);*/
         listView = (ListView) findViewById(R.id.lv_mycustomer_list);
         sideBar = (SideBar) findViewById(R.id.sb_mycustomer_guide);
         sideBar.setTextView(tvDialog);
@@ -201,9 +201,9 @@ public class MyCustomersActivity extends BaseActivity {
                 finishOk();
                 break;
             case R.id.tv_headcommon_headr://时间排序
-//                //相关排序处理
-                Intent intent = new Intent(mContext, MyCustomersSortByDateActivity.class);
-                startActivityForResult(intent,REQUEST_SORT_DATE);
+                //相关排序处理
+                /*Intent intent = new Intent(mContext, MyCustomersSortByDateActivity.class);
+                startActivityForResult(intent,REQUEST_SORT_DATE);*/
                 break;
         }
     }

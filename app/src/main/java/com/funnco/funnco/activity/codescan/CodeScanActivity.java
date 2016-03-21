@@ -20,15 +20,24 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
+import com.funnco.funnco.application.BaseApplication;
+import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.codescan.camera.CameraManager;
 import com.funnco.funnco.codescan.decoding.CaptureActivityHandler;
 import com.funnco.funnco.codescan.decoding.InactivityTimer;
 import com.funnco.funnco.codescan.decoding.RGBLuminanceSource;
 import com.funnco.funnco.codescan.view.ViewfinderView;
+import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.utils.file.SharedPreferencesUtils;
+import com.funnco.funnco.utils.json.JsonUtils;
+import com.funnco.funnco.utils.support.Constants;
+import com.funnco.funnco.utils.url.FunncoUrls;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
@@ -40,7 +49,9 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Vector;
 
 @SuppressLint("NewApi")
@@ -75,6 +86,7 @@ public class CodeScanActivity extends BaseActivity implements Callback, View.OnC
     public void initView() {
         viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
         findViewById(R.id.tv_headcommon_headl).setOnClickListener(this);
+        ((TextView)findViewById(R.id.tv_headcommon_headm)).setText(R.string.my_scan);
     }
 
     @Override
@@ -93,7 +105,7 @@ public class CodeScanActivity extends BaseActivity implements Callback, View.OnC
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_headcommon_headl:
                 finishOk();
                 break;
@@ -266,17 +278,35 @@ public class CodeScanActivity extends BaseActivity implements Callback, View.OnC
             Toast.makeText(CodeScanActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
             return;
         }
-        //将扫描的数据保存本地数据库作为历史数据
-        Toast.makeText(this, resultString, Toast.LENGTH_SHORT).show();
-        finish();
+        //扫描到的结果进行http请求
+        UserLoginInfo user = BaseApplication.getInstance().getUser();
+        Map<String, Object> map = new HashMap<>();
+        map.put(Constants.SESSION_ID, resultString);
+        map.put(Constants.PHONE_NUMBER, user.getMobile());
+        map.put(Constants.USER_PWD, SharedPreferencesUtils.getValue(mContext, Constants.USER_PWD));
+        showLoading(parentView);
+        MyLoginAsynchTask task = new MyLoginAsynchTask(map, new DataBack() {
+            @Override
+            public void getString(String result) {
+                dismissLoading();
+                String msg = JsonUtils.getResponseMsg(result);
+                Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
+                finishOk();
+            }
+
+            @Override
+            public void getBitmap(String rul, Bitmap bitmap) {
+                dismissLoading();
+            }
+        }, true);
+        putAsyncTask(task);
+        task.execute(FunncoUrls.getQRCodeUrl());
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {
         try {
             CameraManager.get().openDriver(surfaceHolder);
-        } catch (IOException ioe) {
-            return;
-        } catch (RuntimeException e) {
+        } catch (Exception ioe) {
             return;
         }
         if (handler == null) {
@@ -358,5 +388,5 @@ public class CodeScanActivity extends BaseActivity implements Callback, View.OnC
             mediaPlayer.seekTo(0);
         }
     };
-    
+
 }

@@ -42,13 +42,13 @@ public class MyLoginAsynchTask extends AsyncTask<String, Integer, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        LogUtils.e("接口地址：",""+params[0]);
-
         try {
-//            if (isGet)
-//                return MyHttpUtils.httpGet(params[0]);
-//            Thread.sleep(300);
-            return MyHttpUtils.httpPost(params[0], map);
+            if (isGet) {
+                String url = params[0] + getRequestData(map);
+                return MyHttpUtils.httpGet(url);
+            } else {
+                return MyHttpUtils.httpPost(params[0], map);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,22 +67,18 @@ public class MyLoginAsynchTask extends AsyncTask<String, Integer, String> {
     /**
      * Function  :   封装请求体信息
      * @param params 请求体内容
-     * @param encode 编码格式
      * @return
      */
-    public static StringBuffer getRequestData(Map<String, String> params, String encode) {
-        StringBuffer stringBuffer = new StringBuffer();        //存储封装好的请求体信息
+    public static String getRequestData(Map<String, Object> params) {
+        StringBuilder stringBuffer = new StringBuilder();        //存储封装好的请求体信息
         try {
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                stringBuffer.append(entry.getKey())
-                        .append("=")
-                        .append(URLEncoder.encode(entry.getValue(), encode))
-                        .append("&");
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
+                stringBuffer.append(entry.toString()).append("&");
             }
             stringBuffer.deleteCharAt(stringBuffer.length() - 1);    //删除最后的一个"&"
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return stringBuffer;
+        return stringBuffer.toString();
     }
 }
