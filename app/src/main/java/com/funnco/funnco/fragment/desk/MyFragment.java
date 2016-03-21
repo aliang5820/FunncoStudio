@@ -250,7 +250,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
                 //升级充值
                 Bundle bundle3 = new Bundle();
                 bundle3.putString("info", getString(R.string.my_money));
-                startActivity(TeamMyActivity.class, bundle3);
+                startActivity(UpdateAccountActivity.class, bundle3);
                 break;
             case R.id.my_scan:
                 //扫一扫
