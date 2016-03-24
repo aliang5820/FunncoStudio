@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -69,8 +70,7 @@ public class ForeActivity extends BaseActivity {
         uid = SharedPreferencesUtils.getValue(this, Constants.UID);
         intent = new Intent();
 
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
+        Runnable task = new Runnable() {
             @Override
             public void run() {
                 if(checkLogin()){
@@ -80,7 +80,7 @@ public class ForeActivity extends BaseActivity {
                 }
             }
         };
-        timer.schedule(task, 3000);
+        new Handler().postDelayed(task, 3000);
         String appKey = getString(R.string.baidu_appkey);
         PushManager.startWork(mContext, PushConstants.LOGIN_TYPE_API_KEY, appKey);
     }
