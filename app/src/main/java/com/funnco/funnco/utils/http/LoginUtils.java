@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.Post;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
 import com.funnco.funnco.utils.string.TextUtils;
@@ -38,7 +38,7 @@ public class LoginUtils {
         if (TextUtils.isNull(mobile) || TextUtils.isNull(pwd) || TextUtils.isNull(device_token)){
             return;
         }
-        MyLoginAsynchTask task = new MyLoginAsynchTask(map, new DataBack() {
+        AsyTask task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                 if (JsonUtils.getResponseCode(result) == 0) {

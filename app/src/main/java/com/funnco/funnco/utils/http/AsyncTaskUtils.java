@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.PostObt;
 import com.funnco.funnco.task.FindAsyncTask;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.task.SaveAsyncTask;
 import com.lidroid.xutils.DbUtils;
 
@@ -43,6 +43,6 @@ public class AsyncTaskUtils {
     }
 
     public static AsyncTask requestPost(Map<String, Object> map,DataBack back,boolean isGet, String url){
-        return new MyLoginAsynchTask(map,back,isGet).execute(url);
+        return new AsyTask(map,back,isGet).execute(url);
     }
 }

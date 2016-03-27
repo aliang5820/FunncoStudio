@@ -8,7 +8,7 @@ import android.os.IBinder;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.ScheduleNewStat;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.date.DateUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.utils.json.JsonUtils;
@@ -58,7 +58,7 @@ public class ScheduleDataStatService extends Service {
         final ArrayList<ScheduleNewStat> list = new ArrayList<>();
         Map<String,Object> map = new HashMap<>();
         map.put("dates", dates);
-        MyLoginAsynchTask task = new MyLoginAsynchTask(map, new DataBack() {
+        AsyTask task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                 LogUtils.e("服务 下载的 月的数据列表是：", "" + result);

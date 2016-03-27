@@ -11,7 +11,7 @@ import android.view.View;
  */
 public class BaseCircleView extends View {
     //分段颜色
-    protected static final int[] SECTION_COLORS = {Color.GREEN, Color.YELLOW, Color.RED};
+    protected static final int[] SECTION_COLORS = {0xff1a5992, 0xff5B9399, 0xff7CC8B2, 0xff66d6dd};
     protected Context mContext;
     private float maxCount;
     private float currentCount;
@@ -45,15 +45,15 @@ public class BaseCircleView extends View {
 
     protected void initPaint() {
         mPaint.setAntiAlias(true);
-        mPaint.setStrokeWidth((float) 12.0);
+        mPaint.setStrokeWidth((float) 15.0);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setColor(Color.TRANSPARENT);
         mBgPaint.setAntiAlias(true);
-        mBgPaint.setStrokeWidth((float) 4.0);
+        mBgPaint.setStrokeWidth((float) 5.0);
         mBgPaint.setStyle(Paint.Style.STROKE);
         mBgPaint.setStrokeCap(Paint.Cap.ROUND);
-        mBgPaint.setColor(Color.GRAY);
+        mBgPaint.setColor(0xffC7D0D8);
         mTopTextPaint.setAntiAlias(true);
         mTopTextPaint.setStrokeWidth((float) 3.0);
         mTopTextPaint.setTextAlign(Paint.Align.CENTER);

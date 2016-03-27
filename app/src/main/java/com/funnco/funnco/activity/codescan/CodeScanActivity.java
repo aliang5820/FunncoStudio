@@ -33,7 +33,7 @@ import com.funnco.funnco.codescan.decoding.InactivityTimer;
 import com.funnco.funnco.codescan.decoding.RGBLuminanceSource;
 import com.funnco.funnco.codescan.view.ViewfinderView;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.support.Constants;
@@ -285,7 +285,7 @@ public class CodeScanActivity extends BaseActivity implements Callback, View.OnC
         map.put(Constants.PHONE_NUMBER, user.getMobile());
         map.put(Constants.USER_PWD, SharedPreferencesUtils.getValue(mContext, Constants.USER_PWD));
         showLoading(parentView);
-        MyLoginAsynchTask task = new MyLoginAsynchTask(map, new DataBack() {
+        AsyTask task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                 dismissLoading();

@@ -16,7 +16,7 @@ import com.funnco.funnco.activity.base.MainActivity;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.task.SQliteAsynchTask;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
 import com.funnco.funnco.utils.http.NetUtils;
@@ -34,8 +34,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 //import com.umeng.message.UmengRegistrar;
 
@@ -50,7 +48,7 @@ public class ForeActivity extends BaseActivity {
     private String uid = null;//用户id
     //是否是第一次登录  默认值为true
     private boolean isFirstLogin = true;
-    private MyLoginAsynchTask task = null;
+    private AsyTask task = null;
     private static final String VERSION_CODE = "version_code";
     private View parentView;
 
@@ -110,7 +108,7 @@ public class ForeActivity extends BaseActivity {
         map.put(Constants.TOKEN,token);
         map.put(Constants.UID,uid);
         map.put(Constants.DEVICE_TOKEN,device_token);
-        task = new MyLoginAsynchTask(map, new DataBack() {
+        task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                 dismissLoading();

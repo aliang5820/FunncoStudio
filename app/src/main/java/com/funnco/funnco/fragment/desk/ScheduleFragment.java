@@ -70,7 +70,7 @@ import com.funnco.funnco.fragment.BaseFragment;
 import com.funnco.funnco.impl.MyGestureListener;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.impl.SimpleSwipeListener;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.task.SQliteAsynchTask;
 import com.funnco.funnco.utils.bimp.BitmapUtils;
 import com.funnco.funnco.utils.date.DateUtils;
@@ -1396,7 +1396,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 //            map.put("dates", dates);//修改***
         map.put("dates", mLastSelectedDay);
 //        }
-        MyLoginAsynchTask task = new MyLoginAsynchTask(map, new DataBack() {
+        AsyTask task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                 LogUtils.e("删除日程返回道德数据是：", "" + result);

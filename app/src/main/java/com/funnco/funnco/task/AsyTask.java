@@ -1,6 +1,7 @@
 package com.funnco.funnco.task;
 
 import android.os.AsyncTask;
+import android.text.TextUtils;
 
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
@@ -16,16 +17,16 @@ import java.util.Map;
  *
  * @author Shawn
  */
-public class MyLoginAsynchTask extends AsyncTask<String, Integer, String> {
+public class AsyTask extends AsyncTask<String, Integer, String> {
     private Map<String, Object> map = new HashMap<>();
     private DataBack dataBack = null;
     boolean isGet = false;
 
-    public MyLoginAsynchTask() {
+    public AsyTask() {
 
     }
 
-    public MyLoginAsynchTask(Map<String, Object> map, DataBack dataBack, boolean isGet) {
+    public AsyTask(Map<String, Object> map, DataBack dataBack, boolean isGet) {
         this.map.clear();
         if (map != null) {
             this.map.putAll(map);
@@ -44,7 +45,12 @@ public class MyLoginAsynchTask extends AsyncTask<String, Integer, String> {
     protected String doInBackground(String... params) {
         try {
             if (isGet) {
-                String url = params[0] + getRequestData(map);
+                String url;
+                if(params[0].endsWith("?")) {
+                    url = params[0] + getRequestData(map);
+                } else {
+                    url = params[0] + "&" + getRequestData(map);
+                }
                 return MyHttpUtils.httpGet(url);
             } else {
                 return MyHttpUtils.httpPost(params[0], map);

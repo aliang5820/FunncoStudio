@@ -9,6 +9,8 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
 
+import com.funnco.funnco.R;
+
 /**
  * Created by EdisonZhao on 16/3/24.
  */
@@ -29,9 +31,9 @@ public class CircleProgressLeftView extends BaseCircleView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         initPaint();
-        RectF rectBlackBg = new RectF(4, 4, mWidth - 4, mHeight - 4);
-        mPaint.setStrokeWidth(6);
-        mBgPaint.setStrokeWidth(2);
+        RectF rectBlackBg = new RectF(16, 16, mWidth - 16, mHeight - 16);
+        mPaint.setStrokeWidth(8);
+        mBgPaint.setStrokeWidth(4);
         canvas.drawArc(rectBlackBg, 0, 360, false, mBgPaint);
         mPaint.setColor(Color.BLACK);
 
@@ -71,5 +73,8 @@ public class CircleProgressLeftView extends BaseCircleView {
             mPaint.setShader(shader);
         }
         canvas.drawArc(rectBlackBg, 270, section * 360, false, mPaint);
+        RectF rectF = new RectF(2, 2, mWidth - 2, mHeight - 2);
+        mBgPaint.setColor(getResources().getColor(R.color.circle_line_color_2));
+        canvas.drawArc(rectF, 270, 180, false, mBgPaint);
     }
 }

@@ -1,1 +1,1 @@
-include ':app', ':photogallery'
+include ':app', ':photogallery', ":pingpp", ":bdwallet_pay_sdk", ':pingpp_one'

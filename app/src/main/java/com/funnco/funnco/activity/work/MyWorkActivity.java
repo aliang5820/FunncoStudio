@@ -22,7 +22,7 @@ import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.bean.WorkItem;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.Post;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.date.DateUtils;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
 import com.funnco.funnco.utils.http.NetUtils;
@@ -252,7 +252,7 @@ public class MyWorkActivity extends BaseActivity implements PullToRefreshView.On
         }
     }
     private void deleteWOrk(Map<String, Object> map,String url,boolean isGet){
-        MyLoginAsynchTask task = new MyLoginAsynchTask(map, new DataBack() {
+        AsyTask task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                 if (JsonUtils.getResponseCode(result) == 0){
@@ -313,7 +313,7 @@ public class MyWorkActivity extends BaseActivity implements PullToRefreshView.On
         Map<String,Object> map = new HashMap<>();
         map.put("pagesize", pageSize + "");
         map.put("page", pageIndex + "");
-        MyLoginAsynchTask task = new MyLoginAsynchTask(map, new DataBack() {
+        AsyTask task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                 dismissLoading();

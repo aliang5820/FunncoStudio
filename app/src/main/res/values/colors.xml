@@ -19,7 +19,7 @@
     <color name="color_blue">#ff0f81d9</color>
     <color name="color_red">#aaff0000</color>
     <color name="color_red_2">#FF3A30</color>
-    <color name="color_red_tite">#e8754a</color>
+    <color name="color_red_title">#e8754a</color>
     <color name="F0">#e67348</color>
     <color name="column_bar_line_color">#fcfcfc</color>
     <!-- hint提示字体颜色  灰色-->
@@ -149,4 +149,11 @@
     <color name="half_transparent">#b0000000</color>
     <color name="codescan_viewfinder_mask">#60000000</color>
     <color name="codescan_possible_result_points">#c0ffff00</color>
+    <!--pay and update-->
+    <color name="circle_line_color_1">#ff1a5992</color>
+    <color name="circle_line_color_2">#ff66d6dd</color>
+    <color name="circle_line_color_3">#ffe8754a</color>
+    <color name="circle_text_color">#787878</color>
+    <color name="editText">#AAAAAA</color>
+    <color name="blue">#008dff</color>
 </resources>

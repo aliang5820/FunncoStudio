@@ -592,6 +592,16 @@ public class FunncoUrls {
 
     /**
      * 2.1 新增
+     * 参数说明
+     * title是产品名字 content是产品描述 amount是产品价格 channel是支付方式
+     * @return 获得订单信息信息
+     */
+    public static String getOrderUrl(){
+        return getBaseUrl() + "?m=order";
+    }
+
+    /**
+     * 2.1 新增
      * 参数说明 lan client
      * @return 二维码登录 等信息
      */

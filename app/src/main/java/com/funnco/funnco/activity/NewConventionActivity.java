@@ -19,7 +19,7 @@ import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.fragment.MyCustomerFragment;
 import com.funnco.funnco.impl.ComparatorByDate;
 import com.funnco.funnco.impl.Post;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.task.SQliteAsynchTask;
 import com.funnco.funnco.utils.date.DateUtils;
 import com.funnco.funnco.utils.http.NetUtils;
@@ -167,7 +167,7 @@ public class NewConventionActivity extends BaseActivity {
         Map<String, Object> map = new HashMap<>();
         map.put("sort", "time");
         map.put("type", "1");
-        MyLoginAsynchTask task = new MyLoginAsynchTask(map, new DataBack() {
+        AsyTask task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                 dismissLoading();

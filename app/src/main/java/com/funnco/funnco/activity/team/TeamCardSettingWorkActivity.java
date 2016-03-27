@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.http.AsyncTaskUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
 
@@ -88,7 +88,7 @@ public class TeamCardSettingWorkActivity extends BaseActivity {
     }
 
     private void post(Map<String,Object> map,String url){
-        putAsyncTask((MyLoginAsynchTask) AsyncTaskUtils.requestPost(map, new DataBack() {
+        putAsyncTask((AsyTask) AsyncTaskUtils.requestPost(map, new DataBack() {
             @Override
             public void getString(String result) {
                 if (JsonUtils.getResponseCode(result) == 0) {

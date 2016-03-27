@@ -18,7 +18,7 @@ import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.MyCustomer;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.ComparatorByName;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.support.CharacterParser;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.utils.json.JsonUtils;
@@ -244,7 +244,7 @@ public class MyCustomersActivity extends BaseActivity {
     private void getData4Net(){
         Map<String, Object> map = new HashMap<>();
         map.put("sort","letter");
-        MyLoginAsynchTask task = new MyLoginAsynchTask(map, new DataBack() {
+        AsyTask task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                     if (JsonUtils.getResponseCode(result) == 0){

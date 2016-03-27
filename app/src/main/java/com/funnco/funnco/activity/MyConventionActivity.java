@@ -20,7 +20,7 @@ import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.bean.MyCustomerD;
 import com.funnco.funnco.fragment.MyCustomerFragment;
 import com.funnco.funnco.fragment.NewConventionFragment;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.support.TabUtils;
 
@@ -39,7 +39,7 @@ public class MyConventionActivity extends BaseActivity {
     private Intent intent = null;
     private String title;
     private List<MyCustomerD> list = new ArrayList<>();
-    private MyLoginAsynchTask task = null;
+    private AsyTask task = null;
     private View parentView;
     private RadioGroup rg;
     //滚动的line

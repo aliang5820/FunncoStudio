@@ -48,4 +48,8 @@ public class Constants {
     public static final String DESCRIPTION = "description";
     public static final String RELATION = "relation";
 
+    public static final String ORDER_TITLE = "title";//产品名称
+    public static final String ORDER_CONTENT = "content";//产品描述
+    public static final String ORDER_AMOUNT = "amount";//产品价格
+    public static final String ORDER_CHANNEL = "channel";//支付方式
 }

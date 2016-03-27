@@ -54,6 +54,12 @@ Temporary Items
 /build
 /app/build
 /photogallery/build
+/pingpp_one/build
+/pingpp/build
+/bdwallet_pay_sdk/build
 /captures
 .idea
 *.iml
+
+*.project
+*.classpath

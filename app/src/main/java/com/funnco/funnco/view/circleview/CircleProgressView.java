@@ -43,14 +43,14 @@ public class CircleProgressView extends BaseCircleView {
 
 
         float section = getCurrentCount() / getMaxCount();
-        if (section <= 1.0f / 3.0f) {
+        if (section <= 1.0f / 4.0f) {
             if (section != 0.0f) {
                 mPaint.setColor(SECTION_COLORS[0]);
             } else {
                 mPaint.setColor(Color.TRANSPARENT);
             }
         } else {
-            int count = (section <= 1.0f / 3.0f * 2) ? 2 : 3;
+            int count = (section <= 1.0f / 4.0f * 2) ? 2 : 4;
             int[] colors = new int[count];
             System.arraycopy(SECTION_COLORS, 0, colors, 0, count);
             float[] positions = new float[count];
@@ -59,7 +59,7 @@ public class CircleProgressView extends BaseCircleView {
                 positions[1] = 1.0f - positions[0];
             } else {
                 positions[0] = 0.0f;
-                positions[1] = (getMaxCount() / 3) / getCurrentCount();
+                positions[1] = (getMaxCount() / 4) / getCurrentCount();
                 positions[2] = 1.0f - positions[0] * 2;
             }
             positions[positions.length - 1] = 1.0f;

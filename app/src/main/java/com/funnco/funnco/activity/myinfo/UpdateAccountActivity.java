@@ -5,9 +5,9 @@ import android.widget.TextView;
 
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
+import com.funnco.funnco.activity.myinfo.pay.PayChoiceActivity;
 import com.funnco.funnco.view.circleview.BaseCircleView;
 import com.funnco.funnco.view.circleview.CircleProgressRightView;
-import com.funnco.funnco.view.circleview.CircleProgressView;
 
 /**
  * 账号升级
@@ -40,16 +40,14 @@ public class UpdateAccountActivity extends BaseActivity {
         vipTimeView.setMaxCount(100);
         vipTimeView.setCurrentCount(80);
         vipTimeView.setScore((int)(vipTimeView.getMaxCount() - vipTimeView.getCurrentCount()));
-        //
+        //左边圆
         vipLeftView.setMaxCount(1000);
         vipLeftView.setCurrentCount(400);
-        vipLeftView.setScore((int)(vipLeftView.getMaxCount() - vipLeftView.getCurrentCount()));
-        //
-        /*vipRightView.setMaxCount(1000);
+        vipLeftView.setScore((int) (vipLeftView.getMaxCount() - vipLeftView.getCurrentCount()));
+        //右边圆
+        vipRightView.setMaxCount(1000);
         vipRightView.setCurrentCount(600);
-        vipRightView.setScore((int)(vipRightView.getMaxCount() - vipRightView.getCurrentCount()));*/
-        vipRightView.setMax(1000);
-        vipRightView.setProgress(600);
+        vipRightView.setScore((int) (vipRightView.getMaxCount() - vipRightView.getCurrentCount()));
     }
 
     @Override
@@ -59,5 +57,20 @@ public class UpdateAccountActivity extends BaseActivity {
                 finishOk();
                 break;
         }
+    }
+
+    public void onQJCharge(View view) {
+        //旗舰版
+        startActivity(PayChoiceActivity.class);
+    }
+
+    public void onSWCharge(View view) {
+        //商务版
+        startActivity(PayChoiceActivity.class);
+    }
+
+    public void onGLCharge(View view) {
+        //人数管理版
+        startActivity(PayChoiceActivity.class);
     }
 }

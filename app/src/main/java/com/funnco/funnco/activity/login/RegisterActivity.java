@@ -31,7 +31,7 @@ import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.Career;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.bimp.BitmapUtils;
 import com.funnco.funnco.utils.file.FileTypeUtils;
 import com.funnco.funnco.utils.file.FileUtils;
@@ -326,7 +326,7 @@ public class RegisterActivity extends BaseActivity {
                 }
                 Map<String ,Object> map = new HashMap<>();
                 map.put(Constants.PHONE_NUMBER, strPhonenumber);
-                MyLoginAsynchTask task2 = new MyLoginAsynchTask(map, new DataBack() {
+                AsyTask task2 = new AsyTask(map, new DataBack() {
                     @Override
                     public void getString(String result) {
                         isSending2 = true;

@@ -12,7 +12,7 @@ import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
-import com.funnco.funnco.task.MyLoginAsynchTask;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.http.NetUtils;
@@ -102,7 +102,7 @@ public class MyPhoneActivity extends BaseActivity {
     }
 
     private void savePhone(Map<String, Object> map,boolean isGet){
-        MyLoginAsynchTask task = new MyLoginAsynchTask(map, new DataBack() {
+        AsyTask task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                 //数据上传成功处理逻辑
