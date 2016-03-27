@@ -484,16 +484,6 @@
     </style>
 
     <!--ping++-->
-    <style name="Theme" parent="@android:style/Theme.Black.NoTitleBar">
-        <item name="android:windowBackground">@android:color/white</item>
-    </style>
-
-    <style name="TextField" parent="@android:style/Widget.EditText">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/editText</item>
-        <item name="android:background">@drawable/edit_text_holo_dark</item>
-    </style>
-
     <style name="BoaderButton" parent="@android:style/Widget.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">50dp</item>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.funnco.funnco.R;
@@ -88,7 +89,7 @@ public class PayChoiceActivity extends BaseActivity implements PayResultCallBack
 
     @Override
     protected void initView() {
-        findViewById(R.id.amountEditText).setOnClickListener(this);
+        ((TextView) findViewById(R.id.tv_headcommon_headm)).setText(R.string.my_money);
         findViewById(R.id.wechatButton).setOnClickListener(this);
         findViewById(R.id.alipayButton).setOnClickListener(this);
         findViewById(R.id.upmpButton).setOnClickListener(this);
