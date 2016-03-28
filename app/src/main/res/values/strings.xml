@@ -615,6 +615,8 @@
     <string name="my_group">我的团队</string>
     <string name="my_kehu">我的客户</string>
     <string name="my_money">充值/开通</string>
+    <string name="my_money_more">购买/了解</string>
+    <string name="my_money_pay">支付</string>
     <string name="my_scan">扫一扫</string>
     <string name="my_help">如何使用?</string>
 

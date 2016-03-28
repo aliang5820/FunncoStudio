@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/order_desc_sw"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="管理员2人" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="成员5人" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="500次预约次数/月" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="无限商户预约/课程提醒次数" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="每月赠送100条提醒短信" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="每月赠送4条营销推送" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="个人团体照片展示10张" />
+
+        <TextView
+            android:id="@+id/swOrderYear"
+            style="@style/OrderDescBtnStyle"
+            android:layout_marginTop="30dp"
+            android:text="立即升级(888RMB/年)" />
+
+        <TextView
+            android:id="@+id/swOrderMonth"
+            style="@style/OrderDescBtnStyle"
+            android:layout_marginTop="20dp"
+            android:text="立即升级(88RMB/月)" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/order_desc_qj"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="管理员4人" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="成员10人" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="无限预约次数/月" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="无限商户预约/课程提醒次数" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="500条客户提醒短信" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="8条营销内容推送" />
+
+        <TextView
+            style="@style/OrderDescTextStyle"
+            android:text="个人团体照片展示25张" />
+
+        <TextView
+            android:id="@+id/qjOrderYear"
+            style="@style/OrderDescBtnStyle"
+            android:layout_marginTop="30dp"
+            android:text="立即升级(1388RMB/年)" />
+
+        <TextView
+            android:id="@+id/qjOrderMonth"
+            style="@style/OrderDescBtnStyle"
+            android:layout_marginTop="20dp"
+            android:text="立即升级(88RMB/月)" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/order_desc_gl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/OrderDescTextStyle"
+                android:layout_weight="1"
+                android:text="目前管理员" />
+
+            <TextView
+                style="@style/OrderDescTextStyle"
+                android:layout_weight="1"
+                android:drawableLeft="@null"
+                android:text="2人" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/glOrderAdmin"
+            style="@style/OrderDescBtnStyle"
+            android:layout_marginTop="20dp"
+            android:text="立即增加(10RMB/人)" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/OrderDescTextStyle"
+                android:layout_weight="1"
+                android:text="目前成员" />
+
+            <TextView
+                style="@style/OrderDescTextStyle"
+                android:layout_weight="1"
+                android:drawableLeft="@null"
+                android:text="5人" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/glOrderMember"
+            style="@style/OrderDescBtnStyle"
+            android:layout_marginTop="20dp"
+            android:text="立即增加(8RMB/人)" />
+    </LinearLayout>
+</RelativeLayout>

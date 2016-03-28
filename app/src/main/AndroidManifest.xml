@@ -215,9 +215,6 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <!--支付-->
-        <activity android:name=".activity.myinfo.pay.PayChoiceActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
         <!-- 预约客户备注信息-->
         <activity android:name=".activity.RemarkActivity"
             android:screenOrientation="portrait"

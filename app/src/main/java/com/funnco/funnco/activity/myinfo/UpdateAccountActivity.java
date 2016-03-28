@@ -1,11 +1,12 @@
 package com.funnco.funnco.activity.myinfo;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
-import com.funnco.funnco.activity.myinfo.pay.PayChoiceActivity;
+import com.funnco.funnco.utils.support.Constants;
 import com.funnco.funnco.view.circleview.BaseCircleView;
 import com.funnco.funnco.view.circleview.CircleProgressRightView;
 
@@ -61,16 +62,22 @@ public class UpdateAccountActivity extends BaseActivity {
 
     public void onQJCharge(View view) {
         //旗舰版
-        startActivity(PayChoiceActivity.class);
+        Intent intent = new Intent(this, UpdateAccountActivity_2.class);
+        intent.putExtra(Constants.ORDER_TYPE, Constants.ORDER_TYPE_QJ);
+        startActivity(intent);
     }
 
     public void onSWCharge(View view) {
         //商务版
-        startActivity(PayChoiceActivity.class);
+        Intent intent = new Intent(this, UpdateAccountActivity_2.class);
+        intent.putExtra(Constants.ORDER_TYPE, Constants.ORDER_TYPE_SW);
+        startActivity(intent);
     }
 
     public void onGLCharge(View view) {
         //人数管理版
-        startActivity(PayChoiceActivity.class);
+        Intent intent = new Intent(this, UpdateAccountActivity_2.class);
+        intent.putExtra(Constants.ORDER_TYPE, Constants.ORDER_TYPE_GL);
+        startActivity(intent);
     }
 }

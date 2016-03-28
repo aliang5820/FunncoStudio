@@ -11,7 +11,7 @@ import android.view.View;
  */
 public class BaseCircleView extends View {
     //分段颜色
-    protected static final int[] SECTION_COLORS = {0xff1a5992, 0xff5B9399, 0xff7CC8B2, 0xff66d6dd};
+    protected static final int[] SECTION_COLORS = {0xff1d66bd, 0xff42cbb3, 0xff39acdd};
     protected Context mContext;
     private float maxCount;
     private float currentCount;

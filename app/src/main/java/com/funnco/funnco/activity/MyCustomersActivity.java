@@ -44,7 +44,6 @@ import java.util.Map;
  */
 public class MyCustomersActivity extends BaseActivity {
     //标题栏控件
-    private TextView tvSort;
     private Intent intent;
     private TextView tvNotify;
 
@@ -126,7 +125,6 @@ public class MyCustomersActivity extends BaseActivity {
     }
     @Override
     protected void initEvents() {
-        tvSort.setOnClickListener(this);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

@@ -52,4 +52,8 @@ public class Constants {
     public static final String ORDER_CONTENT = "content";//产品描述
     public static final String ORDER_AMOUNT = "amount";//产品价格
     public static final String ORDER_CHANNEL = "channel";//支付方式
+    public static final String ORDER_TYPE = "type";//订单类型
+    public static final int ORDER_TYPE_QJ = 0;//旗舰版
+    public static final int ORDER_TYPE_SW = 1;//商务版
+    public static final int ORDER_TYPE_GL = 2;//人员管理
 }
