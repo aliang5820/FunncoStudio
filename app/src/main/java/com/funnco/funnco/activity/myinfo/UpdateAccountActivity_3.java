@@ -32,10 +32,6 @@ public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCa
     private View parentView;
     private static final int REQUEST_CODE_PAYMENT = 1;
     /**
-     * 银联支付渠道
-     */
-    private static final String CHANNEL_UPACP = "upacp";
-    /**
      * 微信支付渠道
      */
     private static final String CHANNEL_WECHAT = "wx";
@@ -43,14 +39,6 @@ public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCa
      * 支付支付渠道
      */
     private static final String CHANNEL_ALIPAY = "alipay";
-    /**
-     * 百度支付渠道
-     */
-    private static final String CHANNEL_BFB = "bfb";
-    /**
-     * 京东支付渠道
-     */
-    private static final String CHANNEL_JDPAY_WAP = "jdpay_wap";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -99,18 +87,10 @@ public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCa
         int amount = 1;
         if (view.getId() == R.id.tv_headcommon_headl) {
             finishOk();
-        } else if (view.getId() == R.id.upmpButton) {
-            postJson(new PaymentRequest("银联支付测试", "支付测试描述", CHANNEL_UPACP, amount));
-        } else if (view.getId() == R.id.alipayButton) {
+        } if (view.getId() == R.id.alipayButton) {
             postJson(new PaymentRequest("支付宝支付测试", "支付测试描述", CHANNEL_ALIPAY, amount));
         } else if (view.getId() == R.id.wechatButton) {
             postJson(new PaymentRequest("微信支付测试", "支付测试描述", CHANNEL_WECHAT, amount));
-        } else if (view.getId() == R.id.bfbButton) {
-            postJson(new PaymentRequest("百度钱包支付测试", "支付测试描述", CHANNEL_BFB, amount));
-        } else if (view.getId() == R.id.jdpayButton) {
-            postJson(new PaymentRequest("京东支付测试", "支付测试描述", CHANNEL_JDPAY_WAP, amount));
-        } else {
-            Toast.makeText(mContext, "你是不是点错了?", Toast.LENGTH_SHORT).show();
         }
     }
 

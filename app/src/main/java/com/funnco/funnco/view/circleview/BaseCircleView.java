@@ -19,7 +19,6 @@ public class BaseCircleView extends View {
     protected Paint mBgPaint;
     protected Paint mBotomTextPaint;
     protected Paint mTopTextPaint;
-    private int score;
     protected int mWidth, mHeight;
 
     public BaseCircleView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -77,15 +76,6 @@ public class BaseCircleView extends View {
 
     public float getCurrentCount() {
         return currentCount;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-        invalidate();
-    }
-
-    public int getScore() {
-        return score;
     }
 
     /***

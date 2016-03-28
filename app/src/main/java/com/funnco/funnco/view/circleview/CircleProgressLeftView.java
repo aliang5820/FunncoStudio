@@ -45,7 +45,7 @@ public class CircleProgressLeftView extends BaseCircleView {
         int baseline = (int) (rectBlackBg.bottom + rectBlackBg.top - fontMetrics.bottom - fontMetrics.top) / 2;
         // 下面这行是实现水平居中，drawText对应改为传入targetRect.centerX()
         // mTopTextPaint.setTextAlign(Paint.Align.CENTER);之前已经设置过了
-        canvas.drawText(getScore() + "条", rectBlackBg.centerX(), baseline - (getStringHeight(mBotomTextPaint) / 2), mTopTextPaint);
+        canvas.drawText((int)getCurrentCount() + "条", rectBlackBg.centerX(), baseline - (getStringHeight(mBotomTextPaint) / 2), mTopTextPaint);
         canvas.drawText("充值", rectBlackBg.centerX(), baseline + (getStringHeight(mBotomTextPaint) / 2), mBotomTextPaint);
 
         float section = getCurrentCount() / getMaxCount();

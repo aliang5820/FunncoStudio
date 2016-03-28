@@ -602,6 +602,15 @@ public class FunncoUrls {
 
     /**
      * 2.1 新增
+     * 参数说明
+     * @return 获得账户商业信息
+     */
+    public static String getBusinessStatusUrl(){
+        return getBaseUrl() + "?m=business_status";
+    }
+
+    /**
+     * 2.1 新增
      * 参数说明 lan client
      * @return 二维码登录 等信息
      */

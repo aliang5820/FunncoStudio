@@ -1,14 +1,25 @@
 package com.funnco.funnco.activity.myinfo;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.TextView;
 
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
+import com.funnco.funnco.application.BaseApplication;
+import com.funnco.funnco.bean.AccountBusinessInfo;
+import com.funnco.funnco.bean.MyCustomerConventation;
+import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.task.SQliteAsynchTask;
+import com.funnco.funnco.utils.http.AsyncTaskUtils;
+import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.support.Constants;
+import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.view.circleview.BaseCircleView;
 import com.funnco.funnco.view.circleview.CircleProgressRightView;
+
+import org.json.JSONObject;
 
 /**
  * 账号升级
@@ -38,17 +49,31 @@ public class UpdateAccountActivity extends BaseActivity {
     @Override
     protected void initEvents() {
         findViewById(R.id.tv_headcommon_headl).setOnClickListener(this);
-        vipTimeView.setMaxCount(100);
-        vipTimeView.setCurrentCount(80);
-        vipTimeView.setScore((int)(vipTimeView.getMaxCount() - vipTimeView.getCurrentCount()));
-        //左边圆
-        vipLeftView.setMaxCount(1000);
-        vipLeftView.setCurrentCount(400);
-        vipLeftView.setScore((int) (vipLeftView.getMaxCount() - vipLeftView.getCurrentCount()));
-        //右边圆
-        vipRightView.setMaxCount(1000);
-        vipRightView.setCurrentCount(600);
-        vipRightView.setScore((int) (vipRightView.getMaxCount() - vipRightView.getCurrentCount()));
+        putAsyncTask(AsyncTaskUtils.requestGet(new DataBack() {
+            @Override
+            public void getString(String result) {
+                if (JsonUtils.getResponseCode(result) == 0) {
+                    //进行解析
+                    JSONObject paramsJSONObject = JsonUtils.getJObt(result, "params");
+                    AccountBusinessInfo info = JsonUtils.getObject(paramsJSONObject.toString(), AccountBusinessInfo.class);
+                    vipTimeView.setMaxCount(info.getTotalDays());
+                    vipTimeView.setCurrentCount(info.getLeftDays());
+                    //左边圆
+                    vipLeftView.setMaxCount(info.getTotalPushNums());
+                    vipLeftView.setCurrentCount(info.getPushNums());
+                    //右边圆
+                    vipRightView.setMaxCount(info.getTotalAlterNums());
+                    vipRightView.setCurrentCount(info.getAlterNums());
+                } else {
+                    showToast(JsonUtils.getResponseMsg(result) + "");
+                }
+            }
+
+            @Override
+            public void getBitmap(String url, Bitmap bitmap) {
+
+            }
+        }, FunncoUrls.getBusinessStatusUrl(), true));
     }
 
     @Override
