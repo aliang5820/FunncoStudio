@@ -5,21 +5,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.json.JsonUtils;
-import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.support.Constants;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.pingplusplus.android.PaymentActivity;
 import com.pingplusplus.android.PingppLog;
-import com.pingplusplus.libone.PayResultCallBack;
-import com.pingplusplus.libone.PingppOnePayment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,22 +25,21 @@ import java.util.Map;
  * 账号升级
  * Created by user on 2015/11/10.
  */
-public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCallBack {
-    private View parentView;
+public class UpdateAccountActivity_3 extends BaseActivity {
+    private View parentView, tip_more_layout;
+    private CheckBox alipay, wxpay;
+    private TextView order_name, order_admin_num, order_member_num, order_amount, tip_btn;
+    private int amount = 1;//测试1分钱
+    private int adminNum = 0, memberNum = 0;
+    private boolean isOpenTip = false;
     private static final int REQUEST_CODE_PAYMENT = 1;
-    /**
-     * 微信支付渠道
-     */
-    private static final String CHANNEL_WECHAT = "wx";
-    /**
-     * 支付支付渠道
-     */
-    private static final String CHANNEL_ALIPAY = "alipay";
+    private static final String CHANNEL_WECHAT = "wx";//微信支付渠道
+    private static final String CHANNEL_ALIPAY = "alipay";//支付宝支付渠道
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //设置需要使用的支付方式,true:显示该支付通道，默认为false
+        /*//设置需要使用的支付方式,true:显示该支付通道，默认为false
         PingppOnePayment.SHOW_CHANNEL_WECHAT = true;
         PingppOnePayment.SHOW_CHANNEL_UPACP = true;
         PingppOnePayment.SHOW_CHANNEL_BFB = true;
@@ -56,7 +52,7 @@ public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCa
         PingppOnePayment.CHANNEL_BFB_INDEX = 4;
 
         //提交数据的格式，默认格式为json
-        PingppOnePayment.CONTENT_TYPE = "application/json";
+        PingppOnePayment.CONTENT_TYPE = "application/json";*/
         PingppLog.DEBUG = true;
     }
 
@@ -69,13 +65,19 @@ public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCa
 
     @Override
     protected void initView() {
-        ((TextView) findViewById(R.id.tv_headcommon_headm)).setText(R.string.my_money);
-        findViewById(R.id.wechatButton).setOnClickListener(this);
-        findViewById(R.id.alipayButton).setOnClickListener(this);
-        findViewById(R.id.upmpButton).setOnClickListener(this);
-        findViewById(R.id.bfbButton).setOnClickListener(this);
-        findViewById(R.id.jdpayButton).setOnClickListener(this);
+        ((TextView) findViewById(R.id.tv_headcommon_headm)).setText(R.string.my_money_pay);
+        wxpay = (CheckBox) findViewById(R.id.wechatButton);
+        alipay = (CheckBox) findViewById(R.id.alipayButton);
+        order_name = (TextView) findViewById(R.id.order_name);
+        order_admin_num = (TextView) findViewById(R.id.order_admin_num);
+        order_member_num = (TextView) findViewById(R.id.order_member_num);
+        order_amount = (TextView) findViewById(R.id.order_amount);
+        tip_more_layout = findViewById(R.id.tip_more_layout);
+        tip_btn = (TextView) findViewById(R.id.tip_btn);
         findViewById(R.id.tv_headcommon_headl).setOnClickListener(this);
+        wxpay.setOnClickListener(this);
+        alipay.setOnClickListener(this);
+        tip_btn.setOnClickListener(this);
     }
 
     @Override
@@ -84,13 +86,29 @@ public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCa
     }
 
     public void onClick(View view) {
-        int amount = 1;
-        if (view.getId() == R.id.tv_headcommon_headl) {
-            finishOk();
-        } if (view.getId() == R.id.alipayButton) {
-            postJson(new PaymentRequest("支付宝支付测试", "支付测试描述", CHANNEL_ALIPAY, amount));
-        } else if (view.getId() == R.id.wechatButton) {
-            postJson(new PaymentRequest("微信支付测试", "支付测试描述", CHANNEL_WECHAT, amount));
+        switch (view.getId()) {
+            case R.id.tv_headcommon_headl:
+                finishOk();
+                break;
+            case R.id.alipayButton:
+                alipay.setChecked(true);
+                wxpay.setChecked(false);
+                break;
+            case R.id.wechatButton:
+                alipay.setChecked(false);
+                wxpay.setChecked(true);
+                break;
+            case R.id.tip_btn:
+                if(isOpenTip) {
+                    tip_more_layout.setVisibility(View.GONE);
+                    tip_btn.setText(R.string.pay_tip_more_btn_big);
+                    isOpenTip = false;
+                } else {
+                    tip_more_layout.setVisibility(View.VISIBLE);
+                    tip_btn.setText(R.string.pay_tip_more_btn_small);
+                    isOpenTip = true;
+                }
+                break;
         }
     }
 
@@ -131,6 +149,11 @@ public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCa
         builder.create().show();
     }
 
+    /**
+     * 获取订单数据
+     *
+     * @param paymentRequest
+     */
     private void postJson(PaymentRequest paymentRequest) {
         Map<String, Object> map = new HashMap<>();
         map.put(Constants.ORDER_TITLE, paymentRequest.title);
@@ -144,8 +167,7 @@ public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCa
                 dismissLoading();
                 if (JsonUtils.getResponseCode(result) == 0) {
                     String charge = JsonUtils.getStringByKey4JOb(result, "params");
-                    LogUtils.e(TAG, "获取到charge:" + charge);
-                    Intent intent = new Intent(UpdateAccountActivity_3.this, PaymentActivity.class);
+                    Intent intent = new Intent(mContext, PaymentActivity.class);
                     intent.putExtra(PaymentActivity.EXTRA_CHARGE, charge);
                     startActivityForResult(intent, REQUEST_CODE_PAYMENT);
                 } else {
@@ -163,6 +185,55 @@ public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCa
         task.execute(FunncoUrls.getOrderUrl());
     }
 
+    //进行支付
+    public void onPay(View view) {
+        if (alipay.isChecked()) {
+            postJson(new PaymentRequest("支付宝支付测试", "支付测试描述", CHANNEL_ALIPAY, amount));
+        } else if (wxpay.isChecked()) {
+            postJson(new PaymentRequest("微信支付测试", "支付测试描述", CHANNEL_WECHAT, amount));
+        } else {
+            showToast("请选择支付方式");
+        }
+    }
+
+    public void onJiaAdmin(View view) {
+        //管理人员数+1
+        adminNum += 1;
+        order_admin_num.setText("" + adminNum);
+        changePayAmount();
+    }
+
+    public void onJianAdmin(View view) {
+        //管理人员数-1
+        if(adminNum > 0) {
+            adminNum -= 1;
+            order_admin_num.setText("" + adminNum);
+            changePayAmount();
+        }
+    }
+
+    public void onJiaMember(View view) {
+        //成员数+1
+        memberNum += 1;
+        order_member_num.setText("" + memberNum);
+        changePayAmount();
+    }
+
+    public void onJianMember(View view) {
+        //成员数-1
+        if(memberNum > 0) {
+            memberNum -= 1;
+            order_member_num.setText("" + memberNum);
+            changePayAmount();
+        }
+    }
+
+    //自动计算总额
+    private void changePayAmount() {
+        amount = adminNum * 10 + memberNum * 8;
+        order_amount.setText(getString(R.string.pay_amount, amount));
+    }
+
     class PaymentRequest {
         String title;
         String content;
@@ -176,17 +247,4 @@ public class UpdateAccountActivity_3 extends BaseActivity implements PayResultCa
             this.amount = amount;
         }
     }
-
-    @Override
-    public void getPayResult(Intent data) {
-        if (data != null) {
-            /**
-             * result：支付结果信息
-             * code：支付结果码  -2:用户自定义错误、 -1：失败、 0：取消、1：成功
-             */
-            Toast.makeText(this, data.getExtras().getString("result") + "  " + data.getExtras().getInt("code"), Toast.LENGTH_LONG).show();
-        }
-    }
-
 }
-

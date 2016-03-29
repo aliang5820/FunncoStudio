@@ -37,16 +37,13 @@ public class CircleProgressLeftView extends BaseCircleView {
         canvas.drawArc(rectBlackBg, 0, 360, false, mBgPaint);
         mPaint.setColor(Color.BLACK);
 
-        mTopTextPaint.setColor(Color.BLACK);
-        mTopTextPaint.setTextSize(25);
-        mBotomTextPaint.setColor(Color.RED);
-        mBotomTextPaint.setTextSize(20);
+        mTopTextPaint.setColor(Color.GRAY);
+        mTopTextPaint.setTextSize(32);
         Paint.FontMetricsInt fontMetrics = mTopTextPaint.getFontMetricsInt();
         int baseline = (int) (rectBlackBg.bottom + rectBlackBg.top - fontMetrics.bottom - fontMetrics.top) / 2;
         // 下面这行是实现水平居中，drawText对应改为传入targetRect.centerX()
         // mTopTextPaint.setTextAlign(Paint.Align.CENTER);之前已经设置过了
-        canvas.drawText((int)getCurrentCount() + "条", rectBlackBg.centerX(), baseline - (getStringHeight(mBotomTextPaint) / 2), mTopTextPaint);
-        canvas.drawText("充值", rectBlackBg.centerX(), baseline + (getStringHeight(mBotomTextPaint) / 2), mBotomTextPaint);
+        canvas.drawText((int)getCurrentCount() + "条", rectBlackBg.centerX(), baseline, mTopTextPaint);
 
         float section = getCurrentCount() / getMaxCount();
         if (section <= 1.0f / 3.0f) {

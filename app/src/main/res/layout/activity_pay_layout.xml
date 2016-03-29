@@ -1,95 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView1"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true" >
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <include
+        android:id="@id/llayout_head"
+        layout="@layout/layout_activity_header_common" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="match_parent">
 
-        <include
-            android:id="@id/llayout_head"
-            layout="@layout/layout_activity_header_common"/>
-
-        <Button
-            android:id="@+id/alipayButton"
-            style="@style/GrayBoaderButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/llayout_head"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/alipay" />
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <Button
-            android:id="@+id/wechatButton"
-            style="@style/GrayBoaderButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/alipayButton"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/wechat" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/upmpButton"
-            style="@style/GrayBoaderButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/wechatButton"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/upmp" />
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:text="项目" />
 
-        <Button
-            android:id="@+id/bfbButton"
-            style="@style/GrayBoaderButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/upmpButton"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/bfb" />
+                <TextView
+                    android:id="@+id/order_name"
+                    style="@style/PayTextViewStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    tools:text="@string/app_name" />
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/jdpayButton"
-            style="@style/GrayBoaderButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/bfbButton"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/jdpay" />
-    </RelativeLayout>
+            <View style="@style/PayLineViewStyle" />
 
-</ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:layout_weight="1"
+                    android:text="添加管理人员" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onJiaAdmin"
+                    android:src="@mipmap/pay_jia" />
+
+                <TextView
+                    android:id="@+id/order_admin_num"
+                    style="@style/PayTextViewStyle"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:minWidth="50dp"
+                    android:text="0" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp"
+                    android:onClick="onJianAdmin"
+                    android:src="@mipmap/pay_jian" />
+            </LinearLayout>
+
+            <View style="@style/PayLineViewStyle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:layout_weight="1"
+                    android:text="添加成员" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onJiaMember"
+                    android:src="@mipmap/pay_jia" />
+
+                <TextView
+                    android:id="@+id/order_member_num"
+                    style="@style/PayTextViewStyle"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:minWidth="50dp"
+                    android:text="0" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp"
+                    android:onClick="onJianMember"
+                    android:src="@mipmap/pay_jian" />
+            </LinearLayout>
+
+            <View style="@style/PayLineViewStyle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:text="优惠码" />
+
+                <EditText
+                    style="@style/PayTextViewStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入优惠码" />
+            </LinearLayout>
+
+            <View
+                style="@style/PayLineViewStyle"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:text="总额" />
+
+                <TextView
+                    android:id="@+id/order_amount"
+                    style="@style/PayTextViewStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="0\t\t\t元" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/PayTextViewStyle"
+                android:text="支付方式" />
+
+            <View style="@style/PayLineViewStyle" />
+
+            <CheckBox
+                android:id="@+id/wechatButton"
+                style="@style/PayTextViewStyle"
+                android:layout_width="match_parent"
+                android:button="@null"
+                android:drawableLeft="@mipmap/pay_wx"
+                android:drawableRight="@drawable/btn_pay_selector"
+                android:text="微信" />
+
+            <View style="@style/PayLineViewStyle" />
+
+            <CheckBox
+                android:id="@+id/alipayButton"
+                style="@style/PayTextViewStyle"
+                android:layout_width="match_parent"
+                android:button="@null"
+                android:drawableLeft="@mipmap/pay_alipay"
+                android:drawableRight="@drawable/btn_pay_selector"
+                android:text="支付宝" />
+
+            <View style="@style/PayLineViewStyle" />
+
+            <TextView
+                style="@style/PayTextViewStyle"
+                android:layout_marginLeft="100dp"
+                android:lineSpacingExtra="2dp"
+                android:text="@string/pay_tip"
+                android:textColor="@color/gray"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/tip_more_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp"
+                    android:text="@string/pay_tip_more_title"
+                    android:textColor="@color/chat_link_color"
+                    android:textSize="16sp" />
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:lineSpacingExtra="1dp"
+                    android:padding="0dp"
+                    android:text="@string/pay_tip_more"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tip_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="@string/pay_tip_more_btn_big"
+                android:textColor="@color/chat_link_color"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="1px"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:background="@color/chat_link_color" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_radius_green_bg"
+                android:onClick="onPay"
+                android:padding="10dp"
+                android:layout_gravity="bottom"
+                android:text="确认支付"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

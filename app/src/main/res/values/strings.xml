@@ -635,4 +635,11 @@
     <string name="notInstalled">未安装支付软件</string>
     <string name="amount">支付金额</string>
     <string name="missingImage">图片加载失败</string>
+    <string name="pay_amount">%s\t\t\t元</string>
+    <string name="pay_tip">支付完成后，会自动立即更新账户。如有任何问题纷客客服QQ将竭力为您服务。客服QQ：364287460</string>
+    <string name="pay_tip_more_title">购买前请先阅读购买须知</string>
+    <string name="pay_tip_more_btn_big">购买须知</string>
+    <string name="pay_tip_more_btn_small">向上收起</string>
+    <string name="pay_tip_more">1.除短信和营销内容，其他产品单次购买时长最低限一个月\n\n2.任何账号皆赠送直达号app入口和pc端营销助手\n\n3.直达号为您和您客户的专属空间，但客户有权利同时关注更多行业的生活服务商户
+    </string>
 </resources>

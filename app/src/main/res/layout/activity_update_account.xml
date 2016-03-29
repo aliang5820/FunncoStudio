@@ -19,9 +19,9 @@
 
             <com.funnco.funnco.view.circleview.CircleProgressView
                 android:id="@+id/vip_last_time_progress"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginTop="20dp" />
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="10dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -124,11 +124,23 @@
                     android:layout_marginRight="42dp"
                     android:background="@color/color_red_title" />
 
-                <com.funnco.funnco.view.circleview.CircleRightImageView
-                    android:id="@+id/vip1_progress"
-                    android:layout_width="84dp"
-                    android:layout_height="84dp"
-                    android:layout_alignParentRight="true" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true">
+
+
+                    <com.funnco.funnco.view.circleview.CircleRightImageView
+                        android:id="@+id/vip1_progress"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp" />
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/order_desc_1" />
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -143,13 +155,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:text="旗舰版"
-                        android:textColor="@color/color_black"
+                        android:textColor="@color/color_gray"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="升级/了解"
+                        android:text="升级\\了解"
                         android:textColor="@color/color_red_title"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -181,11 +193,22 @@
                     android:layout_marginLeft="42dp"
                     android:background="@color/circle_line_color_2" />
 
-                <com.funnco.funnco.view.circleview.CircleLeftImageView
-                    android:id="@+id/vip2_progress"
-                    android:layout_width="84dp"
-                    android:layout_height="84dp"
-                    android:layout_alignParentLeft="true" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true">
+
+                    <com.funnco.funnco.view.circleview.CircleLeftImageView
+                        android:id="@+id/vip2_progress"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp" />
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/order_desc_2" />
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -200,13 +223,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:text="商务版"
-                        android:textColor="@color/color_black"
+                        android:textColor="@color/color_gray"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="续订/了解"
+                        android:text="续订\\了解"
                         android:textColor="@color/circle_line_color_2"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -238,11 +261,24 @@
                     android:layout_marginRight="42dp"
                     android:background="@color/color_red_title" />
 
-                <com.funnco.funnco.view.circleview.CircleRightImageView
-                    android:id="@+id/vip3_progress"
-                    android:layout_width="84dp"
-                    android:layout_height="84dp"
-                    android:layout_alignParentRight="true" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true">
+
+
+                    <com.funnco.funnco.view.circleview.CircleRightImageView
+                        android:id="@+id/vip3_progress"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp" />
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/order_desc_3" />
+                </FrameLayout>
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -257,13 +293,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:text="人数管理"
-                        android:textColor="@color/color_black"
+                        android:textColor="@color/color_gray"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="管理/了解"
+                        android:text="管理\\了解"
                         android:textColor="@color/color_red_title"
                         android:textSize="16sp"
                         android:textStyle="bold" />

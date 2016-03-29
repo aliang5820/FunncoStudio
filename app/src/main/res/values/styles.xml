@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
-      <!-- RadioButton无按钮样式 -->
+    <!-- RadioButton无按钮样式 -->
     <style name="style_radiobuttn_nobutton">
         <item name="android:button">@null</item>
     </style>
@@ -58,11 +58,11 @@
         <item name="android:textColor">@color/color_white</item>
     </style>
     <!-- 无选中那妞  字体14sp  灰色-->
-<style name="style_nobutton_gray_14" parent="style_radiobuttn_nobutton">
-    <item name="android:textSize">@dimen/login_textsize_phonenumber</item>
-    <item name="android:textColor">@color/color_hint_gray_light</item>
-    <item name="android:gravity">center</item>
-</style>
+    <style name="style_nobutton_gray_14" parent="style_radiobuttn_nobutton">
+        <item name="android:textSize">@dimen/login_textsize_phonenumber</item>
+        <item name="android:textColor">@color/color_hint_gray_light</item>
+        <item name="android:gravity">center</item>
+    </style>
     <!-- 无选中按钮  字体白色 字号18-->
     <style name="style_schedule_head" parent="style_nobutton_white">
         <item name="android:textSize">@dimen/dimen_header_textsize</item>
@@ -94,6 +94,7 @@
     <style name="style_layout_width_w">
         <item name="android:layout_width">wrap_content</item>
     </style>
+
     <style name="style_layout_width_m">
         <item name="android:layout_width">match_parent</item>
     </style>
@@ -101,6 +102,7 @@
     <style name="style_layout_height_w">
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="style_layout_heigh_m">
         <item name="android:layout_height">match_parent</item>
     </style>
@@ -108,16 +110,18 @@
     <style name="style_layout_width_height_ww" parent="style_layout_width_w">
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="style_layout_width_height_mm" parent="style_layout_width_m">
         <item name="android:layout_height">match_parent</item>
     </style>
+
     <style name="style_layout_width_height_wm" parent="style_layout_width_w">
         <item name="android:layout_height">match_parent</item>
     </style>
+
     <style name="style_layout_width_height_mw" parent="style_layout_width_m">
         <item name="android:layout_height">wrap_content</item>
     </style>
-
 
 
     <!-- 没有标题的对话框 背景透明-->
@@ -149,6 +153,7 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
     </style>
+
     <style name="Style_Dialog_Button">
         <item name="android:textSize">16.0dip</item>
         <item name="android:textColor">#ff425968</item>
@@ -197,6 +202,7 @@
         <item name="android:gravity">bottom|center_horizontal</item>
         <item name="android:paddingBottom">2dp</item>
     </style>
+
     <style name="main_bottom_item">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
@@ -238,6 +244,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:clickable">true</item>
     </style>
+
     <style name="style_common_tv_bar" parent="style_base_tv">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_marginLeft">@dimen/dimen_common_10</item>
@@ -409,6 +416,7 @@
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">16sp</item>
     </style>
+
     <style name="VideoCallText">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">20sp</item>
@@ -418,15 +426,18 @@
         <item name="android:textSize">15dp</item>
         <item name="android:textColor">@color/color_white</item>
     </style>
+
     <style name="TitleTextAppearance">
         <item name="android:textSize">18dp</item>
         <item name="android:textColor">@color/color_white</item>
     </style>
+
     <style name="Widget.Styled.ActionBar" parent="@android:style/Widget.Holo.ActionBar">
         <item name="android:background">@drawable/common_navigator</item>
         <!--<item name="android:backgroundSplit">@drawable/actionbar_bg</item>-->
         <item name="android:titleTextStyle">@style/TitleTextAppearance</item>
     </style>
+
     <style name="Actionbar_Animation" parent="AppTheme">
         <item name="android:windowBackground">@color/color_white</item>
         <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
@@ -443,7 +454,7 @@
         <item name="android:windowBackground">@color/color_white</item>
     </style>
     <!--popupwindow出现和消失的动画-->
-    <style name="PopupAnimation" parent="android:Animation" mce_bogus="1">
+    <style name="PopupAnimation" mce_bogus="1" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/set_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/set_bottom_out</item>
     </style>
@@ -452,6 +463,7 @@
         <item name="android:textColor">@color/color_black</item>
         <item name="android:textSize">@dimen/font_size_16</item>
     </style>
+
     <style name="loadingDialogStyle" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
@@ -499,7 +511,7 @@
     <style name="GrayBoaderButton" parent="BoaderButton">
         <item name="android:background">@drawable/gray_btn</item>
     </style>
-    
+
     <style name="OrderDescTextStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -519,5 +531,24 @@
         <item name="android:textSize">15sp</item>
         <item name="android:padding">8dp</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="PayTextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_my_personal</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <style name="PayLineViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/color_gray</item>
     </style>
 </resources>
