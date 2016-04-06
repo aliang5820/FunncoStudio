@@ -95,7 +95,7 @@ public class AudioSendMessage extends SendMessage implements ItemClick.OnItemCli
                 audioPlayingMap.put(messageContent.url(),viewHolder.chatting_play_pause_btn);
             }
         }else{
-            viewHolder.chatting_play_pause_btn.setBackground(mPalyDrawable);
+            viewHolder.chatting_play_pause_btn.setBackgroundDrawable(mPalyDrawable);
         }
 
         //给播放/停止按钮添加点击事件
@@ -146,12 +146,12 @@ public class AudioSendMessage extends SendMessage implements ItemClick.OnItemCli
             switch (state) {
                 case OnPlayListener.PLAY_START:
                 case OnPlayListener.PLAY_RESUMED:
-                    imageBtn.setBackground(mStopDrawable);
+                    imageBtn.setBackgroundDrawable(mStopDrawable);
                     break;
                 case OnPlayListener.PLAY_PAUSED:
                 case OnPlayListener.PLAY_STOPED:
                 case OnPlayListener.PLAY_COMPLEMENTED:
-                    imageBtn.setBackground(mPalyDrawable);
+                    imageBtn.setBackgroundDrawable(mPalyDrawable);
                     audioPlayingMap.remove(url);
                     break;
             }

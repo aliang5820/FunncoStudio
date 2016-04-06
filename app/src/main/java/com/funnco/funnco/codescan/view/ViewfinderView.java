@@ -200,7 +200,7 @@ public final class ViewfinderView extends View {
             //画扫描框下面的字
             paint.setColor(Color.WHITE);
             paint.setTextSize(TEXT_SIZE * density);
-            paint.setAlpha(0x40);
+            paint.setAlpha(0xff);
             paint.setTypeface(Typeface.create("System", Typeface.BOLD));
             String text1 = getResources().getString(R.string.codescan_scan_text1);
             String text2 = getResources().getString(R.string.codescan_scan_text2);

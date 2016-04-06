@@ -33,8 +33,12 @@ import com.funnco.funnco.activity.myinfo.IncomeWeekActivity;
 import com.funnco.funnco.activity.team.TeamMyActivity;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.Career;
+import com.funnco.funnco.bean.InComeInfo;
 import com.funnco.funnco.bean.UserLoginInfo;
+import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.fragment.BaseFragment;
+import com.funnco.funnco.utils.date.DateUtils;
+import com.funnco.funnco.utils.http.AsyncTaskUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
@@ -155,6 +159,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     protected void initEvents() {
+        getInAndOutTask();
         /*myListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -187,14 +192,12 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
         tvSetting.setOnClickListener(this);
         parentView.findViewById(R.id.iv_my_qr_code).setOnClickListener(this);
 
-        tvIncomeMonth.setOnClickListener(this);
-        tvIncomeWeek.setOnClickListener(this);
-
         findViewById(R.id.my_group).setOnClickListener(this);
         findViewById(R.id.my_kehu).setOnClickListener(this);
         findViewById(R.id.my_money).setOnClickListener(this);
         findViewById(R.id.my_scan).setOnClickListener(this);
         findViewById(R.id.my_help).setOnClickListener(this);
+        findViewById(R.id.enterInOut).setOnClickListener(this);
     }
 
     @Override
@@ -205,7 +208,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onStart() {
         super.onStart();
-//        refreshData();
+        getInAndOutTask();
     }
 
     @Override
@@ -228,10 +231,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
             case R.id.iv_my_qr_code:
                 startActivity(QR_CodeActivity.class);
                 break;
-            case R.id.id_title_1://周收入
-                startActivity(IncomeWeekActivity.class);
-                break;
-            case R.id.id_title_3://月收入
+            case R.id.enterInOut:
+                //我的收入
                 startActivity(IncomeWeekActivity.class);
                 break;
             case R.id.my_group:
@@ -316,5 +317,27 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onMainData(List<?>... list) {
 
+    }
+
+    //获取收支信息
+    private void getInAndOutTask() {
+        putAsyncTask(AsyncTaskUtils.requestGet(new DataBack() {
+            @Override
+            public void getString(String result) {
+                dismissLoading();
+                if (JsonUtils.getResponseCode(result) == 0) {
+                    //进行解析
+                    JSONObject paramsJSONObject = JsonUtils.getJObt(result, "params");
+                    InComeInfo datas = JsonUtils.getObject(paramsJSONObject.toString(), InComeInfo.class);
+                    tvIncomeWeek.setText(getResources().getString(R.string.in_out_money, datas.getWeekAccountIncome()));
+                    tvIncomeMonth.setText(getResources().getString(R.string.in_out_money, datas.getMonthAccountIncome()));
+                }
+            }
+
+            @Override
+            public void getBitmap(String url, Bitmap bitmap) {
+
+            }
+        }, FunncoUrls.getAccountsUrl(), true));
     }
 }

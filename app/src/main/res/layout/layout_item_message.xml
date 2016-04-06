@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -14,9 +15,10 @@
             style="@style/style_common_tv_bar"
             android:layout_margin="0dp"
             android:background="@color/color_main_bg"
-            android:text="TIP"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="TIP" />
     </LinearLayout>
+
     <com.funnco.funnco.view.switcher.SwipeLayout
         android:id="@+id/swip"
         android:layout_width="match_parent"
@@ -34,84 +36,89 @@
                 android:id="@id/id_title_0"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
+                android:background="@color/color_black_5"
                 android:gravity="center"
                 android:text="@string/str_chat_message_settop"
                 android:textColor="@color/color_white"
-                android:background="@color/color_black_5"
                 android:textSize="15sp" />
+
             <TextView
                 android:id="@id/id_title_1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:background="@color/color_yellow_2"
+                android:gravity="center"
                 android:paddingLeft="@dimen/dimen_common_20"
                 android:paddingRight="@dimen/dimen_common_20"
-                android:gravity="center"
                 android:text="@string/str_chat_message_design_unread"
                 android:textColor="@color/color_white"
-                android:background="@color/color_yellow_2"
                 android:textSize="15sp" />
+
             <TextView
                 android:id="@id/id_title_2"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
+                android:background="@color/color_red_2"
                 android:gravity="center"
                 android:text="@string/delete"
                 android:textColor="@color/color_white"
-                android:background="@color/color_red_2"
                 android:textSize="15sp" />
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_white">
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:padding="10dp">
             <!-- 聊天组头像/人头像-->
             <com.funnco.funnco.view.imageview.CircleImageView
                 android:id="@id/id_imageview"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
                 android:src="@mipmap/icon_edit_profile_default_2x" />
+
             <com.funnco.funnco.view.textview.DesignTextView
                 android:id="@id/id_title_3"
                 android:layout_width="@dimen/dimen_common_15"
                 android:layout_height="@dimen/dimen_common_15"
-                android:layout_alignTop="@id/id_imageview"
-                android:layout_alignRight="@id/id_imageview"/>
+                android:layout_alignRight="@id/id_imageview"
+                android:layout_alignTop="@id/id_imageview" />
+
             <RelativeLayout
                 android:id="@id/id_relativelayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/id_imageview"
+                android:layout_alignTop="@+id/id_imageview"
                 android:layout_centerVertical="true"
-                android:gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/id_title_6"
                 android:layout_toRightOf="@id/id_imageview">
                 <!-- 聊天的组名/人名-->
                 <TextView
                     android:id="@id/id_title_4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:ellipsize="end"
+                    android:paddingTop="3dp"
                     android:singleLine="true"
                     android:textSize="14sp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:ellipsize="end"
-                    android:maxWidth="180dp"
-                    android:text="用户名" />
+                    tools:text="用户名" />
                 <!-- 首条聊天信息-->
                 <TextView
                     android:id="@id/id_title_5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/id_title_4"
-                    android:layout_marginTop="5dp"
-                    android:textSize="12sp"
+                    android:layout_alignParentBottom="true"
+                    android:ellipsize="end"
+                    android:paddingBottom="5dp"
                     android:singleLine="true"
-                    android:text="10:00 - 10:30" />
+                    android:textSize="12sp"
+                    tools:text="暂无消息" />
 
             </RelativeLayout>
             <!--右上角 时间-->
@@ -120,11 +127,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:textSize="@dimen/text_size_10"
+                android:layout_alignTop="@+id/id_imageview"
                 android:textColor="@color/color_hint_gray_light"
-                android:padding="5dp"
-                android:text="10:30"/>
+                android:textSize="@dimen/text_size_10"
+                tools:text="10:30" />
         </RelativeLayout>
+
     </com.funnco.funnco.view.switcher.SwipeLayout>
 </LinearLayout>

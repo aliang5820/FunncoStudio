@@ -49,6 +49,7 @@ import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.string.TextUtils;
 import com.funnco.funnco.utils.support.FunncoUtils;
 import com.funnco.funnco.view.imageview.CircleImageView;
+import com.funnco.funnco.view.listview.MessageListHeaderView;
 import com.funnco.funnco.view.listview.XListView;
 import com.funnco.funnco.view.textview.DesignTextView;
 import com.funnco.funnco.wukong.model.GroupSession;
@@ -115,13 +116,14 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         initEvents();
         return parentView;
     }
+
     @Override
     protected void initViews() {
         user = BaseApplication.getInstance().getUser();
 
         userService = IMEngine.getIMService(UserService.class);
-        imageLoader = ((MainActivity)mActivity).getImageLoader();
-        options = ((MainActivity)mActivity).getOptions();
+        imageLoader = ((MainActivity) mActivity).getImageLoader();
+        options = ((MainActivity) mActivity).getOptions();
         imageButton = (ImageButton) findViewById(R.id.id_rview);
         findViewById(R.id.id_lview).setVisibility(View.GONE);
         ((TextView) findViewById(R.id.id_mview)).setText(R.string.str_message_my);
@@ -145,38 +147,41 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 String nickName = item.title();
                 int type = item.type();
                 String lastMessage = "";
-                int lastetMessageType = item.latestMessage().messageContent().type();
-                switch (lastetMessageType){
-                    case MessageContent.MessageContentType.AUDIO:
-                        lastMessage = "[语音]";
-                        break;
-                    case MessageContent.MessageContentType.FILE:
-                        lastMessage = "[文件]";
-                        break;
-                    case MessageContent.MessageContentType.IMAGE:
-                        lastMessage = "[图片]";
-                        break;
-                    case MessageContent.MessageContentType.LINKED:
-                        lastMessage = "[链接]";
-                        break;
-                    case MessageContent.MessageContentType.TEXT:
-                        lastMessage = JsonUtils.getStringByKey4JOb(item.latestMessage().messageContent().toString(),"txt");
-                        break;
-                    case MessageContent.MessageContentType.UNKNOWN:
-                        lastMessage = "[未知]";
-                        break;
-                    default:
-                        lastMessage = "";
-                        break;
+                if (item.latestMessage() != null && null != item.latestMessage().messageContent()) {
+                    LogUtils.d("消息", item.latestMessage().messageContent().toString());
+                    int lastetMessageType = item.latestMessage().messageContent().type();
+                    switch (lastetMessageType) {
+                        case MessageContent.MessageContentType.AUDIO:
+                            lastMessage = "[语音]";
+                            break;
+                        case MessageContent.MessageContentType.FILE:
+                            lastMessage = "[文件]";
+                            break;
+                        case MessageContent.MessageContentType.IMAGE:
+                            lastMessage = "[图片]";
+                            break;
+                        case MessageContent.MessageContentType.LINKED:
+                            lastMessage = "[链接]";
+                            break;
+                        case MessageContent.MessageContentType.TEXT:
+                            lastMessage = JsonUtils.getStringByKey4JOb(item.latestMessage().messageContent().toString(), "txt");
+                            break;
+                        case MessageContent.MessageContentType.UNKNOWN:
+                            lastMessage = "[未知]";
+                            break;
+                        default:
+                            lastMessage = "";
+                            break;
+                    }
                 }
                 helper.setText(R.id.id_title_5, lastMessage + "");
                 CircleImageView circleImageView = helper.getView(R.id.id_imageview);
-                if (type == Conversation.ConversationType.CHAT){
-                    if (memberMap != null && memberMap.containsKey(peerId)){
+                if (type == Conversation.ConversationType.CHAT) {
+                    if (memberMap != null && memberMap.containsKey(peerId)) {
                         helper.setText(R.id.id_title_4, memberMap.get(peerId).getNickname());
                         imageLoader.displayImage(memberMap.get(peerId).getHeadpic(), circleImageView);
                     }
-                }else if (type == Conversation.ConversationType.GROUP){
+                } else if (type == Conversation.ConversationType.GROUP) {
                     helper.setText(R.id.id_title_4, nickName + "");
                     helper.setImageResource(R.id.id_imageview, R.mipmap.common_schedule_conventiontype_icon);
                 }
@@ -197,10 +202,14 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                             public void onSuccess(Long aLong) {
                                 getConversationList(conversationListSize);//单聊 或者是群聊
                             }
+
                             @Override
-                            public void onException(String s, String s1) { }
+                            public void onException(String s, String s1) {
+                            }
+
                             @Override
-                            public void onProgress(Long aLong, int i) { }
+                            public void onProgress(Long aLong, int i) {
+                            }
                         });
                     }
                 });
@@ -221,6 +230,23 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
             }
         };
         adapter.isTag(true, new int[]{R.id.id_title_0, R.id.id_title_1, R.id.id_title_2});
+        //设置3个系统级消息
+        //服务提醒
+        MessageListHeaderView service = new MessageListHeaderView(mContext);
+        service.setIcon(R.mipmap.msg_service);
+        service.setTitle("服务提醒");
+        xListView.addHeaderView(service);
+        //系统通知
+        MessageListHeaderView sys = new MessageListHeaderView(mContext);
+        sys.setIcon(R.mipmap.msg_sys);
+        sys.setTitle("系统通知");
+        xListView.addHeaderView(sys);
+        //团队通知
+        MessageListHeaderView teamMsg = new MessageListHeaderView(mContext);
+        teamMsg.setIcon(R.mipmap.msg_team);
+        teamMsg.setTitle("团队通知");
+        xListView.addHeaderView(teamMsg);
+
         xListView.setAdapter(adapter);
         initLocalBroadcastManager();
         initMessageListener();
@@ -248,7 +274,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void getConversationList(int size) {
-        if (!AuthService.getInstance().isLogin()){
+        if (!AuthService.getInstance().isLogin()) {
             FunncoUtils.showAlertDialog(mContext, R.string.str_login_wukong_no, new FunncoUtils.DialogCallback() {
                 @Override
                 public void onPositive() {
@@ -316,9 +342,9 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     conversation.getMembers(new Callback<List<Member>>() {
                         @Override
                         public void onSuccess(List<Member> members) {
-                            for (Member mb : members){
-                                LogUtils.e("funnco------","获得的聊天成员是：roletype:"+mb.roleType()+" \n nickname:"+
-                                mb.user().nickname()+" \navatar:"+mb.user().avatar());
+                            for (Member mb : members) {
+                                LogUtils.e("funnco------", "获得的聊天成员是：roletype:" + mb.roleType() + " \n nickname:" +
+                                        mb.user().nickname() + " \navatar:" + mb.user().avatar());
 
                             }
                         }
@@ -388,24 +414,27 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected void initEvents() {
         findViewById(R.id.id_rview).setOnClickListener(this);
-        findViewById(R.id.tip).setOnClickListener(this);
         vCreateConversation.findViewById(R.id.id_title_0).setOnClickListener(this);
         vCreateConversation.findViewById(R.id.id_title_1).setOnClickListener(this);
         if (xListView != null) {
             xListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if (position - 1 >= 0 && position - 1 < list.size()) {
-                        Conversation conversation = list.get(position - 1);
+                    //要抛开头部的3个系统消息
+                    if (position > 3 && position - 1 >= 0 && position - 1 < list.size()) {
+                        Conversation conversation = list.get((position - 3 ) - 1);
                         conversation.resetUnreadCount();
                         adapter.notifyDataSetChanged();
-                        Intent intent = new Intent(mContext ,SingleChatActivity.class);
+                        Intent intent = new Intent(mContext, SingleChatActivity.class);
                         TeamMember tm = memberMap.get(conversation.getPeerId());
                         if (tm != null) {
                             intent.putExtra("title", tm.getNickname());
                         }
                         intent.putExtra(Session.SESSION_INTENT_KEY, new GroupSession(conversation));
                         startActivity(intent);
+                    } else {
+                        Intent intent = new Intent().setClass(mContext, NotificationActivity.class);
+                        startActivityForResult(intent, REQUEST_CODE_NOTIFICATION);
                     }
                 }
             });
@@ -428,12 +457,18 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     }
 
     @Override
-    protected void init() {}
+    protected void init() {
+    }
+
     @Override
-    public void onMainAction(String data) {}
+    public void onMainAction(String data) {
+    }
+
     @Override
-    public void onMainData(List<?>... list) {}
-    private void showPopupwindow(View view){
+    public void onMainData(List<?>... list) {
+    }
+
+    private void showPopupwindow(View view) {
         popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setClippingEnabled(true);
         popupWindow.setFocusable(true);
@@ -441,25 +476,23 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.showAsDropDown(imageButton, 0, 0);
     }
-    private boolean dismissPopupwindow(){
+
+    private boolean dismissPopupwindow() {
         boolean flag = false;
-        for(PopupWindow pw : new PopupWindow[]{popupWindow}){
-            if (pw != null && pw.isShowing()){
+        for (PopupWindow pw : new PopupWindow[]{popupWindow}) {
+            if (pw != null && pw.isShowing()) {
                 pw.dismiss();
                 flag = true;
             }
         }
         return flag;
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_rview://右上角 发起聊天
                 showPopupwindow(vCreateConversation);
-                break;
-            case R.id.tip:
-                startActivityForResult(new Intent()
-                                    .setClass(mContext, NotificationActivity.class), REQUEST_CODE_NOTIFICATION);
                 break;
             case R.id.id_title_0://单聊
                 isSinglechatting = true;
@@ -481,25 +514,27 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 break;
         }
     }
+
     private static final int RESULT_CODE_MEMBERCHOOSE = 0xf16;
     private boolean isSinglechatting = true;
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_CHATTING_CREATE && resultCode == RESULT_CODE_MEMBERCHOOSE){
-            if (data != null){
+        if (requestCode == REQUEST_CODE_CHATTING_CREATE && resultCode == RESULT_CODE_MEMBERCHOOSE) {
+            if (data != null) {
                 String title = data.getStringExtra("title");
                 String icon = data.getStringExtra("headpic");
                 String key = data.getStringExtra("key");
-                if (!TextUtils.isNull(key)){
+                if (!TextUtils.isNull(key)) {
                     List<TeamMember> ls = (List<TeamMember>) BaseApplication.getInstance().getT(key);
                     BaseApplication.getInstance().removeT(key);
-                    if (ls != null && ls.size() > 0){
+                    if (ls != null && ls.size() > 0) {
                         String sysMsg = getString(R.string.chat_create_sysmsg, FunncoUtils.currentNickname());
                         Message message = IMEngine.getIMService(MessageBuilder.class).buildTextMessage(sysMsg); //系统消息
                         FunncoUtils.showProgressDialog(mContext, getString(R.string.chat_create_doing));
                         Long[] uids = new Long[ls.size()];
                         int i = 0;
-                        for (TeamMember tm : ls){
+                        for (TeamMember tm : ls) {
                             uids[i] = Long.valueOf(tm.getMember_uid());
                             i++;
                         }
@@ -509,14 +544,18 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                                                         public void onSuccess(Conversation conversation) {
                                                             FunncoUtils.dismissProgressDialog();
                                                             Intent intent = new Intent(mContext, isSinglechatting ? SingleChatActivity.class :
-                                                            GroupChatActivity.class);
+                                                                    GroupChatActivity.class);
                                                             intent.putExtra(Session.SESSION_INTENT_KEY, new GroupSession(conversation));
                                                             startActivity(intent);
                                                         }
+
                                                         @Override
-                                                        public void onException(String s, String s1) { }
+                                                        public void onException(String s, String s1) {
+                                                        }
+
                                                         @Override
-                                                        public void onProgress(Conversation conversation, int i) { }
+                                                        public void onProgress(Conversation conversation, int i) {
+                                                        }
                                                     }, title, icon, message,
                                         ls.size() == 1 ? Conversation.ConversationType.CHAT : Conversation.ConversationType.GROUP, uids);
                     }

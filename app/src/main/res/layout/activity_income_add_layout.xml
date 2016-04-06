@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_activity_header_common" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/in_title"
+                    style="@style/InComeItemStyle.Add"
+                    android:drawableLeft="@mipmap/pay_unselect"
+                    android:text="收入"
+                    android:textColor="@color/color_red"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/out_title"
+                    style="@style/InComeItemStyle.Add"
+                    android:drawableLeft="@mipmap/pay_selected"
+                    android:text="支出"
+                    android:textColor="@color/color_green_ok" />
+
+                <TextView
+                    android:id="@+id/in_switch"
+                    style="@style/InComeItemStyle.Switch"
+                    android:drawableLeft="@mipmap/pay_unselect"
+                    android:text="切换至收入"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/out_switch"
+                    style="@style/InComeItemStyle.Switch"
+                    android:drawableLeft="@mipmap/pay_selected"
+                    android:text="切换至支出" />
+
+                <View
+                    style="@style/PayLineViewStyle"
+                    android:layout_gravity="bottom" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:text="金额" />
+
+                <EditText
+                    android:id="@+id/income_num"
+                    style="@style/PayTextViewStyle"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入金额"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:text="元" />
+            </LinearLayout>
+
+            <View style="@style/PayLineViewStyle" />
+
+            <View
+                style="@style/PayLineViewStyle"
+                android:layout_marginTop="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:text="名称" />
+
+                <EditText
+                    android:id="@+id/income_title"
+                    style="@style/PayTextViewStyle"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:hint="请输入名称" />
+            </LinearLayout>
+
+            <View style="@style/PayLineViewStyle" />
+
+            <View
+                style="@style/PayLineViewStyle"
+                android:layout_marginTop="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:text="描述" />
+
+                <EditText
+                    android:id="@+id/income_desc"
+                    style="@style/PayTextViewStyle"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:hint="请输入描述" />
+            </LinearLayout>
+
+            <View style="@style/PayLineViewStyle" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <include
+                layout="@layout/layout_bottom_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

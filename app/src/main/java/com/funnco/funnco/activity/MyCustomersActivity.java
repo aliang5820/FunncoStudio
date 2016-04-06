@@ -181,7 +181,7 @@ public class MyCustomersActivity extends BaseActivity {
             filterDateList.clear();
             for(MyCustomer c : list){
                 String name =c.getRemark_name();
-                if(name.indexOf(filterStr.toString()) != -1 || characterParser.getSelling(name).startsWith(filterStr.toString())){
+                if(name.toLowerCase().contains(filterStr.toLowerCase()) || characterParser.getSelling(name).toLowerCase().startsWith(filterStr.toLowerCase())){
                     filterDateList.add(c);
                 }
             }

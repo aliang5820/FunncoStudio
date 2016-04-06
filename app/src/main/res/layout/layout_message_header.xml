@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white"
+    android:padding="10dp">
+    <!-- 聊天组头像/人头像-->
+    <com.funnco.funnco.view.imageview.CircleImageView
+        android:id="@id/id_imageview"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="10dp"
+        android:src="@mipmap/icon_edit_profile_default_2x" />
+
+    <RelativeLayout
+        android:id="@id/id_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/id_imageview"
+        android:layout_alignTop="@+id/id_imageview"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/id_title_6"
+        android:layout_toRightOf="@id/id_imageview">
+        <!-- 聊天的组名/人名-->
+        <TextView
+            android:id="@id/id_title_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:ellipsize="end"
+            android:paddingTop="3dp"
+            android:singleLine="true"
+            android:textSize="14sp"
+            tools:text="用户名" />
+        <!-- 首条聊天信息-->
+        <TextView
+            android:id="@id/id_title_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:ellipsize="end"
+            android:paddingBottom="5dp"
+            android:singleLine="true"
+            android:textSize="12sp"
+            tools:text="暂无消息" />
+
+    </RelativeLayout>
+    <!--右上角 时间-->
+    <TextView
+        android:id="@id/id_title_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/id_imageview"
+        android:textColor="@color/color_hint_gray_light"
+        android:textSize="@dimen/text_size_10"
+        tools:text="10:30" />
+</RelativeLayout>

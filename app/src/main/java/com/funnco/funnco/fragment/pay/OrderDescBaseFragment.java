@@ -71,13 +71,12 @@ public class OrderDescBaseFragment extends BaseFragment implements View.OnClickL
             case R.id.glOrderAdmin:
                 //增加管理员
                 intent.putExtra(Constants.ORDER_TYPE, R.id.glOrderAdmin);
-                break;
             case R.id.glOrderMember:
                 //增加成员
                 intent.putExtra(Constants.ORDER_TYPE, R.id.glOrderMember);
-                break;
         }
         startActivity(intent);
+        getActivity().finish();
     }
 
     @Override

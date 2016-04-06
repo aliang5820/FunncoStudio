@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <include layout="@layout/layout_activity_header_common" />
+
+    <LinearLayout
+        android:id="@+id/llayout_middle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/PayTextViewStyle"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="5dp"
+            android:text="累计总收入" />
+
+        <TextView
+            android:id="@+id/allIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            tools:text="235,674.24元"
+            android:textColor="@color/color_red_title"
+            android:textSize="18sp" />
+
+        <View style="@style/PayLineViewStyle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:padding="0dp"
+                    android:text="本周收入" />
+
+                <TextView
+                    android:id="@+id/weekIn"
+                    style="@style/PayTextViewStyle"
+                    android:layout_marginTop="6dp"
+                    android:padding="0dp"
+                    tools:text="1,765.02元"
+                    android:textColor="@color/gray" />
+            </LinearLayout>
+
+            <View style="@style/PayLineViewStyle.S" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:padding="0dp"
+                    android:text="本月收入" />
+
+                <TextView
+                    android:id="@+id/monthIn"
+                    style="@style/PayTextViewStyle"
+                    android:layout_marginTop="6dp"
+                    android:padding="0dp"
+                    tools:text="1,765.02元"
+                    android:textColor="@color/gray" />
+            </LinearLayout>
+
+            <View style="@style/PayLineViewStyle.S" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/PayTextViewStyle"
+                    android:padding="0dp"
+                    android:text="本月支出" />
+
+                <TextView
+                    android:id="@+id/monthOut"
+                    style="@style/PayTextViewStyle"
+                    android:layout_marginTop="6dp"
+                    android:padding="0dp"
+                    tools:text="1,765.02元"
+                    android:textColor="@color/gray" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View style="@style/PayLineViewStyle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_gray"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/currentMonth"
+                style="@style/PayTextViewStyle"
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="0dp"
+                tools:text="2015年9月"
+                android:textColor="@color/gray"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/add_record"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_gravity="right"
+                android:background="@mipmap/add_record" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.funnco.funnco.view.listview.XListView
+        android:id="@+id/id_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:listSelector="@android:color/transparent" />
+</LinearLayout>

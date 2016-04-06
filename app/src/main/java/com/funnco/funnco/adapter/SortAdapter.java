@@ -66,6 +66,7 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
             viewHolder.llayout = view.findViewById(R.id.llayout_d);
             viewHolder.ivIcon = (CircleImageView) view.findViewById(R.id.iv_item_callcustomer_icon);
             viewHolder.ivCall = (ImageView) view.findViewById(R.id.iv_item_callcustomer_call);
+            viewHolder.ivCall.setVisibility(View.INVISIBLE);
             viewHolder.tvTrueName = (TextView) view.findViewById(R.id.tv_item_callcustomer_truename);
             viewHolder.tvLastTime = (TextView) view.findViewById(R.id.tv_item_callcustomer_lasttime);
             viewHolder.tvLetter = (TextView) view.findViewById(R.id.catalog);

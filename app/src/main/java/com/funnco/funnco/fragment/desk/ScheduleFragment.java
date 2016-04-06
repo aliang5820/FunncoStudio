@@ -205,7 +205,6 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
     //XListView头部
     private View vContent;
     private DesignTextView designTextView;
-    private Animation animation;
     //今天图标
     //判断是否正在加载
     private boolean isLoading = false;
@@ -307,7 +306,6 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                     xListView.stopRefresh();
                 }
             }else if (what == 17){//跳转到添加事件 为体现动画效果
-                isAnimating = false;
                 showPopupwindow(addNotifyView);
             }
         }
@@ -481,10 +479,6 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 //        designTextView.setTextSize(10);
         ivToday = (ImageView) vContent.findViewById(R.id.iv_today_icon);
         tvAddNotify = (TextView) vContent.findViewById(R.id.tv_schedule_addschedule);
-
-        animation = new RotateAnimation(0, 180, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-        animation.setFillAfter(false);
-        animation.setDuration(300);
 
         tvScheduleDate.setText(DateUtils.getMonth() + "月" + DateUtils.getCurrentDay() + "日");
         adapter = new ListViewAdapter(getActivity(), eventList, new Post() {
@@ -1021,6 +1015,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     protected void initEvents() {
+        findViewById(R.id.empty_item).setOnClickListener(this);
         rlHeadl.setOnClickListener(this);
         ivToday.setOnClickListener(this);
         vContent.findViewById(R.id.tv_schedule_myconventation).setOnClickListener(this);
@@ -1205,16 +1200,15 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 //        mController.openShare(getActivity(), false);
         showPopupwindow(vShareBoard);
     }
-    private boolean isAnimating = false;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_schedule_addschedule://添加日程
-                if (!isAnimating) {
-                    isAnimating = true;
-                    tvAddNotify.startAnimation(animation);
-                    handler.sendEmptyMessageDelayed(17, 250);
-                }
+                handler.sendEmptyMessageDelayed(17, 250);
+                break;
+            case R.id.empty_item:
+                handler.sendEmptyMessageDelayed(17, 250);
                 break;
             case R.id.tv_schedule_myconventation://我的预约
 //                startActivity(MyCustomersSortByDateActivity.class);
@@ -1695,10 +1689,11 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
+                findViewById(R.id.empty_item).setVisibility(View.GONE);
             } else if (ls != null && ls.size() == 0) {
                 scheduleNewList.remove(mLastSelectedDay);
                 updateAdapterNewStart(mLastSelectedDay);
-                findViewById(R.id.id_textview).setVisibility(View.VISIBLE);
+                findViewById(R.id.empty_item).setVisibility(View.VISIBLE);
             }
             isLoading = false;
             Collections.sort(eventList, new Comparator<FunncoEvent>() {
@@ -1936,7 +1931,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         popupWindow.setOutsideTouchable(true);
         popupWindow.setSplitTouchEnabled(true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.setAnimationStyle(R.style.PopupAnimation);
+        //popupWindow.setAnimationStyle(R.style.PopupAnimation);
         popupWindow.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
 
     }

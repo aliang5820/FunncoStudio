@@ -1,122 +1,104 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_activity_header_schedule" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
         android:orientation="vertical">
 
-        <include layout="@layout/layout_activity_header_schedule" />
-
-        <LinearLayout
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/color_white"
-            android:orientation="vertical">
+            android:layout_height="20dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp">
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp">
+            <TableRow>
 
-                <TableRow>
+                <TextView
+                    style="@style/dateStyle"
+                    android:text="@string/sunday"
+                    android:textColor="@color/date_2" />
 
-                    <TextView
-                        style="@style/dateStyle"
-                        android:text="@string/sunday"
-                        android:textColor="@color/date_2" />
+                <TextView
+                    style="@style/dateStyle"
+                    android:text="@string/monday"
+                    android:textColor="@color/date_2" />
 
-                    <TextView
-                        style="@style/dateStyle"
-                        android:text="@string/monday"
-                        android:textColor="@color/date_2" />
+                <TextView
+                    style="@style/dateStyle"
+                    android:text="@string/tuesday"
+                    android:textColor="@color/date_2" />
 
-                    <TextView
-                        style="@style/dateStyle"
-                        android:text="@string/tuesday"
-                        android:textColor="@color/date_2" />
+                <TextView
+                    style="@style/dateStyle"
+                    android:text="@string/wednesday"
+                    android:textColor="@color/date_2" />
 
-                    <TextView
-                        style="@style/dateStyle"
-                        android:text="@string/wednesday"
-                        android:textColor="@color/date_2" />
+                <TextView
+                    style="@style/dateStyle"
+                    android:text="@string/thursday"
+                    android:textColor="@color/date_2" />
 
-                    <TextView
-                        style="@style/dateStyle"
-                        android:text="@string/thursday"
-                        android:textColor="@color/date_2" />
+                <TextView
+                    style="@style/dateStyle"
+                    android:text="@string/friday"
+                    android:textColor="@color/date_2" />
 
-                    <TextView
-                        style="@style/dateStyle"
-                        android:text="@string/friday"
-                        android:textColor="@color/date_2" />
-
-                    <TextView
-                        style="@style/dateStyle"
-                        android:text="@string/saturday"
-                        android:textColor="@color/date_2" />
-                </TableRow>
-            </TableLayout>
-        </LinearLayout>
-
-        <ViewFlipper
-            android:id="@+id/week_flipper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/color_white"
-            android:paddingBottom="4dp" />
-
-        <com.funnco.funnco.view.layout.CalendarPanel
-            android:id="@+id/month_panel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/color_white"
-            android:paddingBottom="4dp"
-            android:visibility="gone"
-            app:position="top">
-
-            <RelativeLayout
-                android:id="@id/panelContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/color_white">
-
-                <com.funnco.funnco.view.viewpager.MonthViewPager
-                    android:id="@+id/viewpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/color_white"
-                    android:scrollbars="none" />
-            </RelativeLayout>
-        </com.funnco.funnco.view.layout.CalendarPanel>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/color_hint_gray_light" />
-
-        <com.funnco.funnco.view.listview.XListView
-            android:id="@+id/xlv_schedule_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/sildingDrawer"
-            android:divider="@android:color/transparent"
-            android:listSelector="@android:color/transparent">
-        </com.funnco.funnco.view.listview.XListView>
+                <TextView
+                    style="@style/dateStyle"
+                    android:text="@string/saturday"
+                    android:textColor="@color/date_2" />
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
-    <TextView
-        android:id="@id/id_textview"
+
+    <ViewFlipper
+        android:id="@+id/week_flipper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="60dp"
-        android:textColor="@color/color_black_2"
-        android:textSize="@dimen/font_size_16"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:background="@color/color_white"
+        android:paddingBottom="4dp" />
+
+    <com.funnco.funnco.view.layout.CalendarPanel
+        android:id="@+id/month_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:paddingBottom="4dp"
         android:visibility="gone"
-        android:text="@string/funnco_start_yy"/>
-</FrameLayout>
+        app:position="top">
+
+        <RelativeLayout
+            android:id="@id/panelContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white">
+
+            <com.funnco.funnco.view.viewpager.MonthViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/color_white"
+                android:scrollbars="none" />
+        </RelativeLayout>
+    </com.funnco.funnco.view.layout.CalendarPanel>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_hint_gray_light" />
+
+    <com.funnco.funnco.view.listview.XListView
+        android:id="@+id/xlv_schedule_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:listSelector="@android:color/transparent" />
+</LinearLayout>

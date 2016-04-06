@@ -451,6 +451,11 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Actionbar_Animation"/>
+        <!-- 新增收入支出-->
+        <activity android:name=".activity.myinfo.IncomeWeekAddActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Actionbar_Animation"/>
         <!--单聊-->
         <activity android:name=".wukong.user.SingleChatActivity"
             android:exported="false"
@@ -487,29 +492,18 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
-
         <activity android:name=".activity.myinfo.UpdateAccountActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".activity.myinfo.UpdateAccountActivity_2"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".activity.myinfo.UpdateAccountActivity_3"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-
-
-
-
-
-
-
-
-
-
+            android:theme="@style/AppTheme" />
 
         <!-- 重新登录-->
         <receiver android:name=".receiver.ReloginReceiver"

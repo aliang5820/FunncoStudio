@@ -52,8 +52,21 @@ public class Constants {
     public static final String ORDER_CONTENT = "content";//产品描述
     public static final String ORDER_AMOUNT = "amount";//产品价格
     public static final String ORDER_CHANNEL = "channel";//支付方式
+    public static final String ORDER_MONTHS = "months";//购买数量
+    public static final String ORDER_A_NUM = "a_num";//新增管理员数量
+    public static final String ORDER_B_NUM = "b_num";//新增成员数量
     public static final String ORDER_TYPE = "type";//订单类型
     public static final int ORDER_TYPE_QJ = 0;//旗舰版
     public static final int ORDER_TYPE_SW = 1;//商务版
     public static final int ORDER_TYPE_GL = 2;//人员管理
+
+    public static final int ORDER_TYPE_SW_MONTH = 1;//商务版包月
+    public static final int ORDER_TYPE_SW_YEAR = 2;//商务版包年
+    public static final int ORDER_TYPE_QJ_MONTH = 3;//旗舰版包月
+    public static final int ORDER_TYPE_QJ_YEAR = 4;//旗舰版包年
+
+    public static final String IN_OUT_TYPE = "type";
+    public static final String IN_OUT_NUM = "num";
+    public static final String IN_OUT_TITLE = "title";
+    public static final String IN_OUT_DESC = "desc";
 }

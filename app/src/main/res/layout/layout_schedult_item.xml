@@ -150,8 +150,8 @@
 
                     <com.funnco.funnco.view.imageview.CircleImageView
                         android:id="@+id/civ_item_schedule_conventionicon"
-                        android:layout_width="23dp"
-                        android:layout_height="23dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginLeft="@dimen/dimen_common_15"
                         android:src="@mipmap/common_schedule_conventiontype_icon" />
 

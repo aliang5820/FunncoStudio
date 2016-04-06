@@ -49,9 +49,16 @@ public class UpdateAccountActivity extends BaseActivity {
     @Override
     protected void initEvents() {
         findViewById(R.id.tv_headcommon_headl).setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showLoading(parentView);
         putAsyncTask(AsyncTaskUtils.requestGet(new DataBack() {
             @Override
             public void getString(String result) {
+                dismissLoading();
                 if (JsonUtils.getResponseCode(result) == 0) {
                     //进行解析
                     JSONObject paramsJSONObject = JsonUtils.getJObt(result, "params");

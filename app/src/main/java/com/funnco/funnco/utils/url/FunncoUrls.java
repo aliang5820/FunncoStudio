@@ -591,7 +591,7 @@ public class FunncoUrls {
     }
 
     /**
-     * 2.1 新增
+     * 2.2 新增
      * 参数说明
      * title是产品名字 content是产品描述 amount是产品价格 channel是支付方式
      * @return 获得订单信息信息
@@ -601,7 +601,7 @@ public class FunncoUrls {
     }
 
     /**
-     * 2.1 新增
+     * 2.2 新增
      * 参数说明
      * @return 获得账户商业信息
      */
@@ -610,7 +610,16 @@ public class FunncoUrls {
     }
 
     /**
-     * 2.1 新增
+     * 2.2 新增
+     * 参数说明
+     * @return 获得账户收支信息
+     */
+    public static String getAccountsUrl(){
+        return getBaseUrl() + "?m=accounts";
+    }
+
+    /**
+     * 2.2 新增
      * 参数说明 lan client
      * @return 二维码登录 等信息
      */

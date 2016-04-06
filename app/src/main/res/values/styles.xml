@@ -484,7 +484,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawablePadding">10dp</item>
-        <item name="android:textColor">#747a81</item>
+        <item name="android:textColor">@color/color_hint_gray_light</item>
         <item name="android:background">@android:color/white</item>
         <item name="android:drawableRight">@mipmap/common_enter_arrow_2x</item>
     </style>
@@ -492,7 +492,7 @@
     <style name="my_fragment_item_line_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
-        <item name="android:background">#747a81</item>
+        <item name="android:background">@color/color_hint_gray_light</item>
     </style>
 
     <!--ping++-->
@@ -536,10 +536,10 @@
     <style name="PayTextViewStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/color_my_personal</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
         <item name="android:paddingLeft">20dp</item>
         <item name="android:paddingRight">20dp</item>
         <item name="android:gravity">center_vertical</item>
@@ -549,6 +549,46 @@
     <style name="PayLineViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
-        <item name="android:background">@color/color_gray</item>
+        <item name="android:background">@color/backgroundColorPress</item>
+    </style>
+
+    <style name="PayLineViewStyle.S">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:background">@color/backgroundColorPress</item>
+    </style>
+
+    <style name="InComeItemStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/color_hint_gray</item>
+    </style>
+
+    <style name="InComeItemStyle.Add">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="InComeItemStyle.Switch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">right|bottom</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@color/color_gray</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:visibility">gone</item>
     </style>
 </resources>

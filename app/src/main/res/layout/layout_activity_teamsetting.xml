@@ -24,7 +24,7 @@
         android:paddingTop="10dp"
         android:paddingRight="50dp"
         android:paddingLeft="50dp"
-        android:text="@string/str_out_team"
+        android:text="退出团队"
         android:onClick="btnClick"
         android:textColor="@color/color_hint_tangerine"
         android:layout_centerHorizontal="true"

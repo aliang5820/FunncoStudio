@@ -37,11 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.funnco.funnco.view.textview.SideBar
-            android:id="@+id/sb_mycustomer_guide"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="right|center" />
         <TextView
             android:id="@+id/tv_mycustomer_notify"
             style="@style/style_common_tv_bar"
@@ -68,5 +63,10 @@
             android:layout_gravity="center_horizontal|top">
         </ListView>
 
+        <com.funnco.funnco.view.textview.SideBar
+            android:id="@+id/sb_mycustomer_guide"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center" />
     </FrameLayout>
 </LinearLayout>

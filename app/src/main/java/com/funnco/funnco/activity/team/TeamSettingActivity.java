@@ -25,6 +25,7 @@ import com.funnco.funnco.bean.TeamMy;
 import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.utils.bimp.Bimp;
 import com.funnco.funnco.utils.http.XTaskUtils;
+import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.string.TextUtils;
 import com.funnco.funnco.utils.support.FunncoUtils;
@@ -318,8 +319,10 @@ public class TeamSettingActivity extends BaseActivity {
         XTaskUtils.requestPost(mContext, new HttpUtils(10000), url, keys, values, fileKeys, filePaths, new DataBack() {
             @Override
             public void getString(String result) {
-                LogUtils.e(url,result);
-
+                showToast(JsonUtils.getResponseMsg(result));
+                if (JsonUtils.getResponseCode(result) == 0) {
+                    finishOk();
+                }
             }
 
             @Override
@@ -338,7 +341,7 @@ public class TeamSettingActivity extends BaseActivity {
                 map.clear();
                 map.put("team_id", team.getTeam_id() + "");
 //                map.put("team_uid", BaseApplication.getInstance().getUser().getId()+"");
-                postData2(map, FunncoUrls.getTeamMemberRemoveUrl(), false);
+                postData2(map, FunncoUrls.getTeamMemberRemoveUrl(), true);
                 break;
         }
     }
