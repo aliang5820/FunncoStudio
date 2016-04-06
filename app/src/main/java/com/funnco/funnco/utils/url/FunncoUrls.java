@@ -620,6 +620,15 @@ public class FunncoUrls {
 
     /**
      * 2.2 新增
+     * 参数说明
+     * @return 获得预约时间格
+     */
+    public static String getCustomerScheduleTimesUrl(){
+        return getBaseUrl() + "?m=customer/schedule_list";
+    }
+
+    /**
+     * 2.2 新增
      * 参数说明 lan client
      * @return 二维码登录 等信息
      */

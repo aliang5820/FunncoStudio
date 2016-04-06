@@ -148,16 +148,17 @@ public class TeamMemberChooseActivity extends BaseActivity {
         tvMySelf.setOnClickListener(new View.OnClickListener() {//选中了自己
             @Override
             public void onClick(View v) {
-                ids = "";
+                ids = user.getId();
                 team_id = "";
                 team_name = "";
                 LogUtils.e("------", "点击了确定， 选中了自己 选中的ids 是：" + ids);
                 Intent intent2 = new Intent();
-                if (!TextUtils.isNull(team_id) && !TextUtils.isNull(team_name)) {
+                /*if (!TextUtils.isNull(team_id) && !TextUtils.isNull(team_name)) {
                     intent2.putExtra("team_id", team_id);
                     intent2.putExtra("team_name", team_name);
                     intent2.putExtra("ids", "" + getIds());
-                }
+                }*/
+                intent2.putExtra("ids", "" + ids);
                 setResult(RESULT_CODE_MEMBERCHOOSE,intent2);
                 finishOk();
             }

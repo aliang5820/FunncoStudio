@@ -1671,7 +1671,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             }
             List<FunncoEvent> ls = JsonUtils.getObjectArray(listJSONArray.toString(), FunncoEvent.class);
             if (ls != null && ls.size() > 0) {
-                findViewById(R.id.id_textview).setVisibility(View.GONE);
+                findViewById(R.id.empty_item).setVisibility(View.GONE);
                 try {
                     //网络下载的数据进行添加一个日期字段
                     for (FunncoEvent f : ls) {
@@ -1689,7 +1689,6 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
-                findViewById(R.id.empty_item).setVisibility(View.GONE);
             } else if (ls != null && ls.size() == 0) {
                 scheduleNewList.remove(mLastSelectedDay);
                 updateAdapterNewStart(mLastSelectedDay);

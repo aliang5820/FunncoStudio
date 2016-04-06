@@ -91,7 +91,11 @@ public class ServiceChooseActivity extends BaseActivity {
             @Override
             public void convert(ViewHolder helper, Serve item, int position) {
                 helper.getView(R.id.cb_item_servicetogether_ischecked).setVisibility(View.GONE);
-                helper.setText(R.id.tv_item_servicetogether_servicename,item.getService_name());
+                String extra = "";
+                if(Long.valueOf(item.getTeam_id()) > 0) {
+                    extra = "(团队服务)";
+                }
+                helper.setText(R.id.tv_item_servicetogether_servicename,item.getService_name() + extra);
             }
         };
         xListView.setAdapter(adapter);
