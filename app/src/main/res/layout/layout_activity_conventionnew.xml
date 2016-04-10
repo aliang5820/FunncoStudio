@@ -64,7 +64,6 @@
                     android:visibility="gone" />
             </LinearLayout>
 
-
             <LinearLayout
                 android:id="@+id/llayout_name"
                 android:layout_width="match_parent"

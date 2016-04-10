@@ -394,6 +394,7 @@
     <string name="str_join_member">@string/str_team_member_joinmember</string>
     <string name="str_out_team">@string/str_team_member_remove</string>
     <string name="str_launch_success_conventionnew">新预约添加成功</string>
+    <string name="str_launch_success_invitation">新邀请添加成功</string>
     <string name="str_team_notmanager">抱歉，您没有修改权限</string>
     <string name="str_chat_message_design_unread">标为未读</string>
     <string name="str_chat_message_settop">置顶</string>

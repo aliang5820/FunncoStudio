@@ -1,80 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <include
         android:id="@id/llayout_head"
-        layout="@layout/layout_activity_header_common"/>
+        layout="@layout/layout_activity_header_common" />
 
-
-
-    <TextView
-        android:id="@+id/textView"
-        style="@style/style_common_tv"
-        android:text="成员"
-        android:clickable="false"
-
-        android:layout_marginTop="15dp"
-
-        android:layout_below="@id/llayout_head"
-        />
-
-
-    <LinearLayout
-        android:id="@+id/fuchang"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        android:layout_height="45dp">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tv_invitation_service"
-            android:layout_below="@+id/textView"
-            android:text="@string/service"
-            android:layout_weight="1"
-            style="@style/style_common_tv" />
-        <TextView
-            android:id="@+id/tv_kecheng"
-            android:layout_below="@+id/textView"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            android:layout_marginLeft="5dp"
-            android:text="@string/ser_o"
-            android:layout_weight="1"
-            style="@style/style_common_tv" />
-    </LinearLayout>
-    <TextView
-        android:id="@+id/tv_invitation_account"
-        android:layout_below="@id/fuchang"
-        android:layout_marginTop="15dp"
-        android:text="日期"
-        android:onClick="btnClick"
-        style="@style/style_common_tv" />
-    <TextView
-        android:id="@+id/tv_invitation_time"
-        android:layout_below="@id/tv_invitation_account"
-        android:layout_marginTop="15dp"
-        android:text="@string/time"
-        android:onClick="btnClick"
-        style="@style/style_common_tv" />
-    <EditText
-        android:id="@+id/tv_invitation_remark"
-        android:layout_width="match_parent"
-        android:layout_below="@id/tv_invitation_time"
-        android:layout_marginTop="15dp"
-        android:layout_height="wrap_content"
-        android:background="@color/color_white"
-        android:gravity="top"
-        android:textSize="@dimen/font_size_14"
-        android:padding="15dp"
-        android:lines="4"
-        android:textColorHint="@color/color_hint_gray_light"
-        android:hint="@string/remark"/>
+            <TextView
+                android:id="@+id/textView"
+                style="@style/style_common_tv"
+                android:layout_marginTop="15dp"
+                android:clickable="false"
+                android:text="自己" />
+
+            <LinearLayout
+                android:id="@+id/fuchang"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_invitation_service"
+                    style="@style/style_common_tv"
+                    android:layout_weight="1"
+                    android:text="@string/service" />
+
+                <TextView
+                    android:id="@+id/tv_kecheng"
+                    style="@style/style_common_tv"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:text="课程" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_invitation_account"
+                style="@style/style_common_tv"
+                android:layout_below="@id/fuchang"
+                android:layout_marginTop="15dp"
+                android:onClick="btnClick"
+                android:text="日期" />
+
+            <TextView
+                android:id="@+id/tv_invitation_time"
+                style="@style/style_common_tv"
+                android:layout_marginBottom="@dimen/dimen_common_5"
+                android:layout_marginTop="15dp"
+                android:onClick="btnClick"
+                android:text="@string/time" />
+
+            <GridView
+                android:id="@id/id_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="@dimen/dimen_common_1px"
+                android:numColumns="4"
+                android:verticalSpacing="@dimen/dimen_common_1px"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/tv_invitation_remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/color_white"
+                android:gravity="top"
+                android:hint="@string/remark"
+                android:lines="4"
+                android:padding="15dp"
+                android:textColorHint="@color/color_hint_gray_light"
+                android:textSize="@dimen/font_size_14" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <include
-        android:id="@id/llayout_foot"
         layout="@layout/layout_bottom_save"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
-
-</RelativeLayout>
+        android:layout_height="wrap_content" />
+</LinearLayout>

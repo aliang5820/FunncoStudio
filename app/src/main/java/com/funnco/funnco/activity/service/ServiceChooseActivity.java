@@ -49,6 +49,7 @@ public class ServiceChooseActivity extends BaseActivity {
     private boolean isConvertionService = false;
     private String team_id;
     private String team_uid;
+    private int service_type = 0;
     private Map<String, Object> map = new HashMap<>();
 
     private static final int RESULT_CODE_SERVICECHOOSE = 0xf17;
@@ -65,6 +66,7 @@ public class ServiceChooseActivity extends BaseActivity {
         if (intent != null){
             isTeamservice = intent.getBooleanExtra("isTeamservice", false);
             isConvertionService = intent.getBooleanExtra("isConvertionService", false);
+            service_type = intent.getIntExtra("service_type", 0);
             if (isConvertionService){
                 team_id = intent.getStringExtra("team_id");
                 team_uid = intent.getStringExtra("team_uid");
@@ -109,6 +111,7 @@ public class ServiceChooseActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 intent.putExtra(KEY,"service");
+                intent.putExtra("service_type", service_type);
                 BaseApplication.getInstance().setT("service",list.get(position - 1));
                 setResult(RESULT_CODE_SERVICECHOOSE, intent);
                 finishOk();
@@ -124,6 +127,7 @@ public class ServiceChooseActivity extends BaseActivity {
             map.put("team_id", team_id);
             map.put("team_uid", team_uid);
         }
+        map.put("service_type", service_type + "");
         if (user != null && NetUtils.isConnection(mContext)){
             getService4Net();
         }else{

@@ -54,8 +54,7 @@ public class ConventionNewActivity extends BaseActivity {
     private EditText etCustomerDesc;
     private GridView gridView;
     private ArrayAdapter<String> adapter;
-    private List<String> list = new ArrayList<String>();
-//    private List<Integer> listTimes = new ArrayList<>();
+    private List<String> list = new ArrayList<>();
 
     private PopupWindow popupWindow;
     private View viewDate;
@@ -273,6 +272,7 @@ public class ConventionNewActivity extends BaseActivity {
             map.put("team_uid", ids);
         }
         map.put("remark", customerDesc);
+        FunncoUtils.showProgressDialog(mContext, "信息", "正在添加预约");
         postData2(map, FunncoUrls.getConventionNewUrl(), false);
     }
 
