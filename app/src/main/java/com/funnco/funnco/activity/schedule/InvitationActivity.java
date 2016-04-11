@@ -108,6 +108,7 @@ public class InvitationActivity extends BaseActivity {
         datePicker = (DatePicker) viewDate.findViewById(R.id.dp_popupwindow_date);
         btnTitle = (Button) viewDate.findViewById(R.id.bt_popupwindow_title);
         adapter = new ArrayAdapter<>(mContext, R.layout.layout_item_conventiontime, R.id.id_checkbox, list);
+        gridView.setAdapter(adapter);
         textView.setOnClickListener(this);
         tvServicename.setOnClickListener(this);
         tvKecheng.setOnClickListener(this);
@@ -142,40 +143,40 @@ public class InvitationActivity extends BaseActivity {
     }
 
     //初始化时间选择器
-    private void initEnableTime(List<EnableTime> ls) {
-        if (serveSelected == null) {
-            return;
-        }
-        list.clear();
-//        listTimes.clear();
-        int duration = Integer.valueOf(serveSelected.getDuration());//服务所用时长
-        int stime = Integer.valueOf(serveSelected.getStarttime());//服务开始时间
-        int etime = Integer.valueOf(serveSelected.getEndtime());//服务结束时间
-        int num = (etime - stime) / duration;
-        int[] times = new int[num];
-        for (int i = 0; i < num; i++) {
-            int dt = stime + duration * i;
-            times[i] = dt;
-            for (EnableTime time : ls) {
-                int st = time.getStarttime();
-                int et = time.getEndtime();
-                if (Integer.valueOf(time.getNumbers()) == time.getCounts()) {
-                    Log.e(TAG, "!!!此时间段已满!!");
-                    if (dt <= st - duration || dt >= et) {
-                        times[i] = dt;
-//                        list.add(String.valueOf(dt));
-                    } else {
-                        times[i] = -1;
+    private void initEnableTime(JSONObject paramsJSONObject, List<EnableTime> ls) {
+        if (serveSelected == null && kechengSelected != null) {
+            //课程直接使用开始时间
+            int startTime = JsonUtils.getIntByKey4JOb(paramsJSONObject.toString(), "starttime");
+            tvTime.setText(DateUtils.getTime4Minutes(startTime));
+        } else {
+            list.clear();
+            int duration = Integer.valueOf(serveSelected.getDuration());//服务所用时长
+            int stime = Integer.valueOf(serveSelected.getStarttime());//服务开始时间
+            int etime = Integer.valueOf(serveSelected.getEndtime());//服务结束时间
+            int num = (etime - stime) / duration;
+            int[] times = new int[num];
+            for (int i = 0; i < num; i++) {
+                int dt = stime + duration * i;
+                times[i] = dt;
+                /*for (EnableTime time : ls) {
+                    int st = time.getStarttime();
+                    int et = time.getEndtime();
+                    if (Integer.valueOf(time.getNumbers()) == time.getCounts()) {
+                        Log.e(TAG, "!!!此时间段已满!!");
+                        if (dt <= st - duration || dt >= et) {
+                            times[i] = dt;
+                        } else {
+                            times[i] = -1;
+                        }
                     }
+                }*/
+                if (times[i] >= 0) {
+                    list.add(DateUtils.getTime4Minutes(times[i]));
                 }
             }
-            if (times[i] >= 0) {
-//                listTimes.add(times[i]);
-                list.add(DateUtils.getTime4Minutes(times[i]));
-            }
-        }
 
-        setListViewHeightBasedOnChildren(gridView);
+            setListViewHeightBasedOnChildren(gridView);
+        }
     }
 
     //动态设置gridView高度
@@ -308,7 +309,7 @@ public class InvitationActivity extends BaseActivity {
                     serverId = kechengSelected.getId();
                 }
                 map.put("service_id", serverId);
-                map.put("booktime", time);
+                map.put("booktime", tvTime.getText().toString());
                 map.put("dates", sbDate.toString());
                 map.put("remark", etRemark.length() > 0 ? etRemark.getText().toString() : "");
                 map.put("uid", ids);
@@ -357,12 +358,16 @@ public class InvitationActivity extends BaseActivity {
                 JSONArray listJSONArray = JsonUtils.getJAry(paramsJSONObject.toString(), "list");
                 if (listJSONArray != null) {
                     List<EnableTime> ls = JsonUtils.getObjectArray(listJSONArray.toString(), EnableTime.class);
-                    initEnableTime(ls);
+                    //initEnableTime(ls);
+                    initEnableTime(paramsJSONObject, ls);
                 }
                 adapter.notifyDataSetChanged();
             } else {
-                if (serveSelected != null)
-                    showSimpleMessageDialog("服务的起始时间：" + serveSelected.getStartdate() + " 至 " + serveSelected.getEnddate());
+                if (serveSelected != null) {
+                    showSimpleMessageDialog("服务的起始时间：" + DateUtils.getTime4Minutes(Integer.valueOf(serveSelected.getStartdate())) + " 至 " + DateUtils.getTime4Minutes(Integer.valueOf(serveSelected.getEnddate())));
+                } else if(kechengSelected != null){
+                    showSimpleMessageDialog("课程的起始时间：" + DateUtils.getTime4Minutes(Integer.valueOf(kechengSelected.getStartdate())) + " 至 " + DateUtils.getTime4Minutes(Integer.valueOf(kechengSelected.getEnddate())));
+                }
             }
 
         } else if (url.equals(FunncoUrls.getInvitationUrl())) {
@@ -417,6 +422,7 @@ public class InvitationActivity extends BaseActivity {
             serveSelected = null;
             tvServicename.setText("服务");
             tvKecheng.setText("课程");
+            tvTime.setText("时间");
             gridView.setVisibility(View.GONE);
         } else if (requestCode == REQUEST_CODE_SERVICECHOOSE && resultCode == RESULT_CODE_SERVICECHOOSE) {
             if (data != null) {
@@ -428,12 +434,14 @@ public class InvitationActivity extends BaseActivity {
                         serveSelected = (Serve) BaseApplication.getInstance().getT(key);
                         tvServicename.setText(serveSelected.getService_name() + "");
                         tvKecheng.setText("课程");
+                        tvTime.setText("时间");
                         LogUtils.e("------", "选中的服务是：" + serveSelected);
                     } else if (service_type == 1) {
                         serveSelected = null;
                         kechengSelected = (Serve) BaseApplication.getInstance().getT(key);
                         tvKecheng.setText(kechengSelected.getService_name() + "");
                         tvServicename.setText("服务");
+                        tvTime.setText("时间");
                         LogUtils.e("------", "选中的课程是：" + kechengSelected);
                     }
                     gridView.setVisibility(View.GONE);
