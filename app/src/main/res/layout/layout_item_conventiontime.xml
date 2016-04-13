@@ -2,7 +2,7 @@
 <com.funnco.funnco.view.layout.CheckableFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <!--android:button="@drawable/selector_repeadmode_circle"  -->
+
     <CheckBox
         android:id="@id/id_checkbox"
         android:layout_width="match_parent"

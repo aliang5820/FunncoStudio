@@ -4,6 +4,7 @@ public class Constants {
 
     /* 测试账号
      * 13408088438 000000
+     * 13408088439
      */
     public static final String DESCRIPTOR = "com.umeng.share";
     public static final String KEY_CONVERSATION = "conversation";

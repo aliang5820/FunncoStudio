@@ -1,13 +1,11 @@
 package com.funnco.funnco.activity.schedule;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -15,13 +13,15 @@ import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
+import com.funnco.funnco.adapter.TimeCheckAdapter;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.EnableTime;
+import com.funnco.funnco.bean.ScheduleTimeInfo;
 import com.funnco.funnco.bean.Serve;
-import com.funnco.funnco.model.ListPickerIMd;
 import com.funnco.funnco.utils.date.DateUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.log.LogUtils;
@@ -29,9 +29,7 @@ import com.funnco.funnco.utils.string.Actions;
 import com.funnco.funnco.utils.string.TextUtils;
 import com.funnco.funnco.utils.support.FunncoUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
-import com.funnco.funnco.view.dialog.LoadingDialog;
 import com.funnco.funnco.view.layout.CheckableFrameLayout;
-import com.funnco.funnco.view.pop.TimePicker;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -62,13 +60,13 @@ public class InvitationActivity extends BaseActivity {
     private String sbDate_S = "";
     private String SPILATE = "-";
     private GridView gridView;
-    private ArrayAdapter<String> adapter;
-    private List<String> list = new ArrayList<String>();
+    private TimeCheckAdapter adapter;
+    private List<ScheduleTimeInfo> list = new ArrayList<>();
     private TextView tvKecheng;
     private Serve serveSelected = null;
     private Serve kechengSelected = null;
     private String team_id = "";
-    private String time;
+    private ScheduleTimeInfo scheduleTimeInfo;
     private String ids = "";
     private Map<String, Object> map = new HashMap<>();
     private PopupWindow popupWindow;
@@ -107,7 +105,7 @@ public class InvitationActivity extends BaseActivity {
 
         datePicker = (DatePicker) viewDate.findViewById(R.id.dp_popupwindow_date);
         btnTitle = (Button) viewDate.findViewById(R.id.bt_popupwindow_title);
-        adapter = new ArrayAdapter<>(mContext, R.layout.layout_item_conventiontime, R.id.id_checkbox, list);
+        adapter = new TimeCheckAdapter(list);
         gridView.setAdapter(adapter);
         textView.setOnClickListener(this);
         tvServicename.setOnClickListener(this);
@@ -127,14 +125,13 @@ public class InvitationActivity extends BaseActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckableFrameLayout cf = (CheckableFrameLayout) view;
-                boolean state = cf.isChecked();
-                //if (state) {
-                time = list.get(position);
-                //gridView.setVisibility(View.GONE);
-                tvTime.setText(time);
-                LogUtils.e("funnco-----", "选中了。。。position:" + position + "  time:" + time);
-                //}
+                scheduleTimeInfo = list.get(position);
+                if(scheduleTimeInfo.isEnable()) {
+                    tvTime.setText(scheduleTimeInfo.getFormatTime());
+                    LogUtils.e("funnco-----", "选中了。。。position:" + position + "  scheduleTimeInfo:" + scheduleTimeInfo);
+                } else {
+                    showToast("该时间段已排满");
+                }
             }
         });
         if (BaseApplication.getInstance().getUser() != null) {
@@ -158,23 +155,22 @@ public class InvitationActivity extends BaseActivity {
             for (int i = 0; i < num; i++) {
                 int dt = stime + duration * i;
                 times[i] = dt;
-                /*for (EnableTime time : ls) {
-                    int st = time.getStarttime();
-                    int et = time.getEndtime();
-                    if (Integer.valueOf(time.getNumbers()) == time.getCounts()) {
-                        Log.e(TAG, "!!!此时间段已满!!");
+                ScheduleTimeInfo info = new ScheduleTimeInfo();
+                info.setFormatTime(DateUtils.getTime4Minutes(times[i]));
+                for (EnableTime enableTime : ls) {
+                    int st = enableTime.getStarttime();
+                    int et = enableTime.getEndtime();
+                    if (Integer.valueOf(enableTime.getNumbers()) == enableTime.getCounts()) {
                         if (dt <= st - duration || dt >= et) {
                             times[i] = dt;
                         } else {
                             times[i] = -1;
                         }
                     }
-                }*/
-                if (times[i] >= 0) {
-                    list.add(DateUtils.getTime4Minutes(times[i]));
                 }
+                info.setEnable(times[i] >= 0);
+                list.add(info);
             }
-
             setListViewHeightBasedOnChildren(gridView);
         }
     }
@@ -319,6 +315,8 @@ public class InvitationActivity extends BaseActivity {
             case R.id.bt_popupwindow_ok:
                 sbDate_S = DateUtils.getDate(sbDate.toString(), FORMAT_0, FORMAT_1);
                 tvDate.setText(sbDate_S + " " + DateUtils.getDayInWeek(sbDate_S, FORMAT_1));
+                tvTime.setText("时间");
+                gridView.setVisibility(View.GONE);
                 dissPopupWindow();
                 break;
             case R.id.bt_popupwindow_cancle:
@@ -358,16 +356,11 @@ public class InvitationActivity extends BaseActivity {
                 JSONArray listJSONArray = JsonUtils.getJAry(paramsJSONObject.toString(), "list");
                 if (listJSONArray != null) {
                     List<EnableTime> ls = JsonUtils.getObjectArray(listJSONArray.toString(), EnableTime.class);
-                    //initEnableTime(ls);
                     initEnableTime(paramsJSONObject, ls);
                 }
                 adapter.notifyDataSetChanged();
             } else {
-                if (serveSelected != null) {
-                    showSimpleMessageDialog("服务的起始时间：" + DateUtils.getTime4Minutes(Integer.valueOf(serveSelected.getStartdate())) + " 至 " + DateUtils.getTime4Minutes(Integer.valueOf(serveSelected.getEnddate())));
-                } else if(kechengSelected != null){
-                    showSimpleMessageDialog("课程的起始时间：" + DateUtils.getTime4Minutes(Integer.valueOf(kechengSelected.getStartdate())) + " 至 " + DateUtils.getTime4Minutes(Integer.valueOf(kechengSelected.getEnddate())));
-                }
+                showToast("当前时间不可用，请切换其他时间");
             }
 
         } else if (url.equals(FunncoUrls.getInvitationUrl())) {
