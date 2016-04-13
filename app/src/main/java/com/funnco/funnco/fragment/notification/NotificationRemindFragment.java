@@ -15,7 +15,7 @@ import com.funnco.funnco.adapter.ViewHolder;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.NotificationRemind;
 import com.funnco.funnco.bean.UserLoginInfo;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.fragment.BaseFragment;
 import com.funnco.funnco.task.SQliteAsynchTask;
 import com.funnco.funnco.utils.http.AsyncTaskUtils;

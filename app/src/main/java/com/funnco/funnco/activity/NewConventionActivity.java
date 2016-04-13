@@ -15,7 +15,7 @@ import com.funnco.funnco.adapter.SortAdapterD_future;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.MyCustomerD;
 import com.funnco.funnco.bean.MyCustomerDParent;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.fragment.MyCustomerFragment;
 import com.funnco.funnco.impl.ComparatorByDate;
 import com.funnco.funnco.impl.Post;

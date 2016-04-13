@@ -16,7 +16,7 @@ import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.adapter.SortAdapter;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.MyCustomer;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.ComparatorByName;
 import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.support.CharacterParser;

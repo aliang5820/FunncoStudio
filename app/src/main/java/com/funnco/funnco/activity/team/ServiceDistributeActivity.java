@@ -11,7 +11,7 @@ import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.adapter.CommonAdapter;
 import com.funnco.funnco.adapter.ViewHolder;
 import com.funnco.funnco.bean.TeamMember;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.utils.http.AsyncTaskUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.utils.log.LogUtils;

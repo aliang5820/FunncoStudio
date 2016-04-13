@@ -22,7 +22,7 @@ import com.funnco.funnco.adapter.SortAdapterD;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.MyCustomerD;
 import com.funnco.funnco.bean.MyCustomerDParent;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.task.SQliteAsynchTask;
 import com.funnco.funnco.utils.http.AsyncTaskUtils;

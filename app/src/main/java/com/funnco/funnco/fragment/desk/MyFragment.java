@@ -11,19 +11,15 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.funnco.funnco.R;
-import com.funnco.funnco.activity.MyConventionActivity;
 import com.funnco.funnco.activity.MyCustomersActivity;
 import com.funnco.funnco.activity.codescan.CodeScanActivity;
 import com.funnco.funnco.activity.myinfo.UpdateAccountActivity;
-import com.funnco.funnco.activity.work.MyWorkActivity;
 import com.funnco.funnco.activity.PersonalInfoActivity;
 import com.funnco.funnco.activity.SettingActivity;
 import com.funnco.funnco.activity.base.HelpActivity;
@@ -35,15 +31,13 @@ import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.Career;
 import com.funnco.funnco.bean.InComeInfo;
 import com.funnco.funnco.bean.UserLoginInfo;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.fragment.BaseFragment;
-import com.funnco.funnco.utils.date.DateUtils;
 import com.funnco.funnco.utils.http.AsyncTaskUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.view.imageview.CircleImageView;
-import com.funnco.funnco.view.listview.MyListview;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.exception.DbException;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -54,7 +48,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
-import java.util.Observable;
 
 public class MyFragment extends BaseFragment implements View.OnClickListener{
     private RelativeLayout rlayout = null;

@@ -14,7 +14,7 @@ import com.funnco.funnco.activity.notification.NotificationTeamInviteActivity;
 import com.funnco.funnco.adapter.CommonAdapter;
 import com.funnco.funnco.adapter.ViewHolder;
 import com.funnco.funnco.bean.NotificationSys;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.fragment.BaseFragment;
 import com.funnco.funnco.task.SQliteAsynchTask;
 import com.funnco.funnco.utils.http.AsyncTaskUtils;

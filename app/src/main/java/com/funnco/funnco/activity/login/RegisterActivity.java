@@ -30,7 +30,7 @@ import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.Career;
 import com.funnco.funnco.bean.UserLoginInfo;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.bimp.BitmapUtils;
 import com.funnco.funnco.utils.file.FileTypeUtils;

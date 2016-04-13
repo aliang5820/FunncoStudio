@@ -3,7 +3,7 @@ package com.funnco.funnco.utils.http;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.PostObt;
 import com.funnco.funnco.task.FindAsyncTask;
 import com.funnco.funnco.task.AsyTask;

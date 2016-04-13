@@ -22,7 +22,7 @@ import com.funnco.funnco.adapter.CommonAdapter;
 import com.funnco.funnco.adapter.ViewHolder;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.Serve;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.fragment.BaseFragment;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.task.SQliteAsynchTask;

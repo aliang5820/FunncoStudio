@@ -1,14 +1,12 @@
 package com.funnco.funnco.task;
 
 import android.os.AsyncTask;
-import android.text.TextUtils;
 
 import com.funnco.funnco.application.BaseApplication;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.http.MyHttpUtils;
 
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.funnco.funnco.application.BaseApplication;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.utils.file.FileTypeUtils;
 import com.funnco.funnco.utils.string.Actions;
 import com.funnco.funnco.utils.string.TextUtils;

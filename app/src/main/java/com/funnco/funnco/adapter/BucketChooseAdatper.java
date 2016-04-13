@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.funnco.funnco.R;
 import com.funnco.funnco.bean.ImageBucket;
 import com.funnco.funnco.bean.ImageItem;
-import com.funnco.funnco.com.funnco.funnco.callback.ImageCallBack;
+import com.funnco.funnco.callback.ImageCallBack;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.utils.bimp.Bimp;
 import com.funnco.funnco.utils.bimp.BitmapCache;

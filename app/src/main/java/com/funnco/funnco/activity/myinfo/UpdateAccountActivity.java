@@ -7,11 +7,8 @@ import android.widget.TextView;
 
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
-import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.AccountBusinessInfo;
-import com.funnco.funnco.bean.MyCustomerConventation;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
-import com.funnco.funnco.task.SQliteAsynchTask;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.utils.http.AsyncTaskUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.support.Constants;

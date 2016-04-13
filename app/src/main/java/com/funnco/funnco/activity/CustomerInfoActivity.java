@@ -21,7 +21,7 @@ import com.funnco.funnco.adapter.ViewHolder;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.MyCustomerConventation;
 import com.funnco.funnco.bean.MyCustomerInfo;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.MyGestureListener;
 import com.funnco.funnco.task.SQliteAsynchTask;
 import com.funnco.funnco.utils.http.AsyncTaskUtils;

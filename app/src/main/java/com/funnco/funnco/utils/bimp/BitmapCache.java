@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
-import com.funnco.funnco.com.funnco.funnco.callback.ImageCallBack;
+import com.funnco.funnco.callback.ImageCallBack;
 import com.funnco.funnco.utils.log.LogUtils;
 
 import java.io.BufferedInputStream;

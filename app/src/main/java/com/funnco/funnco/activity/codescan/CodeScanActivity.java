@@ -32,7 +32,7 @@ import com.funnco.funnco.codescan.decoding.CaptureActivityHandler;
 import com.funnco.funnco.codescan.decoding.InactivityTimer;
 import com.funnco.funnco.codescan.decoding.RGBLuminanceSource;
 import com.funnco.funnco.codescan.view.ViewfinderView;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
 import com.funnco.funnco.utils.json.JsonUtils;

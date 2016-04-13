@@ -1,4 +1,4 @@
-package com.funnco.funnco.com.funnco.funnco.callback;
+package com.funnco.funnco.callback;
 
 import android.net.Uri;
 

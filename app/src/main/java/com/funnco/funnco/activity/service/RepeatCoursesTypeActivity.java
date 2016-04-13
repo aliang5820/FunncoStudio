@@ -20,7 +20,7 @@ import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.Serve;
 import com.funnco.funnco.bean.UserLoginInfo;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.utils.string.Actions;
 import com.funnco.funnco.utils.http.AsyncTaskUtils;
 import com.funnco.funnco.utils.date.DateUtils;

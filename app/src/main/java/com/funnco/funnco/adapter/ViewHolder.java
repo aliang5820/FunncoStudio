@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.funnco.funnco.R;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.utils.bimp.BitmapUtils;
 import com.funnco.funnco.utils.log.LogUtils;

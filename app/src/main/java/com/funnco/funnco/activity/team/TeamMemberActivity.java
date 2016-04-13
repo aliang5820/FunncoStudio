@@ -19,7 +19,7 @@ import com.funnco.funnco.bean.TeamMemberMy;
 import com.funnco.funnco.bean.TeamMemberSearch;
 import com.funnco.funnco.bean.TeamMy;
 import com.funnco.funnco.bean.UserLoginInfo;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.impl.SimpleSwipeListener;
 import com.funnco.funnco.task.SQliteAsynchTask;

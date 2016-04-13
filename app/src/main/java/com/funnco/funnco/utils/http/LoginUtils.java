@@ -3,7 +3,7 @@ package com.funnco.funnco.utils.http;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.url.FunncoUrls;

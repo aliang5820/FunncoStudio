@@ -20,7 +20,7 @@ import com.funnco.funnco.adapter.ViewHolder;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.bean.WorkItem;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.date.DateUtils;

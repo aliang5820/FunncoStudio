@@ -7,7 +7,7 @@ import android.os.IBinder;
 
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.ScheduleNewStat;
-import com.funnco.funnco.com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.date.DateUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
