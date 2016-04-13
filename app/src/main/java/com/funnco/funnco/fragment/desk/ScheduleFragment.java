@@ -1021,6 +1021,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 
         vShareBoard.findViewById(R.id.id_title_0).setOnClickListener(this);//微信好友
         vShareBoard.findViewById(R.id.id_title_1).setOnClickListener(this);//微信朋友圈
+        vShareBoard.findViewById(R.id.cancle).setOnClickListener(this);//取消
 
         btDeleAll.setOnClickListener(this);
         btDeleCurr.setOnClickListener(this);

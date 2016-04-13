@@ -84,7 +84,6 @@ public class IncomeWeekActivity extends BaseActivity {
                 TextView price = helper.getView(R.id.price);
                 CircleImageView circleImageView = helper.getView(R.id.img);
 
-                //imageLoader.displayImage(memberMap.get(peerId).getHeadpic(), circleImageView);
                 if (TextUtils.isNull(item.getTitle())) {
                     title.setText("没有标题");
                 } else {
@@ -98,10 +97,12 @@ public class IncomeWeekActivity extends BaseActivity {
                 time.setText(DateUtils.getDate(item.getAddtime(), "MM月dd日 HH:mm"));
                 if (item.getType() == 2) {
                     //2为支出
+                    circleImageView.setImageResource(R.mipmap.money_out_icon);
                     price.setTextColor(getResources().getColor(R.color.color_green_ok));
                     price.setText(item.getNum() + "元");
                 } else {
                     //1为收入
+                    circleImageView.setImageResource(R.mipmap.money_in_icon);
                     price.setTextColor(getResources().getColor(R.color.color_hint_gray));
                     price.setText("+" + item.getNum() + "元");
                 }

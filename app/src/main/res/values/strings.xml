@@ -249,7 +249,7 @@
     <string name="str_guide_title_3">在通讯录中点击客户头像即可打开客户详细资料\n信息页面向上滑动还可查看预约记录，每条预约均可编辑备注</string>
 
 
-    <string name="str_wechat">微信</string>
+    <string name="str_wechat">微信好友</string>
     <string name="str_wechat_moment">微信朋友圈</string>
     <string name="str_phonenumber">手机号</string>
     <string name="str_mobile">电话</string>

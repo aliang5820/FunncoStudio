@@ -23,7 +23,7 @@
                 style="@style/style_common_tv"
                 android:layout_marginTop="15dp"
                 android:clickable="false"
-                android:text="自己" />
+                android:text="成员" />
 
             <LinearLayout
                 android:id="@+id/fuchang"

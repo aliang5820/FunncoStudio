@@ -13,7 +13,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="20dp"
-        android:src="@mipmap/icon_edit_profile_default_2x" />
+        android:src="@mipmap/money_in_icon" />
 
     <TextView
         android:id="@+id/title"
@@ -27,6 +27,7 @@
         style="@style/InComeItemStyle"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/img"
+        android:layout_toLeftOf="@+id/price"
         tools:text="描述" />
 
     <TextView

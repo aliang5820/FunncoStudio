@@ -6,17 +6,19 @@
     android:background="@mipmap/bg_transparent">
     <LinearLayout
         android:id="@id/id_layout_1"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@drawable/shape_pw_radius_4"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_margin="20dp"
+        android:padding="10dp">
         <ListView
             android:id="@id/id_listView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:dividerHeight="@dimen/dimen_common_1"
+            android:visibility="visible"
             android:divider="@color/color_main_bg">
         </ListView>
         <LinearLayout
@@ -34,12 +36,13 @@
                 style="@style/style_common_rb"
                 android:drawableTop="@mipmap/common_logo_wechatmoment"
                 android:text="@string/str_wechat_moment"/>
-
         </LinearLayout>
+        <ImageView
+            android:id="@+id/cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/selector_callcustomer_cancle"/>
     </LinearLayout>
-    <TextView
-        style="@style/style_common_bt"
-        android:layout_above="@id/id_layout_1"
-        android:layout_marginBottom="10dp"
-        android:text="@string/str_share_menu_title" />
 </RelativeLayout>
