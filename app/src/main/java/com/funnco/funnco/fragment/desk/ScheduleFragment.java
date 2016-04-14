@@ -303,7 +303,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                     xListView.stopLoadMore();
                     xListView.stopRefresh();
                 }
-            }else if (what == 17){//跳转到添加事件 为体现动画效果
+            } else if (what == 17) {//跳转到添加事件 为体现动画效果
                 showPopupwindow(addNotifyView);
             }
         }
@@ -331,13 +331,13 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         if (BaseApplication.getInstance().getUser() == null || !NetUtils.isConnection(mContext)) {
             return;
         }
-        if (BaseApplication.getInstance().getCookieStore() == null){
-                LoginUtils.reLogin(mContext, new Post() {
-                    @Override
-                    public void post(int ...position) {
-                        downScheduleNew(dates);
-                    }
-                });
+        if (BaseApplication.getInstance().getCookieStore() == null) {
+            LoginUtils.reLogin(mContext, new Post() {
+                @Override
+                public void post(int... position) {
+                    downScheduleNew(dates);
+                }
+            });
             return;
         }
         map.clear();
@@ -395,11 +395,13 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void getBitmap(String url, Bitmap bitmap) {
             }
         }, false, FunncoUrls.getScheduleDateStat2());
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -436,20 +438,26 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         if (user != null) {
 //            WeicatUtils.setShareContent(getActivity(), mController, user, R.mipmap.common_logo_rectangle);
             String picUrl = user.getHeadpic();
-            if (!TextUtils.isNull(picUrl)){
+            if (!TextUtils.isNull(picUrl)) {
                 imageLoader.displayImage(picUrl, civTitleicon, options, new ImageLoadingListener() {
                     @Override
-                    public void onLoadingStarted(String s, View view) {}
+                    public void onLoadingStarted(String s, View view) {
+                    }
+
                     @Override
-                    public void onLoadingFailed(String s, View view, FailReason failReason) {}
+                    public void onLoadingFailed(String s, View view, FailReason failReason) {
+                    }
+
                     @Override
                     public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                        if (bitmap != null){
-                            WeicatUtils.setShareContent(mContext,mController,user,R.mipmap.common_logo_rectangle,bitmap);
+                        if (bitmap != null) {
+                            WeicatUtils.setShareContent(mContext, mController, user, R.mipmap.common_logo_rectangle, bitmap);
                         }
                     }
+
                     @Override
-                    public void onLoadingCancelled(String s, View view) {}
+                    public void onLoadingCancelled(String s, View view) {
+                    }
                 });
             }
         }
@@ -481,7 +489,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         tvScheduleDate.setText(DateUtils.getMonth() + "月" + DateUtils.getCurrentDay() + "日");
         adapter = new ListViewAdapter(getActivity(), eventList, new Post() {
             @Override
-            public void post(int ...position) {
+            public void post(int... position) {
                 if (position[0] >= 0 && position[0] < eventList.size()) {
                     isCusDele = false;
                     deletePosition = position[0];
@@ -491,7 +499,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                     alertDialogDelete(deletePosition);
                 }
             }
-        },imageLoader,options);
+        }, imageLoader, options);
         xListView.setAdapter(adapter);
         pwView = LayoutInflater.from(mContext).inflate(R.layout.layout_popupwindow_delete, null);
         btDeleAll = (Button) pwView.findViewById(R.id.bt_pwdelete_deleteall);
@@ -616,12 +624,12 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         deletecusDelete = (Button) deletepwView.findViewById(R.id.bt_popupwindow_delete);
         deletecusCancle = (Button) deletepwView.findViewById(R.id.bt_popupwindow_cancle);
 
-        teammemberView = getActivity().getLayoutInflater().inflate(R.layout.layout_popupwindow_teamlist,null);
+        teammemberView = getActivity().getLayoutInflater().inflate(R.layout.layout_popupwindow_teamlist, null);
         teammemberExpListView = (ExpandableListView) teammemberView.findViewById(R.id.elv_pw_schedule_teamlist);
-        teammemberExpAdapter = new TeamlistExpAdapter(mContext,teamList,imageLoader,options);
+        teammemberExpAdapter = new TeamlistExpAdapter(mContext, teamList, imageLoader, options);
         teammemberExpListView.setAdapter(teammemberExpAdapter);
 
-        addNotifyView = mActivity.getLayoutInflater().inflate(R.layout.layout_popupwindow_add,null);
+        addNotifyView = mActivity.getLayoutInflater().inflate(R.layout.layout_popupwindow_add, null);
         addNotifyView.findViewById(R.id.id_relativelayout).setOnClickListener(this);
         ibPwAddicon = (ImageButton) addNotifyView.findViewById(R.id.ib_schedule_pw_icon);
         tvPwAddconvention = (TextView) addNotifyView.findViewById(R.id.tv_schedule_pw_convention);
@@ -637,6 +645,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 
     /**
      * 从本地获取有预约日期和有时间日期的缓存数据
+     *
      * @param dates
      */
     private void initScheduleNewStar(final String dates) {
@@ -656,15 +665,15 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                     }
                 }
             }
-            if (dbUtils.tableIsExist(ScheduleNewStat_2.class)){
+            if (dbUtils.tableIsExist(ScheduleNewStat_2.class)) {
                 List<ScheduleNewStat_2> ls = dbUtils.findAll(ScheduleNewStat_2.class);
-                if (ls != null){
+                if (ls != null) {
                     scheduleNewList4.addAll(ls);
-                    for (ScheduleNewStat_2 ss : scheduleNewList4){
-                        scheduleNewList3.put(ss.getDate(),ss.getDate());
+                    for (ScheduleNewStat_2 ss : scheduleNewList4) {
+                        scheduleNewList3.put(ss.getDate(), ss.getDate());
                         String st = ss.getDate();
-                        String st2 = st.substring(0,dates.lastIndexOf(SPLITSTR));
-                        if (!scheduleNewStatMonth.containsKey(st2)){
+                        String st2 = st.substring(0, dates.lastIndexOf(SPLITSTR));
+                        if (!scheduleNewStatMonth.containsKey(st2)) {
                             scheduleNewStatMonth.put(st2, st2);
                         }
                     }
@@ -736,7 +745,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                     getCurrent();
                     mDateAdapter = new WeekendCalendarAdapter(mActivity, mCurrentYear,
                             mCurrentMonth, mCurrentWeek, mCurrentWeek == 1 ? true
-                            : false, scheduleNewList,scheduleNewList3);
+                            : false, scheduleNewList, scheduleNewList3);
                     mDateAdapter.setSelectedDay(mLastSelectedDay);
                     mWeekGridView.setAdapter(mDateAdapter);
                     gvFlag++;
@@ -755,7 +764,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                     getCurrent();
                     mDateAdapter = new WeekendCalendarAdapter(mActivity, mCurrentYear,
                             mCurrentMonth, mCurrentWeek, mCurrentWeek == 1 ? true
-                            : false, scheduleNewList,scheduleNewList3);
+                            : false, scheduleNewList, scheduleNewList3);
                     mDateAdapter.setSelectedDay(mLastSelectedDay);
                     mWeekGridView.setAdapter(mDateAdapter);
                     gvFlag++;
@@ -774,7 +783,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         //滑动显示的控件
         mWeekFlipper = (ViewFlipper) findViewById(R.id.week_flipper);
         mDateAdapter = new WeekendCalendarAdapter(getActivity(), mCurrentYear,
-                mCurrentMonth, mCurrentWeek, mCurrentWeek == 1 ? true : false, scheduleNewList,scheduleNewList3);
+                mCurrentMonth, mCurrentWeek, mCurrentWeek == 1 ? true : false, scheduleNewList, scheduleNewList3);
         addGridView();
         mWeekGridView.setAdapter(mDateAdapter);
         mDateAdapter.setSelectedDay(mLastSelectedDay);
@@ -891,6 +900,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 
     /**
      * 判断某年某月的第一天为星期几
+     *
      * @param year
      * @param month
      * @return
@@ -993,7 +1003,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             ((TextView) deletepwView.findViewById(R.id.tv_pw_delete_title)).setText(R.string.cancle_ornot_customer);
         } else {
             if (currentFunncoEvent != null && currentFunncoEvent.getNumbers().equals("0")) {
-            //number为0 说明是临时事件 此处处理删除是否显示删除全部
+                //number为0 说明是临时事件 此处处理删除是否显示删除全部
                 showPopupwindow(pwView);
                 //判断是是单天的数据
 //                if (TextUtils.equals(currentFunncoEvent.getRepeat_type() + "", "0") && DateUtils.isSameDate(currentFunncoEvent.getStarttime() + "", currentFunncoEvent.getEndtime() + "")) {//是否是同一天 如果是则隐藏
@@ -1122,14 +1132,14 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CheckableFrameLayout cfl = (CheckableFrameLayout) view;
-                LogUtils.e("funnco","是选中吗？"+cfl.isChecked());
+                LogUtils.e("funnco", "是选中吗？" + cfl.isChecked());
 //                if (cfl.isChecked())
             }
         });
     }
 
     @Override
-        protected void init() {
+    protected void init() {
         if (user == null) {
             user = BaseApplication.getInstance().getUser();
         }
@@ -1145,8 +1155,8 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             map.clear();
             map.put("dates", mLastSelectedDay);
             if (!TextUtils.isNull(ids) && !TextUtils.isNull(team_id)) {
-                map.put("team_uid",ids);
-                map.put("team_id",team_id);
+                map.put("team_uid", ids);
+                map.put("team_id", team_id);
             }
             postData2(map, FunncoUrls.getSchedeleListUrl(), false);//下载日程数据
             if (teamList != null && teamList.size() == 0) {
@@ -1176,9 +1186,9 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                         }
                     }
                     eventList.addAll(ls);
-                    if (eventList.size() == 0){
+                    if (eventList.size() == 0) {
                         findViewById(R.id.id_textview).setVisibility(View.VISIBLE);
-                    }else{
+                    } else {
                         findViewById(R.id.id_textview).setVisibility(View.GONE);
                     }
                     dismissLoading();
@@ -1218,7 +1228,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 if (user == null) {
                     user = BaseApplication.getInstance().getUser();
                 }
-                if (user == null){
+                if (user == null) {
                     mActivity.finish();
                     return;
                 }
@@ -1233,12 +1243,12 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 break;
             case R.id.bt_pwdelete_deleteall://删除所有日程
 //                popupWindow.dismiss();
-                    deleteSchedule("all");
+                deleteSchedule("all");
                 break;
             case R.id.bt_pwdelete_deletecurrent://删除当天日程
                 if (currentFunncoEvent.getRepeat_type().equals("0")) {
                     deleteSchedule("all");
-                }else{
+                } else {
                     deleteSchedule("one");
                 }
                 break;
@@ -1297,7 +1307,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             case R.id.rlayout_bg:
                 break;
             case R.id.tv_schedule_pw_convention://添加预约
-                startActivityForResult(ConventionNewActivity.class,null,REQUEST_CODE_CONVENTION_ADD);
+                startActivityForResult(ConventionNewActivity.class, null, REQUEST_CODE_CONVENTION_ADD);
                 break;
             case R.id.tv_schedule_pw_event://添加事件
                 Bundle bundle = new Bundle();
@@ -1307,7 +1317,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 startActivityForResult(intent, REQUEST_CODE_SCHEDULE_ADD);
                 break;
             case R.id.tv_schedule_pw_invitation://添加邀请
-                startActivityForResult(InvitationActivity.class,null,REQUEST_CODE_INVITATION_ADD);
+                startActivityForResult(InvitationActivity.class, null, REQUEST_CODE_INVITATION_ADD);
                 break;
             case R.id.id_title_0://分享到微信好友
                 mController.postShare(mContext, SHARE_MEDIA.WEIXIN, new SocializeListeners.SnsPostListener() {
@@ -1322,11 +1332,11 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                             FunncoUtils.showToast(mContext, R.string.success);
                         } else {
                             String eMsg = "";
-                            if (i == -101){
+                            if (i == -101) {
                                 eMsg = "没有授权";
                             }
                             Toast.makeText(mContext, "分享失败[" + i + "] " +
-                                    eMsg,Toast.LENGTH_SHORT).show();
+                                    eMsg, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -1344,11 +1354,11 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                             FunncoUtils.showToast(mContext, R.string.success);
                         } else {
                             String eMsg = "";
-                            if (i == -101){
+                            if (i == -101) {
                                 eMsg = "没有授权";
                             }
                             Toast.makeText(mContext, "分享失败[" + i + "] " +
-                                    eMsg,Toast.LENGTH_SHORT).show();
+                                    eMsg, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -1373,6 +1383,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 
     /**
      * 删除事件
+     *
      * @param type
      */
     private void deleteSchedule(final String type) {
@@ -1429,7 +1440,6 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
     }
 
 
-
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         //分别控制年份的选择和  月份的选择
@@ -1452,7 +1462,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 getCalengarInfo();
                 mDateAdapter = new WeekendCalendarAdapter(
                         getActivity(), mCurrentYear, mCurrentMonth,
-                        mCurrentWeek, mCurrentWeek == 1 ? true : false, scheduleNewList,scheduleNewList3);
+                        mCurrentWeek, mCurrentWeek == 1 ? true : false, scheduleNewList, scheduleNewList3);
                 mDateAdapter.setSelectedDay(mLastSelectedDay);
                 mWeekGridView.setAdapter(mDateAdapter);
             } else {
@@ -1498,7 +1508,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 
             @Override
             public void onClick(View v) {
-               dismissPopupwindow();
+                dismissPopupwindow();
             }
         });
         showPopupwindow(v);
@@ -1617,17 +1627,17 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             adapter.notifyDataSetChanged();
         } else if (requestCode == REQUEST_CODE_SDU_DEL && resultCode == RESULT_CODE_FAILURE) {//sche删除失败同样不做处理
             LogUtils.e("popupwindow删除我的预约客户失败接收到返回值", "requestCode:" + requestCode + ",resultCode:" + resultCode);
-        } else if (requestCode == REQUEST_CODE_MYCONVENTION && BaseApplication.needRegresh){
+        } else if (requestCode == REQUEST_CODE_MYCONVENTION && BaseApplication.needRegresh) {
             BaseApplication.needRegresh = false;
             clearAsyncTask();
             init();
-        } else if (requestCode == REQUEST_CODE_MEMBERCHOOSE && resultCode == RESULT_CODE_MEMBERCHOOSE){
+        } else if (requestCode == REQUEST_CODE_MEMBERCHOOSE && resultCode == RESULT_CODE_MEMBERCHOOSE) {
             //团队成员选择完毕
-            if (data != null){
+            if (data != null) {
                 ids = data.getStringExtra("ids");
                 team_id = data.getStringExtra("team_id");
                 String team_name = data.getStringExtra("team_name");
-                LogUtils.e("funnco","成员选择后的到的数据shi："+ids+" team_id:"+team_id+"  team_name:"+team_name);
+                LogUtils.e("funnco", "成员选择后的到的数据shi：" + ids + " team_id:" + team_id + "  team_name:" + team_name);
                 init();
             }
         }
@@ -1635,6 +1645,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 
     /**
      * 刷新日历适配器
+     *
      * @param dates 传入的日期 是删除预约后需要刷新适配器
      */
     private void updateAdapterNewStart(String dates) {
@@ -1662,7 +1673,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         super.dataPostBack(result, url);
         dismissLoading();
         FunncoUtils.dismissProgressDialog();
-        if (url.equals(FunncoUrls.getSchedeleListUrl())){
+        if (url.equals(FunncoUrls.getSchedeleListUrl())) {
             JSONObject paramsJSONObject = JsonUtils.getJObt(result, "params");
             JSONArray listJSONArray = JsonUtils.getJAry(paramsJSONObject.toString(), "list");
             if (eventList != null) {
@@ -1704,46 +1715,46 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             xListView.stopRefresh();
             xListView.stopLoadMore();
             xListView.setRefreshTime(DateUtils.getCurrentDate("yyyy-MM-dd HH:mm:ss"));
-        }else if (url.equals(FunncoUrls.getTeamMemberUrl())){
+        } else if (url.equals(FunncoUrls.getTeamMemberUrl())) {
             try {
-                    JSONArray paramsJSONArray = JsonUtils.getJAry(result, "params");
-                    List<Team> ls = JsonUtils.getObjectArray(paramsJSONArray.toString(), Team.class);
-                    if (ls != null && ls.size() > 0) {
-                        BaseApplication.getInstance().setHasTeam(true);
-                        SharedPreferencesUtils.setValue(mContext, "hasTeam", "1");
-                        teamList.clear();
-                        dbUtils.deleteAll(Team.class);
-                        for (int i = 0; i < ls.size(); i++) {
-                            Team team = ls.get(i);
-                            team.setU_id(user.getId());//给每个Team 设置一个所属Id
-                            List<TeamMember> lsTM = team.getList();
-                            if (lsTM != null && lsTM.size() > 0) {
-                                for (int j = 0; j < lsTM.size(); j++) {
-                                    lsTM.get(j).setTeam_id(team.getTeam_id());
-                                    lsTM.get(j).setU_id(user.getId());
-                                }
-                                SQliteAsynchTask.saveOrUpdate(dbUtils, lsTM);
-//                                AsyncTaskUtils.saveListBean(dbUtils, lsTM, TeamMember.class, false);
+                JSONArray paramsJSONArray = JsonUtils.getJAry(result, "params");
+                List<Team> ls = JsonUtils.getObjectArray(paramsJSONArray.toString(), Team.class);
+                if (ls != null && ls.size() > 0) {
+                    BaseApplication.getInstance().setHasTeam(true);
+                    SharedPreferencesUtils.setValue(mContext, "hasTeam", "1");
+                    teamList.clear();
+                    dbUtils.deleteAll(Team.class);
+                    for (int i = 0; i < ls.size(); i++) {
+                        Team team = ls.get(i);
+                        team.setU_id(user.getId());//给每个Team 设置一个所属Id
+                        List<TeamMember> lsTM = team.getList();
+                        if (lsTM != null && lsTM.size() > 0) {
+                            for (int j = 0; j < lsTM.size(); j++) {
+                                lsTM.get(j).setTeam_id(team.getTeam_id());
+                                lsTM.get(j).setU_id(user.getId());
                             }
-                            teamList.add(team);
+                            SQliteAsynchTask.saveOrUpdate(dbUtils, lsTM);
+//                                AsyncTaskUtils.saveListBean(dbUtils, lsTM, TeamMember.class, false);
                         }
-                        SQliteAsynchTask.saveOrUpdate(dbUtils, teamList);
-                        initShareAdapter();
+                        teamList.add(team);
+                    }
+                    SQliteAsynchTask.saveOrUpdate(dbUtils, teamList);
+                    initShareAdapter();
 //                        AsyncTaskUtils.saveListBean(dbUtils, teamList, Team.class, true);
-                    } else if (ls != null && ls.size() == 0) {
+                } else if (ls != null && ls.size() == 0) {
 //                        vShareListView.setVisibility();
-                        BaseApplication.getInstance().setHasTeam(false);
-                        SharedPreferencesUtils.setValue(mContext, "hasTeam", "0");
-                    }
-                    adapter.notifyDataSetChanged();
-                    for (int i = 0; i < teamList.size(); i++) {
-                        teammemberExpListView.expandGroup(i);
-                    }
+                    BaseApplication.getInstance().setHasTeam(false);
+                    SharedPreferencesUtils.setValue(mContext, "hasTeam", "0");
+                }
+                adapter.notifyDataSetChanged();
+                for (int i = 0; i < teamList.size(); i++) {
+                    teammemberExpListView.expandGroup(i);
+                }
             } catch (DbException e) {
 
             }
         }
-        if (url.equals(FunncoUrls.getAddShceduleUrl())){
+        if (url.equals(FunncoUrls.getAddShceduleUrl())) {
 
         }
     }
@@ -1761,11 +1772,11 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         }) {
             @Override
             public void convert(ViewHolder helper, Team item, int position) {
-                if (position == teamList.size()){
+                if (position == teamList.size()) {
                     helper.setText(R.id.tv_item_reasoncancle_reson, "自己");
-                    ((CheckableFrameLayout)helper.getConvertView()).setChecked(true);
-                }else {
-                    ((CheckableFrameLayout)helper.getConvertView()).setChecked(false);
+                    ((CheckableFrameLayout) helper.getConvertView()).setChecked(true);
+                } else {
+                    ((CheckableFrameLayout) helper.getConvertView()).setChecked(false);
                     helper.setText(R.id.tv_item_reasoncancle_reson, item.getTeam_name());
                 }
             }
@@ -1778,7 +1789,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         super.dataPostBackF(result, url);
         dismissLoading();
         FunncoUtils.dismissProgressDialog();
-        if (url.equals(FunncoUrls.getSchedeleListUrl())){
+        if (url.equals(FunncoUrls.getSchedeleListUrl())) {
 
         }
     }
@@ -1913,15 +1924,16 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 
     /**
      * 显示Popupwindow
+     *
      * @param v
      */
-    private void showPopupwindow(View v){
+    private void showPopupwindow(View v) {
         if (v == addNotifyView) {
             int[] wh = new int[2];
             tvAddNotify.getLocationOnScreen(wh);
             LogUtils.e("funnco", "添加按钮的位置是：" + wh[0] + " " + wh[1]);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvPwAddevent.getLayoutParams();
-            params.setMargins(0,wh[1],0,0);
+            params.setMargins(0, wh[1], 0, 0);
             tvPwAddevent.setLayoutParams(params);
         }
         popupWindow = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -1939,7 +1951,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
      */
     private boolean dismissPopupwindow() {
         boolean hasPwdismiss = false;
-        for (PopupWindow pw : new PopupWindow[]{popupWindow,pwCustomer}) {
+        for (PopupWindow pw : new PopupWindow[]{popupWindow, pwCustomer}) {
             if (pw != null && pw.isShowing()) {
                 pw.dismiss();
                 hasPwdismiss = true;
@@ -2001,7 +2013,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             }
             updateAdapterNewStart(null);//同时刷新日历小圆点的显示
             Collections.sort(newscheduleNewList, dateComparator);
-        } else if (list[0] == null && list[1] !=null){
+        } else if (list[0] == null && list[1] != null) {
             int count = (Integer) list[1].get(0);
             designTextView.setText(count);
         }
@@ -2028,7 +2040,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             getCalengarInfo();
             mDateAdapter = new WeekendCalendarAdapter(mActivity,
                     mCurrentYear, mCurrentMonth, mCurrentWeek,
-                    mCurrentWeek == 1 ? true : false, scheduleNewList,scheduleNewList3);
+                    mCurrentWeek == 1 ? true : false, scheduleNewList, scheduleNewList3);
             mDateAdapter.setSelectedDay(mLastSelectedDay);
             mWeekGridView.setAdapter(mDateAdapter);
         }

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <stroke android:color="@color/color_hint_gray_light" android:width="@dimen/dimen_common_1px"/>
-    <gradient android:startColor="@color/color_hint_tangerine" android:endColor="@color/color_hint_tangerine"/>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    android:useLevel="false">
+    <solid android:color="#d2d0d0" />
+    <size
+        android:width="40dp"
+        android:height="40dp" />
 </shape>
