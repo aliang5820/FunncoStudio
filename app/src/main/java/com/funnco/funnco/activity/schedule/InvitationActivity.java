@@ -27,9 +27,15 @@ import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.string.Actions;
 import com.funnco.funnco.utils.string.TextUtils;
+import com.funnco.funnco.utils.support.Constants;
 import com.funnco.funnco.utils.support.FunncoUtils;
+import com.funnco.funnco.utils.thrid.WeicatUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
-import com.funnco.funnco.view.layout.CheckableFrameLayout;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.bean.SocializeEntity;
+import com.umeng.socialize.controller.UMServiceFactory;
+import com.umeng.socialize.controller.UMSocialService;
+import com.umeng.socialize.controller.listener.SocializeListeners;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,10 +50,10 @@ import java.util.Map;
  * Created by user on 2015/8/18.
  */
 public class InvitationActivity extends BaseActivity {
-    private TextView textView;
+    private TextView tvMember;
     private View parentView;
     private Button btSendinvitation;
-    private TextView tvServicename;
+    private TextView tvService;
     private TextView tvDate;
     private TextView tvTime;
     private EditText etRemark;
@@ -70,6 +76,7 @@ public class InvitationActivity extends BaseActivity {
     private String ids = "";
     private Map<String, Object> map = new HashMap<>();
     private PopupWindow popupWindow;
+    private UMSocialService mController = UMServiceFactory.getUMSocialService(Constants.DESCRIPTOR);
     //成员选择
     private static final int REQUEST_CODE_MEMBERCHOOSE = 0xf06;
     private static final int RESULT_CODE_MEMBERCHOOSE = 0xf16;
@@ -86,15 +93,15 @@ public class InvitationActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        textView = (TextView) findViewById(R.id.textView);
+        tvMember = (TextView) findViewById(R.id.tv_invitation_member);
         btSendinvitation = (Button) findViewById(R.id.bt_save);
         btSendinvitation.setText(R.string.str_send_invitation);
         ((TextView) findViewById(R.id.tv_headcommon_headm)).setText(R.string.str_convention_invite);
-        tvServicename = (TextView) findViewById(R.id.tv_invitation_service);
-        tvDate = (TextView) findViewById(R.id.tv_invitation_account);
+        tvService = (TextView) findViewById(R.id.tv_invitation_service);
+        tvDate = (TextView) findViewById(R.id.tv_invitation_date);
         tvTime = (TextView) findViewById(R.id.tv_invitation_time);
         etRemark = (EditText) findViewById(R.id.tv_invitation_remark);
-        tvKecheng = (TextView) findViewById(R.id.tv_kecheng);
+        tvKecheng = (TextView) findViewById(R.id.tv_invitation_kecheng);
         gridView = (GridView) findViewById(R.id.id_gridview);
         gridView.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
         //此处好药处理日期问题
@@ -107,8 +114,7 @@ public class InvitationActivity extends BaseActivity {
         btnTitle = (Button) viewDate.findViewById(R.id.bt_popupwindow_title);
         adapter = new TimeCheckAdapter(list);
         gridView.setAdapter(adapter);
-        textView.setOnClickListener(this);
-        tvServicename.setOnClickListener(this);
+        tvService.setOnClickListener(this);
         tvKecheng.setOnClickListener(this);
         btSendinvitation.setOnClickListener(this);
         findViewById(R.id.tv_headcommon_headl).setOnClickListener(this);
@@ -128,15 +134,13 @@ public class InvitationActivity extends BaseActivity {
                 scheduleTimeInfo = list.get(position);
                 if(scheduleTimeInfo.isEnable()) {
                     tvTime.setText(scheduleTimeInfo.getFormatTime());
+                    gridView.setVisibility(View.GONE);
                     LogUtils.e("funnco-----", "选中了。。。position:" + position + "  scheduleTimeInfo:" + scheduleTimeInfo);
                 } else {
                     showToast("该时间段已排满");
                 }
             }
         });
-        if (BaseApplication.getInstance().getUser() != null) {
-            ids = BaseApplication.getInstance().getUser().getId();
-        }
     }
 
     //初始化时间选择器
@@ -148,12 +152,12 @@ public class InvitationActivity extends BaseActivity {
         } else {
             list.clear();
             int duration = Integer.valueOf(serveSelected.getDuration());//服务所用时长
-            int stime = Integer.valueOf(serveSelected.getStarttime());//服务开始时间
-            int etime = Integer.valueOf(serveSelected.getEndtime());//服务结束时间
-            int num = (etime - stime) / duration;
+            int sTime = Integer.valueOf(serveSelected.getStarttime());//服务开始时间
+            int eTime = Integer.valueOf(serveSelected.getEndtime());//服务结束时间
+            int num = (eTime - sTime) / duration;
             int[] times = new int[num];
             for (int i = 0; i < num; i++) {
-                int dt = stime + duration * i;
+                int dt = sTime + duration * i;
                 times[i] = dt;
                 ScheduleTimeInfo info = new ScheduleTimeInfo();
                 info.setFormatTime(DateUtils.getTime4Minutes(times[i]));
@@ -171,6 +175,8 @@ public class InvitationActivity extends BaseActivity {
                 info.setEnable(times[i] >= 0);
                 list.add(info);
             }
+            adapter = new TimeCheckAdapter(list);
+            gridView.setAdapter(adapter);
             setListViewHeightBasedOnChildren(gridView);
         }
     }
@@ -248,24 +254,21 @@ public class InvitationActivity extends BaseActivity {
         datePicker.setMaxDate(DateUtils.getDateAfter(12).getTime());
     }
 
-    private boolean dissPopupWindow() {
-        boolean hasPopupwindow = false;
+    private boolean disPopupWindow() {
+        boolean hasPopupWindow = false;
         for (PopupWindow pw : new PopupWindow[]{popupWindow}) {
             if (pw != null && pw.isShowing()) {
                 pw.dismiss();
-                hasPopupwindow = true;
+                hasPopupWindow = true;
             }
         }
-        return hasPopupwindow;
+        return hasPopupWindow;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.textView:
-                getTeamMembersData();
-                break;
-            case R.id.tv_kecheng:
+            case R.id.tv_invitation_kecheng:
                 //选择课程
                 if (TextUtils.isNull(ids)) {
                     showSimpleMessageDialog(R.string.p_fillout_member_choose);
@@ -315,21 +318,22 @@ public class InvitationActivity extends BaseActivity {
             case R.id.bt_popupwindow_ok:
                 sbDate_S = DateUtils.getDate(sbDate.toString(), FORMAT_0, FORMAT_1);
                 tvDate.setText(sbDate_S + " " + DateUtils.getDayInWeek(sbDate_S, FORMAT_1));
-                tvTime.setText("时间");
+                tvTime.setText("");
                 gridView.setVisibility(View.GONE);
-                dissPopupWindow();
+                disPopupWindow();
                 break;
             case R.id.bt_popupwindow_cancle:
-                dissPopupWindow();
+                disPopupWindow();
                 break;
         }
     }
 
     public void btnClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_invitation_service://选择服务
+            case R.id.tv_invitation_member://选择成员
+                getTeamMembersData();
                 break;
-            case R.id.tv_invitation_account://选择日期
+            case R.id.tv_invitation_date://选择日期
                 showPopupWindow(viewDate);
                 break;
             case R.id.tv_invitation_time://选择时间
@@ -338,8 +342,6 @@ public class InvitationActivity extends BaseActivity {
                 } else {
                     showToast("请先选择服务和日期");
                 }
-                break;
-            case R.id.textView:
                 break;
         }
     }
@@ -362,10 +364,33 @@ public class InvitationActivity extends BaseActivity {
             } else {
                 showToast("当前时间不可用，请切换其他时间");
             }
-
         } else if (url.equals(FunncoUrls.getInvitationUrl())) {
             showToast(R.string.str_launch_success_invitation);
-            finishOk();
+            JSONObject paramsJSONObject = JsonUtils.getJObt(result, "params");
+            String shareUrl = JsonUtils.getStringByKey4JOb(paramsJSONObject.toString(), "link");
+            WeicatUtils.setShareContent(mContext, mController, shareUrl, R.mipmap.common_logo_rectangle);
+            //开始分享
+            mController.postShare(mContext, SHARE_MEDIA.WEIXIN, new SocializeListeners.SnsPostListener() {
+                @Override
+                public void onStart() {
+
+                }
+
+                @Override
+                public void onComplete(SHARE_MEDIA share_media, int i, SocializeEntity socializeEntity) {
+                    if (i == 200) {
+                        FunncoUtils.showToast(mContext, R.string.success);
+                        finishOk();
+                    } else {
+                        String eMsg = "";
+                        if (i == -101) {
+                            eMsg = "没有授权";
+                        }
+                        Toast.makeText(mContext, "邀请失败[" + i + "] " + eMsg, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
         }
     }
 
@@ -407,15 +432,16 @@ public class InvitationActivity extends BaseActivity {
             LogUtils.e("------", "成员选择后的到的数据shi：" + ids + " team_id:" + team_id + "  team_name:" + team_name);
             if (!TextUtils.isNull(ids) && !TextUtils.isNull(team_name) && !TextUtils.isNull(member_name)) {
                 ids = ids.trim();
-                textView.setText(member_name + " (" + team_name + ")");
+                tvMember.setText(member_name + " (" + team_name + ")");
             } else {
-                textView.setText("自己");
+                tvMember.setText("自己");
             }
             kechengSelected = null;
             serveSelected = null;
-            tvServicename.setText("服务");
+            tvService.setText("服务");
             tvKecheng.setText("课程");
-            tvTime.setText("时间");
+            tvDate.setText("");
+            tvTime.setText("");
             gridView.setVisibility(View.GONE);
         } else if (requestCode == REQUEST_CODE_SERVICECHOOSE && resultCode == RESULT_CODE_SERVICECHOOSE) {
             if (data != null) {
@@ -425,16 +451,22 @@ public class InvitationActivity extends BaseActivity {
                     if (service_type == 0) {
                         kechengSelected = null;
                         serveSelected = (Serve) BaseApplication.getInstance().getT(key);
-                        tvServicename.setText(serveSelected.getService_name() + "");
+                        tvService.setText(serveSelected.getService_name() + "");
+                        tvService.setBackgroundResource(R.color.color_hint_tangerine);
                         tvKecheng.setText("课程");
-                        tvTime.setText("时间");
+                        tvKecheng.setBackgroundResource(R.color.white);
+                        tvDate.setText("");
+                        tvTime.setText("");
                         LogUtils.e("------", "选中的服务是：" + serveSelected);
                     } else if (service_type == 1) {
                         serveSelected = null;
                         kechengSelected = (Serve) BaseApplication.getInstance().getT(key);
                         tvKecheng.setText(kechengSelected.getService_name() + "");
-                        tvServicename.setText("服务");
-                        tvTime.setText("时间");
+                        tvKecheng.setBackgroundResource(R.color.color_hint_tangerine);
+                        tvService.setText("服务");
+                        tvService.setBackgroundResource(R.color.white);
+                        tvDate.setText("");
+                        tvTime.setText("");
                         LogUtils.e("------", "选中的课程是：" + kechengSelected);
                     }
                     gridView.setVisibility(View.GONE);

@@ -19,10 +19,10 @@ import com.umeng.socialize.weixin.media.WeiXinShareContent;
 public class WeicatUtils {
 
     /**
-     * @功能描述 : 添加微信平台分享
      * @return
+     * @功能描述 : 添加微信平台分享
      */
-    public static void addWXPlatform(Context context,String appId,String appSecret) {
+    public static void addWXPlatform(Context context, String appId, String appSecret) {
         // 注意：在微信授权的时候，必须传递appSecret
         // wx967daebe835fbeac是你在微信开发平台注册应用的AppID, 这里需要替换成你注册的AppID
         // 添加微信平台
@@ -40,24 +40,25 @@ public class WeicatUtils {
     /**
      * 根据不同的平台设置不同的分享内容</br>
      */
-    public static void setShareContent(Context context,UMSocialService mController,UserLoginInfo user,int imageId) {
-        setShareContent(context,mController,user,imageId,null);
+    public static void setShareContent(Context context, UMSocialService mController, UserLoginInfo user, int imageId) {
+        setShareContent(context, mController, user, imageId, null);
     }
 
     /**
      * 设置分享内容，图片来自网络图片  对Bitmap进行分享
+     *
      * @param context
      * @param mController
      * @param user
      * @param imageId
      * @param bitmap
      */
-    public static void setShareContent(Context context,UMSocialService mController,UserLoginInfo user,int imageId,Bitmap bitmap){
+    public static void setShareContent(Context context, UMSocialService mController, UserLoginInfo user, int imageId, Bitmap bitmap) {
         UMImage urlImage = null;
         if (bitmap != null) {
-            urlImage = new UMImage(context,bitmap);
-        }else{
-            urlImage = new UMImage(context,imageId);
+            urlImage = new UMImage(context, bitmap);
+        } else {
+            urlImage = new UMImage(context, imageId);
         }
         String title1 = context.getString(R.string.weicat_title_1);
         String title2 = context.getString(R.string.weicat_title_2);
@@ -78,5 +79,16 @@ public class WeicatUtils {
         circleMedia.setShareImage(urlImage);
         circleMedia.setTargetUrl(FunncoUrls.getShareScheduleUrl(user.getId()));
         mController.setShareMedia(circleMedia);
+    }
+
+    //邀请分享
+    public static void setShareContent(Context context, UMSocialService mController, String url, int imageId) {
+        UMImage urlImage = new UMImage(context, imageId);
+        WeiXinShareContent weixinContent = new WeiXinShareContent();
+        weixinContent.setShareContent("我已帮你选好时间，请直接确认喔！");
+        weixinContent.setTitle("我已帮你选好时间，请直接确认喔！");
+        weixinContent.setTargetUrl(url);
+        weixinContent.setShareMedia(urlImage);
+        mController.setShareMedia(weixinContent);
     }
 }

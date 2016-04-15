@@ -18,18 +18,35 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView"
-                style="@style/style_common_tv"
-                android:layout_marginTop="15dp"
-                android:clickable="false"
-                android:text="成员" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/style_common_tv"
+                    android:layout_width="wrap_content"
+                    android:drawableRight="@null"
+                    android:text="成员" />
+
+                <TextView
+                    android:id="@+id/tv_invitation_member"
+                    style="@style/style_common_tv"
+                    android:drawablePadding="20dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:gravity="right|center_vertical"
+                    android:onClick="btnClick"
+                    android:textColor="@color/color_gray" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/fuchang"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -39,28 +56,56 @@
                     android:text="@string/service" />
 
                 <TextView
-                    android:id="@+id/tv_kecheng"
+                    android:id="@+id/tv_invitation_kecheng"
                     style="@style/style_common_tv"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:text="课程" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_invitation_account"
-                style="@style/style_common_tv"
-                android:layout_below="@id/fuchang"
-                android:layout_marginTop="15dp"
-                android:onClick="btnClick"
-                android:text="日期" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_invitation_time"
-                style="@style/style_common_tv"
-                android:layout_marginBottom="@dimen/dimen_common_5"
-                android:layout_marginTop="15dp"
-                android:onClick="btnClick"
-                android:text="@string/time" />
+                <TextView
+                    style="@style/style_common_tv"
+                    android:layout_width="wrap_content"
+                    android:drawableRight="@null"
+                    android:text="日期" />
+
+                <TextView
+                    android:id="@+id/tv_invitation_date"
+                    style="@style/style_common_tv"
+                    android:drawablePadding="20dp"
+                    android:gravity="right|center_vertical"
+                    android:onClick="btnClick"
+                    android:textColor="@color/color_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/style_common_tv"
+                    android:layout_width="wrap_content"
+                    android:drawableRight="@null"
+                    android:text="@string/time" />
+
+                <TextView
+                    android:id="@+id/tv_invitation_time"
+                    style="@style/style_common_tv"
+                    android:drawablePadding="20dp"
+                    android:gravity="right|center_vertical"
+                    android:onClick="btnClick"
+                    android:textColor="@color/color_gray" />
+            </LinearLayout>
 
             <GridView
                 android:id="@id/id_gridview"
@@ -75,12 +120,15 @@
                 android:id="@+id/tv_invitation_remark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/color_white"
                 android:gravity="top"
-                android:hint="@string/remark"
+                android:hint="备注"
                 android:lines="4"
-                android:padding="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/color_gray"
                 android:textColorHint="@color/color_hint_gray_light"
                 android:textSize="@dimen/font_size_14" />
 

@@ -185,8 +185,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
     private int mCurrentNum;
     //微信分享
     // 整个平台的Controller,负责管理整个SDK的配置、操作等处理
-    private UMSocialService mController = UMServiceFactory
-            .getUMSocialService(Constants.DESCRIPTOR);
+    private UMSocialService mController = UMServiceFactory.getUMSocialService(Constants.DESCRIPTOR);
     private String appId, appSecret;
     private UserLoginInfo user;
     private ImageView ivToday;
@@ -436,7 +435,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         civTitleicon = (CircleImageView) findViewById(R.id.civ_schedule_headl);
         //添加分享内容
         if (user != null) {
-//            WeicatUtils.setShareContent(getActivity(), mController, user, R.mipmap.common_logo_rectangle);
+            //WeicatUtils.setShareContent(getActivity(), mController, user, R.mipmap.common_logo_rectangle);
             String picUrl = user.getHeadpic();
             if (!TextUtils.isNull(picUrl)) {
                 imageLoader.displayImage(picUrl, civTitleicon, options, new ImageLoadingListener() {
@@ -459,6 +458,8 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                     public void onLoadingCancelled(String s, View view) {
                     }
                 });
+            } else {
+                WeicatUtils.setShareContent(mContext, mController, user, R.mipmap.common_logo_rectangle);
             }
         }
         //分享面板
@@ -1521,8 +1522,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         super.onActivityResult(requestCode, resultCode, data);
         LogUtils.e("-----------", "Fragment接受到数据了。。。requestCode:" + Integer.toHexString(requestCode) + ",resultCode:" + Integer.toHexString(resultCode));
         /** 使用SSO授权必须添加如下代码 */
-        UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(
-                requestCode);
+        UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode);
         if (ssoHandler != null) {
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
