@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.funnco.funnco.R;
+import com.funnco.funnco.bean.Team;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.umeng.socialize.controller.UMSocialService;
@@ -38,7 +39,7 @@ public class WeicatUtils {
     }
 
     /**
-     * 根据不同的平台设置不同的分享内容</br>
+     * 根据不同的平台设置不同的分享内容
      */
     public static void setShareContent(Context context, UMSocialService mController, UserLoginInfo user, int imageId) {
         setShareContent(context, mController, user, imageId, null);
@@ -78,6 +79,50 @@ public class WeicatUtils {
         circleMedia.setTitle(title1 + user.getNickname() + title2);
         circleMedia.setShareImage(urlImage);
         circleMedia.setTargetUrl(FunncoUrls.getShareScheduleUrl(user.getId()));
+        mController.setShareMedia(circleMedia);
+    }
+
+    /**
+     * 根据不同的平台设置不同的分享内容</br>
+     */
+    public static void setShareContent(Context context, UMSocialService mController, Team team, int imageId) {
+        setShareContent(context, mController, team, imageId, null);
+    }
+
+    /**
+     * 设置分享内容，图片来自网络图片  对Bitmap进行分享
+     *
+     * @param context
+     * @param mController
+     * @param team
+     * @param imageId
+     * @param bitmap
+     */
+    public static void setShareContent(Context context, UMSocialService mController, Team team, int imageId, Bitmap bitmap) {
+        UMImage urlImage = null;
+        if (bitmap != null) {
+            urlImage = new UMImage(context, bitmap);
+        } else {
+            urlImage = new UMImage(context, imageId);
+        }
+        String title1 = context.getString(R.string.weicat_title_1);
+        String title2 = context.getString(R.string.weicat_title_2);
+        String title3 = context.getString(R.string.weicat_title_3);
+        String title4 = context.getString(R.string.weicat_title_4);
+
+        WeiXinShareContent weixinContent = new WeiXinShareContent();
+        weixinContent.setShareContent(title4);
+        weixinContent.setTitle(team.getTeam_name() + title3);
+        weixinContent.setTargetUrl(FunncoUrls.getShareTeamScheduleUrl(team.getTeam_id()));
+        weixinContent.setShareMedia(urlImage);
+        mController.setShareMedia(weixinContent);
+
+        // 设置朋友圈分享的内容
+        CircleShareContent circleMedia = new CircleShareContent();
+        circleMedia.setShareContent(title4);
+        circleMedia.setTitle(title1 + team.getTeam_name() + title2);
+        circleMedia.setShareImage(urlImage);
+        circleMedia.setTargetUrl(FunncoUrls.getShareTeamScheduleUrl(team.getTeam_id()));
         mController.setShareMedia(circleMedia);
     }
 

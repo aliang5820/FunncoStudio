@@ -5,8 +5,17 @@ package com.funnco.funnco.bean;
  */
 public class ScheduleTimeInfo {
     private String formatTime;
+    private String durationTime;
     private int time;
     private boolean isEnable;
+
+    public String getDurationTime() {
+        return durationTime;
+    }
+
+    public void setDurationTime(String durationTime) {
+        this.durationTime = durationTime;
+    }
 
     public String getFormatTime() {
         return formatTime;

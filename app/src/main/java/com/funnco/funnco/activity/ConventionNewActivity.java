@@ -17,8 +17,10 @@ import android.widget.TextView;
 
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
+import com.funnco.funnco.adapter.TimeCheckAdapter;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.EnableTime;
+import com.funnco.funnco.bean.ScheduleTimeInfo;
 import com.funnco.funnco.bean.Serve;
 import com.funnco.funnco.utils.date.DateUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
@@ -27,7 +29,6 @@ import com.funnco.funnco.utils.string.Actions;
 import com.funnco.funnco.utils.string.TextUtils;
 import com.funnco.funnco.utils.support.FunncoUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
-import com.funnco.funnco.view.layout.CheckableFrameLayout;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -47,14 +48,14 @@ public class ConventionNewActivity extends BaseActivity {
     private Button btAddconvention;
     private TextView tvTeamtype;
     private TextView tvServicename;
+    private TextView tvDate;
     private TextView tvTime;
-    private TextView tv_conventionnew_timepoint;
     private EditText etCustomerName;
     private EditText etCustomerMobile;
     private EditText etCustomerDesc;
     private GridView gridView;
-    private ArrayAdapter<String> adapter;
-    private List<String> list = new ArrayList<>();
+    private TimeCheckAdapter adapter;
+    private List<ScheduleTimeInfo> list = new ArrayList<>();
 
     private PopupWindow popupWindow;
     private View viewDate;
@@ -70,7 +71,7 @@ public class ConventionNewActivity extends BaseActivity {
 
     private Serve serveSelected;
     private String team_id = "";
-    private String time;
+    private ScheduleTimeInfo scheduleTimeInfo;
     private String ids = "";
     private String customerName;
     private String customerMobile;
@@ -98,10 +99,10 @@ public class ConventionNewActivity extends BaseActivity {
         btAddconvention = (Button) findViewById(R.id.bt_save);
         btAddconvention.setText(R.string.str_convention_add);
         ((TextView) findViewById(R.id.tv_headcommon_headm)).setText(R.string.str_convention_new);
-        tv_conventionnew_timepoint = (TextView) findViewById(R.id.tv_conventionnew_timepoint);
+        tvTime = (TextView) findViewById(R.id.tv_conventionnew_timepoint);
         tvTeamtype = (TextView) findViewById(R.id.tv_conventionnew_teamtype);
         tvServicename = (TextView) findViewById(R.id.tv_conventionnew_servicename);
-        tvTime = (TextView) findViewById(R.id.tv_conventionnew_time);
+        tvDate = (TextView) findViewById(R.id.tv_conventionnew_time);
         etCustomerName = (EditText) findViewById(R.id.et_conventionnew_name);
         etCustomerMobile = (EditText) findViewById(R.id.et_conventionnew_mobile);
         etCustomerDesc = (EditText) findViewById(R.id.et_conventionnew_desc);
@@ -116,7 +117,7 @@ public class ConventionNewActivity extends BaseActivity {
 
         datePicker = (DatePicker) viewDate.findViewById(R.id.dp_popupwindow_date);
         btnTitle = (Button) viewDate.findViewById(R.id.bt_popupwindow_title);
-        adapter = new ArrayAdapter<>(mContext, R.layout.layout_item_conventiontime, R.id.id_checkbox, list);
+        adapter = new TimeCheckAdapter(list);
         gridView.setAdapter(adapter);
 
         sbDate = new StringBuilder(DateUtils.getCurrentDate(FORMAT_0));
@@ -135,14 +136,14 @@ public class ConventionNewActivity extends BaseActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckableFrameLayout cf = (CheckableFrameLayout) view;
-                boolean state = cf.isChecked();
-                //if (state) {
-                time = list.get(position);
-                //gridView.setVisibility(View.GONE);
-                tv_conventionnew_timepoint.setText(time);
-                LogUtils.e("funnco-----", "选中了。。。position:" + position + "  time:" + time);
-                //}
+                scheduleTimeInfo = list.get(position);
+                if(scheduleTimeInfo.isEnable()) {
+                    tvTime.setText(scheduleTimeInfo.getFormatTime() + "-" + scheduleTimeInfo.getDurationTime());
+                    gridView.setVisibility(View.GONE);
+                    LogUtils.e("funnco-----", "选中了。。。position:" + position + "  scheduleTimeInfo:" + scheduleTimeInfo);
+                } else {
+                    showToast("该时间段已排满");
+                }
             }
         });
 
@@ -169,7 +170,7 @@ public class ConventionNewActivity extends BaseActivity {
                 break;
             case R.id.bt_popupwindow_ok:
                 sbDate_S = DateUtils.getDate(sbDate.toString(), FORMAT_0, FORMAT_1);
-                tvTime.setText(sbDate_S + " " + DateUtils.getDayInWeek(sbDate_S, FORMAT_1));
+                tvDate.setText(sbDate_S + " " + DateUtils.getDayInWeek(sbDate_S, FORMAT_1));
                 dissPopupWindow();
                 break;
             case R.id.bt_popupwindow_cancle:
@@ -205,11 +206,11 @@ public class ConventionNewActivity extends BaseActivity {
             msg = getString(R.string.p_fillout_service_choose);
             return false;
         }
-        if (TextUtils.equals(tv_conventionnew_timepoint.getText(), "时间")) {
+        if (TextUtils.equals(tvTime.getText(), "时间")) {
             msg = getString(R.string.p_fillout_time_point_choose);
             return false;
         }
-        if (TextUtils.equals(tvTime.getText(), "日期")) {
+        if (TextUtils.equals(tvDate.getText(), "日期")) {
             msg = getString(R.string.p_fillout_time_choose);
             return false;
         }
@@ -263,7 +264,7 @@ public class ConventionNewActivity extends BaseActivity {
     private void postData() {
         map.clear();
         map.put("dates", sbDate.toString());
-        map.put("booktime", time);
+        map.put("booktime", tvTime.getText().toString().split("-")[0]);
         map.put("service_id", serveSelected.getId());//
         map.put("truename", customerName);
         map.put("mobile", customerMobile);
@@ -292,8 +293,7 @@ public class ConventionNewActivity extends BaseActivity {
                 }
                 adapter.notifyDataSetChanged();
             } else {
-                if (serveSelected != null)
-                    showSimpleMessageDialog("服务的起始时间：" + serveSelected.getStartdate() + " 至 " + serveSelected.getEnddate());
+                showToast("当前日期不可用，请切换其他时间");
             }
 
         } else if (url.equals(FunncoUrls.getConventionNewUrl())) {
@@ -313,33 +313,33 @@ public class ConventionNewActivity extends BaseActivity {
             return;
         }
         list.clear();
-//        listTimes.clear();
         int duration = Integer.valueOf(serveSelected.getDuration());//服务所用时长
-        int stime = Integer.valueOf(serveSelected.getStarttime());//服务开始时间
-        int etime = Integer.valueOf(serveSelected.getEndtime());//服务结束时间
-        int num = (etime - stime) / duration;
+        int sTime = Integer.valueOf(serveSelected.getStarttime());//服务开始时间
+        int eTime = Integer.valueOf(serveSelected.getEndtime());//服务结束时间
+        int num = (eTime - sTime) / duration;
         int[] times = new int[num];
         for (int i = 0; i < num; i++) {
-            int dt = stime + duration * i;
+            int dt = sTime + duration * i;
             times[i] = dt;
-            for (EnableTime time : ls) {
-                int st = time.getStarttime();
-                int et = time.getEndtime();
-                if (Integer.valueOf(time.getNumbers()) == time.getCounts()) {
+            ScheduleTimeInfo info = new ScheduleTimeInfo();
+            info.setFormatTime(DateUtils.getTime4Minutes(times[i]));
+            info.setDurationTime(DateUtils.getTime4Minutes(times[i] + duration));
+            for (EnableTime enableTime : ls) {
+                int st = enableTime.getStarttime();
+                int et = enableTime.getEndtime();
+                if (Integer.valueOf(enableTime.getNumbers()) == enableTime.getCounts()) {
                     if (dt <= st - duration || dt >= et) {
                         times[i] = dt;
-//                        list.add(String.valueOf(dt));
                     } else {
                         times[i] = -1;
                     }
                 }
             }
-            if (times[i] >= 0) {
-//                listTimes.add(times[i]);
-                list.add(DateUtils.getTime4Minutes(times[i]));
-            }
+            info.setEnable(times[i] >= 0);
+            list.add(info);
         }
-
+        adapter = new TimeCheckAdapter(list);
+        gridView.setAdapter(adapter);
         setListViewHeightBasedOnChildren(gridView);
     }
 
@@ -356,8 +356,8 @@ public class ConventionNewActivity extends BaseActivity {
                         .putExtra("team_id", team_id)
                         .putExtra("team_uid", ids), REQUEST_CODE_SERVICECHOOSE);
                 //重置其他属性
-                tvTime.setText("日期");
-                tv_conventionnew_timepoint.setText("时间");
+                tvDate.setText("日期");
+                tvTime.setText("时间");
                 gridView.setVisibility(View.GONE);
                 break;
             case R.id.tv_conventionnew_teamtype://选择团队成员
@@ -368,16 +368,16 @@ public class ConventionNewActivity extends BaseActivity {
                 startActivityForResult(intent, REQUEST_CODE_MEMBERCHOOSE);
                 //重置其他属性
                 serveSelected = null;
-                tvTime.setText("日期");
+                tvDate.setText("日期");
                 tvServicename.setText("服务");
-                tv_conventionnew_timepoint.setText("时间");
+                tvTime.setText("时间");
                 gridView.setVisibility(View.GONE);
                 break;
             case R.id.tv_conventionnew_time://打开时间面板
                 showPopupWindow(viewDate);
                 break;
             case R.id.tv_conventionnew_timepoint:
-                if (serveSelected != null && !TextUtils.equals(tvTime.getText(), "日期")) {
+                if (serveSelected != null && !TextUtils.equals(tvDate.getText(), "日期")) {
                     getScheduleTime();
                 } else {
                     showToast("请先选择服务和日期");

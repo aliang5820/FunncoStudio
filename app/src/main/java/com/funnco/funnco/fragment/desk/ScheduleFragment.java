@@ -88,7 +88,6 @@ import com.funnco.funnco.utils.thrid.WeicatUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.view.imageview.CircleImageView;
 import com.funnco.funnco.view.layout.CalendarPanel;
-import com.funnco.funnco.view.layout.CheckableFrameLayout;
 import com.funnco.funnco.view.listview.XListView;
 import com.funnco.funnco.view.switcher.SwipeLayout;
 import com.funnco.funnco.view.textview.DesignTextView;
@@ -142,6 +141,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
     private List<MonthCalendar> mDateInfoList;
     private ImageLoader imageLoader;
     private DisplayImageOptions options;
+    private List<CheckBox> checkBoxList = new ArrayList<>();
     //新预约日期对象的集合
     private List<ScheduleNew> newscheduleNewList = new ArrayList<>();
     //未读消息的日期对象集合 key--2015-07-18(日期)  value - 3(当天预约人数)
@@ -1129,14 +1129,6 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 return true;
             }
         });
-        vShareListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckableFrameLayout cfl = (CheckableFrameLayout) view;
-                LogUtils.e("funnco", "是选中吗？" + cfl.isChecked());
-//                if (cfl.isChecked())
-            }
-        });
     }
 
     @Override
@@ -1321,6 +1313,12 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 startActivityForResult(InvitationActivity.class, null, REQUEST_CODE_INVITATION_ADD);
                 break;
             case R.id.id_title_0://分享到微信好友
+                int position = (int)vShareListView.getTag();
+                if(position == 0) {
+                    WeicatUtils.setShareContent(mContext, mController, user, R.mipmap.common_logo_rectangle);
+                } else {
+                    WeicatUtils.setShareContent(mContext, mController, teamList.get(position - 1), R.mipmap.common_logo_rectangle);
+                }
                 mController.postShare(mContext, SHARE_MEDIA.WEIXIN, new SocializeListeners.SnsPostListener() {
                     @Override
                     public void onStart() {
@@ -1336,13 +1334,18 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                             if (i == -101) {
                                 eMsg = "没有授权";
                             }
-                            Toast.makeText(mContext, "分享失败[" + i + "] " +
-                                    eMsg, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "分享失败[" + i + "] " + eMsg, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
                 break;
             case R.id.id_title_1://分享到微信朋友圈
+                int position1 = (int)vShareListView.getTag();
+                if(position1 == 0) {
+                    WeicatUtils.setShareContent(mContext, mController, user, R.mipmap.common_logo_rectangle);
+                } else {
+                    WeicatUtils.setShareContent(mContext, mController, teamList.get(position1 - 1), R.mipmap.common_logo_rectangle);
+                }
                 mController.postShare(mContext, SHARE_MEDIA.WEIXIN_CIRCLE, new SocializeListeners.SnsPostListener() {
                     @Override
                     public void onStart() {
@@ -1358,8 +1361,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                             if (i == -101) {
                                 eMsg = "没有授权";
                             }
-                            Toast.makeText(mContext, "分享失败[" + i + "] " +
-                                    eMsg, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "分享失败[" + i + "] " + eMsg, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -1734,18 +1736,15 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                                 lsTM.get(j).setU_id(user.getId());
                             }
                             SQliteAsynchTask.saveOrUpdate(dbUtils, lsTM);
-//                                AsyncTaskUtils.saveListBean(dbUtils, lsTM, TeamMember.class, false);
                         }
                         teamList.add(team);
                     }
                     SQliteAsynchTask.saveOrUpdate(dbUtils, teamList);
-                    initShareAdapter();
-//                        AsyncTaskUtils.saveListBean(dbUtils, teamList, Team.class, true);
                 } else if (ls != null && ls.size() == 0) {
-//                        vShareListView.setVisibility();
                     BaseApplication.getInstance().setHasTeam(false);
                     SharedPreferencesUtils.setValue(mContext, "hasTeam", "0");
                 }
+                initShareAdapter();
                 adapter.notifyDataSetChanged();
                 for (int i = 0; i < teamList.size(); i++) {
                     teammemberExpListView.expandGroup(i);
@@ -1764,21 +1763,42 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
      */
     private void initShareAdapter() {
         vShareListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        shareAdapter = new CommonAdapter<Team>(mContext, teamList, R.layout.layout_item_reasoncancle, new CommonBaseAdapter.CommonImp() {
+        vShareListView.setTag(0);
+        shareAdapter = new CommonAdapter<Team>(mContext, teamList, R.layout.layout_share_item, new CommonBaseAdapter.CommonImp() {
             @Override
             public int getCommonCount() {
                 return teamList.size() + 1;
             }
         }) {
             @Override
-            public void convert(ViewHolder helper, Team item, int position) {
-                if (position == teamList.size()) {
-                    helper.setText(R.id.tv_item_reasoncancle_reson, "自己");
-                    ((CheckableFrameLayout) helper.getConvertView()).setChecked(true);
+            public void convert(ViewHolder helper, Team item, final int position) {
+                CheckBox checkBox = helper.getView(R.id.item_name);
+                if (position == 0) {
+                    helper.setText(R.id.item_name, "自己");
+                    helper.setImageByUrl(R.id.item_img, user.getHeadpic());
+                    checkBox.setChecked(true);
                 } else {
-                    ((CheckableFrameLayout) helper.getConvertView()).setChecked(false);
-                    helper.setText(R.id.tv_item_reasoncancle_reson, item.getTeam_name());
+                    Team t = teamList.get(position - 1);
+                    helper.setText(R.id.item_name, t.getTeam_name());
+                    helper.setImageResource(R.id.item_img, R.mipmap.common_schedule_conventiontype_icon);
+                    checkBox.setChecked(false);
                 }
+                if (!checkBoxList.contains(checkBox)) {
+                    checkBoxList.add(checkBox);
+                }
+                checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CheckBox checkBox = (CheckBox) view;
+                        checkBox.setChecked(true);
+                        vShareListView.setTag(position);
+                        for (CheckBox ch : checkBoxList) {
+                            if (checkBox != ch) {
+                                ch.setChecked(false);
+                            }
+                        }
+                    }
+                });
             }
         };
         vShareListView.setAdapter(shareAdapter);
@@ -1884,8 +1904,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         String _day = TimeUtils.timePast(year + SPLITSTR + month + SPLITSTR
                 + day);
         tvScheduleDay.setText(_day);
-        tvScheduleDate.setText(TimeUtils.timeFormat(month) + MONTHSTR
-                + TimeUtils.timeFormat(day) + DAYSTR);
+        tvScheduleDate.setText(TimeUtils.timeFormat(month) + MONTHSTR + TimeUtils.timeFormat(day) + DAYSTR);
         // 1、 http request，自己扩展
         // 2、 ListView填充操作，自己扩展
         ivToday.setVisibility(mLastSelectedDay.equals(TimeUtils.getCurrentDate()) ? View.INVISIBLE : View.VISIBLE);

@@ -133,7 +133,7 @@ public class InvitationActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 scheduleTimeInfo = list.get(position);
                 if(scheduleTimeInfo.isEnable()) {
-                    tvTime.setText(scheduleTimeInfo.getFormatTime());
+                    tvTime.setText(scheduleTimeInfo.getFormatTime() + "-" + scheduleTimeInfo.getDurationTime());
                     gridView.setVisibility(View.GONE);
                     LogUtils.e("funnco-----", "选中了。。。position:" + position + "  scheduleTimeInfo:" + scheduleTimeInfo);
                 } else {
@@ -148,6 +148,7 @@ public class InvitationActivity extends BaseActivity {
         if (serveSelected == null && kechengSelected != null) {
             //课程直接使用开始时间
             int startTime = JsonUtils.getIntByKey4JOb(paramsJSONObject.toString(), "starttime");
+            kechengSelected.getDuration();
             tvTime.setText(DateUtils.getTime4Minutes(startTime));
         } else {
             list.clear();
@@ -161,6 +162,7 @@ public class InvitationActivity extends BaseActivity {
                 times[i] = dt;
                 ScheduleTimeInfo info = new ScheduleTimeInfo();
                 info.setFormatTime(DateUtils.getTime4Minutes(times[i]));
+                info.setDurationTime(DateUtils.getTime4Minutes(times[i] + duration));
                 for (EnableTime enableTime : ls) {
                     int st = enableTime.getStarttime();
                     int et = enableTime.getEndtime();
@@ -294,7 +296,7 @@ public class InvitationActivity extends BaseActivity {
                 finishOk();
                 break;
             case R.id.bt_save://添加邀请，网络对接
-                if (tvDate.length() <= 0) {
+                if (tvDate.length() <= 0 || tvTime.length() <= 0) {
                     showToast("请选择时间");
                 } else if(serveSelected == null && kechengSelected == null) {
                     showToast("请选择服务或者课程");
@@ -308,7 +310,8 @@ public class InvitationActivity extends BaseActivity {
                     serverId = kechengSelected.getId();
                 }
                 map.put("service_id", serverId);
-                map.put("booktime", tvTime.getText().toString());
+                String time = tvTime.getText().toString();
+                map.put("booktime", time.contains("-") ? time.split("-")[0] : time);
                 map.put("dates", sbDate.toString());
                 map.put("remark", etRemark.length() > 0 ? etRemark.getText().toString() : "");
                 map.put("uid", ids);
@@ -362,7 +365,7 @@ public class InvitationActivity extends BaseActivity {
                 }
                 adapter.notifyDataSetChanged();
             } else {
-                showToast("当前时间不可用，请切换其他时间");
+                showToast("当前日期不可用，请切换其他时间");
             }
         } else if (url.equals(FunncoUrls.getInvitationUrl())) {
             showToast(R.string.str_launch_success_invitation);
