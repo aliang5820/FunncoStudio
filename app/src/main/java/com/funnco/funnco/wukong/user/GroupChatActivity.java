@@ -29,7 +29,7 @@ public class GroupChatActivity extends BaseFragmentActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.chat_layout);
-        findViewById(R.id.tv_headcommon_headl).setOnClickListener(this);
+        findViewById(R.id.id_lview).setOnClickListener(this);
         mCurrentSession = (Session) getIntent().getSerializableExtra(Session.SESSION_INTENT_KEY);
         ((TextView)findViewById(R.id.id_mview)).setText(mCurrentSession.title());
         tvSetting = (ImageButton) findViewById(R.id.id_rview);

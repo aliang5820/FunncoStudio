@@ -85,7 +85,7 @@ public class NotificationTeamInviteActivity extends BaseActivity {
             map.clear();
             map.put("team_uid", user.getId() + "");
             showLoading(parentView);
-            postData2(map,FunncoUrls.getTeamInviteListUrl(), false);
+            postData2(map,FunncoUrls.getMessageTeamUrl(), false);
         }else{
             getData4Db();
         }
@@ -99,7 +99,7 @@ public class NotificationTeamInviteActivity extends BaseActivity {
             xListView.stopRefresh();
         }
         dismissLoading();
-        if (url.equals(FunncoUrls.getTeamInviteListUrl())) {
+        if (url.equals(FunncoUrls.getMessageTeamUrl())) {
             JSONObject paramsJSONObject = JsonUtils.getJObt(result, "params");
             if (paramsJSONObject != null) {
                 JSONArray listJSONArray = JsonUtils.getJAry(paramsJSONObject.toString(), "list");

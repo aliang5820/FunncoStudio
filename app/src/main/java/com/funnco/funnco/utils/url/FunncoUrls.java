@@ -607,15 +607,6 @@ public class FunncoUrls {
 
     /**
      * 2.1新增
-     *
-     * @return 邀请通知列表
-     */
-    public static String getTeamInviteListUrl() {
-        return getBaseUrl() + "?m=team_invite_list";
-    }
-
-    /**
-     * 2.1新增
      * 参数说明 id 邀请的Id status 接受/拒绝(1接受 2拒绝)
      *
      * @return 对邀请处理
@@ -714,5 +705,46 @@ public class FunncoUrls {
      */
     public static String getQRCodeUrl() {
         return getQRBaseUrl() + "?";
+    }
+
+    /**
+     * 2.2 新增
+     * 参数说明 lan client
+     *
+     * @return 消息首页（提醒，系统）最新信息
+     */
+    public static String getMessageUrl() {
+        return getBaseUrl() + "?m=message";
+    }
+
+    /**
+     * 2.2 新增
+     * 参数说明 lan client
+     *
+     * @return 系统通知信息
+     */
+    public static String getMessageSystemUrl() {
+        return getBaseUrl() + "?m=sysmessagelist";
+    }
+
+    /**
+     * 2.2 新增
+     * 参数说明 lan client
+     *
+     * @return 提醒通知信息
+     */
+    public static String getMessageRemindUrl() {
+        return getBaseUrl() + "?m=remindmessagelist";
+    }
+
+    /**
+     * 2.2 新增
+     * 参数说明 lan client
+     * status:0:申请 1：通过，2拒绝
+     * types：1:团队邀请 2：申请加入
+     * @return 团队通知信息
+     */
+    public static String getMessageTeamUrl() {
+        return getBaseUrl() + "?m=team_invite_list";
     }
 }

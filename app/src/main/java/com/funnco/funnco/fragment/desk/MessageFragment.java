@@ -34,6 +34,7 @@ import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.MainActivity;
 import com.funnco.funnco.activity.login.LoginActivity;
 import com.funnco.funnco.activity.notification.NotificationActivity;
+import com.funnco.funnco.activity.notification.NotificationTeamInviteActivity;
 import com.funnco.funnco.activity.team.TeamMemberChooseActivity;
 import com.funnco.funnco.adapter.CommonAdapter;
 import com.funnco.funnco.adapter.ViewHolder;
@@ -421,20 +422,29 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //要抛开头部的3个系统消息
-                    if (position > 3 && position - 1 >= 0 && position - 1 < list.size()) {
-                        Conversation conversation = list.get((position - 3 ) - 1);
+                    if(position == 1){
+                        //提醒通知
+                        Intent intent = new Intent().setClass(mContext, NotificationActivity.class);
+                        startActivityForResult(intent, REQUEST_CODE_NOTIFICATION);
+                    } else if(position == 2){
+                        //系统通知
+                        Intent intent = new Intent().setClass(mContext, NotificationActivity.class);
+                        startActivityForResult(intent, REQUEST_CODE_NOTIFICATION);
+                    } else if(position == 3){
+                        //团队通知
+                        Intent intent = new Intent().setClass(mContext, NotificationTeamInviteActivity.class);
+                        startActivityForResult(intent, REQUEST_CODE_NOTIFICATION);
+                    } else {
+                        Conversation conversation = list.get(position - 4);
                         conversation.resetUnreadCount();
                         adapter.notifyDataSetChanged();
-                        Intent intent = new Intent(mContext, SingleChatActivity.class);
+                        Intent intent = new Intent(mContext, conversation.type() == Conversation.ConversationType.CHAT ? SingleChatActivity.class : GroupChatActivity.class);
                         TeamMember tm = memberMap.get(conversation.getPeerId());
                         if (tm != null) {
                             intent.putExtra("title", tm.getNickname());
                         }
                         intent.putExtra(Session.SESSION_INTENT_KEY, new GroupSession(conversation));
                         startActivity(intent);
-                    } else {
-                        Intent intent = new Intent().setClass(mContext, NotificationActivity.class);
-                        startActivityForResult(intent, REQUEST_CODE_NOTIFICATION);
                     }
                 }
             });
