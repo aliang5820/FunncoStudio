@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/time"
+        style="@style/PayTextViewStyle"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="0dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
+        tools:text="ceshi" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/time"
+        android:src="@mipmap/msg_service"/>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/common_chat_receive_bg_normal"
+        android:layout_toRightOf="@+id/img"
+        android:padding="10dp"
+        android:textColor="@color/color_black_2"
+        android:layout_below="@+id/time"
+        tools:text="设计费洛杉矶飞洛杉矶冯绍峰和爽肤水精灵旅社"/>
+</RelativeLayout>

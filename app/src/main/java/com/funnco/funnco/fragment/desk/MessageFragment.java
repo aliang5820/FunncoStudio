@@ -34,6 +34,8 @@ import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.MainActivity;
 import com.funnco.funnco.activity.login.LoginActivity;
 import com.funnco.funnco.activity.notification.NotificationActivity;
+import com.funnco.funnco.activity.notification.NotificationRemindActivity;
+import com.funnco.funnco.activity.notification.NotificationSystemActivity;
 import com.funnco.funnco.activity.notification.NotificationTeamInviteActivity;
 import com.funnco.funnco.activity.team.TeamMemberChooseActivity;
 import com.funnco.funnco.adapter.CommonAdapter;
@@ -305,8 +307,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 for (Conversation conversation : conversations) {
                     long peerId = conversation.getPeerId();
                     if (conversation.type() == Conversation.ConversationType.CHAT && !memberMap.containsKey(peerId)) {
-                        TeamMember tm = (TeamMember) SQliteAsynchTask.selectT(dbUtils,
-                                TeamMember.class, peerId + "");
+                        TeamMember tm = (TeamMember) SQliteAsynchTask.selectT(dbUtils, TeamMember.class, peerId + "");
                         if (tm != null) {
                             memberMap.put(peerId, tm);
                         }
@@ -346,7 +347,6 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                             for (Member mb : members) {
                                 LogUtils.e("funnco------", "获得的聊天成员是：roletype:" + mb.roleType() + " \n nickname:" +
                                         mb.user().nickname() + " \navatar:" + mb.user().avatar());
-
                             }
                         }
 
@@ -424,11 +424,11 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     //要抛开头部的3个系统消息
                     if(position == 1){
                         //提醒通知
-                        Intent intent = new Intent().setClass(mContext, NotificationActivity.class);
+                        Intent intent = new Intent().setClass(mContext, NotificationRemindActivity.class);
                         startActivityForResult(intent, REQUEST_CODE_NOTIFICATION);
                     } else if(position == 2){
                         //系统通知
-                        Intent intent = new Intent().setClass(mContext, NotificationActivity.class);
+                        Intent intent = new Intent().setClass(mContext, NotificationSystemActivity.class);
                         startActivityForResult(intent, REQUEST_CODE_NOTIFICATION);
                     } else if(position == 3){
                         //团队通知

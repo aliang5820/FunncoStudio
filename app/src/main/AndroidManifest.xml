@@ -437,11 +437,15 @@
         <activity android:name=".activity.chat.ChatActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
-        <!-- 通知消息界面  包含提醒和系统-->
-        <activity android:name=".activity.notification.NotificationActivity"
+        <!-- 服务提醒通知消息界面-->
+        <activity android:name=".activity.notification.NotificationRemindActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
-        <!-- 团队邀请消息 须做应答-->
+        <!-- 系统通知消息界面-->
+        <activity android:name=".activity.notification.NotificationSystemActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!-- 团队通知邀请消息 须做应答-->
         <activity android:name=".activity.notification.NotificationTeamInviteActivity"
             android:exported="false"
             android:screenOrientation="portrait"

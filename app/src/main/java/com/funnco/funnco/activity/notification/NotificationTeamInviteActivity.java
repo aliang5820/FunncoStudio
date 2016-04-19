@@ -56,6 +56,7 @@ public class NotificationTeamInviteActivity extends BaseActivity {
             }
         }
     };
+
     @Override
     protected void loadLayout() {
         super.loadLayout();
