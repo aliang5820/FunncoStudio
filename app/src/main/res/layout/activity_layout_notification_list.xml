@@ -10,5 +10,6 @@
     <com.funnco.funnco.view.listview.XListView
         android:id="@id/id_listView"
         style="@style/style_common_listview"
-        android:layout_below="@id/llayout_head" />
+        android:layout_below="@id/llayout_head"
+        android:paddingBottom="20dp"/>
 </RelativeLayout>

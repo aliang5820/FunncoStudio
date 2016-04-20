@@ -21,6 +21,15 @@ public class TeamInvite {
     private String team_name;
     private String headpic;
     private String status;
+    private String createtime;
+
+    public String getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
+    }
 
     public void setTypes(String types) {
         this.types = types;

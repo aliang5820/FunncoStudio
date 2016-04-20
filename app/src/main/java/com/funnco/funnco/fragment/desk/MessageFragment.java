@@ -33,7 +33,6 @@ import com.alibaba.wukong.im.UserService;
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.MainActivity;
 import com.funnco.funnco.activity.login.LoginActivity;
-import com.funnco.funnco.activity.notification.NotificationActivity;
 import com.funnco.funnco.activity.notification.NotificationRemindActivity;
 import com.funnco.funnco.activity.notification.NotificationSystemActivity;
 import com.funnco.funnco.activity.notification.NotificationTeamInviteActivity;
@@ -41,16 +40,20 @@ import com.funnco.funnco.activity.team.TeamMemberChooseActivity;
 import com.funnco.funnco.adapter.CommonAdapter;
 import com.funnco.funnco.adapter.ViewHolder;
 import com.funnco.funnco.application.BaseApplication;
+import com.funnco.funnco.bean.NotificationLastRemindAndSystem;
+import com.funnco.funnco.bean.TeamInvite;
 import com.funnco.funnco.bean.TeamMember;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.fragment.BaseFragment;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.task.SQliteAsynchTask;
 import com.funnco.funnco.utils.date.DateUtils;
+import com.funnco.funnco.utils.date.TimeUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.string.TextUtils;
 import com.funnco.funnco.utils.support.FunncoUtils;
+import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.view.imageview.CircleImageView;
 import com.funnco.funnco.view.listview.MessageListHeaderView;
 import com.funnco.funnco.view.listview.XListView;
@@ -61,6 +64,9 @@ import com.funnco.funnco.wukong.user.GroupChatActivity;
 import com.funnco.funnco.wukong.user.SingleChatActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -95,6 +101,9 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     private PopupWindow popupWindow;
     private View vCreateConversation;
     private MessageService messageService;
+    private MessageListHeaderView remindView;
+    private MessageListHeaderView systemView;
+    private MessageListHeaderView teamMsgView;
     private boolean hasSingleCon = false;
     private boolean hasGroupCon = false;
 
@@ -235,20 +244,20 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         adapter.isTag(true, new int[]{R.id.id_title_0, R.id.id_title_1, R.id.id_title_2});
         //设置3个系统级消息
         //服务提醒
-        MessageListHeaderView service = new MessageListHeaderView(mContext);
-        service.setIcon(R.mipmap.msg_service);
-        service.setTitle("服务提醒");
-        xListView.addHeaderView(service);
+        remindView = new MessageListHeaderView(mContext);
+        remindView.setIcon(R.mipmap.msg_service);
+        remindView.setTitle("服务提醒");
+        xListView.addHeaderView(remindView);
         //系统通知
-        MessageListHeaderView sys = new MessageListHeaderView(mContext);
-        sys.setIcon(R.mipmap.msg_sys);
-        sys.setTitle("系统通知");
-        xListView.addHeaderView(sys);
+        systemView = new MessageListHeaderView(mContext);
+        systemView.setIcon(R.mipmap.msg_sys);
+        systemView.setTitle("系统通知");
+        xListView.addHeaderView(systemView);
         //团队通知
-        MessageListHeaderView teamMsg = new MessageListHeaderView(mContext);
-        teamMsg.setIcon(R.mipmap.msg_team);
-        teamMsg.setTitle("团队通知");
-        xListView.addHeaderView(teamMsg);
+        teamMsgView = new MessageListHeaderView(mContext);
+        teamMsgView.setIcon(R.mipmap.msg_team);
+        teamMsgView.setTitle("团队通知");
+        xListView.addHeaderView(teamMsgView);
 
         xListView.setAdapter(adapter);
         initLocalBroadcastManager();
@@ -376,8 +385,6 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void initLocalBroadcastManager() {
-
-
         localBroadcastManager = LocalBroadcastManager.getInstance(mContext);
         IntentFilter intentFilter = new IntentFilter();
 
@@ -454,6 +461,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     clearAsyncTask();
                     handler.sendEmptyMessageDelayed(0, 3000);
                     getConversationList(conversationListSize);//单聊 或者是群聊
+                    getLastSystemMessage();
                 }
 
                 @Override
@@ -468,6 +476,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     protected void init() {
+        getLastSystemMessage();
     }
 
     @Override
@@ -573,5 +582,70 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    /**
+     * 获取最新的系统消息
+     */
+    private void getLastSystemMessage() {
+        postData2(null,FunncoUrls.getMessageUrl(), true);//获取系统通知和预约提醒
+        postData2(null,FunncoUrls.getMessageTeamUrl(), true);//获取团队通知
+    }
+
+    @Override
+    protected void dataPostBack(String result, String url) {
+        dismissLoading();
+        if(TextUtils.equals(url, FunncoUrls.getMessageUrl())) {
+            //获取系统通知和预约提醒
+            JSONObject paramsJSONObject = JsonUtils.getJObt(result, "params");
+            if (paramsJSONObject != null) {
+                JSONArray listJSONArray = JsonUtils.getJAry(paramsJSONObject.toString(), "remmsg");
+                if (listJSONArray != null) {
+                    List<NotificationLastRemindAndSystem> ls = JsonUtils.getObjectArray(listJSONArray.toString(), NotificationLastRemindAndSystem.class);
+                    if(ls != null && !ls.isEmpty()) {
+                        NotificationLastRemindAndSystem remindAndSystem = ls.get(0);
+                        remindView.setMessage(remindAndSystem.getContent());
+                        remindView.setTime(remindAndSystem.getCreate_time());
+                    }
+                }
+                listJSONArray = JsonUtils.getJAry(paramsJSONObject.toString(), "sysmsg");
+                if (listJSONArray != null) {
+                    List<NotificationLastRemindAndSystem> ls = JsonUtils.getObjectArray(listJSONArray.toString(), NotificationLastRemindAndSystem.class);
+                    if(ls != null && !ls.isEmpty()) {
+                        NotificationLastRemindAndSystem remindAndSystem = ls.get(0);
+                        systemView.setMessage(remindAndSystem.getSummary());
+                        systemView.setTime(remindAndSystem.getCreate_time());
+                    }
+                }
+            }
+        } else if(TextUtils.equals(url, FunncoUrls.getMessageTeamUrl())){
+            //获取团队通知
+            JSONObject paramsJSONObject = JsonUtils.getJObt(result, "params");
+            if (paramsJSONObject != null) {
+                JSONArray listJSONArray = JsonUtils.getJAry(paramsJSONObject.toString(), "list");
+                if (listJSONArray != null) {
+                    List<TeamInvite> ls = JsonUtils.getObjectArray(listJSONArray.toString(), TeamInvite.class);
+                    if(ls != null && !ls.isEmpty()) {
+                        TeamInvite teamInvite = ls.get(0);
+                        String msg;
+                        if(TextUtils.equals(teamInvite.getTypes(), "1")) {
+                            //邀请
+                            msg = teamInvite.getInviter_nickname() + "邀请您加入" + teamInvite.getTeam_name() + "团队";
+                        } else {
+                            //申请
+                            msg = teamInvite.getInviter_nickname() + "申请加入" + teamInvite.getTeam_name() + "团队";
+                        }
+                        teamMsgView.setMessage(msg);
+                        teamMsgView.setTime("");
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void dataPostBackF(String result, String url) {
+        super.dataPostBackF(result, url);
+        dismissLoading();
     }
 }

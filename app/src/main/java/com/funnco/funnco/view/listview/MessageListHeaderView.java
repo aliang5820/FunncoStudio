@@ -55,4 +55,8 @@ public class MessageListHeaderView extends RelativeLayout {
     public void setTime(long time) {
         timeView.setText(DateUtils.formatHHMM(time));
     }
+
+    public void setTime(String time) {
+        timeView.setText(time);
+    }
 }

@@ -70,4 +70,6 @@ public class Constants {
     public static final String IN_OUT_NUM = "num";
     public static final String IN_OUT_TITLE = "title";
     public static final String IN_OUT_DESC = "desc";
+
+    public static final String URL = "URL";
 }

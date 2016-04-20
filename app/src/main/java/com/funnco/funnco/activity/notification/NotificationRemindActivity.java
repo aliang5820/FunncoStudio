@@ -1,6 +1,5 @@
 package com.funnco.funnco.activity.notification;
 
-import android.text.Html;
 import android.widget.TextView;
 
 import com.funnco.funnco.R;
@@ -51,7 +50,6 @@ public class NotificationRemindActivity extends NotificationBaseActivity {
                 adapter.notifyDataSetChanged();
             }
         }
-        LogUtils.e(TAG, result);
     }
 
     @Override

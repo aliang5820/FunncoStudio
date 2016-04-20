@@ -106,7 +106,7 @@
                     android:ellipsize="end"
                     android:paddingTop="3dp"
                     android:singleLine="true"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     tools:text="用户名" />
                 <!-- 首条聊天信息-->
                 <TextView
@@ -129,7 +129,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/id_imageview"
                 android:textColor="@color/color_hint_gray_light"
-                android:textSize="@dimen/text_size_10"
+                android:textSize="@dimen/text_size_12"
+                android:paddingTop="3dp"
                 tools:text="10:30" />
         </RelativeLayout>
 
