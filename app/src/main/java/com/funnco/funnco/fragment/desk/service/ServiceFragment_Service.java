@@ -24,6 +24,7 @@ import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.Serve;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.fragment.BaseFragment;
+import com.funnco.funnco.fragment.desk.ServiceFragment;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.task.SQliteAsynchTask;
 import com.funnco.funnco.utils.date.DateUtils;
@@ -200,6 +201,7 @@ public class ServiceFragment_Service extends BaseFragment implements View.OnClic
             getData();
         }
     }
+
     @Override
     protected void initViews() {
         user = BaseApplication.getInstance().getUser();

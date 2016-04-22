@@ -20,6 +20,6 @@
         android:layout_below="@id/iv_icon"
         android:textColor="@drawable/selector_color_bottommenu"
         android:gravity="center"
-        android:text="@string/service"/>
+        android:text="创建"/>
 
 </RelativeLayout>

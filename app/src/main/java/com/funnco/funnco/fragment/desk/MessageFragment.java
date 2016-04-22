@@ -192,10 +192,13 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     if (memberMap != null && memberMap.containsKey(peerId)) {
                         helper.setText(R.id.id_title_4, memberMap.get(peerId).getNickname());
                         imageLoader.displayImage(memberMap.get(peerId).getHeadpic(), circleImageView);
+                    } else {
+                        helper.setText(R.id.id_title_4, nickName);
+                        circleImageView.setImageResource(R.mipmap.my_kehu);
                     }
                 } else if (type == Conversation.ConversationType.GROUP) {
                     helper.setText(R.id.id_title_4, nickName + "");
-                    helper.setImageResource(R.id.id_imageview, R.mipmap.common_schedule_conventiontype_icon);
+                    helper.setImageResource(R.id.id_imageview, R.mipmap.my_group);
                 }
 
                 DesignTextView unreadCountTv = helper.getView(R.id.id_title_3);

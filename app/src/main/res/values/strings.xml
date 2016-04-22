@@ -583,7 +583,7 @@
 
     <string-array name="array_team_menu_list">
         <item>@string/str_team_member_2</item>
-        <item>@string/str_team_service</item>
+        <item>团队服务/课程</item>
         <item>@string/str_team_photo</item>
         <item>@string/qr_code_2</item>
         <item>@string/business_code</item>

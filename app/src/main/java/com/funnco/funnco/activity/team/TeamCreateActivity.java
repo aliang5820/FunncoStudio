@@ -47,7 +47,6 @@ public class TeamCreateActivity extends BaseActivity {
     private LinearLayout ll_popup;
 
     private String teamName;
-    private String newIconPath;
     private String msg = "";
     //是否是拍照
     private boolean isCamer = false;
@@ -68,7 +67,7 @@ public class TeamCreateActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        ((TextView)findViewById(R.id.tv_headcommon_headm)).setText(R.string.str_team_create);
+        ((TextView) findViewById(R.id.tv_headcommon_headm)).setText(R.string.str_team_create);
         btNext = (Button) findViewById(R.id.bt_save);
         btNext.setText(R.string.next);
         btTeampic = (Button) findViewById(R.id.bt_teamcreate_teampic);
@@ -130,10 +129,12 @@ public class TeamCreateActivity extends BaseActivity {
             }
         });
     }
+
     //进行拍照
     private static final int REQUEST_CODE_CAMERA = 14;
     private File currentfile;
     private String imagepath;
+
     public void sendStarCamera() {
         currentfile = getTempFile();
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -141,6 +142,7 @@ public class TeamCreateActivity extends BaseActivity {
         intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
         startActivityForResult(intent, REQUEST_CODE_CAMERA);
     }
+
     //得到临时文件存储路径
     public File getTempFile() {
         String str = null;
@@ -150,6 +152,7 @@ public class TeamCreateActivity extends BaseActivity {
         str = format.format(date);
         return new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Funnco", "FC_" + str + ".jpg");
     }
+
     @Override
     protected void initEvents() {
         findViewById(R.id.tv_headcommon_headl).setOnClickListener(this);
@@ -160,41 +163,41 @@ public class TeamCreateActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_headcommon_headl://返回
                 finishOk();
                 break;
             case R.id.bt_save://下一步
-                teamName = etTeamName.getText()+"";
-                if (!checkData()){
+                teamName = etTeamName.getText() + "";
+                if (!checkData()) {
                     showSimpleMessageDialog(msg + "");
                     return;
                 }
                 Intent intent = new Intent(mContext, TeamCardSettingActivity.class);
-                intent.putExtra("teamName",teamName);
-                intent.putExtra("filePath",imagepath);
+                intent.putExtra("teamName", teamName);
+                intent.putExtra("filePath", imagepath);
                 startActivityForResult(intent, REQUEST_CODE_COMMON);
                 break;
             case R.id.iv_teamcreate_icon:
             case R.id.bt_teamcreate_teampic://设置封面按钮(设置返回后需要将修改封面按钮进行隐藏)
-                pwPhotoChoose.showAtLocation(parentView, Gravity.BOTTOM,0,0);
+                pwPhotoChoose.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
                 break;
         }
     }
 
     private boolean checkData() {
-        if (TextUtils.isNull(teamName)){
+        if (TextUtils.isNull(teamName)) {
             msg = getString(R.string.p_fillout_teamname);
             return false;
         }
-        if (TextUtils.isNull(imagepath) || imagepath.length() <=4){
+        if (TextUtils.isNull(imagepath) || imagepath.length() <= 4) {
             msg = getString(R.string.p_fillout_teampic);
-            return  false;
+            return false;
         }
         return true;
     }
 
-    public void btnClick(View view){
+    public void btnClick(View view) {
     }
 
     /**
@@ -206,13 +209,15 @@ public class TeamCreateActivity extends BaseActivity {
         Intent intent = new Intent(this, CropImageActivity.class);
         intent.setData(Uri.fromFile(new File(path)));
         intent.putExtra("crop_image_w", FunncoUtils.getScreenWidth(mContext));//宽度
-        intent.putExtra("crop_image_h", FunncoUtils.dp2px(mActivity,200));//高度可以自定义
+        intent.putExtra("crop_image_h", FunncoUtils.dp2px(mActivity, 200));//高度可以自定义
         intent.putExtra(MediaStore.EXTRA_OUTPUT, getCropFile().getAbsolutePath());
         startActivityForResult(intent, REQUEST_CODE_CROP);
     }
+
     public File getCropFile() {
         return new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Funnco", "crop.jpg");
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -248,7 +253,7 @@ public class TeamCreateActivity extends BaseActivity {
                 if (crop_path != null) {
                     currentfile = new File(crop_path);
                     if (currentfile.exists()) {
-                        newIconPath = crop_path;
+                        imagepath = crop_path;
                         try {
                             Bitmap bm = Bimp.revitionImageSize(crop_path);
 //                            bm = BitmapUtils.getCircleBitmap(bm, 150, 150);
@@ -265,7 +270,7 @@ public class TeamCreateActivity extends BaseActivity {
                 }
                 break;
             case REQUEST_CODE_COMMON:
-                if (resultCode == RESULT_CODE_COMMON){
+                if (resultCode == RESULT_CODE_COMMON) {
                     setResult(RESULT_CODE_CREATENOW);
                     finishOk();
                 }

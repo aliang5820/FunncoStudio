@@ -177,7 +177,6 @@ public class TeamMenuActivity extends BaseActivity {
         }else if (requestCode == REQUEST_CODE_TEAM_SETTING && resultCode == RESULT_CODE_TEAM_OUT){
             setResult(RESULT_CODE_TEAM_BREAKUP, new Intent().putExtra("team_id", team.getTeam_id()));
         }
-        finishOk();
         super.onActivityResult(requestCode, resultCode, data);
     }
 }

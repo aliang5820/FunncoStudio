@@ -85,7 +85,6 @@ public class TeamMyActivity extends BaseActivity {
         container.addView(vAddNotify);
         btAddteam = (Button) vTeamList.findViewById(R.id.id_button);//如果当前团队超过两个则隐藏
         initAdapter();
-        getTeamList();
     }
 
     private void initAdapter() {
@@ -124,6 +123,12 @@ public class TeamMyActivity extends BaseActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getTeamList();
     }
 
     @Override

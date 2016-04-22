@@ -127,7 +127,6 @@ public class TeamServiceActivity extends BaseActivity {
                 }
             }
         }
-        getData();
     }
     private void showPw(View view){
         pwAddnotify = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -152,7 +151,13 @@ public class TeamServiceActivity extends BaseActivity {
         vAddnotify.findViewById(R.id.bt_pw_addservice_courses).setOnClickListener(this);
 
     }
-//    private Bundle bundle = new Bundle();
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
+
     private void initListViewListener(){
         if (xListView != null){
             xListView.setXListViewListener(new XListView.IXListViewListener() {

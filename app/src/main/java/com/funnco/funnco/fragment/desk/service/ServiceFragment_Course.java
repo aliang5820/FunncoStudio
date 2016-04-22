@@ -24,18 +24,19 @@ import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.Serve;
 import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.fragment.BaseFragment;
+import com.funnco.funnco.fragment.desk.ServiceFragment;
 import com.funnco.funnco.impl.Post;
+import com.funnco.funnco.impl.SimpleSwipeListener;
 import com.funnco.funnco.task.SQliteAsynchTask;
-import com.funnco.funnco.utils.http.AsyncTaskUtils;
 import com.funnco.funnco.utils.date.DateUtils;
-import com.funnco.funnco.utils.url.FunncoUrls;
+import com.funnco.funnco.utils.http.AsyncTaskUtils;
+import com.funnco.funnco.utils.http.NetUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.log.LogUtils;
-import com.funnco.funnco.utils.http.NetUtils;
 import com.funnco.funnco.utils.string.TextUtils;
-import com.funnco.funnco.impl.SimpleSwipeListener;
-import com.funnco.funnco.view.switcher.SwipeLayout;
+import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.view.listview.XListView;
+import com.funnco.funnco.view.switcher.SwipeLayout;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -51,7 +52,7 @@ import java.util.Map;
  * 课程
  * Created by user on 2015/9/20.
  */
-public class ServiceFragment_Course extends BaseFragment implements Post,View.OnClickListener {
+public class ServiceFragment_Course extends BaseFragment implements Post, View.OnClickListener {
 
     private XListView xListView;
 
@@ -119,20 +120,20 @@ public class ServiceFragment_Course extends BaseFragment implements Post,View.On
                 if (!TextUtils.isNull(des)) {
                     helper.getView(R.id.tv_item_courses_desc).setVisibility(View.VISIBLE);
                     helper.setText(R.id.tv_item_courses_desc, des);
-                }else{
+                } else {
                     helper.getView(R.id.tv_item_courses_desc).setVisibility(View.GONE);
                 }
-                if (team_id.equals("0")){
+                if (team_id.equals("0")) {
                     helper.getView(R.id.iv_item_courses_teamicon).setVisibility(View.INVISIBLE);
-                }else{
+                } else {
                     helper.getView(R.id.iv_item_courses_teamicon).setVisibility(View.VISIBLE);
                 }
                 //开课人数-课程人数
                 helper.setText(R.id.tv_item_courses_number, item.getMin_numbers() + "-" + item.getNumbers() + "人");
-                if (position == getPositionForSection(item.getWeek_index())){
+                if (position == getPositionForSection(item.getWeek_index())) {
                     helper.getView(R.id.tv_item_courses_weektip).setVisibility(View.VISIBLE);
-                    helper.setText(R.id.tv_item_courses_weektip,DateUtils.getWeek(Integer.valueOf(item.getWeek_index()),"周"));
-                }else{
+                    helper.setText(R.id.tv_item_courses_weektip, DateUtils.getWeek(Integer.valueOf(item.getWeek_index()), "周"));
+                } else {
                     helper.getView(R.id.tv_item_courses_weektip).setVisibility(View.GONE);
                 }
 
@@ -193,7 +194,7 @@ public class ServiceFragment_Course extends BaseFragment implements Post,View.On
         adapter.isTag(true, new int[]{R.id.delete});
         xListView.setAdapter(adapter);
         popDelete = new PopupWindow();
-        View popView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_popupwindow_delete_service,null);
+        View popView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_popupwindow_delete_service, null);
         ll_popup = popView.findViewById(R.id.llayout_popupwindow);
         btDelete = (Button) popView.findViewById(R.id.bt_popupwindow_delete);
         btCancle = (Button) popView.findViewById(R.id.bt_popupwindow_cancle);
@@ -206,6 +207,7 @@ public class ServiceFragment_Course extends BaseFragment implements Post,View.On
         popDelete.setContentView(popView);
         getData();
     }
+
     public int getPositionForSection(String section) {
         for (int i = 0; i < list.size(); i++) {
             String sortStr = list.get(i).getWeek_index();
@@ -216,6 +218,7 @@ public class ServiceFragment_Course extends BaseFragment implements Post,View.On
         }
         return -1;
     }
+
     @Override
     public void post(int... position) {
         if (position[0] == 0) {
@@ -258,29 +261,30 @@ public class ServiceFragment_Course extends BaseFragment implements Post,View.On
                         listSrc.clear();
                         listSrc.addAll(ls);
                         reCreateData(listSrc);
-                    }else{
+                    } else {
                         reCreateData(null);
                     }
                 }
             }
+
             @Override
             public void getBitmap(String url, Bitmap bitmap) {
             }
         }, false, FunncoUrls.getServiceListUrl()));
     }
 
-    private void reCreateData(List<Serve> data){
+    private void reCreateData(List<Serve> data) {
         if (data != null && data.size() > 0) {
             list.clear();
-            for (Serve s : data){
-                if (s != null){
+            for (Serve s : data) {
+                if (s != null) {
                     String[] weeks = s.getWeeks().split(",");
-                    for (String week : weeks){
-                        if (!TextUtils.isNull(week)){
+                    for (String week : weeks) {
+                        if (!TextUtils.isNull(week)) {
                             Serve s_2 = (Serve) s.clone();
-                            if (week.equals("0")){
+                            if (week.equals("0")) {
                                 s_2.setWeek_index("7");
-                            }else {
+                            } else {
                                 s_2.setWeek_index(week);
                             }
                             list.add(s_2);
@@ -301,7 +305,7 @@ public class ServiceFragment_Course extends BaseFragment implements Post,View.On
             });
 
             SQliteAsynchTask.saveOrUpdate(dbUtils, data);
-        }else{
+        } else {
             listSrc.clear();
             list.clear();
         }
@@ -341,38 +345,47 @@ public class ServiceFragment_Course extends BaseFragment implements Post,View.On
         btDelete.setOnClickListener(this);
         btCancle.setOnClickListener(this);
     }
-    private void showPopupWindow(){
-        if (popDelete != null && !popDelete.isShowing()){
+
+    private void showPopupWindow() {
+        if (popDelete != null && !popDelete.isShowing()) {
             ll_popup.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.activity_translate_in));
             popDelete.showAtLocation(xListView, Gravity.BOTTOM, 0, 0);
         }
     }
-    private boolean dismissPopupWindow(){
+
+    private boolean dismissPopupWindow() {
         boolean hasPw = false;
-        for (PopupWindow pw : new PopupWindow[]{popDelete}){
-            if (pw != null && pw.isShowing()){
+        for (PopupWindow pw : new PopupWindow[]{popDelete}) {
+            if (pw != null && pw.isShowing()) {
                 pw.dismiss();
                 hasPw = true;
             }
         }
         return hasPw;
     }
-    private void closeSwip(){
-        if (swipeLayout != null){
+
+    private void closeSwip() {
+        if (swipeLayout != null) {
             swipeLayout.close();
         }
     }
+
     @Override
-    protected void init() {}
+    protected void init() {
+    }
+
     @Override
-    public void onMainAction(String data) {}
+    public void onMainAction(String data) {
+    }
+
     @Override
-    public void onMainData(List<?>... list) {}
+    public void onMainData(List<?>... list) {
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         LogUtils.e("------", "ServiceFragment_Courses   requestCode : " + Integer.toHexString(requestCode) + "  resultCode : " + Integer.toHexString(resultCode));
-        if (requestCode == REQUEST_CODE_COURSES_EDIT && resultCode == RESULT_CODE_COURSES){
+        if (requestCode == REQUEST_CODE_COURSES_EDIT && resultCode == RESULT_CODE_COURSES) {
             getData();
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -380,23 +393,23 @@ public class ServiceFragment_Course extends BaseFragment implements Post,View.On
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.bt_popupwindow_delete:
                 dismissPopupWindow();
-                if (!NetUtils.isConnection(mContext)){//无网络  不进行网络操作
+                if (!NetUtils.isConnection(mContext)) {//无网络  不进行网络操作
                     showNetErr();
                     return;
                 }
                 Map map = new HashMap();
-                String id = list.get(deletePosition).getId()+"";
+                String id = list.get(deletePosition).getId() + "";
                 map.put("id", id);
                 postData2(map, FunncoUrls.getDeleteServicdeUrl(), false);
                 SQliteAsynchTask.deleteById(dbUtils, Serve.class, list.get(deletePosition).getId());
                 //移除顺序需要特别注意
 //                list.remove(deletePosition);
-                for (int i = 0 ;i < listSrc.size(); i ++){
+                for (int i = 0; i < listSrc.size(); i++) {
                     Serve s = listSrc.get(i);
-                    if (s.getId().equals(id)){
+                    if (s.getId().equals(id)) {
                         listSrc.remove(s);
                     }
                 }

@@ -5,44 +5,108 @@
 
     <include
         android:id="@id/llayout_head"
-        layout="@layout/layout_activity_header_service"/>
-    <com.funnco.funnco.support.FragmentTabHost
-        android:id="@android:id/tabhost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/llayout_head"
-        android:padding="0dp">
-        <FrameLayout
-            android:id="@android:id/tabcontent"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="0"
-            android:padding="0dp"/>
-    </com.funnco.funnco.support.FragmentTabHost>
-    <FrameLayout
-        android:id="@+id/realtabcontent"
+        layout="@layout/layout_activity_header_service" />
+
+    <RelativeLayout
+        android:id="@+id/data_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@android:id/tabhost"/>
-    <!-- android:layout_below="@android:id/tabhost"-->
-    <LinearLayout
-        android:id="@id/id_scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_common_4dp"
         android:layout_below="@id/llayout_head"
-        android:weightSum="2"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/iv_scroll_line"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        android:visibility="gone">
+
+        <com.funnco.funnco.support.FragmentTabHost
+            android:id="@android:id/tabhost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="0dp">
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="0"
+                android:padding="0dp" />
+        </com.funnco.funnco.support.FragmentTabHost>
+
+        <FrameLayout
+            android:id="@+id/realtabcontent"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="matrix"
-            android:background="@color/color_hint_tangerine"/>
-    </LinearLayout>
-    <!--<View
+            android:layout_below="@android:id/tabhost" />
+        <!-- android:layout_below="@android:id/tabhost"-->
+        <LinearLayout
+            android:id="@id/id_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_common_4dp"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/iv_scroll_line"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/color_hint_tangerine"
+                android:scaleType="matrix" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/empty_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_common_1px"
-        android:layout_below="@id/id_scrollview"
-        android:background="@color/color_hint_gray_light"/>-->
+        android:layout_height="match_parent"
+        android:layout_below="@id/llayout_head"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/create_group"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/create_group" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/half_transparent"
+                android:gravity="center"
+                android:text="我是商户(创建团队)"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_red_title" />
+
+        <RelativeLayout
+            android:id="@+id/create_geren"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/create_geren" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/half_transparent"
+                android:gravity="center"
+                android:text="我是一人的个体户"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+        </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>
