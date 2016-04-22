@@ -150,12 +150,15 @@ public class NotificationTeamInviteActivity extends BaseActivity {
                 }
                 helper.setText(R.id.id_title_0, item.getInviter_nickname());
                 helper.setText(R.id.id_title_2, item.getTeam_name());
+                helper.setText(R.id.time, item.getCreatetime());
                 String status = item.getStatus();
                 if (status.equals("0")){
+                    helper.getView(R.id.lineView).setVisibility(View.VISIBLE);
                     helper.getView(R.id.id_title_5).setVisibility(View.VISIBLE);
                     helper.getView(R.id.id_title_5).setVisibility(View.VISIBLE);
-                    helper.getView(R.id.id_title_6).setVisibility(View.INVISIBLE);
+                    helper.getView(R.id.id_title_6).setVisibility(View.GONE);
                 }else {
+                    helper.getView(R.id.lineView).setVisibility(View.GONE);
                     helper.getView(R.id.id_title_5).setVisibility(View.GONE);
                     helper.getView(R.id.id_title_7).setVisibility(View.GONE);
                     helper.getView(R.id.id_title_6).setVisibility(View.VISIBLE);

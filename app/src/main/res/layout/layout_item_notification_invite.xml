@@ -1,77 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <TextView
+        android:id="@+id/time"
+        style="@style/PayTextViewStyle"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_edit_height_65">
-        <!-- 头像-->
-        <com.funnco.funnco.view.imageview.CircleImageView
-            android:id="@id/id_imageview"
-            android:layout_width="@dimen/dimen_common_width_55"
-            android:layout_height="@dimen/dimen_common_width_55"
-            android:layout_marginLeft="@dimen/dimen_common_15"
-            android:layout_centerVertical="true"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="0dp"
+        tools:text="ceshi" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/bg_radius_team_invite"
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/id_imageview"
-            android:paddingLeft="@dimen/dimen_common_10"
-            android:paddingRight="@dimen/dimen_common_10"
-            android:layout_centerVertical="true">
-            <!-- 邀请人名字-->
-            <TextView
-                android:id="@id/id_title_0"
-                android:layout_width="wrap_content"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
+            <!-- 头像-->
+            <com.funnco.funnco.view.imageview.CircleImageView
+                android:id="@id/id_imageview"
+                android:layout_width="@dimen/dimen_common_width_55"
+                android:layout_height="@dimen/dimen_common_width_55"
+                android:layout_marginLeft="@dimen/dimen_common_15"
+                android:src="@mipmap/avatar_in_active" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="查理"
-                />
-            <TextView
-                android:id="@id/id_title_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="申请加入您的团队"
-                android:layout_toRightOf="@id/id_title_0"
-                android:paddingLeft="@dimen/dimen_common_10"/>
-            <TextView
-                android:id="@id/id_title_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="永琪飞发走丝"
-                android:layout_below="@id/id_title_0"/>
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/id_imageview"
+                android:paddingLeft="@dimen/dimen_common_10"
+                android:paddingRight="@dimen/dimen_common_10">
+                <!-- 邀请人名字-->
+                <TextView
+                    android:id="@id/id_title_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查理"
+                    android:textColor="@color/color_black_2" />
+
+                <TextView
+                    android:id="@id/id_title_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/id_title_0"
+                    android:paddingLeft="@dimen/dimen_common_10"
+                    android:text="申请加入您的团队"
+                    android:textColor="@color/color_black_2" />
+
+                <TextView
+                    android:id="@id/id_title_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/id_title_0"
+                    android:layout_marginTop="4dp"
+                    android:text="永琪飞发走丝"
+                    android:textColor="@color/color_black_2" />
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_common_40"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <!-- 同意-->
-        <Button
-            android:id="@id/id_title_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/color_white"
-            android:background="@drawable/selector_bindnotify_registfaster"
-            android:text="@string/str_agreen"/>
-        <!-- 已处理-->
-        <TextView
-            android:id="@id/id_title_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/str_agreen_done"/>
-        <!-- 拒绝-->
-        <Button
-            android:id="@id/id_title_7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:textColor="@color/color_hint_gray_light"
-            android:text="@string/str_refuse"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_common_1px"
+            android:background="@color/color_black_5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_common_40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <!-- 同意-->
+            <TextView
+                android:id="@id/id_title_5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/agreen"
+                android:textColor="@color/color_red_title"
+                android:textSize="16sp" />
+
+            <View
+                android:id="@+id/lineView"
+                android:layout_width="1px"
+                android:layout_height="40dp"
+                android:background="@color/color_black_5" />
+
+            <!-- 已处理-->
+            <TextView
+                android:id="@id/id_title_6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/str_agreen_done"
+                android:textSize="16sp"
+                android:visibility="gone" />
+            <!-- 拒绝-->
+            <TextView
+                android:id="@id/id_title_7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/str_refuse"
+                android:textColor="@color/color_red_title"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_common_1px"
-        android:background="@color/color_hint_gray_light"
-        android:layout_marginTop="@dimen/dimen_common_10"/>
+
 </LinearLayout>

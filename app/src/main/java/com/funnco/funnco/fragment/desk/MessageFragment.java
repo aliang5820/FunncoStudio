@@ -475,8 +475,14 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     }
 
     @Override
-    protected void init() {
+    public void onResume() {
+        super.onResume();
         getLastSystemMessage();
+    }
+
+    @Override
+    protected void init() {
+
     }
 
     @Override
