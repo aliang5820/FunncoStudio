@@ -85,12 +85,21 @@
                 android:layout_toRightOf="@id/rlayout_item_schedule_left"
                 android:gravity="center_vertical">
 
+                <com.funnco.funnco.view.imageview.CircleImageView
+                    android:id="@+id/service_img"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_alignParentLeft="true"
+                    android:src="@mipmap/common_schedule_conventiontype_icon" />
+
                 <TextView
                     android:id="@+id/tv_item_schedule_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_toRightOf="@+id/service_img"
                     android:layout_alignParentTop="true"
+                    android:layout_alignBaseline="@+id/service_img"
                     android:ellipsize="end"
                     android:maxWidth="180dp"
                     android:singleLine="true"
@@ -161,7 +170,7 @@
                         android:layout_height="20dp"
                         android:layout_marginLeft="5dp"
                         android:text="自己"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </RelativeLayout>
 

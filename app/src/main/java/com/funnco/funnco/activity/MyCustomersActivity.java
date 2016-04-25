@@ -19,10 +19,10 @@ import com.funnco.funnco.bean.MyCustomer;
 import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.ComparatorByName;
 import com.funnco.funnco.task.AsyTask;
+import com.funnco.funnco.utils.http.NetUtils;
+import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.support.CharacterParser;
 import com.funnco.funnco.utils.url.FunncoUrls;
-import com.funnco.funnco.utils.json.JsonUtils;
-import com.funnco.funnco.utils.http.NetUtils;
 import com.funnco.funnco.view.edittext.ClearEditText;
 import com.funnco.funnco.view.textview.SideBar;
 import com.lidroid.xutils.exception.DbException;
@@ -40,6 +40,7 @@ import java.util.Map;
 /**
  * 我的通讯录
  * Created by user on 2015/5/18.
+ *
  * @author Shawn
  */
 public class MyCustomersActivity extends BaseActivity {
@@ -66,6 +67,7 @@ public class MyCustomersActivity extends BaseActivity {
     private static final int RESULT_DELETE_CODE = 4202;
     private static final int RESULT_EDIT_CODE = 4201;
     private static final int RESULT_SORT_DATE = 0xf415;
+    private static final int RESULT_CODE_MEMBERCHOOSE = 0xf16;
 
     private static int RESULT_COE_UPDATED_MYC = 0xf802;//有修改信息
     private View parentView;
@@ -74,16 +76,17 @@ public class MyCustomersActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         intent = getIntent();
-        parentView = getLayoutInflater().inflate(R.layout.layout_activity_mycustomer,null);
+        parentView = getLayoutInflater().inflate(R.layout.layout_activity_mycustomer, null);
         setContentView(parentView);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if ((requestCode == REQUEST_CUSTOMER_CODE || requestCode == REQUEST_SORT_DATE) && (resultCode == RESULT_COE_UPDATED_MYC || resultCode == RESULT_SORT_DATE)) {
             try {
                 List<MyCustomer> ls = dbUtils.findAll(MyCustomer.class);
-                if (ls != null && ls.size() > 0){
+                if (ls != null && ls.size() > 0) {
                     list.clear();
                     list.addAll(ls);
                     Collections.sort(list);
@@ -98,13 +101,13 @@ public class MyCustomersActivity extends BaseActivity {
     @Override
     protected void initView() {
         characterParser = new CharacterParser();
-        if (intent != null){
+        if (intent != null) {
             Bundle bundle = intent.getExtras();
-            if (bundle != null){
+            if (bundle != null) {
                 title = bundle.getString("info");
             }
         }
-        if (!TextUtils.isEmpty(title)){
+        if (!TextUtils.isEmpty(title)) {
             ((TextView) findViewById(R.id.tv_headcommon_headm)).setText(title);
         }
         tvNotify = (TextView) findViewById(R.id.tv_mycustomer_notify);
@@ -119,26 +122,38 @@ public class MyCustomersActivity extends BaseActivity {
         comparatorByName = new ComparatorByName();
         //对数据集合进行排序
         Collections.sort(list, comparatorByName);
-        adapter = new SortAdapter(mContext,list,imageLoader,options);
+        adapter = new SortAdapter(mContext, list, imageLoader, options);
         listView.setAdapter(adapter);
         getData();
     }
+
     @Override
     protected void initEvents() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //这里要利用adapter.getItem(position)来获取当前position所对应的对象
                 customer = (MyCustomer) adapter.getItem(position);
                 index = position;
                 Intent intent = new Intent();
-                intent.putExtra("type",0);
-                intent.putExtra("userid",customer.getC_uid());
-//                intent.putExtra("mycustomer", customer);
-                intent.setClass(mContext,CustomerInfoActivity.class);
-                startActivityForResult(intent,REQUEST_CUSTOMER_CODE);
+                intent.putExtra("type", 0);
+                intent.putExtra("userid", customer.getC_uid());
+                //intent.putExtra("mycustomer", customer);
+                if (getIntent().getBooleanExtra("isChat", false)) {
+                    //客户私聊,已开通直达号才可以私聊
+                    if (customer.getCustom_client() == 1) {
+                        intent.putExtra(KEY, "mycustomer");
+                        BaseApplication.getInstance().setT("mycustomer", customer);
+                        setResult(RESULT_CODE_MEMBERCHOOSE, intent);
+                        finishOk();
+                    } else {
+                        showToast("该用户暂未开通直达号");
+                    }
+                } else {
+                    intent.setClass(mContext, CustomerInfoActivity.class);
+                    startActivityForResult(intent, REQUEST_CUSTOMER_CODE);
+                }
             }
         });
         //设置右侧触摸监听
@@ -160,28 +175,33 @@ public class MyCustomersActivity extends BaseActivity {
                 //当输入框里面的值为空，更新为原来的列表，否则为过滤数据列表
                 filterData(s.toString());
             }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {}
+                                          int after) {
+            }
+
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
         });
     }
 
     /**
      * 根据输入框中的值来过滤数据并更新ListView
+     *
      * @param filterStr
      */
-    private void filterData(String filterStr){
+    private void filterData(String filterStr) {
         List<MyCustomer> filterDateList = new ArrayList<>();
 
-        if(TextUtils.isEmpty(filterStr)){
+        if (TextUtils.isEmpty(filterStr)) {
             filterDateList = list;
-        }else{
+        } else {
             filterDateList.clear();
-            for(MyCustomer c : list){
-                String name =c.getRemark_name();
-                if(name.toLowerCase().contains(filterStr.toLowerCase()) || characterParser.getSelling(name).toLowerCase().startsWith(filterStr.toLowerCase())){
+            for (MyCustomer c : list) {
+                String name = c.getRemark_name();
+                if (name.toLowerCase().contains(filterStr.toLowerCase()) || characterParser.getSelling(name).toLowerCase().startsWith(filterStr.toLowerCase())) {
                     filterDateList.add(c);
                 }
             }
@@ -194,7 +214,7 @@ public class MyCustomersActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_headcommon_headl://标题栏的返回按钮
                 finishOk();
                 break;
@@ -209,8 +229,8 @@ public class MyCustomersActivity extends BaseActivity {
     /**
      * 获取预约客户数据
      */
-    private void getData(){
-        if (dbUtils != null){
+    private void getData() {
+        if (dbUtils != null) {
             try {
                 if (BaseApplication.getInstance().getUser() == null || !NetUtils.isConnection(mContext)) {
                     if (dbUtils.tableIsExist(MyCustomer.class)) {
@@ -219,15 +239,15 @@ public class MyCustomersActivity extends BaseActivity {
                             list.clear();
                             list.addAll(ls);
                         }
-                        if (list.size() > 0){
+                        if (list.size() > 0) {
                             tvNotify.setVisibility(View.GONE);
-                        }else{
+                        } else {
                             tvNotify.setVisibility(View.VISIBLE);
                         }
                         Collections.sort(list, comparatorByName);
                         adapter.updateListView(list);
                     }
-                }else{
+                } else {
                     getData4Net();
                 }
             } catch (DbException e) {
@@ -239,50 +259,52 @@ public class MyCustomersActivity extends BaseActivity {
     /**
      * 从网络获取预约客户数据
      */
-    private void getData4Net(){
+    private void getData4Net() {
         Map<String, Object> map = new HashMap<>();
-        map.put("sort","letter");
+        map.put("sort", "letter");
         AsyTask task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
-                    if (JsonUtils.getResponseCode(result) == 0){
-                        JSONObject paramsObt = JsonUtils.getJObt(result, "params");
-                        if (list.size() > 0) {
-                            list.clear();
-                        }
-                        Iterator it = paramsObt.keys();
-                        //遍历key
-                        while(it.hasNext()){
-                            String key = (String) it.next();
-                            JSONArray arr = JsonUtils.getJAry(paramsObt.toString(), key);
-                            List<MyCustomer> ls  = JsonUtils.getObjectArray(arr.toString(), MyCustomer.class);
-                            //再次遍历所有对象中的letter字段保证不为空
-                            for(MyCustomer c : ls){
-                                if (TextUtils.isEmpty(c.getLetter())){
-                                    c.setLetter(key);
-                                }
-                            }
-                            if (ls != null && ls.size() > 0){
-                                list.addAll(ls);
-                            }
-                        }
-                        if (list.size() > 0){
-                            tvNotify.setVisibility(View.GONE);
-                        }else{
-                            tvNotify.setVisibility(View.VISIBLE);
-                        }
-                        try {
-                            dbUtils.saveOrUpdateAll(list);
-                        } catch (DbException e) {
-                            e.printStackTrace();
-                        }
-                        Collections.sort(list,comparatorByName);
-                        adapter.updateListView(list);
+                if (JsonUtils.getResponseCode(result) == 0) {
+                    JSONObject paramsObt = JsonUtils.getJObt(result, "params");
+                    if (list.size() > 0) {
+                        list.clear();
                     }
+                    Iterator it = paramsObt.keys();
+                    //遍历key
+                    while (it.hasNext()) {
+                        String key = (String) it.next();
+                        JSONArray arr = JsonUtils.getJAry(paramsObt.toString(), key);
+                        List<MyCustomer> ls = JsonUtils.getObjectArray(arr.toString(), MyCustomer.class);
+                        //再次遍历所有对象中的letter字段保证不为空
+                        for (MyCustomer c : ls) {
+                            if (TextUtils.isEmpty(c.getLetter())) {
+                                c.setLetter(key);
+                            }
+                        }
+                        if (ls != null && ls.size() > 0) {
+                            list.addAll(ls);
+                        }
+                    }
+                    if (list.size() > 0) {
+                        tvNotify.setVisibility(View.GONE);
+                    } else {
+                        tvNotify.setVisibility(View.VISIBLE);
+                    }
+                    try {
+                        dbUtils.saveOrUpdateAll(list);
+                    } catch (DbException e) {
+                        e.printStackTrace();
+                    }
+                    Collections.sort(list, comparatorByName);
+                    adapter.updateListView(list);
+                }
             }
+
             @Override
-            public void getBitmap(String rul,Bitmap bitmap) {}
-        },false);
+            public void getBitmap(String rul, Bitmap bitmap) {
+            }
+        }, false);
         task.execute(FunncoUrls.getMyCustomersUrl());
         putAsyncTask(task);
     }

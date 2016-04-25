@@ -38,9 +38,10 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
 
     /**
      * 当ListView数据发生变化时,调用此方法来更新ListView
+     *
      * @param list
      */
-    public void updateListView(List<MyCustomer> list){
+    public void updateListView(List<MyCustomer> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -58,15 +59,15 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
     }
 
     ViewHolder viewHolder = null;
+
     public View getView(final int position, View view, ViewGroup arg2) {
-        final MyCustomer mContent = list.get(position);
+        final MyCustomer customer = list.get(position);
         if (view == null) {
             viewHolder = new ViewHolder();
             view = LayoutInflater.from(mContext).inflate(R.layout.layout_item_callcustomer, null);
             viewHolder.llayout = view.findViewById(R.id.llayout_d);
             viewHolder.ivIcon = (CircleImageView) view.findViewById(R.id.iv_item_callcustomer_icon);
             viewHolder.ivCall = (ImageView) view.findViewById(R.id.iv_item_callcustomer_call);
-            viewHolder.ivCall.setVisibility(View.INVISIBLE);
             viewHolder.tvTrueName = (TextView) view.findViewById(R.id.tv_item_callcustomer_truename);
             viewHolder.tvLastTime = (TextView) view.findViewById(R.id.tv_item_callcustomer_lasttime);
             viewHolder.tvLetter = (TextView) view.findViewById(R.id.catalog);
@@ -79,29 +80,34 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
         int section = getSectionForPosition(position);
 
         //如果当前位置等于该分类首字母的Char的位置 ，则认为是第一次出现
-        if(position == getPositionForSection(section)){
+        if (position == getPositionForSection(section)) {
             viewHolder.llayout.setVisibility(View.VISIBLE);
-            viewHolder.tvLetter.setText(mContent.getLetter());
-        }else{
+            viewHolder.tvLetter.setText(customer.getLetter());
+        } else {
             viewHolder.llayout.setVisibility(View.GONE);
         }
+        if (customer.getCustom_client() == 1) {
+            viewHolder.ivCall.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.ivCall.setVisibility(View.INVISIBLE);
+        }
+
         //给每一个需要显示头像的ImagVeiw 打上标记（url）
-        String url = list.get(position).getHeadpic();
+        String url = customer.getHeadpic();
         viewHolder.ivIcon.setTag(url);
 
-        if (viewHolder.ivIcon.getTag().equals(url)){
-            imageLoader.displayImage(url,viewHolder.ivIcon,options);
-//            utils.imageLoader(url, viewHolder.ivIcon);
+        if (viewHolder.ivIcon.getTag().equals(url)) {
+            imageLoader.displayImage(url, viewHolder.ivIcon, options);
         }
-            viewHolder.ivCall.setOnClickListener(new View.OnClickListener() {
+        /*viewHolder.ivCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FunncoUtils.callPhone(mContext, list.get(position).getMobile());
+                FunncoUtils.callPhone(mContext, customer.getMobile());
             }
-        });
+        });*/
 
-        viewHolder.tvTrueName.setText(list.get(position).getRemark_name()+"");
-        viewHolder.tvLastTime.setText("最近预约："+list.get(position).getLast_time());
+        viewHolder.tvTrueName.setText(customer.getNickname() + "");
+        viewHolder.tvLastTime.setText("最近预约：" + customer.getLast_time());
         return view;
 
     }
@@ -146,7 +152,7 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
      * @return
      */
     private String getAlpha(String str) {
-        String  sortStr = str.trim().substring(0, 1).toUpperCase();
+        String sortStr = str.trim().substring(0, 1).toUpperCase();
         // 正则表达式，判断首字母是否是英文字母
         if (sortStr.matches("[A-Z]")) {
             return sortStr;

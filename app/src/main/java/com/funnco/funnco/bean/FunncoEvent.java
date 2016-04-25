@@ -41,11 +41,21 @@ public class FunncoEvent implements Parcelable{
     private String repeat_type;
     @Column(column = "times")
     private String times;
+    @Column(column = "admin_headpic")
+    private String admin_headpic;
     @Transient//本列忽略 不存入数据库 同时静态字段也不会存入数据库
     private ArrayList<FunncoEventCustomer> list;
     //单独加的字段用于数据库存储
     @Column(column = "date_manager")
     private String date_manager;
+
+    public String getAdmin_headpic() {
+        return admin_headpic;
+    }
+
+    public void setAdmin_headpic(String admin_headpic) {
+        this.admin_headpic = admin_headpic;
+    }
 
     public String getId() {
         return id;

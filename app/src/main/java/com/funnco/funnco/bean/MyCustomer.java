@@ -34,6 +34,26 @@ public class MyCustomer implements Parcelable,Comparable<MyCustomer>{
     private String letter;//显示数据拼音的首字母
     @Column(column = "last_time")
     private String last_time;
+    @Column(column = "custom_client")
+    private int custom_client;//为1的时候已加入直达号
+    @Column(column = "nickname")
+    private String nickname;//昵称
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public int getCustom_client() {
+        return custom_client;
+    }
+
+    public void setCustom_client(int custom_client) {
+        this.custom_client = custom_client;
+    }
 
     public String getId() {
         return id;

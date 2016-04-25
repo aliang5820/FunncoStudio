@@ -1,49 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@color/color_white"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp">
+
     <LinearLayout
         android:id="@+id/llayout_d"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:background="@color/color_main_bg"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
+
         <TextView
             android:id="@+id/catalog"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
+            android:paddingBottom="4dp"
             android:paddingLeft="20dp"
             android:paddingTop="4dp"
-            android:textSize="12sp"
-            android:paddingBottom="4dp"
-            android:text=""/>
+            android:text=""
+            android:textSize="12sp" />
+
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:paddingTop="4dp"
-            android:paddingLeft="20dp"
-            android:textSize="12sp"
             android:paddingBottom="4dp"
-            android:text=""/>
+            android:paddingLeft="20dp"
+            android:paddingTop="4dp"
+            android:text=""
+            android:textSize="12sp" />
+
         <TextView
             android:id="@+id/week"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:paddingTop="4dp"
-            android:paddingLeft="20dp"
-            android:textSize="12sp"
             android:paddingBottom="4dp"
-            android:text=""/>
+            android:paddingLeft="20dp"
+            android:paddingTop="4dp"
+            android:text=""
+            android:textSize="12sp" />
     </LinearLayout>
 
 
@@ -57,46 +62,51 @@
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            app:border_width="1dp"
+            android:src="@mipmap/icon_edit_profile_default_2x"
             app:border_color="#a9ffffff"
-            android:src="@mipmap/icon_edit_profile_default_2x" />
+            app:border_width="1dp" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/iv_item_callcustomer_icon"
             android:layout_toLeftOf="@+id/iv_item_callcustomer_call"
+            android:layout_toRightOf="@id/iv_item_callcustomer_icon"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tv_item_callcustomer_truename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
                 android:maxLines="2"
-                android:text="用户名" />
+                android:text="用户名"
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/tv_item_callcustomer_lasttime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="10sp"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="10:00 - 10:30"
                 android:textColor="@color/color_hint_gray_light"
-                android:text="10:00 - 10:30"/>
+                android:textSize="12sp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_item_callcustomer_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="5dp"
-            android:clickable="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:src="@mipmap/common_call_icon" />
+            android:layout_centerVertical="true"
+            android:layout_marginRight="34dp"
+            android:clickable="true"
+            android:padding="5dp"
+            android:src="@mipmap/chat_icon" />
     </RelativeLayout>
 </LinearLayout>

@@ -31,6 +31,7 @@ import com.alibaba.wukong.im.MessageService;
 import com.alibaba.wukong.im.User;
 import com.alibaba.wukong.im.UserService;
 import com.funnco.funnco.R;
+import com.funnco.funnco.activity.MyCustomersActivity;
 import com.funnco.funnco.activity.base.MainActivity;
 import com.funnco.funnco.activity.login.LoginActivity;
 import com.funnco.funnco.activity.notification.NotificationRemindActivity;
@@ -40,6 +41,7 @@ import com.funnco.funnco.activity.team.TeamMemberChooseActivity;
 import com.funnco.funnco.adapter.CommonAdapter;
 import com.funnco.funnco.adapter.ViewHolder;
 import com.funnco.funnco.application.BaseApplication;
+import com.funnco.funnco.bean.MyCustomer;
 import com.funnco.funnco.bean.NotificationLastRemindAndSystem;
 import com.funnco.funnco.bean.TeamInvite;
 import com.funnco.funnco.bean.TeamMember;
@@ -48,7 +50,6 @@ import com.funnco.funnco.fragment.BaseFragment;
 import com.funnco.funnco.impl.Post;
 import com.funnco.funnco.task.SQliteAsynchTask;
 import com.funnco.funnco.utils.date.DateUtils;
-import com.funnco.funnco.utils.date.TimeUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.string.TextUtils;
@@ -62,6 +63,7 @@ import com.funnco.funnco.wukong.model.GroupSession;
 import com.funnco.funnco.wukong.model.Session;
 import com.funnco.funnco.wukong.user.GroupChatActivity;
 import com.funnco.funnco.wukong.user.SingleChatActivity;
+import com.lidroid.xutils.exception.DbException;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -85,6 +87,8 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     private static final int RESULT_CODE_CHATTING_CREATE = 0xf121;
     private static final int REQUEST_CODE_NOTIFICATION = 0xf110;
     private static final int RESULT_CODE_NOTIFICATION = 0xf111;
+    private static final int RESULT_CODE_MEMBERCHOOSE = 0xf16;
+    private boolean isSinglechatting = true;
 
     private XListView xListView;
     private CommonAdapter adapter;
@@ -106,6 +110,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     private MessageListHeaderView teamMsgView;
     private boolean hasSingleCon = false;
     private boolean hasGroupCon = false;
+    private List<MyCustomer> userList;
 
     private Handler handler = new Handler() {
         @Override
@@ -195,6 +200,15 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     } else {
                         helper.setText(R.id.id_title_4, nickName);
                         circleImageView.setImageResource(R.mipmap.my_kehu);
+                        if(userList != null) {
+                            for (MyCustomer customer : userList) {
+                                if (Long.valueOf(customer.getC_uid()) == peerId) {
+                                    helper.setText(R.id.id_title_4, customer.getNickname());
+                                    imageLoader.displayImage(customer.getHeadpic(), circleImageView);
+                                    break;
+                                }
+                            }
+                        }
                     }
                 } else if (type == Conversation.ConversationType.GROUP) {
                     helper.setText(R.id.id_title_4, nickName + "");
@@ -310,6 +324,13 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 if (conversations == null || conversations.size() <= 0) {
                     return;
                 }
+                //获取头像信息等
+                try {
+                    userList = dbUtils.findAll(MyCustomer.class);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+
                 list.clear();
                 list.addAll(conversations);
                 xListView.setRefreshTime(DateUtils.getCurrentDate("yyyy-MM-dd HH:mm:ss"));
@@ -334,6 +355,8 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                             + "\n icon:" + conversation.icon() + "\n unreadMessageCount:" + conversation.unreadMessageCount()
                             + "\n title:" + conversation.title() + "\n createdAt:" + conversation.createdAt() + "\n latestMessage:" + conversation.latestMessage()
                             + "\n totalMembers:" + conversation.totalMembers() + "\n type:" + conversation.type());
+
+                    //TODO 单聊取user,群聊取member
                     userService.getUser(new Callback<User>() {
                         @Override
                         public void onSuccess(User user) {
@@ -427,20 +450,21 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         findViewById(R.id.id_rview).setOnClickListener(this);
         vCreateConversation.findViewById(R.id.id_title_0).setOnClickListener(this);
         vCreateConversation.findViewById(R.id.id_title_1).setOnClickListener(this);
+        vCreateConversation.findViewById(R.id.id_title_2).setOnClickListener(this);
         if (xListView != null) {
             xListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //要抛开头部的3个系统消息
-                    if(position == 1){
+                    if (position == 1) {
                         //提醒通知
                         Intent intent = new Intent().setClass(mContext, NotificationRemindActivity.class);
                         startActivityForResult(intent, REQUEST_CODE_NOTIFICATION);
-                    } else if(position == 2){
+                    } else if (position == 2) {
                         //系统通知
                         Intent intent = new Intent().setClass(mContext, NotificationSystemActivity.class);
                         startActivityForResult(intent, REQUEST_CODE_NOTIFICATION);
-                    } else if(position == 3){
+                    } else if (position == 3) {
                         //团队通知
                         Intent intent = new Intent().setClass(mContext, NotificationTeamInviteActivity.class);
                         startActivityForResult(intent, REQUEST_CODE_NOTIFICATION);
@@ -540,11 +564,16 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 dismissPopupwindow();
                 startActivityForResult(intent2, REQUEST_CODE_CHATTING_CREATE);
                 break;
+            case R.id.id_title_2://客户私聊
+                isSinglechatting = true;
+                Intent intent3 = new Intent();
+                intent3.putExtra("isChat", true);
+                intent3.setClass(mContext, MyCustomersActivity.class);
+                dismissPopupwindow();
+                startActivityForResult(intent3, REQUEST_CODE_CHATTING_CREATE);
+                break;
         }
     }
-
-    private static final int RESULT_CODE_MEMBERCHOOSE = 0xf16;
-    private boolean isSinglechatting = true;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -553,39 +582,65 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 String title = data.getStringExtra("title");
                 String icon = data.getStringExtra("headpic");
                 String key = data.getStringExtra("key");
+                String sysMsg = getString(R.string.chat_create_sysmsg, FunncoUtils.currentNickname());
+                Message message = IMEngine.getIMService(MessageBuilder.class).buildTextMessage(sysMsg); //系统消息
                 if (!TextUtils.isNull(key)) {
-                    List<TeamMember> ls = (List<TeamMember>) BaseApplication.getInstance().getT(key);
-                    BaseApplication.getInstance().removeT(key);
-                    if (ls != null && ls.size() > 0) {
-                        String sysMsg = getString(R.string.chat_create_sysmsg, FunncoUtils.currentNickname());
-                        Message message = IMEngine.getIMService(MessageBuilder.class).buildTextMessage(sysMsg); //系统消息
-                        FunncoUtils.showProgressDialog(mContext, getString(R.string.chat_create_doing));
-                        Long[] uids = new Long[ls.size()];
-                        int i = 0;
-                        for (TeamMember tm : ls) {
-                            uids[i] = Long.valueOf(tm.getMember_uid());
-                            i++;
+                    Object object = BaseApplication.getInstance().getT(key);
+                    if(object instanceof List) {
+                        List<TeamMember> ls = (List<TeamMember>) object;
+                        BaseApplication.getInstance().removeT(key);
+                        if (ls.size() > 0) {
+                            FunncoUtils.showProgressDialog(mContext, getString(R.string.chat_create_doing));
+                            Long[] uids = new Long[ls.size()];
+                            int i = 0;
+                            for (TeamMember tm : ls) {
+                                uids[i] = Long.valueOf(tm.getMember_uid());
+                                i++;
+                            }
+                            IMEngine.getIMService(ConversationService.class)
+                                    .createConversation(new Callback<Conversation>() {
+                                                            @Override
+                                                            public void onSuccess(Conversation conversation) {
+                                                                FunncoUtils.dismissProgressDialog();
+                                                                Intent intent = new Intent(mContext, isSinglechatting ? SingleChatActivity.class : GroupChatActivity.class);
+                                                                intent.putExtra(Session.SESSION_INTENT_KEY, new GroupSession(conversation));
+                                                                startActivity(intent);
+                                                            }
+
+                                                            @Override
+                                                            public void onException(String s, String s1) {
+                                                            }
+
+                                                            @Override
+                                                            public void onProgress(Conversation conversation, int i) {
+                                                            }
+                                                        }, title, icon, message,
+                                            ls.size() == 1 ? Conversation.ConversationType.CHAT : Conversation.ConversationType.GROUP, uids);
+
                         }
+                    } else if(object instanceof MyCustomer){
+                        //客户私聊
+                        MyCustomer customer = (MyCustomer) object;
+                        BaseApplication.getInstance().removeT(key);
+                        FunncoUtils.showProgressDialog(mContext, getString(R.string.chat_create_doing));
                         IMEngine.getIMService(ConversationService.class)
                                 .createConversation(new Callback<Conversation>() {
-                                                        @Override
-                                                        public void onSuccess(Conversation conversation) {
-                                                            FunncoUtils.dismissProgressDialog();
-                                                            Intent intent = new Intent(mContext, isSinglechatting ? SingleChatActivity.class :
-                                                                    GroupChatActivity.class);
-                                                            intent.putExtra(Session.SESSION_INTENT_KEY, new GroupSession(conversation));
-                                                            startActivity(intent);
-                                                        }
+                                    @Override
+                                    public void onSuccess(Conversation conversation) {
+                                        FunncoUtils.dismissProgressDialog();
+                                        Intent intent = new Intent(mContext, SingleChatActivity.class);
+                                        intent.putExtra(Session.SESSION_INTENT_KEY, new GroupSession(conversation));
+                                        startActivity(intent);
+                                    }
 
-                                                        @Override
-                                                        public void onException(String s, String s1) {
-                                                        }
+                                    @Override
+                                    public void onException(String s, String s1) {
+                                    }
 
-                                                        @Override
-                                                        public void onProgress(Conversation conversation, int i) {
-                                                        }
-                                                    }, title, icon, message,
-                                        ls.size() == 1 ? Conversation.ConversationType.CHAT : Conversation.ConversationType.GROUP, uids);
+                                    @Override
+                                    public void onProgress(Conversation conversation, int i) {
+                                    }
+                                }, title, icon, message, Conversation.ConversationType.CHAT, Long.valueOf(customer.getC_uid()));
                     }
                 }
             }
@@ -597,21 +652,21 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
      * 获取最新的系统消息
      */
     private void getLastSystemMessage() {
-        postData2(null,FunncoUrls.getMessageUrl(), true);//获取系统通知和预约提醒
-        postData2(null,FunncoUrls.getMessageTeamUrl(), true);//获取团队通知
+        postData2(null, FunncoUrls.getMessageUrl(), true);//获取系统通知和预约提醒
+        postData2(null, FunncoUrls.getMessageTeamUrl(), true);//获取团队通知
     }
 
     @Override
     protected void dataPostBack(String result, String url) {
         dismissLoading();
-        if(TextUtils.equals(url, FunncoUrls.getMessageUrl())) {
+        if (TextUtils.equals(url, FunncoUrls.getMessageUrl())) {
             //获取系统通知和预约提醒
             JSONObject paramsJSONObject = JsonUtils.getJObt(result, "params");
             if (paramsJSONObject != null) {
                 JSONArray listJSONArray = JsonUtils.getJAry(paramsJSONObject.toString(), "remmsg");
                 if (listJSONArray != null) {
                     List<NotificationLastRemindAndSystem> ls = JsonUtils.getObjectArray(listJSONArray.toString(), NotificationLastRemindAndSystem.class);
-                    if(ls != null && !ls.isEmpty()) {
+                    if (ls != null && !ls.isEmpty()) {
                         NotificationLastRemindAndSystem remindAndSystem = ls.get(0);
                         remindView.setMessage(remindAndSystem.getContent());
                         remindView.setTime(remindAndSystem.getCreate_time());
@@ -620,24 +675,24 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 listJSONArray = JsonUtils.getJAry(paramsJSONObject.toString(), "sysmsg");
                 if (listJSONArray != null) {
                     List<NotificationLastRemindAndSystem> ls = JsonUtils.getObjectArray(listJSONArray.toString(), NotificationLastRemindAndSystem.class);
-                    if(ls != null && !ls.isEmpty()) {
+                    if (ls != null && !ls.isEmpty()) {
                         NotificationLastRemindAndSystem remindAndSystem = ls.get(0);
                         systemView.setMessage(remindAndSystem.getSummary());
                         systemView.setTime(remindAndSystem.getCreate_time());
                     }
                 }
             }
-        } else if(TextUtils.equals(url, FunncoUrls.getMessageTeamUrl())){
+        } else if (TextUtils.equals(url, FunncoUrls.getMessageTeamUrl())) {
             //获取团队通知
             JSONObject paramsJSONObject = JsonUtils.getJObt(result, "params");
             if (paramsJSONObject != null) {
                 JSONArray listJSONArray = JsonUtils.getJAry(paramsJSONObject.toString(), "list");
                 if (listJSONArray != null) {
                     List<TeamInvite> ls = JsonUtils.getObjectArray(listJSONArray.toString(), TeamInvite.class);
-                    if(ls != null && !ls.isEmpty()) {
+                    if (ls != null && !ls.isEmpty()) {
                         TeamInvite teamInvite = ls.get(0);
                         String msg;
-                        if(TextUtils.equals(teamInvite.getTypes(), "1")) {
+                        if (TextUtils.equals(teamInvite.getTypes(), "1")) {
                             //邀请
                             msg = teamInvite.getInviter_nickname() + "邀请您加入" + teamInvite.getTeam_name() + "团队";
                         } else {
