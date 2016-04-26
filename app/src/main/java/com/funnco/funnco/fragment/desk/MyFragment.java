@@ -27,6 +27,7 @@ import com.funnco.funnco.activity.base.MainActivity;
 import com.funnco.funnco.activity.base.QR_CodeActivity;
 import com.funnco.funnco.activity.myinfo.IncomeWeekActivity;
 import com.funnco.funnco.activity.team.TeamMyActivity;
+import com.funnco.funnco.activity.team.TeamWorkActivity;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.Career;
 import com.funnco.funnco.bean.InComeInfo;
@@ -185,6 +186,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
         tvSetting.setOnClickListener(this);
         parentView.findViewById(R.id.iv_my_qr_code).setOnClickListener(this);
 
+        findViewById(R.id.my_photo).setOnClickListener(this);
         findViewById(R.id.my_group).setOnClickListener(this);
         findViewById(R.id.my_kehu).setOnClickListener(this);
         findViewById(R.id.my_money).setOnClickListener(this);
@@ -227,6 +229,12 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
             case R.id.enterInOut:
                 //我的收入
                 startActivity(IncomeWeekActivity.class);
+                break;
+            case R.id.my_photo:
+                //我的照片
+                Bundle bundle0 = new Bundle();
+                bundle0.putString("info", getString(R.string.my_photo));
+                startActivity(TeamWorkActivity.class, bundle0);
                 break;
             case R.id.my_group:
                 //我的团队

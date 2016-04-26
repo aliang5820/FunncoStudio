@@ -190,6 +190,14 @@
             <View style="@style/my_fragment_item_line_style" />
 
             <TextView
+                android:id="@+id/my_photo"
+                style="@style/my_fragment_item_style"
+                android:drawableLeft="@mipmap/my_photo"
+                android:text="@string/my_photo" />
+
+            <View style="@style/my_fragment_item_line_style" />
+
+            <TextView
                 android:id="@+id/my_group"
                 style="@style/my_fragment_item_style"
                 android:drawableLeft="@mipmap/my_group"
