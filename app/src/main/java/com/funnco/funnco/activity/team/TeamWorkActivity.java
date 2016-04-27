@@ -301,6 +301,7 @@ public class TeamWorkActivity extends BaseActivity {
             } else {
                 is.setLayoutParams(params1);
             }
+
             imageLoader.displayImage(imagePath, new ImageView(mContext), options, new ImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String s, View view) {

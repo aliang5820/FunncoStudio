@@ -322,7 +322,7 @@ public class MainActivity extends BaseActivity implements OnFragmentInteractionL
     /**
      * 获得最新预约日期数据集
      */
-    private void getScheduleNewDate() {
+    public void getScheduleNewDate() {
         isLoaddingnewschedule = true;
         AsyncTaskUtils.requestPost(null, new DataBack() {
             @Override

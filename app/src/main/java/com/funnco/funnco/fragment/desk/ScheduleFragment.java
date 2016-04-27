@@ -637,11 +637,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         tvPwAddevent = (TextView) addNotifyView.findViewById(R.id.tv_schedule_pw_event);
         tvPwAddinvitation = (TextView) addNotifyView.findViewById(R.id.tv_schedule_pw_invitation);
 
-        //初始化当前日期情况：是否是闰年，月天数，某月第一天是星期几
-        getCalengarInfo();
-        initWeekedView();
         initData();
-        initMonthView();
     }
 
     /**
@@ -958,17 +954,14 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         mViewPager.setCurrentItem(mCurrPager);// 500->mCurrPager
         mViewPager.setPageMargin(0);
 
-        setNavigationBarDateText(String.valueOf(mCurrentYear),
-                TimeUtils.timeFormat(mCurrentMonth));
+        setNavigationBarDateText(String.valueOf(mCurrentYear), TimeUtils.timeFormat(mCurrentMonth));
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrollStateChanged(int position) {
                 if (position == 0) {
-                    mCurrentGridView = (GridView) mViewPager
-                            .findViewById(mCurrPager);
+                    mCurrentGridView = (GridView) mViewPager.findViewById(mCurrPager);
                     if (mCurrentGridView != null) {
-                        mMonthAdapter = (MonthCalendarAdapter) mCurrentGridView
-                                .getAdapter();
+                        mMonthAdapter = (MonthCalendarAdapter) mCurrentGridView.getAdapter();
                         mCurrDateInfoList = mMonthAdapter.getList();
                         mMonthAdapter.setSelectedDay(mLastSelectedDay);
                         mMonthAdapter.notifyDataSetInvalidated();
@@ -982,12 +975,9 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 
             @Override
             public void onPageSelected(int position) {
-                int year = TimeUtils.getTimeByPosition(position, mCurrentYear,
-                        mCurrentMonth, YEAR);
-                int month = TimeUtils.getTimeByPosition(position, mCurrentYear,
-                        mCurrentMonth, MONTH);
-                setNavigationBarDateText(String.valueOf(year),
-                        TimeUtils.timeFormat(month));
+                int year = TimeUtils.getTimeByPosition(position, mCurrentYear, mCurrentMonth, YEAR);
+                int month = TimeUtils.getTimeByPosition(position, mCurrentYear, mCurrentMonth, MONTH);
+                setNavigationBarDateText(String.valueOf(year), TimeUtils.timeFormat(month));
                 mCurrPager = position;
                 String thisStr = year + SPLITSTR + month + SPLITSTR + "01";
                 //下载月有预约数据
@@ -1197,9 +1187,6 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
      * 添加所有的平台
      */
     private void shareSchedule() {
-//        mController.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN,
-//                SHARE_MEDIA.WEIXIN_CIRCLE);
-//        mController.openShare(getActivity(), false);
         showPopupwindow(vShareBoard);
     }
 
@@ -1213,8 +1200,6 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 handler.sendEmptyMessageDelayed(17, 250);
                 break;
             case R.id.tv_schedule_myconventation://我的预约
-//                startActivity(MyCustomersSortByDateActivity.class);
-//                startActivity(NewConventionActivity.class);
                 startActivityForResult(MyConventionActivity.class, null, REQUEST_CODE_MYCONVENTION);
                 break;
             case R.id.tv_schedule_headr://分享日程 移动右上角
@@ -1313,8 +1298,8 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 startActivityForResult(InvitationActivity.class, null, REQUEST_CODE_INVITATION_ADD);
                 break;
             case R.id.id_title_0://分享到微信好友
-                int position = (int)vShareListView.getTag();
-                if(position == 0) {
+                int position = (int) vShareListView.getTag();
+                if (position == 0) {
                     WeicatUtils.setShareContent(mContext, mController, user, R.mipmap.common_logo_rectangle);
                 } else {
                     WeicatUtils.setShareContent(mContext, mController, teamList.get(position - 1), R.mipmap.common_logo_rectangle);
@@ -1340,8 +1325,8 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 });
                 break;
             case R.id.id_title_1://分享到微信朋友圈
-                int position1 = (int)vShareListView.getTag();
-                if(position1 == 0) {
+                int position1 = (int) vShareListView.getTag();
+                if (position1 == 0) {
                     WeicatUtils.setShareContent(mContext, mController, user, R.mipmap.common_logo_rectangle);
                 } else {
                     WeicatUtils.setShareContent(mContext, mController, teamList.get(position1 - 1), R.mipmap.common_logo_rectangle);
@@ -1451,8 +1436,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             // 导航中月份点击事件
             int year = Integer.valueOf(mLastSelectedDay.split(SPLITSTR)[0]);
             mCurrentYear = year;
-            int month = Integer
-                    .valueOf(mLastSelectedDay.split(SPLITSTR)[1]);
+            int month = Integer.valueOf(mLastSelectedDay.split(SPLITSTR)[1]);
             mCurrentMonth = month;
             mCurrDay = Integer.valueOf(mLastSelectedDay.split(SPLITSTR)[2]);
             mCurrPager = ORI_MONTH_POSITION;// 500为起始加载位置
@@ -1491,8 +1475,11 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
      * 初始化选中年月的整月数据
      */
     private void initData() {
-        String formatDate = TimeUtils
-                .getFormatDate(mCurrentYear, mCurrentMonth);
+        //初始化当前日期情况：是否是闰年，月天数，某月第一天是星期几
+        getCalengarInfo();
+        initWeekedView();
+        initMonthView();
+        String formatDate = TimeUtils.getFormatDate(mCurrentYear, mCurrentMonth);
         try {
             mDateInfoList = TimeUtils.initCalendar(formatDate, mCurrentMonth);
         } catch (Exception e) {
@@ -1634,13 +1621,19 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
             clearAsyncTask();
             init();
         } else if (requestCode == REQUEST_CODE_MEMBERCHOOSE && resultCode == RESULT_CODE_MEMBERCHOOSE) {
-            //团队成员选择完毕
+            //团队成员选择完毕,如果是多人,显示多人图标
             if (data != null) {
                 ids = data.getStringExtra("ids");
                 team_id = data.getStringExtra("team_id");
                 String team_name = data.getStringExtra("team_name");
-                LogUtils.e("funnco", "成员选择后的到的数据shi：" + ids + " team_id:" + team_id + "  team_name:" + team_name);
-                init();
+                String headpic = data.getStringExtra("headpic");
+                if (TextUtils.isNull(headpic)) {
+                    civTitleicon.setImageResource(R.mipmap.my_group);
+                } else {
+                    imageLoader.displayImage(headpic, civTitleicon);
+                }
+                LogUtils.e("funnco", "成员选择后的到的数据shi：" + ids + " team_id:" + team_id + "  team_name:" + team_name + " headpic:" + headpic);
+                init();//获取日程表
             }
         }
     }
@@ -1780,7 +1773,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 } else {
                     Team t = teamList.get(position - 1);
                     helper.setText(R.id.item_name, t.getTeam_name());
-                    helper.setImageResource(R.id.item_img, R.mipmap.common_schedule_conventiontype_icon);
+                    helper.setImageByUrl(R.id.item_img, t.getCover_pic());
                     checkBox.setChecked(false);
                 }
                 if (!checkBoxList.contains(checkBox)) {
@@ -1819,11 +1812,9 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
      */
     private class MonthPagerAdapter extends PagerAdapter {
         @Override
-        public void setPrimaryItem(ViewGroup container, int position,
-                                   Object object) {
+        public void setPrimaryItem(ViewGroup container, int position, Object object) {
             mCurrentGridView = (GridView) object;
-            mMonthAdapter = (MonthCalendarAdapter) mCurrentGridView
-                    .getAdapter();
+            mMonthAdapter = (MonthCalendarAdapter) mCurrentGridView.getAdapter();
         }
 
         @Override

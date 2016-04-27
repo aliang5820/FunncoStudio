@@ -122,8 +122,7 @@ public class WeekendCalendarAdapter extends BaseAdapter {
         currentYear = String.valueOf(year);
         currentMonth = String.valueOf(TimeUtils.timeFormat(month));
         //计算当年是否为闰年，上个月/下个月的天数
-        getCalendar(Integer.parseInt(currentYear),
-                Integer.parseInt(currentMonth));
+        getCalendar(Integer.parseInt(currentYear), Integer.parseInt(currentMonth));
         currentWeek = String.valueOf(week);
         getWeek(Integer.parseInt(currentYear), Integer.parseInt(currentMonth),
                 Integer.parseInt(currentWeek));

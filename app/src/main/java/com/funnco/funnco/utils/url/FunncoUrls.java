@@ -22,7 +22,8 @@ public class FunncoUrls {
 
     //二维码登录地址
     public static String getQRBaseUrl() {
-        return "http://gannt.funnco.com/test/funnco-php-front/funnco-b-admin/badmin/Home/IBase/erwlogin";
+        //return "http://gannt.funnco.com/test/funnco-php-front/funnco-b-admin/badmin/Home/IBase/erwlogin";
+        return "http://www.funnco.com/funnco-b-admin/badmin/home/IBase/erwlogin";
     }
 
     public static String getTeamMemberList() {

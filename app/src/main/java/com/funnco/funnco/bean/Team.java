@@ -22,6 +22,16 @@ public class Team {
     private String team_name;
     @Column(column = "u_id")
     private String u_id;//用户Id
+    @Column(column = "cover_pic")
+    private String cover_pic;//团队头像
+
+    public String getCover_pic() {
+        return cover_pic;
+    }
+
+    public void setCover_pic(String cover_pic) {
+        this.cover_pic = cover_pic;
+    }
 
     public void setTeam_id(String team_id) {
         this.team_id = team_id;
