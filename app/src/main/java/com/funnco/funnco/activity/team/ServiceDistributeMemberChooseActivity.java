@@ -47,6 +47,8 @@ public class ServiceDistributeMemberChooseActivity extends BaseActivity {
     private XListView xListView;
     private CommonAdapter adapter;
     private List<TeamMemberMy> list = new ArrayList<>();
+    private static final int REQUEST_CODE_SERVICE_CHOOSE = 0xf700;
+    private static final int RESULT_CODE_SERVICE_CHOOSE = 0xf701;
 
     private Handler handler = new Handler(){
         @Override
@@ -109,15 +111,19 @@ public class ServiceDistributeMemberChooseActivity extends BaseActivity {
             xListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    LogUtils.e("funnco------",""+position);
                     if (position-1 >=0 && position-1 < list.size()){
                         BaseApplication.getInstance().setT("teamMemberMy", list.get(position-1));
-                        startActivityForResult(new Intent()
+                        /*startActivityForResult(new Intent()
                                         .setClass(mContext, ServiceDistributeServiceListActivity.class)
                                         .putExtra(KEY, "teamMemberMy")
                                         .putExtra("team_id", team.getTeam_id()+"")
                                         .putExtra("team_uid", team_uid),
-                                REQUEST_CODE_CHOOSESERVICE);
+                                REQUEST_CODE_CHOOSESERVICE);*/
+                        startActivityForResult(new Intent().setClass(mContext, ServiceDistributeServiceChooseActivity.class)
+                                .putExtra("team_id", team.getTeam_id())
+                                .putExtra("team_uid",team_uid)
+                                //.putExtra("names", getIds())
+                                .putExtra(KEY,"teamMemberMy"), REQUEST_CODE_SERVICE_CHOOSE);
                     }
                 }
             });

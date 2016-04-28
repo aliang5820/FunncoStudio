@@ -18,5 +18,5 @@
         android:id="@id/layout_container"
         style="@style/style_layout_width_height_mm"
         android:layout_above="@id/llayout_foot"
-        android:layout_below="@id/llayout_head"></FrameLayout>
+        android:layout_below="@id/llayout_head" />
 </RelativeLayout>

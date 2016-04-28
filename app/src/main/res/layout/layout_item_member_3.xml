@@ -66,7 +66,7 @@
                 android:layout_height="@dimen/dimen_common_15"
                 android:background="@drawable/selector_service_weeks"
                 android:checked="false"
-                android:textSize="@dimen/font_size_12"
+                android:textSize="@dimen/font_size_10"
                 android:text="@string/sunday_3"/>
             <CheckBox
                 style="@style/style_common_cb"
@@ -74,7 +74,7 @@
                 android:layout_height="@dimen/dimen_common_15"
                 android:background="@drawable/selector_service_weeks"
                 android:checked="true"
-                android:textSize="@dimen/font_size_12"
+                android:textSize="@dimen/font_size_10"
                 android:text="@string/monday_3"/>
             <CheckBox
                 style="@style/style_common_cb"
@@ -82,7 +82,7 @@
                 android:layout_height="@dimen/dimen_common_15"
                 android:background="@drawable/selector_service_weeks"
                 android:checked="true"
-                android:textSize="@dimen/font_size_12"
+                android:textSize="@dimen/font_size_10"
                 android:text="@string/tuesday_3"/>
             <CheckBox
                 style="@style/style_common_cb"
@@ -90,28 +90,28 @@
                 android:layout_height="@dimen/dimen_common_15"
                 android:background="@drawable/selector_service_weeks"
                 android:checked="true"
-                android:textSize="@dimen/font_size_12"
+                android:textSize="@dimen/font_size_10"
                 android:text="@string/wednesday_3"/>
             <CheckBox
                 style="@style/style_common_cb"
                 android:layout_width="@dimen/dimen_common_15"
                 android:layout_height="@dimen/dimen_common_15"
                 android:background="@drawable/selector_service_weeks"
-                android:textSize="@dimen/font_size_12"
+                android:textSize="@dimen/font_size_10"
                 android:text="@string/thursday_3"/>
             <CheckBox
                 style="@style/style_common_cb"
                 android:layout_width="@dimen/dimen_common_15"
                 android:layout_height="@dimen/dimen_common_15"
                 android:background="@drawable/selector_service_weeks"
-                android:textSize="@dimen/font_size_12"
+                android:textSize="@dimen/font_size_10"
                 android:text="@string/friday_3"/>
             <CheckBox
                 style="@style/style_common_cb"
                 android:layout_width="@dimen/dimen_common_15"
                 android:layout_height="@dimen/dimen_common_15"
                 android:background="@drawable/selector_service_weeks"
-                android:textSize="@dimen/font_size_12"
+                android:textSize="@dimen/font_size_10"
                 android:text="@string/saturday_3"/>
 
         </com.funnco.funnco.view.layout.HandyLinearLayout>

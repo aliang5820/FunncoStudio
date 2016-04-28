@@ -260,6 +260,7 @@ public class TeamServiceActivity extends BaseActivity {
         tvServiceDistribute.setPadding(FunncoUtils.dp2px(mActivity, 15), FunncoUtils.dp2px(mActivity, 10), FunncoUtils.dp2px(mActivity, 15), FunncoUtils.dp2px(mActivity, 10));
         tvServiceDistribute.setText(R.string.str_service_distribute);
         tvServiceDistribute.setTextSize(16);
+        tvServiceDistribute.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.common_enter_arrow_2x ,0);
         tvServiceDistribute.setBackgroundColor(Color.WHITE);
         tvServiceDistribute.setOnClickListener(new View.OnClickListener() {
             @Override

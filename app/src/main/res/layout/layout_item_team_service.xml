@@ -79,7 +79,7 @@
                         android:checked="false"
                         android:padding="0dp"
                         android:text="@string/sunday_3"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="@dimen/font_size_10" />
                     <CheckBox
                         android:id="@id/id_title_1"
                         style="@style/style_common_cb"
@@ -89,7 +89,7 @@
                         android:checked="true"
                         android:padding="0dp"
                         android:text="@string/monday_3"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="@dimen/font_size_10" />
 
                     <CheckBox
                         android:id="@id/id_title_2"
@@ -100,7 +100,7 @@
                         android:checked="true"
                         android:padding="0dp"
                         android:text="@string/tuesday_3"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="@dimen/font_size_10" />
 
                     <CheckBox
                         android:id="@id/id_title_3"
@@ -111,7 +111,7 @@
                         android:checked="true"
                         android:padding="0dp"
                         android:text="@string/wednesday_3"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="@dimen/font_size_10" />
 
                     <CheckBox
                         android:id="@id/id_title_4"
@@ -121,7 +121,7 @@
                         android:background="@drawable/selector_service_weeks"
                         android:padding="0dp"
                         android:text="@string/thursday_3"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="@dimen/font_size_10" />
 
                     <CheckBox
                         android:id="@id/id_title_5"
@@ -131,7 +131,7 @@
                         android:background="@drawable/selector_service_weeks"
                         android:padding="0dp"
                         android:text="@string/friday_3"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="@dimen/font_size_10" />
 
                     <CheckBox
                         android:id="@id/id_title_6"
@@ -141,7 +141,7 @@
                         android:background="@drawable/selector_service_weeks"
                         android:padding="0dp"
                         android:text="@string/saturday_3"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="@dimen/font_size_10" />
 
                 </com.funnco.funnco.view.layout.HandyLinearLayout>
             </LinearLayout>

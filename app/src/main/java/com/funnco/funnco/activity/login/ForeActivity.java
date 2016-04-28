@@ -18,6 +18,7 @@ import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.task.SQliteAsynchTask;
+import com.funnco.funnco.utils.DebugTool;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
 import com.funnco.funnco.utils.http.NetUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
@@ -39,6 +40,7 @@ import java.util.Map;
 
 /**
  * Created by user on 2015/5/13.
+ *
  * @author Shawn
  */
 public class ForeActivity extends BaseActivity {
@@ -55,7 +57,7 @@ public class ForeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        parentView = getLayoutInflater().inflate(R.layout.layout_activity_fore,null);
+        parentView = getLayoutInflater().inflate(R.layout.layout_activity_fore, null);
         setContentView(parentView);
         /** 设置是否对日志信息进行加密, 默认false(不加密). */
         AnalyticsConfig.enableEncrypt(true);
@@ -71,9 +73,9 @@ public class ForeActivity extends BaseActivity {
         Runnable task = new Runnable() {
             @Override
             public void run() {
-                if(checkLogin()){
+                if (checkLogin()) {
                     jumpActivity();
-                }else {
+                } else {
                     autoLogin();
                 }
             }
@@ -82,20 +84,22 @@ public class ForeActivity extends BaseActivity {
         String appKey = getString(R.string.baidu_appkey);
         PushManager.startWork(mContext, PushConstants.LOGIN_TYPE_API_KEY, appKey);
     }
+
     @Override
     public void onClick(View v) {
     }
+
     private void autoLogin() {
-        if (!NetUtils.isConnection(mContext)){
+        if (!NetUtils.isConnection(mContext)) {
             try {
                 if (dbUtils != null && dbUtils.tableIsExist(UserLoginInfo.class)) {
 //                    UserLoginInfo user2 = dbUtils.findById(UserLoginInfo.class,uid);
-                    UserLoginInfo user2 = (UserLoginInfo) new SQliteAsynchTask<UserLoginInfo>().selectT(dbUtils,UserLoginInfo.class,uid);
+                    UserLoginInfo user2 = (UserLoginInfo) new SQliteAsynchTask<UserLoginInfo>().selectT(dbUtils, UserLoginInfo.class, uid);
                     if (user2 != null) {
                         BaseApplication.getInstance().setUser(user2);
                     }
                 }
-                Intent it = new Intent(mContext,MainActivity.class);
+                Intent it = new Intent(mContext, MainActivity.class);
                 startActivity(it);
                 finishOk();
             } catch (DbException e) {
@@ -104,18 +108,18 @@ public class ForeActivity extends BaseActivity {
             return;
         }
         sendBroadcast(new Intent("showLoadingDialog"));//发送一个广播用于打开进度对话框
-        Map<String ,Object> map = new HashMap<>();
-        map.put(Constants.TOKEN,token);
-        map.put(Constants.UID,uid);
-        map.put(Constants.DEVICE_TOKEN,device_token);
+        Map<String, Object> map = new HashMap<>();
+        map.put(Constants.TOKEN, token);
+        map.put(Constants.UID, uid);
+        map.put(Constants.DEVICE_TOKEN, device_token);
         task = new AsyTask(map, new DataBack() {
             @Override
             public void getString(String result) {
                 dismissLoading();
                 String msg = JsonUtils.getResponseMsg(result);
-                if(JsonUtils.getResponseCode(result) == 0){
+                if (JsonUtils.getResponseCode(result) == 0) {
                     UserLoginInfo user = JsonUtils.getObject(JsonUtils.getJObt(result, "params").toString(), UserLoginInfo.class);
-                    if (user != null && dbUtils != null){
+                    if (user != null && dbUtils != null) {
                         try {
                             dbUtils.saveOrUpdate(user);
                         } catch (DbException e) {
@@ -123,21 +127,23 @@ public class ForeActivity extends BaseActivity {
                         }
                     }
                     BaseApplication.getInstance().setUser(user);
-                }else{
-                    showSimpleMessageDialog(msg+"");
+                } else {
+                    showSimpleMessageDialog(msg + "");
                     intent.setClass(ForeActivity.this, LoginActivity.class);
                 }
                 dismissLoadingDialog();//关闭登录对话框
                 jumpActivity();
             }
+
             @Override
-            public void getBitmap(String rul,Bitmap bitmap) {
+            public void getBitmap(String rul, Bitmap bitmap) {
                 dismissLoading();
             }
-        },false);
+        }, false);
         putAsyncTask(task);
         task.execute(FunncoUrls.getAutoLoginUrl());
     }
+
     @Override
     protected void initView() {
     }
@@ -146,48 +152,55 @@ public class ForeActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         //更新数据库
-        if (BaseApplication.getInstance().isUpdateDB()){
-             //"FunncoEvent" ----- 第一版本之后的
+        if (BaseApplication.getInstance().isUpdateDB()) {
+            //"FunncoEvent" ----- 第一版本之后的
             //MyCustomer ----- 版本1.5
             //MyCustomerConventation ----- 测试用
             //Serve ----- 2.1版本新增字段
-            for (String beanName : new String[]{"FunncoEvent","MyCustomer",
-                    "MyCustomerD","MyCustomerConventation","Serve"}){
-                updateDb(dbUtils,beanName);
+            for (String beanName : new String[]{"FunncoEvent", "MyCustomer",
+                    "MyCustomerD", "MyCustomerConventation", "Serve"}) {
+                updateDb(dbUtils, beanName);
             }
         }
     }
 
     @Override
-    protected void initEvents() {}
-    private boolean checkLogin(){
+    protected void initEvents() {
+    }
+
+    private boolean checkLogin() {
         device_token = SharedPreferencesUtils.getValue(mContext, Constants.DEVICE_TOKEN);
-        String version_code = SharedPreferencesUtils.getValue(mContext, VERSION_CODE)+"";
-        if(!TextUtils.isEmpty(device_token)){
+        String version_code = SharedPreferencesUtils.getValue(mContext, VERSION_CODE) + "";
+        if (!TextUtils.isEmpty(device_token)) {
             LogUtils.e(TAG, "该设备的device_token：" + device_token);
         }
-
-        if(!TextUtils.equals(version_code,""+FunncoUtils.getVersionCode(mContext))) {//是第一次登录则进入欢迎页面
-            SharedPreferencesUtils.setValue(mContext,VERSION_CODE, ""+FunncoUtils.getVersionCode(mContext));
+        DebugTool.e(TAG, "该设备的device_token：" + device_token);//写入日志文件
+        if (!TextUtils.equals(version_code, "" + FunncoUtils.getVersionCode(mContext))) {
+            //是第一次登录则进入欢迎页面
+            DebugTool.e(TAG, "是第一次登录则进入欢迎页面");
+            SharedPreferencesUtils.setValue(mContext, VERSION_CODE, "" + FunncoUtils.getVersionCode(mContext));
             intent.setClass(this, WelcomeActivity.class);
             BaseApplication.setIsFirstUser(true);
             //isFirstLogin值修改为false
             SharedPreferencesUtils.setValue(this, Constants.ISFIRSTLOGIN, false);
             return true;
-        }else if(TextUtils.isEmpty(device_token) || TextUtils.isEmpty(token) || TextUtils.isEmpty(uid)){
-        //判断是否有用户信息,没有保存用户信息则进入登录页面
-            intent.setClass(this,LoginActivity.class);
+        } else if (TextUtils.isEmpty(device_token) || TextUtils.isEmpty(token) || TextUtils.isEmpty(uid)) {
+            DebugTool.e(TAG, "有数据获取失败-》进入登录页面：device_token:" + device_token + "   token:" + token + "   uid:" + uid);
+            //判断是否有用户信息,没有保存用户信息则进入登录页面
+            intent.setClass(this, LoginActivity.class);
             BaseApplication.setIsFirstUser(true);
             return true;
-        }else{//有用户信息，进行自动登录
+        } else {
+            //有用户信息，进行自动登录
             //修改不是第一次使用App
+            DebugTool.e(TAG, "有用户信息，进行自动登录");
             BaseApplication.setIsFirstUser(false);
             intent.setClass(this, MainActivity.class);
             return false;
         }
     }
 
-    private void jumpActivity(){
+    private void jumpActivity() {
         dismissSimpleMessageDialog();
         startActivity(intent);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
@@ -231,10 +244,10 @@ public class ForeActivity extends BaseActivity {
         }
     }
 
-    private  boolean isExist(List<String> list,String fildName){
+    private boolean isExist(List<String> list, String fildName) {
         boolean flag = false;
-        for (String s : list){
-            if (s.equals(fildName)){
+        for (String s : list) {
+            if (s.equals(fildName)) {
                 flag = true;
                 break;
             }

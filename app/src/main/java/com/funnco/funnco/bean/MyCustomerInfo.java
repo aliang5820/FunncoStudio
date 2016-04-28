@@ -4,6 +4,8 @@ import com.lidroid.xutils.db.annotation.Column;
 import com.lidroid.xutils.db.annotation.Id;
 import com.lidroid.xutils.db.annotation.Table;
 
+import java.util.List;
+
 /**
  * Created by user on 2015/8/27.
  */
@@ -43,6 +45,24 @@ public class MyCustomerInfo {
     private String totalCount;
     @Column(column = "headpic")
     private String headpic;
+    private String lastDay;//距离上次服务时间
+    private List<String> tags;//标签
+
+    public String getLastDay() {
+        return lastDay;
+    }
+
+    public void setLastDay(String lastDay) {
+        this.lastDay = lastDay;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;

@@ -748,4 +748,8 @@ public class FunncoUrls {
     public static String getMessageTeamUrl() {
         return getBaseUrl() + "?m=team_invite_list";
     }
+
+    public static String getBaiduPushCode() {
+        return getBaseUrl() + "?m=baidu_push_code";
+    }
 }
