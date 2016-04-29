@@ -114,10 +114,10 @@
                     android:id="@id/id_title_5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/id_title_4"
                     android:textColor="@color/color_gray"
                     android:ellipsize="end"
-                    android:paddingBottom="5dp"
+                    android:layout_marginTop="5dp"
                     android:singleLine="true"
                     android:textSize="12sp"
                     tools:text="暂无消息" />
