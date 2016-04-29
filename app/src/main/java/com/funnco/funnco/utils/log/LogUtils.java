@@ -2,6 +2,8 @@ package com.funnco.funnco.utils.log;
 
 import android.util.Log;
 
+import com.funnco.funnco.utils.DebugUtil;
+
 /**
  * Created by user on 2015/5/13.
  * @author thrman
@@ -20,6 +22,7 @@ public class LogUtils {
     }
 
     public static void e(String tag, String msg) {
+        DebugUtil.traceLog(tag + ":" + msg);
         if (isShow)
             Log.e(tag, msg);
     }
@@ -35,6 +38,7 @@ public class LogUtils {
     }
 
     public static void w(String tag, String msg) {
+        DebugUtil.traceLog(tag + ":" + msg);
         if (isShow)
             Log.w(tag, msg);
     }

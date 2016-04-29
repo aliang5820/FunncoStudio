@@ -193,7 +193,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:gravity="center_vertical"
-                        android:textColor="@color/color_hint_gray"
+                        android:textColor="@color/text_color_tab"
                         android:layout_above="@id/v_customerinfo_line_workphone"
                         android:layout_toRightOf="@id/tv_customerinfo_title_workphone"
                         android:padding="@dimen/dimen_common_5" />

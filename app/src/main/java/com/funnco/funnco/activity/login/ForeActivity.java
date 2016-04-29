@@ -18,7 +18,7 @@ import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.task.SQliteAsynchTask;
-import com.funnco.funnco.utils.DebugTool;
+import com.funnco.funnco.utils.DebugUtil;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
 import com.funnco.funnco.utils.http.NetUtils;
 import com.funnco.funnco.utils.json.JsonUtils;
@@ -60,8 +60,8 @@ public class ForeActivity extends BaseActivity {
         parentView = getLayoutInflater().inflate(R.layout.layout_activity_fore, null);
         setContentView(parentView);
         /** 设置是否对日志信息进行加密, 默认false(不加密). */
-        AnalyticsConfig.enableEncrypt(true);
-//        pushAgent.enable();
+        //AnalyticsConfig.enableEncrypt(true);
+        //pushAgent.enable();
         //需要做两件事情：第一判断是否是第一次下载安装；第二判断是否有账号
         // 接下来有个判断，是否是是第一次登录
         //此处为了便于测试先使用true
@@ -173,11 +173,12 @@ public class ForeActivity extends BaseActivity {
         String version_code = SharedPreferencesUtils.getValue(mContext, VERSION_CODE) + "";
         if (!TextUtils.isEmpty(device_token)) {
             LogUtils.e(TAG, "该设备的device_token：" + device_token);
+        } else {
+            LogUtils.e(TAG, "该设备的device_token为空");
         }
-        DebugTool.e(TAG, "该设备的device_token：" + device_token);//写入日志文件
         if (!TextUtils.equals(version_code, "" + FunncoUtils.getVersionCode(mContext))) {
             //是第一次登录则进入欢迎页面
-            DebugTool.e(TAG, "是第一次登录则进入欢迎页面");
+            LogUtils.e(TAG, "是第一次登录则进入欢迎页面");
             SharedPreferencesUtils.setValue(mContext, VERSION_CODE, "" + FunncoUtils.getVersionCode(mContext));
             intent.setClass(this, WelcomeActivity.class);
             BaseApplication.setIsFirstUser(true);
@@ -185,7 +186,7 @@ public class ForeActivity extends BaseActivity {
             SharedPreferencesUtils.setValue(this, Constants.ISFIRSTLOGIN, false);
             return true;
         } else if (TextUtils.isEmpty(device_token) || TextUtils.isEmpty(token) || TextUtils.isEmpty(uid)) {
-            DebugTool.e(TAG, "有数据获取失败-》进入登录页面：device_token:" + device_token + "   token:" + token + "   uid:" + uid);
+            LogUtils.e(TAG, "没有保存用户信息进入登录页面:device_token:" + device_token + "  token:" + token + "  uid:" + uid);
             //判断是否有用户信息,没有保存用户信息则进入登录页面
             intent.setClass(this, LoginActivity.class);
             BaseApplication.setIsFirstUser(true);
@@ -193,7 +194,7 @@ public class ForeActivity extends BaseActivity {
         } else {
             //有用户信息，进行自动登录
             //修改不是第一次使用App
-            DebugTool.e(TAG, "有用户信息，进行自动登录");
+            LogUtils.e(TAG, "有用户信息，进行自动登录");
             BaseApplication.setIsFirstUser(false);
             intent.setClass(this, MainActivity.class);
             return false;
@@ -237,10 +238,9 @@ public class ForeActivity extends BaseActivity {
                     }
                 }
             }
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (DbException e) {
-            e.printStackTrace();
+            DebugUtil.traceThrowableLog(e);
         }
     }
 

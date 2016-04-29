@@ -31,6 +31,7 @@ import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.string.TextUtils;
 import com.funnco.funnco.utils.support.Constants;
+import com.funnco.funnco.utils.support.FunncoUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.view.imageview.CircleImageView;
 import com.funnco.funnco.view.listview.XListView;
@@ -187,6 +188,8 @@ public class CustomerInfoActivity extends BaseActivity {
             String phone = customerInfo.getMobile();
             if (!TextUtils.isNull(phone) && !TextUtils.equals("null", phone)) {
                 tvWorkphone.setText(phone);
+                tvWorkphone.setTag(phone);
+                tvWorkphone.setOnClickListener(this);
             }
             String desc = customerInfo.getDescription();
             if (!TextUtils.isNull(desc) && !TextUtils.equals("null", desc)) {
@@ -204,7 +207,6 @@ public class CustomerInfoActivity extends BaseActivity {
             imageLoader.displayImage(customerInfo.getHeadpic(), civIcon, options);
         }
     }
-
 
     private void initAdapter() {
         adapter = new CommonAdapter<MyCustomerConventation>(mContext, customerConventationList, R.layout.layout_item_customerinfo) {
@@ -323,6 +325,10 @@ public class CustomerInfoActivity extends BaseActivity {
                 break;
             case R.id.iv_customerinfo_movetop:
                 xlvList.smoothScrollToPositionFromTop(0, 0, 400);
+                break;
+            case R.id.tv_customerinfo_phone:
+                String phone = (String) v.getTag();
+                FunncoUtils.callPhone(mContext, phone);
                 break;
         }
     }

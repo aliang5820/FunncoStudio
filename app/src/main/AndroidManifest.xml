@@ -612,7 +612,7 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <meta-data android:value="555c553667e58e19db0018ff" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="555c553667e58e19db0018ff" android:name="UMENG_APPKEY" />
         <!-- ${UMENG_CHANNEL_VALUE}  wandoujia  baidu  tencent assistant91 andstore Funnco c360 huawei meizu lenovo mi-->
         <meta-data android:value="${UMENG_CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>
 

@@ -3,14 +3,11 @@ package com.funnco.funnco.receiver;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.DebugUtils;
-import android.widget.Toast;
 
 import com.baidu.android.pushservice.PushMessageReceiver;
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.activity.base.MainActivity;
-import com.funnco.funnco.utils.DebugTool;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.media.MediaPlayerUtils;
@@ -50,7 +47,6 @@ public class BaiduPushReceiver extends PushMessageReceiver {
                 + appid + " \nuserId=" + userId + " \nchannelId=" + channelId
                 + " \nrequestId=" + requestId;
         LogUtils.e(TAG, responseString);
-        DebugTool.e(TAG, responseString);//写入日志文件
         if (errorCode == 0) {
             // 绑定成功
             BaseActivity.device_token = channelId;

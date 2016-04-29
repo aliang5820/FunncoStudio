@@ -29,6 +29,7 @@ import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.callback.DataBack;
 import com.funnco.funnco.impl.Post;
+import com.funnco.funnco.utils.DebugUtil;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
 import com.funnco.funnco.utils.http.AsyncTaskUtils;
 import com.funnco.funnco.utils.http.LoginUtils;
@@ -134,6 +135,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         if (TextUtils.isEmpty(device_token) || TextUtils.equals("null", device_token)) {
             device_token = SharedPreferencesUtils.getValue(mContext, Constants.DEVICE_TOKEN);
         }
+        DebugUtil.traceLog("BaseActivity:device_token:" + device_token);
         LogUtils.e(TAG, "百度推送是否可用：" + PushManager.isPushEnabled(mContext));
         if (!PushManager.isPushEnabled(mContext) || TextUtils.isEmpty(device_token) || TextUtils.equals("null", device_token)) {
             String appiKey = getString(R.string.baidu_appkey);
@@ -189,11 +191,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     protected void onResume() {
         super.onResume();
         PushManager.resumeWork(mContext);
-        //用于测试先注销
-        MobclickAgent.onPageStart("SplashScreen");
         //这两个调用将不会阻塞应用程序的主线程，也不会影响应用程序的性能。
         MobclickAgent.onResume(this);
-        MobclickAgent.setSessionContinueMillis(3 * 60 * 1000);
         if (!NetUtils.isConnection(this)) {
             showNetInfo();
         }
@@ -224,10 +223,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     @Override
     protected void onPause() {
         super.onPause();
-        //用于测试先注销
-        MobclickAgent.onPageEnd("SplashScreen");
         MobclickAgent.onPause(this);
-
     }
 
     @Override

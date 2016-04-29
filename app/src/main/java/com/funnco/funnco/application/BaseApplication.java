@@ -23,6 +23,7 @@ import com.funnco.funnco.bean.ImageBucket;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.bean.WorkItem;
 import com.funnco.funnco.task.SQliteAsynchTask;
+import com.funnco.funnco.utils.DebugUtil;
 import com.funnco.funnco.utils.exception.HandyExceptionUtils;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
 import com.funnco.funnco.utils.log.LogUtils;
@@ -81,8 +82,9 @@ public class BaseApplication<T> extends Application {
             instance = this;
         }
         //捕捉全局异常信息
-        HandyExceptionUtils handyExceptionUtils = HandyExceptionUtils.getInstance();
-        handyExceptionUtils.init(this);
+        /*HandyExceptionUtils handyExceptionUtils = HandyExceptionUtils.getInstance();
+        handyExceptionUtils.init(this);*/
+        DebugUtil.setUncaughtExceptionHandler();
         //本机语言环境
         Locale locale = getResources().getConfiguration().locale;
         String strLan = locale.getLanguage();
@@ -96,8 +98,6 @@ public class BaseApplication<T> extends Application {
                 }
             }
         });
-        //程序入口处调用,禁止默认的页面统计方式，这样将不会再自动统计Activity。
-        MobclickAgent.openActivityDurationTrack(false);
         //数据发送策略
         MobclickAgent.updateOnlineConfig(this);
 
