@@ -110,7 +110,7 @@ public class TeamServiceActivity extends BaseActivity {
         user = BaseApplication.getInstance().getUser();
         ((TextView) findViewById(R.id.tv_headcommon_headm)).setText(R.string.str_team_service);
         findViewById(R.id.llayout_foot).setVisibility(View.GONE);
-        vAddnotify = LayoutInflater.from(mContext).inflate(R.layout.layout_popupwindow_addservice, null);
+        vAddnotify = LayoutInflater.from(mContext).inflate(R.layout.layout_popupwindow_add_team_service, null);
         if (intent != null){
             String key = intent.getStringExtra(KEY);
             if (!TextUtils.isNull(key)){

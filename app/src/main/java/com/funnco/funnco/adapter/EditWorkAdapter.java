@@ -30,11 +30,10 @@ public class EditWorkAdapter extends BaseAdapter {
     private int position2;
     private int index = -1;
 
-    public EditWorkAdapter(Context context,ArrayList<ImageItem> list){
+    public EditWorkAdapter(Context context, ArrayList<ImageItem> list) {
         this.context = context;
         this.list = list;
     }
-
 
 
     @Override
@@ -52,7 +51,7 @@ public class EditWorkAdapter extends BaseAdapter {
         return position;
     }
 
-//    Holder holder;
+    //    Holder holder;
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LogUtils.e("1111111", "调用来了getView()" + position);
@@ -68,35 +67,39 @@ public class EditWorkAdapter extends BaseAdapter {
         //删除按钮的监听
         iv.setImageBitmap(list.get(position).getBitmap());
 
-        if (PublicWay.hashMapTitle.containsKey(ib.getTag()+"") && PublicWay.hashMapTitle.get(ib.getTag()+"") != null){
-            etTitle.setText(PublicWay.hashMapTitle.get(ib.getTag()+""));
+        if (PublicWay.hashMapTitle.containsKey(ib.getTag() + "") && PublicWay.hashMapTitle.get(ib.getTag() + "") != null) {
+            etTitle.setText(PublicWay.hashMapTitle.get(ib.getTag() + ""));
         }
-        if (PublicWay.hashMapDesc.containsKey(ib.getTag()+"") && PublicWay.hashMapDesc.get(ib.getTag()+"") != null){
-            etDesc.setText(PublicWay.hashMapDesc.get(ib.getTag()+""));
+        if (PublicWay.hashMapDesc.containsKey(ib.getTag() + "") && PublicWay.hashMapDesc.get(ib.getTag() + "") != null) {
+            etDesc.setText(PublicWay.hashMapDesc.get(ib.getTag() + ""));
         }
         etTitle.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
-                LogUtils.e("afterTextChanged-------------","s : "+s );
-                PublicWay.hashMapTitle.put(ib.getTag()+"", s+"");
+                LogUtils.e("afterTextChanged-------------", "s : " + s);
+                PublicWay.hashMapTitle.put(ib.getTag() + "", s + "");
             }
         });
         etDesc.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
-                PublicWay.hashMapDesc.put(ib.getTag()+"", s+"");
+                PublicWay.hashMapDesc.put(ib.getTag() + "", s + "");
             }
         });
 
@@ -122,11 +125,11 @@ public class EditWorkAdapter extends BaseAdapter {
         });
         etTitle.clearFocus();
         etDesc.clearFocus();
-        if (index != -1 && index == position){
+        if (index != -1 && index == position) {
             etTitle.requestFocus();
 //            etDesc.requestFocus();
         }
-        if (isEdit && !PublicWay.editWorkItemList.containsKey(list.get(position).getImagePath())){
+        if (isEdit && !PublicWay.editWorkItemList.containsKey(list.get(position).getImagePath())) {
             PublicWay.editWorkItemList.put(list.get(position).getImagePath(), convertView);
             LogUtils.e("CommonAdapter", "适配器添加Item  View" + position);
         }
@@ -135,20 +138,22 @@ public class EditWorkAdapter extends BaseAdapter {
 
     @Override
     public void notifyDataSetChanged() {
-        LogUtils.e("----","适配器更新了数据前 ： size"+PublicWay.editWorkItemList.size());
+        LogUtils.e("----", "适配器更新了数据前 ： size" + PublicWay.editWorkItemList.size());
         PublicWay.editWorkItemList.clear();
         PublicWay.hashMapTitle.clear();
         PublicWay.hashMapDesc.clear();
         LogUtils.e("----", "适配器更新了数据" + PublicWay.editWorkItemList.size());
         super.notifyDataSetChanged();
-        LogUtils.e("----", "适配器更新了数据后 ： size"+PublicWay.editWorkItemList.size());
+        LogUtils.e("----", "适配器更新了数据后 ： size" + PublicWay.editWorkItemList.size());
     }
 
-    public class ImageButtonListener implements ImageButton.OnClickListener{
+    public class ImageButtonListener implements ImageButton.OnClickListener {
         ImageButton ib;
-        public ImageButtonListener(ImageButton ib){
+
+        public ImageButtonListener(ImageButton ib) {
             this.ib = ib;
         }
+
         @Override
         public void onClick(View v) {
             if (imageButtonClickListener != null) {
@@ -158,11 +163,13 @@ public class EditWorkAdapter extends BaseAdapter {
     }
 
     ImageButtonClickListener imageButtonClickListener;
-    public void setOnImageButtonClick(ImageButtonClickListener l){
+
+    public void setOnImageButtonClick(ImageButtonClickListener l) {
         imageButtonClickListener = l;
     }
-    public interface ImageButtonClickListener{
-        void onImageButtonClickListener(ImageButton imageButton,String imagePath);
+
+    public interface ImageButtonClickListener {
+        void onImageButtonClickListener(ImageButton imageButton, String imagePath);
 
     }
 

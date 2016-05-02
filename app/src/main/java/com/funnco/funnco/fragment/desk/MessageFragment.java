@@ -63,7 +63,6 @@ import com.funnco.funnco.wukong.model.GroupSession;
 import com.funnco.funnco.wukong.model.Session;
 import com.funnco.funnco.wukong.user.GroupChatActivity;
 import com.funnco.funnco.wukong.user.SingleChatActivity;
-import com.lidroid.xutils.exception.DbException;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -81,7 +80,7 @@ import java.util.Map;
  * Created by user on 2015/10/12.
  */
 public class MessageFragment extends BaseFragment implements View.OnClickListener {
-
+    private static final String TAG = MessageFragment.class.getName();
     private static final int REQUEST_CODE_CHATTING = 0xf100;
     private static final int REQUEST_CODE_CHATTING_CREATE = 0xf120;
     private static final int RESULT_CODE_CHATTING_CREATE = 0xf121;
@@ -108,9 +107,6 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     private MessageListHeaderView remindView;
     private MessageListHeaderView systemView;
     private MessageListHeaderView teamMsgView;
-    private boolean hasSingleCon = false;
-    private boolean hasGroupCon = false;
-    private List<MyCustomer> userList;
 
     private Handler handler = new Handler() {
         @Override
@@ -163,6 +159,21 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 int unreadCount = item.unreadMessageCount();
                 String nickName = item.title();
                 int type = item.type();
+
+                CircleImageView circleImageView = helper.getView(R.id.id_imageview);
+                if (type == Conversation.ConversationType.CHAT) {
+                    if (memberMap != null && memberMap.containsKey(peerId)) {
+                        helper.setText(R.id.id_title_4, memberMap.get(peerId).getNickname());
+                        imageLoader.displayImage(memberMap.get(peerId).getHeadpic(), circleImageView);
+                    } else {
+                        helper.setText(R.id.id_title_4, nickName);
+                        circleImageView.setImageResource(R.mipmap.my_kehu);
+                    }
+                } else if (type == Conversation.ConversationType.GROUP) {
+                    helper.setText(R.id.id_title_4, nickName + "");
+                    circleImageView.setImageResource(R.mipmap.my_group);
+                }
+
                 String lastMessage = "";
                 if (item.latestMessage() != null && null != item.latestMessage().messageContent()) {
                     LogUtils.d("消息", item.latestMessage().messageContent().toString());
@@ -192,28 +203,6 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     }
                 }
                 helper.setText(R.id.id_title_5, lastMessage + "");
-                CircleImageView circleImageView = helper.getView(R.id.id_imageview);
-                if (type == Conversation.ConversationType.CHAT) {
-                    if (memberMap != null && memberMap.containsKey(peerId)) {
-                        helper.setText(R.id.id_title_4, memberMap.get(peerId).getNickname());
-                        imageLoader.displayImage(memberMap.get(peerId).getHeadpic(), circleImageView);
-                    } else {
-                        helper.setText(R.id.id_title_4, nickName);
-                        circleImageView.setImageResource(R.mipmap.my_kehu);
-                        if(userList != null) {
-                            for (MyCustomer customer : userList) {
-                                if (Long.valueOf(customer.getC_uid()) == peerId) {
-                                    helper.setText(R.id.id_title_4, customer.getNickname());
-                                    imageLoader.displayImage(customer.getHeadpic(), circleImageView);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                } else if (type == Conversation.ConversationType.GROUP) {
-                    helper.setText(R.id.id_title_4, nickName + "");
-                    helper.setImageResource(R.id.id_imageview, R.mipmap.my_group);
-                }
 
                 DesignTextView unreadCountTv = helper.getView(R.id.id_title_3);
                 unreadCountTv.invalidate();
@@ -324,51 +313,47 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 if (conversations == null || conversations.size() <= 0) {
                     return;
                 }
-                //获取头像信息等
-                try {
-                    userList = dbUtils.findAll(MyCustomer.class);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
 
-                list.clear();
-                list.addAll(conversations);
-                xListView.setRefreshTime(DateUtils.getCurrentDate("yyyy-MM-dd HH:mm:ss"));
-                xListView.stopLoadMore();
-                xListView.stopRefresh();
-
-                for (Conversation conversation : conversations) {
+                for (final Conversation conversation : conversations) {
                     long peerId = conversation.getPeerId();
                     if (conversation.type() == Conversation.ConversationType.CHAT && !memberMap.containsKey(peerId)) {
                         TeamMember tm = (TeamMember) SQliteAsynchTask.selectT(dbUtils, TeamMember.class, peerId + "");
                         if (tm != null) {
                             memberMap.put(peerId, tm);
                         }
-
                     }
 
-                    LogUtils.e("funnco------", "" + conversation + "\n getPeerId:" + conversation.getPeerId() + "\n getGroupLevel:"
+                    /*LogUtils.i(TAG, "" + conversation + "\n getPeerId:" + conversation.getPeerId() + "\n getGroupLevel:"
                             + conversation.getGroupLevel() + "\n getLastModify:" + conversation.getLastModify()
                             + "\n getMemberLimit:" + conversation.getMemberLimit() + "\n getOnlyOwnerModifiable:"
                             + conversation.getOnlyOwnerModifiable() + "\n conversationId:" + conversation.conversationId()
                             + "\n getTop:" + conversation.getTop() + "\n "
                             + "\n icon:" + conversation.icon() + "\n unreadMessageCount:" + conversation.unreadMessageCount()
                             + "\n title:" + conversation.title() + "\n createdAt:" + conversation.createdAt() + "\n latestMessage:" + conversation.latestMessage()
-                            + "\n totalMembers:" + conversation.totalMembers() + "\n type:" + conversation.type());
-
+                            + "\n totalMembers:" + conversation.totalMembers() + "\n type:" + conversation.type());*/
                     //TODO 单聊取user,群聊取member
                     userService.getUser(new Callback<User>() {
                         @Override
                         public void onSuccess(User user) {
-                            LogUtils.e("funnco", " avatar : " + user.avatar()
-                                    + "\n nickname : " + user.nickname()
-                                    + "\n alias : " + user.alias()
-                                    + "\n remark : " + user.remark());
+                            if (!memberMap.containsKey(conversation.getPeerId())) {
+                                TeamMember teamMember = new TeamMember();
+                                teamMember.setMember_uid(conversation.getPeerId() + "");
+                                teamMember.setNickname(user.nickname());
+                                if (!TextUtils.isNull(user.avatar())) {
+                                    if (user.avatar().startsWith("http")) {
+                                        teamMember.setHeadpic(user.avatar());
+                                    } else {
+                                        teamMember.setHeadpic(FunncoUrls.getBaseUrl() + user.avatar());
+                                    }
+                                }
+                                memberMap.put(conversation.getPeerId(), teamMember);
+                                LogUtils.i(TAG, "add memberMap avatar : " + user.avatar() + " nickname : " + user.nickname() + " alias : " + user.alias() + " remark : " + user.remark());
+                            }
                         }
 
                         @Override
                         public void onException(String s, String s1) {
-                            LogUtils.e("funnco", "s : " + s + "\n s1 : " + s1);
+                            LogUtils.i(TAG, "s : " + s + "\n s1 : " + s1);
                         }
 
                         @Override
@@ -380,8 +365,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                         @Override
                         public void onSuccess(List<Member> members) {
                             for (Member mb : members) {
-                                LogUtils.e("funnco------", "获得的聊天成员是：roletype:" + mb.roleType() + " \n nickname:" +
-                                        mb.user().nickname() + " \navatar:" + mb.user().avatar());
+                                LogUtils.i(TAG, "获得的聊天成员是：roletype:" + mb.roleType() + " nickname:" + mb.user().nickname() + " avatar:" + mb.user().avatar());
                             }
                         }
 
@@ -397,7 +381,18 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     });
 
                 }
-                adapter.setmDatas(list);
+
+                list.clear();
+                list.addAll(conversations);
+                xListView.setRefreshTime(DateUtils.getCurrentDate("yyyy-MM-dd HH:mm:ss"));
+                xListView.stopLoadMore();
+                xListView.stopRefresh();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.setmDatas(list);
+                    }
+                }, 1500);
             }
 
             @Override
@@ -586,7 +581,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 Message message = IMEngine.getIMService(MessageBuilder.class).buildTextMessage(sysMsg); //系统消息
                 if (!TextUtils.isNull(key)) {
                     Object object = BaseApplication.getInstance().getT(key);
-                    if(object instanceof List) {
+                    if (object instanceof List) {
                         List<TeamMember> ls = (List<TeamMember>) object;
                         BaseApplication.getInstance().removeT(key);
                         if (ls.size() > 0) {
@@ -618,7 +613,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                                             ls.size() == 1 ? Conversation.ConversationType.CHAT : Conversation.ConversationType.GROUP, uids);
 
                         }
-                    } else if(object instanceof MyCustomer){
+                    } else if (object instanceof MyCustomer) {
                         //客户私聊
                         MyCustomer customer = (MyCustomer) object;
                         BaseApplication.getInstance().removeT(key);

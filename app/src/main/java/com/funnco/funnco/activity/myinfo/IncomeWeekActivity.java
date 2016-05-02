@@ -99,7 +99,7 @@ public class IncomeWeekActivity extends BaseActivity {
                     //2为支出
                     circleImageView.setImageResource(R.mipmap.money_out_icon);
                     price.setTextColor(getResources().getColor(R.color.color_green_ok));
-                    price.setText(item.getNum() + "元");
+                    price.setText("-" + item.getNum() + "元");
                 } else {
                     //1为收入
                     circleImageView.setImageResource(R.mipmap.money_in_icon);

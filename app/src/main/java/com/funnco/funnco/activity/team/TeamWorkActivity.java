@@ -166,8 +166,10 @@ public class TeamWorkActivity extends BaseActivity {
                 i.putExtra("number", 9);
                 if (!isMyPhoto) {
                     i.putExtra("team_id", team.getTeam_id());
+                    i.putExtra("isTeamWork", true);
+                } else {
+                    i.putExtra("isTeamWork", false);
                 }
-                i.putExtra("isTeamWork", true);
                 startActivityForResult(i, REQUEST_CODE_ADDTEAMWORK);
                 break;
         }
@@ -212,7 +214,8 @@ public class TeamWorkActivity extends BaseActivity {
                         list.clear();
                         list.addAll(ls);
                     }
-                    adapter.notifyDataSetChanged();
+                    adapter = new MyAdapter();
+                    xListView.setAdapter(adapter);
                 }
             }
         }

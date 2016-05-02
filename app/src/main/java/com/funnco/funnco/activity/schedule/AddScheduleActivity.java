@@ -1,5 +1,6 @@
 package com.funnco.funnco.activity.schedule;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.widget.NumberPicker;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.RepeatEventTypeActivity;
@@ -28,7 +30,9 @@ import com.funnco.funnco.utils.http.NetUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.string.Actions;
 import com.funnco.funnco.utils.url.FunncoUrls;
+import com.funnco.funnco.view.dialog.DateTimePickerDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -368,7 +372,10 @@ public class AddScheduleActivity extends BaseActivity {
                 popupWindowDate.showAtLocation(parentView, Gravity.BOTTOM,0 ,0);
                 isBeginDate = true;
                 isEndDate = false;*/
-                selectDate(new IDateCallBack() {
+
+                /*showDateDialog();
+                selectDate();*/
+                showDateDialog(new IDateCallBack() {
                     @Override
                     public void callBack(Calendar calendar) {
                         if (isAllDayEvent) {
@@ -398,7 +405,7 @@ public class AddScheduleActivity extends BaseActivity {
                     return;
                 }
                 popupWindowDate.showAtLocation(parentView, Gravity.BOTTOM,0 ,0);*/
-                selectDate(new IDateCallBack() {
+                showDateDialog(new IDateCallBack() {
                     @Override
                     public void callBack(Calendar calendar) {
                         if (isAllDayEvent) {
@@ -643,4 +650,35 @@ public class AddScheduleActivity extends BaseActivity {
     interface IDateCallBack {
         void callBack(Calendar calendar);
     }
+
+
+    /**
+     * 新的时间选择器
+     */
+    public void showDateDialog(final IDateCallBack dateCallBack) {
+        DateTimePickerDialog dialog = new DateTimePickerDialog(this, System.currentTimeMillis());
+        /**
+         * 实现接口
+         */
+        dialog.setOnDateTimeSetListener(new DateTimePickerDialog.OnDateTimeSetListener() {
+            public void OnDateTimeSet(AlertDialog dialog, long date) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(date);
+                LogUtils.e(TAG, "您输入的日期是：" + getStringDate(date));
+                dateCallBack.callBack(calendar);
+            }
+        });
+        dialog.show();
+    }
+
+    /**
+     * 将长时间格式字符串转换为时间 yyyy-MM-dd HH:mm:ss
+     *
+     */
+    public static String getStringDate(Long date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(date);
+        return dateString;
+    }
+
 }

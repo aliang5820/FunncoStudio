@@ -749,6 +749,10 @@ public class FunncoUrls {
         return getBaseUrl() + "?m=team_invite_list";
     }
 
+    /**
+     * 2.2新增
+     * 第三方推送码更新
+     */
     public static String getBaiduPushCode() {
         return getBaseUrl() + "?m=baidu_push_code";
     }

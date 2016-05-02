@@ -637,7 +637,11 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
         tvPwAddevent = (TextView) addNotifyView.findViewById(R.id.tv_schedule_pw_event);
         tvPwAddinvitation = (TextView) addNotifyView.findViewById(R.id.tv_schedule_pw_invitation);
 
+        //初始化当前日期情况：是否是闰年，月天数，某月第一天是星期几
+        getCalengarInfo();
+        initWeekedView();
         initData();
+        initMonthView();
     }
 
     /**
@@ -1475,10 +1479,6 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
      * 初始化选中年月的整月数据
      */
     private void initData() {
-        //初始化当前日期情况：是否是闰年，月天数，某月第一天是星期几
-        getCalengarInfo();
-        initWeekedView();
-        initMonthView();
         String formatDate = TimeUtils.getFormatDate(mCurrentYear, mCurrentMonth);
         try {
             mDateInfoList = TimeUtils.initCalendar(formatDate, mCurrentMonth);

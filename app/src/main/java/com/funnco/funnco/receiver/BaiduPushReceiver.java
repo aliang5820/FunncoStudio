@@ -2,21 +2,32 @@ package com.funnco.funnco.receiver;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 
 import com.baidu.android.pushservice.PushMessageReceiver;
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.activity.base.MainActivity;
+import com.funnco.funnco.bean.ScheduleNewStat;
+import com.funnco.funnco.callback.DataBack;
+import com.funnco.funnco.task.AsyTask;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
+import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.media.MediaPlayerUtils;
 import com.funnco.funnco.utils.support.Constants;
+import com.funnco.funnco.utils.url.FunncoUrls;
+import com.lidroid.xutils.exception.DbException;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by user on 2015/8/27.
@@ -51,10 +62,29 @@ public class BaiduPushReceiver extends PushMessageReceiver {
             // 绑定成功
             BaseActivity.device_token = channelId;
             SharedPreferencesUtils.setValue(context, Constants.DEVICE_TOKEN, "" + channelId);
+            // 向服务器发送推送码
+            registerPushCode(channelId);
         }
 
         // Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
-//        updateContent(context, responseString);
+        // updateContent(context, responseString);
+    }
+
+    private void registerPushCode(String pushCode) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("push_code", pushCode);
+        AsyTask task = new AsyTask(map, new DataBack() {
+            @Override
+            public void getString(String result) {
+                LogUtils.e(TAG, "发送PushCode结果：" + result);
+            }
+
+            @Override
+            public void getBitmap(String url, Bitmap bitmap) {
+
+            }
+        },false);
+        task.execute(FunncoUrls.getBaiduPushCode());
     }
 
     /**

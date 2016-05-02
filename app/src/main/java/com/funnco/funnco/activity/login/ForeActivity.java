@@ -28,7 +28,6 @@ import com.funnco.funnco.utils.support.FunncoUtils;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.exception.DbException;
-import com.umeng.analytics.AnalyticsConfig;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -185,8 +184,8 @@ public class ForeActivity extends BaseActivity {
             //isFirstLogin值修改为false
             SharedPreferencesUtils.setValue(this, Constants.ISFIRSTLOGIN, false);
             return true;
-        } else if (TextUtils.isEmpty(device_token) || TextUtils.isEmpty(token) || TextUtils.isEmpty(uid)) {
-            LogUtils.e(TAG, "没有保存用户信息进入登录页面:device_token:" + device_token + "  token:" + token + "  uid:" + uid);
+        } else if (TextUtils.isEmpty(token) || TextUtils.isEmpty(uid)) {
+            LogUtils.e(TAG, "没有保存用户信息进入登录页面:token:" + token + "  uid:" + uid);
             //判断是否有用户信息,没有保存用户信息则进入登录页面
             intent.setClass(this, LoginActivity.class);
             BaseApplication.setIsFirstUser(true);

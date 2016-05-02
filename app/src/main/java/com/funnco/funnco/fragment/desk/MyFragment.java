@@ -153,7 +153,6 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     protected void initEvents() {
-        getInAndOutTask();
         /*myListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -201,8 +200,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         getInAndOutTask();
     }
 
