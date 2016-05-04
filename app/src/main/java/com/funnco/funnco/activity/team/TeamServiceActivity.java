@@ -62,7 +62,7 @@ public class TeamServiceActivity extends BaseActivity {
     private XListView xListView;
     private TextView tvServiceDistribute;
     private TextView tvAddService;
-    private ImageView ivAddNotify;
+    private TextView ivAddNotify;
     private CommonAdapter<Serve> adapter;
     private List<Serve> list = new ArrayList<>();
     private Intent intent;
@@ -401,11 +401,14 @@ public class TeamServiceActivity extends BaseActivity {
 
     private void initNotifyUI(){
         container.removeAllViews();
-        ivAddNotify = new ImageView(mContext);
+        ivAddNotify = new TextView(mContext);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         params.gravity = Gravity.CENTER;
         ivAddNotify.setLayoutParams(params);
-        ivAddNotify.setImageResource(R.mipmap.common_teamservice_add_notify);
+        ivAddNotify.setText("『您目前没有服务/课程，请点击右上角的＋号添加』");
+        ivAddNotify.setGravity(Gravity.CENTER);
+        ivAddNotify.setTextColor(getResources().getColor(R.color.color_hint_gray));
+        ivAddNotify.setTextSize(30);
         container.addView(ivAddNotify);
         ivAddNotify.setOnClickListener(new View.OnClickListener() {
             @Override

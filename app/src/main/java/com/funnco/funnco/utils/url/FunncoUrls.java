@@ -51,7 +51,7 @@ public class FunncoUrls {
      * @return
      */
     public static String getHelpUrl() {
-        return getWapBaseUrl() + "help.html";
+        return "http://www.funnco.com/funnco-b-admin/badmin/index.php?m=Home&c=Marketing&a=marketingshow&aid=3";
     }
 
     /**

@@ -118,8 +118,9 @@ public class ServiceDistributeServiceChooseActivity extends BaseActivity {
         ((SwipeLayout) vInfo.findViewById(R.id.swip)).setSwipeEnabled(false);
         CircleImageView civ = (CircleImageView) vInfo.findViewById(R.id.id_imageview);
         TextView tvName = (TextView) vInfo.findViewById(R.id.id_textview);
-        imageLoader.displayImage(teamMemberMy.getHeadpic(), civ, options);
+        tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);//此处不显示箭头符号
         tvName.setText(teamMemberMy.getNickname() + "");
+        imageLoader.displayImage(teamMemberMy.getHeadpic(), civ, options);
 
 
         container = (FrameLayout) findViewById(R.id.layout_container);
