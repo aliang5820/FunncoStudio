@@ -66,7 +66,6 @@ public final class DebugUtil {
     }
 
     public static void traceLog(String logContent) {
-        Log.d(TAG, logContent);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         PrintWriter writer = null;
         try {
