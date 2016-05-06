@@ -1214,11 +1214,11 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                     mActivity.finish();
                     return;
                 }
-                if (BaseApplication.isFirstUser() && user.getService_count().equals("0")) {
+                /*if (BaseApplication.isFirstUser() && user.getService_count().equals("0")) {
                     sharePwNotify();
                     isFirstuse = false;
                     return;
-                }
+                }*/
                 shareSchedule();
                 return;
             case R.id.bt_pwdelete_cancle:
