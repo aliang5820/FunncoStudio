@@ -114,9 +114,8 @@ public class BaseApplication<T> extends Application {
     private void initWukongIM(){
         // 只有用户profile（如：nickname、gender、mobile等）信息放在悟空时，才需要设置成true，默认false
         IMEngine.setUserAvailable(true);
-        // 设置为上海沙箱环境
-//        IMEngine.setEnvironment(WKConstants.Environment.ONLINE);
-        WKManager.setEnvironment(WKConstants.Environment.SANDBOX);
+        WKManager.setEnvironment(WKConstants.Environment.ONLINE);//正式环境
+        //WKManager.setEnvironment(WKConstants.Environment.SANDBOX);//沙箱环境
         //初始化IMEngine
         IMEngine.launch(this);
         //自动登录上一次的账户

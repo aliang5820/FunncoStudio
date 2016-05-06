@@ -20,33 +20,29 @@
 
         <TextView
             style="@style/OrderDescTextStyle"
-            android:text="成员5人" />
+            android:text="团队人数共5人" />
 
         <TextView
             style="@style/OrderDescTextStyle"
-            android:text="500次预约次数/月" />
+            android:text="无限次服务/课程预约次数" />
 
         <TextView
             style="@style/OrderDescTextStyle"
-            android:text="无限商户预约/课程提醒次数" />
+            android:text="100条客户提醒短信/月" />
 
         <TextView
             style="@style/OrderDescTextStyle"
-            android:text="每月赠送100条提醒短信" />
+            android:text="4条营销内容/月" />
 
         <TextView
             style="@style/OrderDescTextStyle"
-            android:text="每月赠送4条营销推送" />
-
-        <TextView
-            style="@style/OrderDescTextStyle"
-            android:text="个人团体照片展示10张" />
+            android:text="10张照片" />
 
         <TextView
             android:id="@+id/swOrderYear"
             style="@style/OrderDescBtnStyle"
             android:layout_marginTop="30dp"
-            android:text="立即升级(888RMB/年)" />
+            android:text="立即升级(889RMB/年)" />
 
         <TextView
             android:id="@+id/swOrderMonth"
@@ -72,39 +68,35 @@
 
         <TextView
             style="@style/OrderDescTextStyle"
-            android:text="成员10人" />
+            android:text="团队人数共10人" />
 
         <TextView
             style="@style/OrderDescTextStyle"
-            android:text="无限预约次数/月" />
+            android:text="无限次服务/课程预约次数" />
 
         <TextView
             style="@style/OrderDescTextStyle"
-            android:text="无限商户预约/课程提醒次数" />
+            android:text="500条客户提醒短信/月" />
 
         <TextView
             style="@style/OrderDescTextStyle"
-            android:text="500条客户提醒短信" />
+            android:text="4条营销内容/月" />
 
         <TextView
             style="@style/OrderDescTextStyle"
-            android:text="8条营销内容推送" />
-
-        <TextView
-            style="@style/OrderDescTextStyle"
-            android:text="个人团体照片展示25张" />
+            android:text="20张照片" />
 
         <TextView
             android:id="@+id/qjOrderYear"
             style="@style/OrderDescBtnStyle"
             android:layout_marginTop="30dp"
-            android:text="立即升级(1388RMB/年)" />
+            android:text="立即升级(1488RMB/年)" />
 
         <TextView
             android:id="@+id/qjOrderMonth"
             style="@style/OrderDescBtnStyle"
             android:layout_marginTop="20dp"
-            android:text="立即升级(88RMB/月)" />
+            android:text="立即升级(138RMB/月)" />
     </LinearLayout>
 
     <LinearLayout

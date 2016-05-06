@@ -88,21 +88,21 @@ public class UpdateAccountActivity_3 extends BaseActivity {
                 //商务包年
                 order_name.setText("商务版包年");
                 pay_time_select.setText(R.string.pay_time_year);
-                paymentRequest.setBaseAmount(888);
+                paymentRequest.setBaseAmount(889);
                 paymentRequest.setType(Constants.ORDER_TYPE_SW_YEAR);
                 break;
             case R.id.qjOrderMonth:
                 //旗舰包月
                 order_name.setText("旗舰版包月");
                 pay_time_select.setText(R.string.pay_time_month);
-                paymentRequest.setBaseAmount(88);
+                paymentRequest.setBaseAmount(138);
                 paymentRequest.setType(Constants.ORDER_TYPE_QJ_MONTH);
                 break;
             case R.id.qjOrderYear:
                 //旗舰包年
                 order_name.setText("旗舰版包年");
                 pay_time_select.setText(R.string.pay_time_year);
-                paymentRequest.setBaseAmount(1388);
+                paymentRequest.setBaseAmount(1488);
                 paymentRequest.setType(Constants.ORDER_TYPE_QJ_YEAR);
                 break;
             case R.id.glOrderAdmin:

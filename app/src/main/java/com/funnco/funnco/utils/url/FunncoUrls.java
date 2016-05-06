@@ -11,13 +11,13 @@ public class FunncoUrls {
      * @return 接口地址
      */
     public static String getBaseUrl() {
-//        return "http://api.funnco.com/";
-        return "http://api.test.funnco.com/";
+        return "http://api.funnco.com/";
+        //return "http://api.test.funnco.com/";
     }
 
     public static String getWapBaseUrl() {
-//        return "http://wap.funnco.com/";
-        return "http://wap.test.funnco.com/";
+        return "http://wap.funnco.com/";
+        //return "http://wap.test.funnco.com/";
     }
 
     //二维码登录地址

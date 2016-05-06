@@ -131,10 +131,10 @@ public class EditWorkActivity extends BaseActivity {
                 finishOk();
                 break;
             case R.id.tv_headcommon_headr://保存
-                if(checkParams()) {
+                /*if(checkParams()) {
                     showToast("请填写完整照片的标题和描述");
                     return;
-                }
+                }*/
                 if (!NetUtils.isConnection(mContext)) {
                     showNetInfo();
                     return;
@@ -190,8 +190,10 @@ public class EditWorkActivity extends BaseActivity {
         }
         for (int i = 0; i < Bimp.tempSelectBitmap.size(); i++) {
             ImageItem item = Bimp.tempSelectBitmap.get(i);
-            params.addBodyParameter("title" + (i + 1), PublicWay.hashMapTitle.get(item.getImagePath()) + "");
-            params.addBodyParameter("description" + (i + 1), PublicWay.hashMapDesc.get(item.getImagePath()) + "");
+            String title = PublicWay.hashMapTitle.get(item.getImagePath());
+            String desc = PublicWay.hashMapDesc.get(item.getImagePath());
+            params.addBodyParameter("title" + (i + 1), TextUtils.isNull(title) ? "暂无标题" : title);
+            params.addBodyParameter("description" + (i + 1), TextUtils.isNull(desc) ? "暂无描述" : desc);
             params.addBodyParameter("file" + (i + 1), new File(item.getImagePath()), FileTypeUtils.getType(item.getImagePath()) + "");
         }
 
