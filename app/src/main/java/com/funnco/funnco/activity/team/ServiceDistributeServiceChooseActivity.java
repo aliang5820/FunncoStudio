@@ -331,7 +331,7 @@ public class ServiceDistributeServiceChooseActivity extends BaseActivity {
         } else if (url.equals(FunncoUrls.getTeamServiceDistributeUrl())) {
             showToast(R.string.success);
             setResult(RESULT_CODE_SERVICE_CHOOSE);
-            //finishOk();
+            finishOk();
         }
     }
 

@@ -152,7 +152,8 @@ public class InvitationActivity extends BaseActivity {
             tvTime.setText(DateUtils.getTime4Minutes(startTime));
         } else {
             list.clear();
-            int duration = Integer.valueOf(serveSelected.getDuration());//服务所用时长
+            int serveDuration = Integer.valueOf(serveSelected.getDuration());//服务所用时长
+            int duration = 30;//30分钟一格
             int sTime = Integer.valueOf(serveSelected.getStarttime());//服务开始时间
             int eTime = Integer.valueOf(serveSelected.getEndtime());//服务结束时间
             int num = (eTime - sTime) / duration;
@@ -162,7 +163,7 @@ public class InvitationActivity extends BaseActivity {
                 times[i] = dt;
                 ScheduleTimeInfo info = new ScheduleTimeInfo();
                 info.setFormatTime(DateUtils.getTime4Minutes(times[i]));
-                info.setDurationTime(DateUtils.getTime4Minutes(times[i] + duration));
+                info.setDurationTime(DateUtils.getTime4Minutes(times[i] + serveDuration));
                 for (EnableTime enableTime : ls) {
                     int st = enableTime.getStarttime();
                     int et = enableTime.getEndtime();

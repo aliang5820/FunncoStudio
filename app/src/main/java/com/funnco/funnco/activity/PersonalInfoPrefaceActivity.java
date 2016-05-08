@@ -1,9 +1,10 @@
 package com.funnco.funnco.activity;
 
-import android.content.Intent;
+import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.WebSettings;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.funnco.funnco.R;
@@ -11,7 +12,6 @@ import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.utils.file.SharedPreferencesUtils;
-import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.string.TextUtils;
 import com.funnco.funnco.utils.support.Constants;
 import com.funnco.funnco.utils.url.FunncoUrls;
@@ -21,11 +21,9 @@ import com.funnco.funnco.utils.url.FunncoUrls;
  * Created by user on 2015/8/31.
  */
 public class PersonalInfoPrefaceActivity extends BaseActivity {
-    private WebView wvPersonalinfo;
+    private WebView webView;
     private View parentView;
     private UserLoginInfo user;
-
-    private Intent intent;
 
     @Override
     protected void loadLayout() {
@@ -36,43 +34,46 @@ public class PersonalInfoPrefaceActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        LogUtils.e("----", "PersonalInfoPrefaceActivity 执行了 initView方法");
-        intent = getIntent();
         user = BaseApplication.getInstance().getUser();
-        wvPersonalinfo = (WebView) findViewById(R.id.wv_about_info);
+        webView = (WebView) findViewById(R.id.wv_about_info);
         ((TextView) findViewById(R.id.tv_headcommon_headm)).setText(R.string.business_code);
         String token = SharedPreferencesUtils.getValue(mContext, Constants.TOKEN);
         String url = FunncoUrls.getShareScheduleUrl(user.getId());
         if (!TextUtils.isNull(token)) {
             url += "&token=" + token;
         }
-        if (intent != null) {
-//            intent.getStringExtra("")
-        }
-
-        //支持javascript
-        wvPersonalinfo.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(true);//支持javascript
+        webView.setWebChromeClient(new WebChromeClient());//支持特殊的javascript
+        webView.setWebViewClient(new WebViewClient());//点击链接在本webview中打开
         // 设置可以支持缩放
-        wvPersonalinfo.getSettings().setSupportZoom(true);
+        webView.getSettings().setSupportZoom(true);
         // 设置出现缩放工具
-//        wvPersonalinfo.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setBuiltInZoomControls(true);
         //扩大比例的缩放
-//        wvPersonalinfo.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setUseWideViewPort(true);
         //自适应屏幕
-        wvPersonalinfo.getSettings().setUseWideViewPort(true);
-        wvPersonalinfo.getSettings().setLoadWithOverviewMode(true);
-
-//        Map<String, String> extraHeaders = new HashMap<>();
-//        if (wvPersonalinfo.getUrl() != null) {
-//            extraHeaders.put("Referer", wvPersonalinfo.getUrl());
-//            wvPersonalinfo.loadUrl(url, extraHeaders);
-//        }
-        wvPersonalinfo.loadUrl(url);
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.loadUrl(url);
     }
 
     @Override
     protected void initEvents() {
         findViewById(R.id.tv_headcommon_headl).setOnClickListener(this);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()){
+            case MotionEvent.BUTTON_BACK:
+                try {
+                    webView.goBack();
+                }catch (Exception e){
+                    finishOk();
+                }
+                break;
+        }
+        return true;
     }
 
     @Override

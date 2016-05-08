@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -44,10 +45,10 @@ import com.funnco.funnco.activity.schedule.AddScheduleActivity;
 import com.funnco.funnco.activity.schedule.InvitationActivity;
 import com.funnco.funnco.activity.schedule.ReasonCancleActivity;
 import com.funnco.funnco.adapter.CommonAdapter;
-import com.funnco.funnco.adapter.CommonBaseAdapter;
 import com.funnco.funnco.adapter.ListViewAdapter;
 import com.funnco.funnco.adapter.MonthCalendarAdapter;
 import com.funnco.funnco.adapter.MyExpandListViewAdapter;
+import com.funnco.funnco.adapter.ShareAdapter;
 import com.funnco.funnco.adapter.TeamlistExpAdapter;
 import com.funnco.funnco.adapter.ViewHolder;
 import com.funnco.funnco.adapter.WeekendCalendarAdapter;
@@ -141,7 +142,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
     private List<MonthCalendar> mDateInfoList;
     private ImageLoader imageLoader;
     private DisplayImageOptions options;
-    private List<CheckBox> checkBoxList = new ArrayList<>();
+
     //新预约日期对象的集合
     private List<ScheduleNew> newscheduleNewList = new ArrayList<>();
     //未读消息的日期对象集合 key--2015-07-18(日期)  value - 3(当天预约人数)
@@ -192,7 +193,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
     //分享面板
     private View vShareBoard;
     private ListView vShareListView;
-    private CommonAdapter<Team> shareAdapter;
+    private ShareAdapter shareAdapter;
 
     //头部控件
     private CheckBox cbMonth = null;
@@ -1302,11 +1303,11 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 startActivityForResult(InvitationActivity.class, null, REQUEST_CODE_INVITATION_ADD);
                 break;
             case R.id.id_title_0://分享到微信好友
-                int position = (int) vShareListView.getTag();
+                int position = shareAdapter.getCheckedPosition();
                 if (position == 0) {
                     WeicatUtils.setShareContent(mContext, mController, user, R.mipmap.common_logo_rectangle);
                 } else {
-                    WeicatUtils.setShareContent(mContext, mController, teamList.get(position - 1), R.mipmap.common_logo_rectangle);
+                    WeicatUtils.setShareContent(mContext, mController, teamList.get(position), R.mipmap.common_logo_rectangle);
                 }
                 mController.postShare(mContext, SHARE_MEDIA.WEIXIN, new SocializeListeners.SnsPostListener() {
                     @Override
@@ -1329,11 +1330,11 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 });
                 break;
             case R.id.id_title_1://分享到微信朋友圈
-                int position1 = (int) vShareListView.getTag();
+                int position1 = shareAdapter.getCheckedPosition();
                 if (position1 == 0) {
                     WeicatUtils.setShareContent(mContext, mController, user, R.mipmap.common_logo_rectangle);
                 } else {
-                    WeicatUtils.setShareContent(mContext, mController, teamList.get(position1 - 1), R.mipmap.common_logo_rectangle);
+                    WeicatUtils.setShareContent(mContext, mController, teamList.get(position1), R.mipmap.common_logo_rectangle);
                 }
                 mController.postShare(mContext, SHARE_MEDIA.WEIXIN_CIRCLE, new SocializeListeners.SnsPostListener() {
                     @Override
@@ -1757,23 +1758,21 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
     private void initShareAdapter() {
         vShareListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         vShareListView.setTag(0);
-        shareAdapter = new CommonAdapter<Team>(mContext, teamList, R.layout.layout_share_item, new CommonBaseAdapter.CommonImp() {
-            @Override
-            public int getCommonCount() {
-                return teamList.size() + 1;
-            }
-        }) {
+        Team my = new Team();
+        my.setTeam_name("自己");
+        my.setCover_pic(user.getHeadpic());
+        teamList.add(0, my);
+        shareAdapter = new ShareAdapter(mContext, teamList, imageLoader);
+        /*shareAdapter = new CommonAdapter<Team>(mContext, teamList, R.layout.layout_share_item) {
             @Override
             public void convert(ViewHolder helper, Team item, final int position) {
                 CheckBox checkBox = helper.getView(R.id.item_name);
+                Team t = teamList.get(position);
+                helper.setText(R.id.item_name, t.getTeam_name());
+                helper.setImageByUrl(R.id.item_img, t.getCover_pic());
                 if (position == 0) {
-                    helper.setText(R.id.item_name, "自己");
-                    helper.setImageByUrl(R.id.item_img, user.getHeadpic());
                     checkBox.setChecked(true);
                 } else {
-                    Team t = teamList.get(position - 1);
-                    helper.setText(R.id.item_name, t.getTeam_name());
-                    helper.setImageByUrl(R.id.item_img, t.getCover_pic());
                     checkBox.setChecked(false);
                 }
                 if (!checkBoxList.contains(checkBox)) {
@@ -1793,7 +1792,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                     }
                 });
             }
-        };
+        };*/
         vShareListView.setAdapter(shareAdapter);
     }
 

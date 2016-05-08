@@ -18,10 +18,12 @@ import com.alibaba.wukong.im.UserService;
 import com.alibaba.wukong.im.utils.Utils;
 import com.funnco.funnco.R;
 import com.funnco.funnco.activity.chat.ChatMessageTransmitter;
+import com.funnco.funnco.bean.TeamMember;
 import com.funnco.funnco.utils.http.NetUtils;
 import com.funnco.funnco.utils.log.LogUtils;
 import com.funnco.funnco.utils.support.Constants;
 import com.funnco.funnco.utils.support.FunncoUtils;
+import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.wukong.base.BaseFragmentActivity;
 import com.funnco.funnco.wukong.controller.ChatWindowManager;
 import com.funnco.funnco.wukong.model.ChatMessage;
@@ -32,10 +34,12 @@ import com.funnco.funnco.wukong.model.Session;
  * Created by zijunlzj on 14/12/24.
  */
 public class SingleChatActivity extends BaseFragmentActivity implements View.OnClickListener{
+    private static final String TAG = SingleChatActivity.class.getName();
     private int mSessionType;
     private  ChatFragment chat;
     private ChatMessageTransmitter transmitter;
-    private Conversation mConversation;
+    //private Conversation mConversation;
+    private Session mCurrentSession;
     private ImageButton tvSetting;
 
     @Override
@@ -44,28 +48,45 @@ public class SingleChatActivity extends BaseFragmentActivity implements View.OnC
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.chat_layout);
         findViewById(R.id.id_lview).setOnClickListener(this);
-        mConversation = (Conversation) getIntent().getSerializableExtra(Session.SESSION_INTENT_KEY);
-        String title = mConversation.title();
+        mCurrentSession = (Session) getIntent().getSerializableExtra(Session.SESSION_INTENT_KEY);
+        UserService userService = IMEngine.getIMService(UserService.class);
+        userService.getUser(new Callback<User>() {
+            @Override
+            public void onSuccess(User user) {
+                ((TextView) findViewById(R.id.id_mview)).setText(user.nickname());
+            }
+
+            @Override
+            public void onException(String s, String s1) {
+                LogUtils.i(TAG, "s : " + s + "\n s1 : " + s1);
+            }
+
+            @Override
+            public void onProgress(User user, int i) {
+
+            }
+        }, mCurrentSession.getOtherOpenId());
+        /*String title = mConversation.title();
         if (title.equals(mConversation.getPeerId()+"")) {
             title = getIntent().getStringExtra("title");
         }
-        ((TextView) findViewById(R.id.id_mview)).setText(title+"");
+        ((TextView) findViewById(R.id.id_mview)).setText(title+"");*/
 
         tvSetting = (ImageButton) findViewById(R.id.id_rview);
         tvSetting.setImageResource(R.mipmap.common_chat_settingicon);
         tvSetting.setOnClickListener(this);
-        mConversation.sync();
-        mSessionType = mConversation.type();
+        mCurrentSession.sync();
+        mSessionType = mCurrentSession.type();
         LogUtils.e("DemoLog","mSessionType1="+mSessionType);
         initSystemStatusBar(); //高版本上statusbar一体化
-//      initActionBar(conversation.title());
-        setUpActionBar(mConversation);
+        //initActionBar(mConversation.title());
+        setUpActionBar(mCurrentSession);
         chat =(ChatFragment)getSupportFragmentManager().findFragmentById(R.id.chat_fragment);
-        chat.setCurrentConversation(mConversation);
-        ChatWindowManager.getInstance().setCurrentChatCid(mConversation.conversationId());
+        chat.setCurrentConversation(mCurrentSession);
+        ChatWindowManager.getInstance().setCurrentChatCid(mCurrentSession.conversationId());
         transmitter= (ChatMessageTransmitter) getSupportFragmentManager().findFragmentById(R.id.chat_transmitter);
-        transmitter.setCurrentConeverstaion(mConversation);
-        transmitter.setOnTransmitted(new Callback<ChatMessage>() {
+        transmitter.setCurrentConeverstaion(mCurrentSession);
+        /*transmitter.setOnTransmitted(new Callback<ChatMessage>() {
             @Override
             public void onSuccess(ChatMessage chatMessage) {
 //                chat.onMessageSended( chatMessage );
@@ -80,7 +101,7 @@ public class SingleChatActivity extends BaseFragmentActivity implements View.OnC
             public void onProgress(ChatMessage chatMessage, int i) {
 
             }
-        });
+        });*/
 
         if (!NetUtils.isConnection(this)) {
             FunncoUtils.showToast(this, getString(R.string.net_err));
@@ -99,7 +120,7 @@ public class SingleChatActivity extends BaseFragmentActivity implements View.OnC
             case R.id.item_chat_setting:
                 //TODO start ChatSettingActivity
                 Intent intent = new Intent();
-                intent.putExtra(Constants.KEY_CONVERSATION, mConversation);
+                intent.putExtra(Constants.KEY_CONVERSATION, mCurrentSession);
                 intent.setClass(SingleChatActivity.this, ChatSettingActivity.class);
                 startActivity(intent);
                 return true;
@@ -143,7 +164,7 @@ public class SingleChatActivity extends BaseFragmentActivity implements View.OnC
                 break;
             case R.id.id_rview:
                 Intent intent = new Intent();
-                intent.putExtra(Constants.KEY_CONVERSATION, mConversation);
+                intent.putExtra(Constants.KEY_CONVERSATION, mCurrentSession);
                 intent.setClass(SingleChatActivity.this, ChatSettingActivity.class);
                 startActivity(intent);
                 break;

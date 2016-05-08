@@ -10,7 +10,7 @@ import com.funnco.funnco.utils.support.Constants;
 /**
  * Created by Edison on 2016/4/20.
  */
-public class NotificationSystemDetailActivity extends BaseActivity {
+public class WebViewDetailActivity extends BaseActivity {
     private WebView webView;
 
     @Override

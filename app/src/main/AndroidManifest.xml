@@ -445,7 +445,7 @@
         <activity android:name=".activity.notification.NotificationSystemActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.notification.NotificationSystemDetailActivity"
+        <activity android:name=".activity.notification.WebViewDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <!-- 团队通知邀请消息 须做应答-->

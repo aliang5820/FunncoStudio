@@ -8,12 +8,14 @@ import com.funnco.funnco.R;
 import com.funnco.funnco.activity.base.BaseActivity;
 import com.funnco.funnco.activity.base.QR_CodeActivity;
 import com.funnco.funnco.activity.myinfo.UpdateInfoActivity;
+import com.funnco.funnco.activity.notification.WebViewDetailActivity;
 import com.funnco.funnco.application.BaseApplication;
 import com.funnco.funnco.bean.MyCustomerInfo;
 import com.funnco.funnco.bean.TeamMemberMy;
 import com.funnco.funnco.bean.UserLoginInfo;
 import com.funnco.funnco.utils.json.JsonUtils;
 import com.funnco.funnco.utils.string.TextUtils;
+import com.funnco.funnco.utils.support.Constants;
 import com.funnco.funnco.utils.url.FunncoUrls;
 import com.funnco.funnco.view.imageview.CircleImageView;
 

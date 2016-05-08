@@ -61,6 +61,7 @@ import com.funnco.funnco.view.listview.XListView;
 import com.funnco.funnco.view.textview.DesignTextView;
 import com.funnco.funnco.wukong.model.GroupSession;
 import com.funnco.funnco.wukong.model.Session;
+import com.funnco.funnco.wukong.model.SingleSession;
 import com.funnco.funnco.wukong.user.GroupChatActivity;
 import com.funnco.funnco.wukong.user.SingleChatActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -472,7 +473,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                         if (tm != null) {
                             intent.putExtra("title", tm.getNickname());
                         }
-                        intent.putExtra(Session.SESSION_INTENT_KEY, new GroupSession(conversation));
+                        intent.putExtra(Session.SESSION_INTENT_KEY, conversation.type() == Conversation.ConversationType.CHAT ? new SingleSession(conversation) : new GroupSession(conversation));
                         startActivity(intent);
                     }
                 }
@@ -672,7 +673,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     List<NotificationLastRemindAndSystem> ls = JsonUtils.getObjectArray(listJSONArray.toString(), NotificationLastRemindAndSystem.class);
                     if (ls != null && !ls.isEmpty()) {
                         NotificationLastRemindAndSystem remindAndSystem = ls.get(0);
-                        systemView.setMessage(remindAndSystem.getSummary());
+                        systemView.setMessage(remindAndSystem.getTitle());
                         systemView.setTime(remindAndSystem.getCreate_time());
                     }
                 }

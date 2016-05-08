@@ -35,9 +35,9 @@ public class NotificationSystemActivity extends NotificationBaseActivity {
         xListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                NotificationSystemInfo systemInfo = list.get(i);
+                NotificationSystemInfo systemInfo = list.get(i - 1);
                 if(!TextUtils.isEmpty(systemInfo.getUrl())) {
-                    Intent intent = new Intent(mContext, NotificationSystemDetailActivity.class);
+                    Intent intent = new Intent(mContext, WebViewDetailActivity.class);
                     intent.putExtra(Constants.URL, systemInfo.getUrl());
                     startActivity(intent);
                 } else {
