@@ -81,7 +81,7 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
     private Button btCancle;
     private View ll_popup;
     private int deletePosition;
-
+    private String selectedDay;
     private static final int REQUEST_CODE_COURSES_EDIT = 0xf09;
     private static final int RESULT_CODE_COURSES_EDIT = 0xf19;
     private static final int RESULT_CODE_COURSES = 0xf17;//课程的添加和修改
@@ -115,13 +115,12 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
     @Override
     protected void initViews() {
         /***************/
-        tvDate = (TextView) parentView.findViewById(R.id.tv_date);
-        tvDate.setText(year_c + "年" + month_c + "月" + day_c + "日");
         gestureDetector = new GestureDetector(this);
         flipper1 = (ViewFlipper) parentView.findViewById(R.id.flipper1);
+        selectedDay = year_c + "年" + month_c + "月" + day_c + "日";
         dateAdapter = new DateAdapter(mContext, getResources(), currentYear,
                 currentMonth, currentWeek, currentNum, selectPostion,
-                currentWeek == 1 ? true : false);
+                currentWeek == 1 ? true : false, selectedDay);
         addGridView();
         dayNumbers = dateAdapter.getDayNumbers();
         gridView.setAdapter(dateAdapter);
@@ -152,19 +151,20 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
                 } else {
                     helper.getView(R.id.tv_item_courses_desc).setVisibility(View.GONE);
                 }
-                if (team_id.equals("0")) {
+                /*if (team_id.equals("0")) {
                     helper.getView(R.id.iv_item_courses_teamicon).setVisibility(View.INVISIBLE);
                 } else {
                     helper.getView(R.id.iv_item_courses_teamicon).setVisibility(View.VISIBLE);
-                }
+                }*/
                 //开课人数-课程人数
                 helper.setText(R.id.tv_item_courses_number, item.getMin_numbers() + "-" + item.getNumbers() + "人");
-                if (position == getPositionForSection(item.getWeek_index())) {
+                helper.setText(R.id.tv_item_courses_price, item.getPrice() + "元/" + item.getNumbers() + "人");
+                /*if (position == getPositionForSection(item.getWeek_index())) {
                     helper.getView(R.id.tv_item_courses_weektip).setVisibility(View.VISIBLE);
                     helper.setText(R.id.tv_item_courses_weektip, DateUtils.getWeek(Integer.valueOf(item.getWeek_index()), "周"));
-                } else {
+                } else {*/
                     helper.getView(R.id.tv_item_courses_weektip).setVisibility(View.GONE);
-                }
+                //}
 
 //                helper.setText(R.id.tv_item_courses_price, item.getPrice());
                 String stime = item.getStarttime();
@@ -237,7 +237,7 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
         getData();
     }
 
-    public int getPositionForSection(String section) {
+    /*public int getPositionForSection(String section) {
         for (int i = 0; i < list.size(); i++) {
             String sortStr = list.get(i).getWeek_index();
 //            char firstChar = sortStr.toUpperCase().charAt(0);
@@ -246,7 +246,7 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
             }
         }
         return -1;
-    }
+    }*/
 
     @Override
     public void post(int... position) {
@@ -303,26 +303,32 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
     }
 
     private void reCreateData(List<Serve> data) {
+        int current = week_num;
+        if(gridView.getTag() != null) {
+            current = (int) gridView.getTag();
+        }
         if (data != null && data.size() > 0) {
             list.clear();
             for (Serve s : data) {
                 if (s != null) {
                     String[] weeks = s.getWeeks().split(",");
                     for (String week : weeks) {
-                        if (!TextUtils.isNull(week)) {
-                            Serve s_2 = (Serve) s.clone();
+                        if (!TextUtils.isNull(week) && Integer.valueOf(week) == current) {
+                            /*Serve s_2 = (Serve) s.clone();
                             if (week.equals("0")) {
                                 s_2.setWeek_index("7");
                             } else {
                                 s_2.setWeek_index(week);
                             }
-                            list.add(s_2);
+                            list.add(s_2);*/
+                            list.add(s);
                         }
                     }
                 }
             }
 //                        list.addAll(ls);
-            Collections.sort(list, new Comparator<Serve>() {
+            //目前无需排序
+            /*Collections.sort(list, new Comparator<Serve>() {
                 @Override
                 public int compare(Serve lhs, Serve rhs) {
                     int index = lhs.getWeek_index().compareTo(rhs.getWeek_index());
@@ -331,7 +337,7 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
                     }
                     return index;
                 }
-            });
+            });*/
 
             SQliteAsynchTask.saveOrUpdate(dbUtils, data);
         } else {
@@ -504,7 +510,6 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
     private boolean isLeapyear = false; // 是否为闰年
     private int selectPostion = 0;
     private String dayNumbers[] = new String[7];
-    private TextView tvDate;
     private int currentYear;
     private int currentMonth;
     private int currentWeek;
@@ -578,7 +583,7 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
 
     private void addGridView() {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                AbsListView.LayoutParams.FILL_PARENT, AbsListView.LayoutParams.WRAP_CONTENT);
+                AbsListView.LayoutParams.MATCH_PARENT, AbsListView.LayoutParams.WRAP_CONTENT);
         gridView = new GridView(mContext);
         gridView.setNumColumns(7);
         gridView.setGravity(Gravity.CENTER_VERTICAL);
@@ -597,13 +602,20 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                //选中日期
                 Log.i(TAG, "day:" + dayNumbers[position]);
                 selectPostion = position;
                 dateAdapter.setSeclection(position);
                 dateAdapter.notifyDataSetChanged();
-                tvDate.setText(dateAdapter.getCurrentYear(selectPostion) + "年"
+                selectedDay = dateAdapter.getCurrentYear(selectPostion) + "年"
+                        + dateAdapter.getCurrentMonth(selectPostion) + "月"
+                        + dayNumbers[position] + "日";
+
+                Log.i(TAG, dateAdapter.getCurrentYear(selectPostion) + "年"
                         + dateAdapter.getCurrentMonth(selectPostion) + "月"
                         + dayNumbers[position] + "日");
+                gridView.setTag(position);
+                reCreateData(listSrc);
             }
         });
         gridView.setLayoutParams(params);
@@ -691,19 +703,17 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
             getCurrent();
             dateAdapter = new DateAdapter(mContext, getResources(), currentYear,
                     currentMonth, currentWeek, currentNum, selectPostion,
-                    currentWeek == 1 ? true : false);
+                    currentWeek == 1 ? true : false, selectedDay);
             dayNumbers = dateAdapter.getDayNumbers();
             gridView.setAdapter(dateAdapter);
-            tvDate.setText(dateAdapter.getCurrentYear(selectPostion) + "年"
+            /*tvDate.setText(dateAdapter.getCurrentYear(selectPostion) + "年"
                     + dateAdapter.getCurrentMonth(selectPostion) + "月"
-                    + dayNumbers[selectPostion] + "日");
+                    + dayNumbers[selectPostion] + "日");*/
             gvFlag++;
             flipper1.addView(gridView, gvFlag);
-            dateAdapter.setSeclection(selectPostion);
-            this.flipper1.setInAnimation(AnimationUtils.loadAnimation(mContext,
-                    R.anim.push_left_in));
-            this.flipper1.setOutAnimation(AnimationUtils.loadAnimation(mContext,
-                    R.anim.push_left_out));
+            //dateAdapter.setSeclection(selectPostion);
+            this.flipper1.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.push_left_in));
+            this.flipper1.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.push_left_out));
             this.flipper1.showNext();
             flipper1.removeViewAt(0);
             return true;
@@ -714,15 +724,15 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
             getCurrent();
             dateAdapter = new DateAdapter(mContext, getResources(), currentYear,
                     currentMonth, currentWeek, currentNum, selectPostion,
-                    currentWeek == 1 ? true : false);
+                    currentWeek == 1 ? true : false, selectedDay);
             dayNumbers = dateAdapter.getDayNumbers();
             gridView.setAdapter(dateAdapter);
-            tvDate.setText(dateAdapter.getCurrentYear(selectPostion) + "年"
+            /*tvDate.setText(dateAdapter.getCurrentYear(selectPostion) + "年"
                     + dateAdapter.getCurrentMonth(selectPostion) + "月"
-                    + dayNumbers[selectPostion] + "日");
+                    + dayNumbers[selectPostion] + "日");*/
             gvFlag++;
             flipper1.addView(gridView, gvFlag);
-            dateAdapter.setSeclection(selectPostion);
+            //dateAdapter.setSeclection(selectPostion);
             this.flipper1.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.push_right_in));
             this.flipper1.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.push_right_out));
             this.flipper1.showPrevious();

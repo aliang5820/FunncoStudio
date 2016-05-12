@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -8,9 +9,9 @@
         android:id="@+id/tv_item_courses_weektip"
         style="@style/style_common_tv_bar"
         android:layout_marginLeft="0dp"
+        android:background="@color/color_main_bg"
         android:gravity="center"
         android:text="周次"
-        android:background="@color/color_main_bg"
         android:textSize="@dimen/font_size_14" />
 
     <com.funnco.funnco.view.switcher.SwipeLayout
@@ -37,7 +38,7 @@
 
         <RelativeLayout
             style="@style/style_layout_width_m"
-            android:layout_height="@dimen/dimen_common_width_65"
+            android:layout_height="50dp"
             android:background="@color/color_white">
 
             <TextView
@@ -45,7 +46,8 @@
                 android:layout_width="@dimen/dimen_common_100"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="10:00-12:00" />
+                android:text="10:00-12:00"
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:id="@+id/llayout_right"
@@ -53,33 +55,41 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:gravity="center"
+                android:paddingRight="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_item_courses_number"
                     style="@style/style_common_tv_bar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"
                     android:gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:text="8人"
-                    android:textSize="@dimen/font_size_14" />
+                    android:textSize="@dimen/font_size_12" />
 
                 <TextView
                     android:id="@+id/tv_item_courses_price"
                     style="@style/style_common_tv_bar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="0dp"
                     android:gravity="center"
-                    android:text=""
-                    android:textSize="@dimen/font_size_14"
-                    android:visibility="invisible" />
+                    android:layout_marginTop="4dp"
+                    android:textSize="@dimen/font_size_12"
+                    tools:text="500元/人" />
+
                 <ImageView
                     android:id="@+id/iv_item_courses_teamicon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/common_my_team"
                     android:layout_gravity="bottom|right"
-                    android:padding="@dimen/dimen_common_5"/>
+                    android:padding="@dimen/dimen_common_5"
+                    android:src="@mipmap/common_my_team"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -94,23 +104,28 @@
                 <TextView
                     android:id="@+id/tv_item_courses_name"
                     style="@style/style_common_tv_bar"
-                    android:textColor="@color/color_black_3"
                     android:gravity="left|center_vertical"
+                    android:padding="0dp"
                     android:text="课程名"
-                    android:textSize="@dimen/font_size_18" />
+                    android:textColor="@color/color_black_3"
+                    android:textSize="@dimen/font_size_14" />
 
                 <TextView
                     android:id="@+id/tv_item_courses_desc"
                     style="@style/style_common_tv_bar"
+                    android:layout_marginTop="4dp"
                     android:gravity="left|center_vertical"
+                    android:padding="0dp"
                     android:text="课程描述"
-                    android:textSize="@dimen/font_size_14" />
+                    android:textSize="@dimen/font_size_12" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="@dimen/dimen_common_1px"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@id/tv_item_courses_time"
                 android:background="@color/color_hint_gray_light" />
 
@@ -120,5 +135,5 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_common_1px"
-        android:background="@color/color_hint_gray_light"/>
+        android:background="@color/color_hint_gray_light" />
 </LinearLayout>

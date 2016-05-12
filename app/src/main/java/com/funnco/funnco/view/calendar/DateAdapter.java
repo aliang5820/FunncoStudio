@@ -1,9 +1,11 @@
 package com.funnco.funnco.view.calendar;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.funnco.funnco.R;
+import com.funnco.funnco.utils.string.TextUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,7 +54,9 @@ public class DateAdapter extends BaseAdapter {
     private int c_month = 0;
     private int c_day_week = 0;
     private int n_day_week = 0;
+    private String selectedDay = "";
     private boolean isStart;
+    int sdk = android.os.Build.VERSION.SDK_INT;
 
     // 标识选择的Item
     public void setSeclection(int position) {
@@ -68,13 +73,14 @@ public class DateAdapter extends BaseAdapter {
     }
 
     public DateAdapter(Context context, Resources rs, int year_c, int month_c,
-                       int week_c, int week_num, int default_postion, boolean isStart) {
+                       int week_c, int week_num, int default_postion, boolean isStart, String selectedDay) {
         this();
         this.context = context;
         this.res = rs;
         this.default_postion = default_postion;
         this.week_c = week_c;
         this.isStart = isStart;
+        this.selectedDay = selectedDay;
         sc = new SpecialCalendar();
 
         lastDayOfWeek = sc.getWeekDayOfLastMonth(year_c, month_c,
@@ -216,6 +222,7 @@ public class DateAdapter extends BaseAdapter {
         return position;
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -223,6 +230,7 @@ public class DateAdapter extends BaseAdapter {
         }
         TextView tvCalendar = (TextView) convertView.findViewById(R.id.tv_calendar);
         tvCalendar.setText(dayNumber[position]);
+        String cd = sys_year + "年" + sys_month + "月" + dayNumber[position] + "日";
         if (clickTemp == position) {
             tvCalendar.setSelected(true);
             tvCalendar.setTextColor(Color.WHITE);
@@ -231,6 +239,19 @@ public class DateAdapter extends BaseAdapter {
             tvCalendar.setSelected(false);
             tvCalendar.setTextColor(Color.BLACK);
             tvCalendar.setBackgroundColor(Color.TRANSPARENT);
+
+            if (TextUtils.equals(dayNumber[position], currentDay)) {
+                tvCalendar.setTextColor(Color.WHITE);
+                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    tvCalendar.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_circle_today));
+                } else {
+                    tvCalendar.setBackground(context.getResources().getDrawable(R.drawable.bg_circle_today));
+                }
+            } else if(TextUtils.equals(selectedDay, cd)) {
+                tvCalendar.setSelected(true);
+                tvCalendar.setTextColor(Color.WHITE);
+                tvCalendar.setBackgroundResource(R.drawable.circle_message);
+            }
         }
         return convertView;
     }
