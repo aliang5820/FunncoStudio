@@ -17,7 +17,7 @@
     <RelativeLayout
         android:id="@id/id_relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignBottom="@+id/id_imageview"
         android:layout_alignTop="@+id/id_imageview"
         android:layout_centerVertical="true"
@@ -41,9 +41,9 @@
             android:id="@id/id_title_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/id_title_4"
             android:ellipsize="end"
-            android:paddingBottom="5dp"
+            android:layout_marginTop="8dp"
             android:singleLine="true"
             android:textSize="12sp"
             tools:text="暂无消息" />

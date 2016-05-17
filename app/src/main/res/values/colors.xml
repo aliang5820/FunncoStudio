@@ -156,4 +156,6 @@
     <color name="circle_text_color">#787878</color>
     <color name="editText">#AAAAAA</color>
     <color name="blue">#008dff</color>
+
+    <drawable name="color_translucent">@android:color/transparent</drawable>
 </resources>

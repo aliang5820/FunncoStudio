@@ -227,6 +227,8 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
         ll_popup = popView.findViewById(R.id.llayout_popupwindow);
         btDelete = (Button) popView.findViewById(R.id.bt_popupwindow_delete);
         btCancle = (Button) popView.findViewById(R.id.bt_popupwindow_cancle);
+        popView.findViewById(R.id.bt_popupwindow_delete_one).setOnClickListener(this);
+        popView.findViewById(R.id.bt_popupwindow_delete_all).setOnClickListener(this);
         popDelete.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popDelete.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         popDelete.setBackgroundDrawable(new BitmapDrawable());
@@ -383,6 +385,14 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
 
     private void showPopupWindow() {
         if (popDelete != null && !popDelete.isShowing()) {
+            if (TextUtils.equals(list.get(deletePosition).getRepeat_type(), "1")) {
+                //永久重复的，需要提醒
+                ll_popup.findViewById(R.id.one_layout).setVisibility(View.GONE);
+                ll_popup.findViewById(R.id.repeat_layout).setVisibility(View.VISIBLE);
+            } else {
+                ll_popup.findViewById(R.id.one_layout).setVisibility(View.VISIBLE);
+                ll_popup.findViewById(R.id.repeat_layout).setVisibility(View.GONE);
+            }
             ll_popup.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.activity_translate_in));
             popDelete.showAtLocation(xListView, Gravity.BOTTOM, 0, 0);
         }
@@ -458,7 +468,7 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_popupwindow_delete:
-                dismissPopupWindow();
+                /*dismissPopupWindow();
                 if (!NetUtils.isConnection(mContext)) {//无网络  不进行网络操作
                     showNetErr();
                     return;
@@ -469,20 +479,51 @@ public class ServiceFragment_Course extends BaseFragment implements Post, View.O
                 postData2(map, FunncoUrls.getDeleteServicdeUrl(), false);
                 SQliteAsynchTask.deleteById(dbUtils, Serve.class, list.get(deletePosition).getId());
                 //移除顺序需要特别注意
-//                list.remove(deletePosition);
                 for (int i = 0; i < listSrc.size(); i++) {
                     Serve s = listSrc.get(i);
                     if (s.getId().equals(id)) {
                         listSrc.remove(s);
                     }
                 }
-                reCreateData(listSrc);
+                reCreateData(listSrc);*/
+                deleteCourse(1);
+                break;
+            case R.id.bt_popupwindow_delete_one:
+                deleteCourse(2);
+                break;
+            case R.id.bt_popupwindow_delete_all:
+                deleteCourse(3);
                 break;
             case R.id.bt_popupwindow_cancle:
                 dismissPopupWindow();
                 break;
         }
         closeSwip();
+    }
+
+    private void deleteCourse(int type) {
+        dismissPopupWindow();
+        if (!NetUtils.isConnection(mContext)) {//无网络  不进行网络操作
+            showNetErr();
+            return;
+        }
+        Map<String, Object> map = new HashMap<>();
+        String id = list.get(deletePosition).getId() + "";
+        map.put("id", id);
+        if(type > 1) {
+            map.put("repeat", type == 3 ? "all" : "one");
+            map.put("dates", dateAdapter.getCurrentYear(selectPostion) + "-" + dateAdapter.getCurrentMonth(selectPostion) + "-"  + dayNumbers[selectPostion]);
+        }
+        postData2(map, FunncoUrls.getDeleteServicdeUrl(), false);
+        SQliteAsynchTask.deleteById(dbUtils, Serve.class, list.get(deletePosition).getId());
+        //移除顺序需要特别注意
+        for (int i = 0; i < listSrc.size(); i++) {
+            Serve s = listSrc.get(i);
+            if (s.getId().equals(id)) {
+                listSrc.remove(s);
+            }
+        }
+        reCreateData(listSrc);
     }
 
     /**
